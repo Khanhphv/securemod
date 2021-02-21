@@ -16,8 +16,8 @@ class CoinPaymentsController extends Controller
     public function coinpayments_api_call($cmd, $req = array())
     {
         // Fill these in from your API Keys page
-        $public_key = '033cc8325b2bba4282214f2629081e37e53b20a66b77c001673152768a09a710';
-        $private_key = '00a5Eaf1fC670E820BD3f20bef96a255bb016f21bf244F7903f51297b6Bb13C1';
+        $public_key = getenv("COINPAYMENT_PUBLIC_KEY");
+        $private_key = getenv("COINPAYMENT_SECRET_KEY");
 
         // Set the API command and required fields
         $req['version'] = 1;
