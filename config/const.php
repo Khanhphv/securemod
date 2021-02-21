@@ -44,6 +44,12 @@ return [
             'gold' => 'Gold',
             'silver' => 'Silver',
         ]
-    ]
+        ],
+        'coin_currencies' => [
+            'BTC',
+            'ETH',
+            'USDT',
+            'BCH',
+        ]
 
 ];

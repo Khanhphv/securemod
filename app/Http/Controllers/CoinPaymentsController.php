@@ -63,19 +63,26 @@ class CoinPaymentsController extends Controller
         }
     }
 
-    public function CreateTransaction($amount)
+    public function CreateTransaction(Request $request)
     {
+        $amount = $request->get('amount');
+        $currency = $request->get('currency');
+        if (!isset($amount) || !isset($currency)) {
+            abort(500);
+        }
         $req = [
             'amount' => $amount,
             'currency1' => 'USD',
-            'currency2' => 'BTC',
+            'currency2' => $currency,
             'buyer_email' => Auth::user()->email,
             'buyer_name' => Auth::user()->email,
             'item_name' => Auth::user()->email,
             'custom' => Auth::user()->email
         ];
         $create_transaction = $this->coinpayments_api_call('create_transaction', $req);
-//        $transaction_id = $create_transaction['result']['txn_id'];
+        if($create_transaction['error'] !== 'ok') {
+            dd($create_transaction['error']);
+        }
         $checkout_url = $create_transaction['result']['checkout_url'];
         return redirect($checkout_url);
     }

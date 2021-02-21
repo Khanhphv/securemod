@@ -67,7 +67,7 @@ Route::group(['middleware' => ['locale', 'web']], function () {
     Route::put('account/subscribe','HomeController@updateSubscribe')->name('subscribe');
     Route::get('account/unsubscribe', 'HomeController@unsubscribe');
 
-    Route::get('create-transaction-coinpayments/{amount?}', 'CoinPaymentsController@CreateTransaction');
+    Route::get('create-transaction-coinpayments', 'CoinPaymentsController@CreateTransaction');
     Route::get('get-transactions-coinpayments', 'CoinPaymentsController@GetListTransactions');
     Route::get('check-transactions-coinpayments', 'CoinPaymentsController@CheckListTransactions');
     Route::get('cron2', 'CoinPaymentsController@CheckListTransactions');

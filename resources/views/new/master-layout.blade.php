@@ -1,4 +1,4 @@
- <style>
+<style>
                 .text-logo *{
                     font-size: 25px
                 }
@@ -54,7 +54,7 @@
                             {{ round(Auth::user()->credit, 2) }} USD
                             @endauth
                         </div>
-                        <div class="btn-rechange-mobile modal-trigger" href="#paypal-popup">
+                        {{-- <div class="btn-rechange-mobile modal-trigger" href="#paypal-popup">
                             <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                 <path
                                     d="M12,21.5 C17.2467051,21.5 21.5,17.2467051 21.5,12 C21.5,6.75329488 17.2467051,2.5 12,2.5 C6.75329488,2.5 2.5,6.75329488 2.5,12 L3.5,12 C3.5,7.30557963 7.30557963,3.5 12,3.5 C16.6944204,3.5 20.5,7.30557963 20.5,12 C20.5,16.6944204 16.6944204,20.5 12,20.5 L12,21.5 Z"
@@ -73,18 +73,18 @@
                                     transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) ">
                                 </path>
                             </svg>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="space-height-20px"></div>
                 @auth()
-                <a onclick="createPayment()" class="title-icon">
+                {{-- <a onclick="createPayment()" class="title-icon">
                     <div style="display: flex; align-items: center;">
                         <img width="24px" src="https://img.icons8.com/pastel-glyph/64/000000/money--v3.png"/>
                         <div class="space-20px"></div>
                         Paypal Recharge
                     </div>
-                </a>
+                </a> --}}
                 <div class="space-height-20px"></div>
                 <div class="border-bottom-2px"></div>
                 <div class="space-height-20px"></div>
@@ -93,6 +93,16 @@
                         <img width="24px" src="https://img.icons8.com/cotton/64/000000/money-circulation--v1.png"/>
                         <div class="space-20px"></div>
                         Coin Recharge
+                    </div>
+                </a>
+                <div class="space-height-20px"></div>
+                <div class="border-bottom-2px"></div>
+                <div class="space-height-20px"></div>
+                <a href="#seller-payment" class="title-icon modal-trigger">
+                    <div style="display: flex; align-items: center;">
+                        <img width="50px" src="{{ asset('img/seller2.png') }}"/>
+                        <div class="space-20px"></div>
+                        Recharge via seller
                     </div>
                 </a>
                 <div class="space-height-20px"></div>
@@ -549,33 +559,6 @@
                 </div>
                 <div class="desktop">
                     @auth()
-                    <div class="user quick-recharge">
-                        <div class="user-dropdown">
-                            <span>Quick recharge</span>
-                            <div class="space-height-20px"></div>
-                            <div class="border-bottom-2px"></div>
-                            <div class="space-height-20px"></div>
-                            <button class="btn-quick-recharge">
-                                <label for="">10</label>
-                            </button>
-                            <button class="btn-quick-recharge">
-                                <label for="">20</label>
-                            </button>
-                            <button class="btn-quick-recharge">
-                                <label for="">50</label>
-                            </button>
-                            <button class="btn-quick-recharge">
-                                <label for="">100</label> + 2.5%
-                            </button>
-                            <button class="btn-quick-recharge">
-                                <label for="">200</label> + 5%
-                            </button>
-                            <button class="btn-quick-recharge">
-                                <label for="">500</label> + 7.5%
-                            </button>
-                        </div>
-                        <img width="24" alt="quick-recharge" src="{{ asset('img/lightning-icon.png') }}" alt="">
-                    </div>
                     <div class="space-20px"></div>
                     <div class="border-right-2px" style="height: 40px;"></div>
                     <div class="btn-rechange">
@@ -602,16 +585,15 @@
                             <div class="space-height-20px"></div>
                             <div class="border-bottom-2px"></div>
                             @auth
-                                <div class="space-height-20px"></div>
-                                <div style="display: flex; align-items: center;">
+                                {{-- <div class="space-height-20px"></div> --}}
+                                {{-- <div style="display: flex; align-items: center;">
                                     <a onclick="createPayment()" class="waves-effect waves-light btn-large"
                                        style="background: white; width: 150px;">
-{{--                                        <iframe name="iframe-payment" src="http://khanhphv.net/home" title="Paypal Recharge"></iframe>--}}
                                         <img   style="width: 120%;height: 100%; left: -8px"
                                              src="https://www.paypalobjects.com/checkoutweb/release/hermione/media/logo.7e5b43e3.svg"
                                              alt="paypal-payment">
                                     </a>
-                                </div>
+                                </div> --}}
                                 <div class="space-height-20px"></div>
                                 <div style="display: flex; align-items: center;">
                                     <a class="waves-effect waves-light btn-large modal-trigger" href="#coin-popup"
@@ -619,6 +601,14 @@
                                         <img style="width: 135%; left: -14px; top: 3px" src="{{ asset('img/coinpayment.png') }}" alt="coin-payment">
                                     </a>
                                 </div>
+                                <div class="space-height-20px"></div>
+                                <div style="display: flex; align-items: center;">
+                                    <a target="blank" class="waves-effect waves-light btn-large modal-trigger" href="#seller-payment"
+                                       style="background: white; width: 150px;">
+                                        <img style="height: -webkit-fill-available" src="{{ asset('img/seller2.png')}}" alt="seller-payment">
+                                    </a>
+                                </div>
+
                             @endauth
 
                         </div>
@@ -931,6 +921,12 @@
                         <div>
                             <h5>For support: </h5>
                             Email : support@securecheat.xyz<br>
+                            <br>
+                            <h5>Verified Seller By</h5>
+                            <a target="blank" href="https://www.elitepvpers.com/">
+                                <img src="https://cdn.discordapp.com/attachments/796683451087585280/809374850102722580/logo.png" alt="seller" width="100">
+                            </a>
+                            
                         </div>
                         <div class="space-20px"></div>
                         <div>
@@ -954,10 +950,10 @@
         @auth()
             @if(\App\Blacklist::where('email', Auth::user()->email)->get()->first() == null)
                 @include('new.coin-popup')
-                @include('new.paypal-popup')
+                @include('new.seller-payment')
                 <script !src="">
                     function createPayment() {
-                        window.open('https://securemods.com/payment?id=' + '{{Auth::user()->id}}' , 'Dynamic Popup', 'height=50%', 'width="50%')
+                        // window.open('https://securemods.com/payment?id=' + '{{Auth::user()->id}}' , 'Dynamic Popup', 'height=50%', 'width="50%')
                     }
                 </script>
             @endif
@@ -997,4 +993,3 @@
 @endauth
 
 @yield('script')
-

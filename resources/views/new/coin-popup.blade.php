@@ -6,18 +6,28 @@
                     '' : (' - Get ' . \App\Option::where('option', 'coinpayment_bonus')->first()->value . '% more') ?></h3>
             <form action="#">
                 <div class="row">
-                    <div class="input-field col s12 m6">
-                        <input type="number" class="validate" type="number" name="amount" id="amount">
-                        <label for="amount">Amount</label>
-                        <span class="helper-text" id="required_message" style="display: none; color: red" data-error="wrong" data-success="right">Please enter amount</span>
-                    </div>
-                    <div class="input-field col s12">
-                        <button type="button" class="waves-effect waves-light btn"
+                    <div class="col s12 m4">
+                        <div class="input-field">
+                            <input type="number" class="validate" type="number" name="amount" id="amount">
+                            <label for="amount">Amount</label>
+                            <span class="helper-text" id="required_message" style="display: none; color: red" data-error="wrong" data-success="right">Please enter amount</span>
+                        </div>
+                        <label>Currency</label>
+                        <select class="browser-default" id="currency">
+                            @foreach (config('const.coin_currencies') as $currency)
+                                <option value="{{$currency}}">{{$currency}}</option>
+                            @endforeach
+                            </select>
+                        <br>
+                        <div class="input-field">
+                            <button type="button" class="waves-effect waves-light btn"
                                 onclick="rechargeCoinPayments()">
                             Recharge now
                         </button>
+                        </div>
+                        
                     </div>
-                    <div class="col s12">
+                    <div class="input-field col s12 m8">
                         <h4>Tutorial</h4>
                         <p>1，Input the values you want recharge</p>
                         <p>2，Payment to order display btc address</p>
@@ -29,7 +39,7 @@
                         <p>5，You need to make sure the actual arrival amount is equal to or greater
                             than
                             the order amount.</p>
-                    </div>
+                    </div>    
                 </div>
             </form>
 
@@ -38,9 +48,10 @@
     </div>
     <script !src="">
         function rechargeCoinPayments() {
+            let currency = $('#currency').val();
             let amount = $("#amount").val();
             if (amount !== null && amount !== "") {
-                window.open('/create-transaction-coinpayments/' + amount, '_blank');
+                window.open('/create-transaction-coinpayments?amount=' + amount + '&currency=' + currency, '_blank');
             } else {
                 Swal.fire({
                     allowEscapeKey: true,
