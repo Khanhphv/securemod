@@ -51,7 +51,6 @@ class AdminController extends Controller
         $adminMoney = $adminPlus + $adminMinus;
 
         $napVaoTrongNgay = History::whereBetween('created_at', $range)->whereIn('action', ['CHARGE_VIA_PAYPAL', 'CHARGE_VIA_COINPAYMENTS', 'ADMIN_CONG'])->sum('amount');
-        dd($range);
 
         $napQuaPaypal = History::whereBetween('created_at', [Carbon::parse($start)->startOfMonth(), Carbon::parse($start)->lastOfMonth()])->whereIn('action', ['CHARGE_VIA_PAYPAL'])->sum('amount');
         $napQuaCoinPayment = History::whereBetween('created_at', [Carbon::parse($start)->startOfMonth(), Carbon::parse($start)->lastOfMonth()])->whereIn('action', ['CHARGE_VIA_COINPAYMENTS'])->sum('amount');
