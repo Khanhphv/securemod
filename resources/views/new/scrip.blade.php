@@ -8,7 +8,6 @@
 
 <!-- End custom js for this page-->
 <script src="{{ asset('js/sweetalert2.min.js') }}"></script>
-
 <script>
     $(document).ready(function () {
         $('select').formSelect();

@@ -141,6 +141,32 @@
                 grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
             }
         }
+        .product__price-tag {
+            width: auto;
+            display: flex;
+            align-items: center;
+            height: 50px;
+            border-radius: 8px 8px 8px 0;
+            background: #ffea2e;
+            z-index: 99;
+            position: absolute;
+            top: -15px;
+            left: -20px;
+        }
+        .product__price-tag-price {
+            padding: 0 20px;
+            color: #152ba3;
+            font-size: 15px;
+            font-weight: 700;
+        }
+        .product__price-tag::after {
+            content: "";
+            position: absolute;
+            border-left: 20px solid transparent;
+            border-top: 10px solid #8c8228;
+            left: 0px;
+            top: 50px;
+        }
     </style>
 </head>
 <body>
@@ -151,6 +177,11 @@
         @if(isset($tools) && count($tools) > 0)
             @foreach($tools as $tool)
                 <div id="tool_{{$tool->id}}" class="card" style="margin: 1em">
+                    @if($tool->note !== '')
+                        <div class="product__price-tag">
+                            <p class="product__price-tag-price">{{$tool->note}}</p>
+                        </div>
+                    @endif      
                     @if($tool->discount && $tool->discount > 0)
                         <div style="position: absolute; right: 0">
                             <div class="ribbon  ribbon--red">SAVE {{ $tool->discount }}%</div>

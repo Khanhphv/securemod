@@ -43,6 +43,10 @@
             <input type="text" class="form-control" name="name" id="" placeholder="Hack pubg.." required>
         </div>
         <div class="form-group">
+            <label for="">Note</label>
+            <input type="text" class="form-control" name="note" id="" placeholder="Note">
+        </div>
+        <div class="form-group">
             <label for="">Link ảnh logo</label>
             <input type="text" class="form-control" name="logo" id="" placeholder="logo" required>
         </div>

@@ -46,6 +46,11 @@
                    value="{{old('name',isset($tool->name)? $tool->name: null)}}" required>
         </div>
         <div class="form-group">
+            <label for="">Note</label>
+            <input type="text" class="form-control" name="note" id=""
+                   value="{{old('note',isset($tool->note)? $tool->note: null)}}">
+        </div>
+        <div class="form-group">
             <label for="">Link ảnh logo</label>
             <input type="text" class="form-control" name="logo" id=""
                    value="{{old('logo',isset($tool->logo)? $tool->logo: null)}}" required>

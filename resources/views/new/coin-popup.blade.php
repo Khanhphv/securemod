@@ -29,8 +29,8 @@
                     </div>
                     <div class="input-field col s12 m8">
                         <h4>Tutorial</h4>
-                        <p>1，Input the values you want recharge</p>
-                        <p>2，Payment to order display btc address</p>
+                        <p>1，Input the values and select coin you want recharge</p>
+                        <p>2，Payment to order display address</p>
                         <p>3，Waiting for payment confirmation BTC will take time, depends on your
                             bitcoin wallet.</p>
                         <p>4，Please calculate the handling fee required for the transfer (the

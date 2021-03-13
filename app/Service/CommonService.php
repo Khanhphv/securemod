@@ -15,6 +15,7 @@ class CommonService
     }
     public static function roleMember()
     {
+        $isActive = false;
         $startDate = Carbon::create(2020, 12,1)->startOfMonth();
         $endDate = Carbon::create(2020, 12,1)->addMonths(2)->endOfMonth();;
         $range = [$startDate, $endDate];
@@ -27,18 +28,25 @@ class CommonService
             ->get();
         $totalMoney = ($totalRechargeMoney->first()->sum);
         $role = config('const.role_member.member_status.silver');
-        if ($totalMoney >= 500) {
-            $role = config('const.role_member.member_status.diamond');
-        } elseif ($totalMoney >= 200 && $totalMoney < 500) {
-            $role = config('const.role_member.member_status.platinum');
-        } elseif ($totalMoney >= 100 && $totalMoney < 200) {
-            $role = config('const.role_member.member_status.gold');
+        if ($isActive) {
+            if ($totalMoney >= 500) {
+                $role = config('const.role_member.member_status.diamond');
+            } elseif ($totalMoney >= 200 && $totalMoney < 500) {
+                $role = config('const.role_member.member_status.platinum');
+            } elseif ($totalMoney >= 100 && $totalMoney < 200) {
+                $role = config('const.role_member.member_status.gold');
+            }
+        } else {
+            $totalMoney = 0;
         }
-        $user->role_member = $role;
-
         $role_status = array_search($role, config('const.role_member.member_status'), true );
         $discount = config('const.role_member.discount')[$role_status];
+        $user->role_member = $role;
         $user->save();
+
+        \Log::info('userId: ' . \Auth::user()->id . ' role: ' . $role . ' discount: ' . $discount);
+
+
         return [
             'role' => $role,
             'totalMoney' => $totalMoney,

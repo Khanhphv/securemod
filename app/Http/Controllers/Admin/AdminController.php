@@ -35,7 +35,7 @@ class AdminController extends Controller
 
         // $keySoled = Key::selectRaw('*, count(*) as soLuong')->where('user_id', '>', 0)->whereBetween('keys.created_at', $range)->groupBy('tool_id', 'package')->orderByRaw("tool_id ASC, soLuong DESC")->with('getToolName')->get();
         $keySoled = $key->getSoldKey($startOfDay, $startOfNextDay);
-        $numberSoldKey = Key::where('user_id', '>', 0)->whereBetween('keys.updated_at', $range)->count();
+        $numberSoldKey = Key::where('sold', 1)->whereBetween('keys.updated_at', $range)->count();
 
 
         $newUser = User::whereBetween('created_at', $range)->count();
@@ -50,11 +50,12 @@ class AdminController extends Controller
         $adminMinus = History::whereBetween('updated_at', $range)->where('action', 'ADMIN_TRU')->sum('amount');
         $adminMoney = $adminPlus + $adminMinus;
 
-        $napVaoTrongNgay = History::whereBetween('created_at', $range)->whereIn('action', ['CHARGE_VIA_PAYPAL', 'CHARGE_VIA_COINPAYMENTS', 'ADMIN_CONG'])->sum('amount');
+        $napVaoTrongNgay = History::whereBetween('created_at', $range)->whereIn('action', ['CHARGE_VIA_PAYPAL', 'CHARGE_VIA_COINPAYMENTS', 'CHARGE_VIA_STRIPE', 'ADMIN_CONG'])->sum('amount');
 
         $napQuaPaypal = History::whereBetween('created_at', [Carbon::parse($start)->startOfMonth(), Carbon::parse($start)->lastOfMonth()])->whereIn('action', ['CHARGE_VIA_PAYPAL'])->sum('amount');
         $napQuaCoinPayment = History::whereBetween('created_at', [Carbon::parse($start)->startOfMonth(), Carbon::parse($start)->lastOfMonth()])->whereIn('action', ['CHARGE_VIA_COINPAYMENTS'])->sum('amount');
         $napquaAdmin = History::whereBetween('created_at', [Carbon::parse($start)->startOfMonth(), Carbon::parse($start)->lastOfMonth()])->whereIn('action', ['ADMIN_CONG'])->sum('amount');
+        $napQuaPaypal = History::whereBetween('created_at', [Carbon::parse($start)->startOfMonth(), Carbon::parse($start)->lastOfMonth()])->whereIn('action', ['CHARGE_VIA_STRIPE'])->sum('amount');
         $napVaoTrongThang = $napQuaPaypal + $napQuaCoinPayment + $napquaAdmin;
 
         $atmMoney = History::whereBetween('updated_at', $range)

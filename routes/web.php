@@ -23,12 +23,11 @@ use App\User;
 
 Route::group(['middleware' => ['locale', 'web']], function () {
     Auth::routes();
-//    Route::get('test', 'HomeCo')
     Route::get('/', 'HomeController@landing');
     Route::get('/blog', 'BlogController@index');
     Route::get('/blog_game/{game_id}', 'BlogController@blogOfGame')->name('blog_game');
     Route::get('/terms-of-services', 'BlogController@show')->name('blog');
-    Route::get('/membership-plan', 'BlogController@blog');
+//    Route::get('/membership-plan', 'BlogController@blog');
     Route::post('customer_login', function (Request $data) {
         $check_exist = DB::table('users')->where('email', $data['email'])->first();
         if ($check_exist) {
@@ -72,7 +71,9 @@ Route::group(['middleware' => ['locale', 'web']], function () {
     Route::get('check-transactions-coinpayments', 'CoinPaymentsController@CheckListTransactions');
     Route::get('cron2', 'CoinPaymentsController@CheckListTransactions');
 
-
+    //Stripe
+    Route::get('stripe-payment', 'CheckoutController@index');
+    Route::get('stripe-payment-confirm', 'CheckoutController@checkoutWithStripe');
 
     Route::get('game/{slug}', 'Admin\GameController@show');
     Route::get('buy-tool/{toolId}/{package}', 'HomeController@buyTool')->name('tool.buy-tool');

@@ -28,7 +28,7 @@ class Key extends Model
             ->selectRaw('tl.id, tl.name as name , ke.package, COUNT(ke.id) AS soLuong, sum(hi.amount) AS sum')
             ->leftJoin('histories as hi', 'hi.id', 'ke.history_id')
             ->leftJoin('tools as tl', 'tl.id' , 'ke.tool_id')
-            ->where('ke.user_id', '>', 0)
+            ->where('ke.sold',1)
             ->whereBetween('ke.updated_at', [$startDate, $endDate])
             ->groupBy('ke.tool_id', 'ke.package')
             ->orderByRaw("ke.tool_id ASC, soLuong DESC")
