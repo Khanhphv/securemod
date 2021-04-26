@@ -21,9 +21,11 @@
     "laravel/tinker": "^1.0",
     "mews/captcha": "^2.2",
     "paypal/paypal-checkout-sdk": "1.0.1",
+    "pragmarx/countries": "^0.7.2",
     "selly/selly-php": "^1.0",
     "socialiteproviders/discord": "^2.0",
     "socialiteproviders/facebook": "^1.0",
+    "stripe/stripe-php": "^7.73",
     "unisharp/laravel-filemanager": "^1.9",
     "webklex/laravel-imap": "^1.4"
   },

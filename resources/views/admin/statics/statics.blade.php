@@ -248,6 +248,7 @@
                     </div>
                 </div>
                 <!-- /.box-header -->
+                
                 @if(count($keySoled) > 0)
                     <div class="box-body">
                         <div class="table-responsive">

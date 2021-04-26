@@ -33,8 +33,10 @@ class OptionController extends Controller
 
     public function update(Request $request)
     {
+
         foreach ($request->all() as $key => $value) {
-            Option::where('option', $key)->where('locate', '=', $request->locate)->update(['value' => $value, 'locate' => $request->locate]);
+            Option::where('option', $key)->where('locate', '=', $request->locate)
+                ->update(['value' => $value, 'locate' => $request->locate]);
         }
         return redirect()->route('setting.index')->with(['level' => 'success', 'message' => 'Cập nhật thành công']);
     }

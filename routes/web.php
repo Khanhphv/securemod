@@ -78,6 +78,9 @@ Route::group(['middleware' => ['locale', 'web']], function () {
     Route::get('game/{slug}', 'Admin\GameController@show');
     Route::get('buy-tool/{toolId}/{package}', 'HomeController@buyTool')->name('tool.buy-tool');
 
+    //-------------------API-------------------------
+    Route::get('/getCountry', 'CountryStateController@getCountry');
+    Route::get('/getState', 'CountryStateController@getState');
 
     Route::get('login_via_facebook', 'Auth\LoginController@redirectToProviderFB')->name('login_via_fb');
     Route::get('login_via_facebook/callback', 'Auth\LoginController@handleProviderCallbackFB')->name('callback_from_fb');
@@ -134,6 +137,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'is_a
         Route::get('/topkey','SummaryController@getKeySummary');
         Route::get('/summarykey', 'SummaryController@summaryWithEachKey');
         Route::get('/solvedKey', 'SummaryController@getSoldKey');
+
     });
 
 });

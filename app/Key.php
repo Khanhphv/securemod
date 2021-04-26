@@ -26,10 +26,11 @@ class Key extends Model
     {
         $result = Key::from('keys as ke')
             ->selectRaw('tl.id, tl.name as name , ke.package, COUNT(ke.id) AS soLuong, sum(hi.amount) AS sum')
-            ->leftJoin('histories as hi', 'hi.id', 'ke.history_id')
+            ->leftJoin('history', 'hi.id', 'ke.history_id')
             ->leftJoin('tools as tl', 'tl.id' , 'ke.tool_id')
             ->where('ke.sold',1)
-            ->whereBetween('ke.updated_at', [$startDate, $endDate])
+            ->where('ke.updated_at', '>=', $startDate)
+            ->where('ke.updated_at', '<=', $endDate)
             ->groupBy('ke.tool_id', 'ke.package')
             ->orderByRaw("ke.tool_id ASC, soLuong DESC")
             ->get();

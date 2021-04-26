@@ -78,15 +78,18 @@
                 </div>
                 <div class="space-height-20px"></div>
                 @auth()
-                {{-- <a onclick="createPayment()" class="title-icon">
+                @if(\App\Option::where('option', 'paypal_payment')->get()->first()->value != 0)
+                <a onclick="createPayment()" class="title-icon">
                     <div style="display: flex; align-items: center;">
                         <img width="24px" src="https://img.icons8.com/pastel-glyph/64/000000/money--v3.png"/>
                         <div class="space-20px"></div>
                         Paypal Recharge
                     </div>
-                </a> --}}
+                </a>
                 <div class="space-height-20px"></div>
+                @endif
                 <div class="border-bottom-2px"></div>
+                @if(\App\Option::where('option', 'coin_payment')->get()->first()->value != 0)
                 <div class="space-height-20px"></div>
                 <a href="#coin-popup" class="title-icon modal-trigger">
                     <div style="display: flex; align-items: center;">
@@ -95,16 +98,20 @@
                         Coin Recharge
                     </div>
                 </a>
+                @endif
+
                 <div class="space-height-20px"></div>
+                @if(\App\Option::where('option', 'seller_payment')->get()->first()->value != 0)
                 <div class="border-bottom-2px"></div>
                 <div class="space-height-20px"></div>
                 <a href="#seller-payment" class="title-icon modal-trigger">
                     <div style="display: flex; align-items: center;">
-                        <img width="50px" src="{{ asset('img/seller2.png') }}"/>
+                        <img width="50px" src="{{ asset('img/SellerPaypal.svg') }}"/>
                         <div class="space-20px"></div>
                         Recharge via seller
                     </div>
                 </a>
+                @endif
                 <div class="space-height-20px"></div>
                 <div class="border-bottom-2px"></div>
                 <div class="space-height-20px"></div>
@@ -585,15 +592,18 @@
                             <div class="space-height-20px"></div>
                             <div class="border-bottom-2px"></div>
                             @auth
-                                {{-- <div class="space-height-20px"></div> --}}
-                                {{-- <div style="display: flex; align-items: center;">
+                                @if(\App\Option::where('option', 'paypal_payment')->get()->first()->value != 0)
+                                <div class="space-height-20px"></div>
+                                <div style="display: flex; align-items: center;">
                                     <a onclick="createPayment()" class="waves-effect waves-light btn-large"
                                        style="background: white; width: 150px;">
                                         <img   style="width: 120%;height: 100%; left: -8px"
                                              src="https://www.paypalobjects.com/checkoutweb/release/hermione/media/logo.7e5b43e3.svg"
                                              alt="paypal-payment">
                                     </a>
-                                </div> --}}
+                                </div>
+                                @endif
+                                @if(\App\Option::where('option', 'coin_payment')->get()->first()->value != 0)
                                 <div class="space-height-20px"></div>
                                 <div style="display: flex; align-items: center;">
                                     <a class="waves-effect waves-light btn-large modal-trigger" href="#coin-popup"
@@ -601,13 +611,26 @@
                                         <img style="width: 135%; left: -14px; top: 3px" src="{{ asset('img/coinpayment.png') }}" alt="coin-payment">
                                     </a>
                                 </div>
+                                @endif
+                                @if(\App\Option::where('option', 'seller_payment')->get()->first()->value != 0)
                                 <div class="space-height-20px"></div>
                                 <div style="display: flex; align-items: center;">
                                     <a target="blank" class="waves-effect waves-light btn-large modal-trigger" href="#seller-payment"
                                        style="background: white; width: 150px;">
-                                        <img style="height: -webkit-fill-available" src="{{ asset('img/seller2.png')}}" alt="seller-payment">
+                                        <img style="height: -webkit-fill-available; width: 100%" src="{{ asset('img/SellerPaypal.svg')}}" alt="seller-payment">
                                     </a>
                                 </div>
+                                @endif
+                                @if(\App\Option::where('option', 'stripe_payment')->get()->first()->value != 0)
+                                <div class="space-height-20px"></div>
+                                <div style="display: flex; align-items: center;">
+                                    <a target="blank" class="waves-effect waves-light btn-large modal-trigger" href="#stripe-popup"
+                                       style="background: white; width: 150px;">
+                                        <img style="height: -webkit-fill-available" src="{{ asset('img/stripe.png')}}" alt="stripe-popup">
+                                    </a>
+                                </div>
+                                @endif
+
 
                             @endauth
 
@@ -926,7 +949,7 @@
                             <a target="blank" href="https://www.elitepvpers.com/">
                                 <img src="https://cdn.discordapp.com/attachments/796683451087585280/809374850102722580/logo.png" alt="seller" width="100">
                             </a>
-                            
+
                         </div>
                         <div class="space-20px"></div>
                         <div>
@@ -951,9 +974,10 @@
             @if(\App\Blacklist::where('email', Auth::user()->email)->get()->first() == null)
                 @include('new.coin-popup')
                 @include('new.seller-payment')
+                @include("new.stripe-popup")
                 <script !src="">
                     function createPayment() {
-                        // window.open('https://securemods.com/payment?id=' + '{{Auth::user()->id}}' , 'Dynamic Popup', 'height=50%', 'width="50%')
+                        window.open('https://securemods.com/payment?id=' + '{{Auth::user()->id}}' , 'Dynamic Popup', 'height=50%', 'width="50%')
                     }
                 </script>
             @endif

@@ -123,18 +123,18 @@ We require to send us a confirmation email from your email - that used to paid u
 Make a new mail with following content:
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-Mail Tittle: SecureCheats Confirmation Payment
+Mail Tittle: Confirmation Payment
 
 Mail Content:
 ------------------------------------------------------------
-I authorized the email access @php echo $email; @endphp and Paypal transaction ID {{$history->nl_token}} with ${{$history->amount}}. My Balance on website SecureCheats has been TOP-UP successful.
-I agree with Securecheats's Terms Of Service that is digital goods and none refundable.
-Thanks To Viet Khanh for your services.
+I authorized the email access @php echo $email; @endphp and Paypal transaction ID {{$history->nl_token}} with ${{$history->amount}}.My Subcriptions have been added
+I agree with Seller's Terms Of Service that is digital goods and none refundable.
+Thanks To  Sellers for the best your services.
 ------------------------------------------------------------
 
 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-Send to email: vietkhanh1310@gmail.com
+Send to email: vuthimlle80@gmail.com
 Let me know when it done - In the case you do not agree with our terms we will provide you refund
 											</textarea>
 										</td>

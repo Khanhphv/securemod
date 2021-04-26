@@ -5,41 +5,56 @@ namespace App\Http\Controllers;
 
 
 use App\Model\History;
-use App\User;
+use App\Option;
 use Illuminate\Http\Request;
+use PragmaRX\Countries\Package\Countries;
 
 class CheckoutController
 {
 
     public function index(Request $request)
     {
+
         $amount = $request->get('amount');
-        if(isset($amount) == false) {
+        $name = $request->get("name");
+        $country = $request->get("country");
+        $postCode = $request->get("post-code");
+        $state = $request->get("state");
+        if(!isset($amount) || !isset($name) || !isset($country) || !isset($postCode) || !isset($state)) {
             abort(500);
         }
         \Stripe\Stripe::setApiKey(getenv('STRIPE_SECRET_KEY'));
 
         $amount *= 100;
         $amount = (int) $amount;
+        try {
+            $isActive = Option::where("option", "stripe_payment")->get()->first()->value;
+            if ($isActive == 0) {
+                return redirect()->to('/home');
+            }
+            $customer = \Stripe\Customer::create([
+                'name' => $name,
+                'address' => [
+                    'line1' => '510 Townsend St',
+                    'postal_code' => $postCode,
+                    'city' => $state,
+                    'state' => $state,
+                    'country' => $country,
+                ],
+            ]);
+            $payment_intent = \Stripe\PaymentIntent::create([
+                'customer' => $customer['id'],
+                'description' => 'Charge',
+                'amount' => $amount,
+                'currency' => 'USD',
+                'description' => 'Payment',
+                'payment_method_types' => ['card'],
+            ]);
+        } catch (\Exception $e) {
+            \Log::error("[STRIPE]" . $e->getMessage());
+            abort(500);
+        }
 
-        $customer = \Stripe\Customer::create([
-            'name' => \Auth::user()->name,
-            'address' => [
-                'line1' => '510 Townsend St',
-                'postal_code' => '98140',
-                'city' => 'San Francisco',
-                'state' => 'CA',
-                'country' => 'US',
-            ],
-        ]);
-        $payment_intent = \Stripe\PaymentIntent::create([
-            'customer' => $customer['id'],
-            'description' => 'Charge',
-            'amount' => $amount,
-            'currency' => 'USD',
-            'description' => 'Payment',
-            'payment_method_types' => ['card'],
-        ]);
 
         $intent = $payment_intent->client_secret;
         return view('new.stripe-payment',compact('intent'));
@@ -60,6 +75,10 @@ class CheckoutController
                 $id,
                 []
             );
+
+            if ($this->isHighRisk($paymentInfo["charges"])){
+                return "Payment is blocked by Stripe";
+            }
 
             if ($paymentInfo['status'] == "succeeded") {
                 $processedTransaction = History::where('nl_token', $paymentInfo['id'])->first();
@@ -105,5 +124,16 @@ class CheckoutController
             abort(500);
         }
         return redirect('/balance')->with('isShowPopup', false);
+    }
+
+
+    private function isHighRisk($charge): bool
+    {
+        $data = $charge["data"][0];
+        $outcome = $data ? $data["outcome"] : null;
+        if (isset($outcome) && $outcome["risk_level"] == "highest_risk_level") {
+            return true;
+        }
+        return false;
     }
 }

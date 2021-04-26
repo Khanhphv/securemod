@@ -11,7 +11,7 @@
 
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteCond %{REQUEST_URØΩI} (.+)/$
     RewriteRule ^ %1 [L,R=301]
 
     RewriteRule ^(images|js|fonts|css|svg|vendor)(/|$) /public%{REQUEST_URI} [L,NC,R=301,NE]
