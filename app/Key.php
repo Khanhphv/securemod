@@ -26,7 +26,7 @@ class Key extends Model
     {
         $result = Key::from('keys as ke')
             ->selectRaw('tl.id, tl.name as name , ke.package, COUNT(ke.id) AS soLuong, sum(hi.amount) AS sum')
-            ->leftJoin('history', 'hi.id', 'ke.history_id')
+            ->leftJoin('histories as hi', 'hi.id', 'ke.history_id')
             ->leftJoin('tools as tl', 'tl.id' , 'ke.tool_id')
             ->where('ke.sold',1)
             ->where('ke.updated_at', '>=', $startDate)
