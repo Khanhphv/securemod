@@ -1,0 +1,40 @@
+<?php
+
+use Illuminate\Database\Seeder;
+
+class GamesTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        DB::table('games')->insert([
+            'name' => 'PUBG Mobile',
+            'slug' => 'pubg-mobile',
+            'thumb_image' => 'https://static.digit.in/default/thumb_129666_default_td_480x480.jpeg',
+            'description' => 'Đã cập nhật bản mới nhất cho game 0.13',
+            'notice' => 'Loa loa loa thông báo ở đầu trang',
+            'order' => 10
+        ]);
+        DB::table('games')->insert([
+            'name' => 'PUBG Steam',
+            'slug' => 'pubg-steam',
+            'thumb_image' => 'https://static.digit.in/default/thumb_129666_default_td_480x480.jpeg',
+            'description' => 'Đã cập nhật bản mới nhất cho game 0.13',
+            'notice' => 'Loa loa loa thông báo ở đầu trang',
+            'order' => 20
+        ]);
+
+        DB::table('games')->insert([
+            'name' => 'Apex Legend',
+            'slug' => 'apex-legend',
+            'thumb_image' => 'https://static.digit.in/default/thumb_129666_default_td_480x480.jpeg',
+            'description' => 'Đã cập nhật bản mới nhất cho game 0.13',
+            'notice' => 'Loa loa loa thông báo ở đầu trang',
+            'order' => 30
+        ]);
+    }
+}
