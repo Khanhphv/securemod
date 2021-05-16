@@ -29,7 +29,7 @@
                     <tr>
                         <td>{{$game->name}}</td>
                         <td><img src="{{$game->thumb_image}}" class="img-circle" width="60px" height="60px" alt=""></td>
-                        <td>{!! str_limit($game->description,100) !!}</td>
+                        <td>{!! \Illuminate\Support\Str::limit($game->description,100) !!}</td>
                         <td><a href="{{route('game.edit',$game->id)}}" class="btn btn-warning">Sửa</a>
                             <form action="{{route('game.destroy',$game->id)}}" style="display: inline-block;" method="POST">
                                 @csrf
