@@ -9,92 +9,211 @@
 @stop
 
 @section('content')
-    @include('admin.success')
+    @include('layouts.success')
     <!-- change icon web system -->
-    <div class="box-body">
-        <div class="change_logo">
+    <div class="content">
+        <div>
             {!! Form::open([
                 'route' => ['setting_system_edit'],
                 'method' => 'PUT',
                 'enctype' => 'multipart/form-data',
                 'class' => 'form-horizontal row',
             ]) !!}
-                <div class="content">
-                    <ul>
-                        <li style="list-style: none;"><h3>Change logo mini</h3></li>
-                        <li style="list-style: none;">
-                            {!! Html::image(
-                                '/images/logo/logo_mini.png',
-                                'Logo Mini',
-                                [
-                                    'id' => 'logo_mini',
-                                    'class' => 'img img-thumbnail img-responsive',
-                                    'width' => 150
-                                ]
-                            ) !!}
-                        </li>
-                        <li style="list-style: none; margin-top: 5px">
-                            {!! html_entity_decode(
-                                Form::label(
-                                    'file_upload_logo_mini',
-                                    '<i class="fa fa-cloud-upload"></i> ' . 'Change logo mini'
-                                    ,
-                                    [
-                                        'class' => 'custom-file-upload',
-                                    ]
-                                )
-                            ) !!}
-                            {!! Form::file(
-                                'logo_mini',
-                                [
-                                    'id' => 'file_upload_logo_mini',
-                                    'accept' => 'image/*',
-                                ]
-                            ) !!}
-                        </li>
-                        <li style="list-style: none;">
-                            <p id="file_name_logo_mini"></p>
-                        </li>
-                    </ul>
+                <div class="col-md-4">
+{{--                    change logo--}}
+                    <div class="box box-primary">
+                        <div class="box-body">
+                            <label>Change Logo System</label>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-4 col-xs-12">
+                                            {!! html_entity_decode(
+                                                Form::label(
+                                                    'file_upload_logo_mini',
+                                                    '<i class="fa fa-cloud-upload"></i> ' . 'Logo mini'
+                                                    ,
+                                                    [
+                                                        'class' => 'custom-file-upload',
+                                                    ]
+                                                )
+                                            ) !!}
+                                        </div>
+                                        <div class="col-md-8 col-xs-12">
+                                            {!! Form::file(
+                                                'logo_mini',
+                                                [
+                                                    'id' => 'file_upload_logo_mini',
+                                                    'accept' => 'image/*',
+                                                ]
+                                            ) !!}
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-4 col-xs-12">
+                                            {!! html_entity_decode(
+                                                Form::label(
+                                                    'file-upload',
+                                                    '<i class="fa fa-cloud-upload"></i> ' . 'Text logo'
+                                                    ,
+                                                    [
+                                                        'class' => 'custom-file-upload',
+                                                    ]
+                                                )
+                                            ) !!}
+                                        </div>
+                                        <div class="col-md-8 col-xs-12">
+                                            {!! Form::file(
+                                                'text_logo',
+                                                [
+                                                    'id' => 'file_upload_logo_text',
+                                                    'accept' => 'image/*',
+                                                ]
+                                            ) !!}
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-4 col-xs-12">
+                                            {!! html_entity_decode(
+                                                Form::label(
+                                                    'file-upload',
+                                                    '<i class="fa fa-cloud-upload"></i> ' . 'Favicon'
+                                                    ,
+                                                    [
+                                                        'class' => 'custom-file-upload',
+                                                    ]
+                                                )
+                                            ) !!}
+                                        </div>
+                                        <div class="col-md-8 col-xs-12">
+                                            {!! Form::file(
+                                                'fav_icon',
+                                                [
+                                                    'id' => 'file_upload_favicon',
+                                                    'accept' => 'image/*',
+                                                ]
+                                            ) !!}
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+                <div class="col-md-8">
+                    <div class="box box-primary">
+                        <div class="box-body">
+                            <label>Change Footer System</label>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-2 col-xs-12">
+                                            {!! html_entity_decode(
+                                                Form::label(
+                                                    'about_us',
+                                                    '<i class="fa fa-info-circle"></i> ' . 'About Us'
+                                                    ,
+                                                    [
 
-                <div class="content">
-                    <ul>
-                        <li style="list-style: none;"><h3>Change logo</h3></li>
-                        <li style="list-style: none;">
-                            {!! Html::image(
-                                '/images/logo/logo.png',
-                                'Logo Mini',
-                                [
-                                    'id' => 'logo_text',
-                                    'class' => 'img img-thumbnail img-responsive',
-                                    'width' => 400
-                                ]
-                            ) !!}
-                        </li>
-                        <li style="list-style: none; margin-top: 5px">
-                            {!! html_entity_decode(
-                                Form::label(
-                                    'file-upload',
-                                    '<i class="fa fa-cloud-upload"></i> ' . 'Change logo'
-                                    ,
-                                    [
-                                        'class' => 'custom-file-upload',
-                                    ]
-                                )
-                            ) !!}
-                            {!! Form::file(
-                                'logo',
-                                [
-                                    'id' => 'file_upload_logo_text',
-                                    'accept' => 'image/*',
-                                ]
-                            ) !!}
-                        </li>
-                        <li style="list-style: none;">
-                            <p id="file_name_logo_text"></p>
-                        </li>
-                    </ul>
+                                                    ]
+                                                )
+                                            ) !!}
+                                        </div>
+                                        <div class="col-md-10 col-xs-12">
+                                            {!! Form::textarea(
+                                                'about_us',
+                                                $settings['about_us'],
+                                                [
+                                                    'class' => 'form-control',
+                                                    'rows' => 3,
+                                                    'placeholder' => 'About Us',
+                                                    'required' => 'required',
+                                                ]
+                                            ) !!}
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-2 col-xs-12">
+                                            {!! html_entity_decode(
+                                                Form::label(
+                                                    'for_support',
+                                                    '<i class="fa fa-envelope"></i> ' . 'For Support',
+                                                    []
+                                                )
+                                            ) !!}
+                                        </div>
+                                        <div class="col-md-10 col-xs-12">
+                                            {!! Form::email(
+                                                'for_support',
+                                                $settings['for_support'],
+                                                [
+                                                    'class' => 'form-control',
+                                                    'placeholder' => 'For Support',
+                                                    'required' => 'required',
+                                                ]
+                                            ) !!}
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-2 col-xs-12">
+                                            {!! html_entity_decode(
+                                                Form::label(
+                                                    'verified_seller_url',
+                                                    '<i class="fa fa-info-circle"></i> ' . 'Verified Seller URl',
+                                                    []
+                                                )
+                                            ) !!}
+                                        </div>
+                                        <div class="col-md-10 col-xs-12">
+                                            {!! Form::text(
+                                                'verified_seller_url',
+                                                $settings['verified_seller_url'],
+                                                [
+                                                    'class' => 'form-control',
+                                                    'placeholder' => 'Verified Seller URl',
+                                                    'required' => 'required',
+                                                ]
+                                            ) !!}
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-md-4 col-xs-12">
+                                            {!! html_entity_decode(
+                                                Form::label(
+                                                    'file-upload',
+                                                    '<i class="fa fa-cloud-upload"></i> ' . 'Verified Seller Logo'
+                                                    ,
+                                                    [
+                                                        'class' => 'custom-file-upload',
+                                                    ]
+                                                )
+                                            ) !!}
+                                        </div>
+                                        <div class="col-md-8 col-xs-12">
+                                            {!! Form::file(
+                                                'verified_seller_logo',
+                                                [
+                                                    'id' => 'file_upload_verified_seller_logo',
+                                                    'accept' => 'image/*',
+                                                ]
+                                            ) !!}
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-md-9 col-md-offset-3">
@@ -117,7 +236,7 @@
             {!! Form::close() !!}
         </div>
     </div>
-    
+
 @stop
 
 @section('css')
@@ -129,7 +248,7 @@
 
         function previewImage($file_upload, $image, $file) {
             console.log('#'+ $image)
-            document.querySelector('#'+ $file_upload).onchange = function(){loadFile(event)};              
+            document.querySelector('#'+ $file_upload).onchange = function(){loadFile(event)};
                 var loadFile = function(event) {
                 var reader = new FileReader();
                 reader.onload = function(){

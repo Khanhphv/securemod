@@ -5,6 +5,7 @@ namespace App\Providers;
 
 use App\Model\History;
 use App\Option;
+use App\MasterSiteSetting;
 use App;
 use DB;
 use Illuminate\Contracts\Events\Dispatcher;
@@ -54,6 +55,9 @@ class AppServiceProvider extends ServiceProvider
         } else
             $tools = [];
         View::share('tools', $tools);
+
+        $master_site_settings = MasterSiteSetting::find(1);
+        View::share('master_site_settings', $master_site_settings);
 
         if (Schema::hasTable('options')) {
             $siteSettings = Option::select('option', 'value')->get()->keyBy('option')->pluck('value', 'option');
