@@ -115,6 +115,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'is_a
             echo '<a href="https://securecheat.xyz/admin/user/edit/'.$check->user_id.'">Xem toàn bộ giao dịch</a>';
         }
     });
+    Route::get('/setting_system', 'SystemSettingController@index')->name('setting_system');
+    Route::put('/setting_system/edit', 'SystemSettingController@ChangeLogoSystem')->name('setting_system_edit');
     Route::get('/summary', 'SummaryController@getMoneySummary')->name('summary');
     Route::get('/', 'AdminController@statics')->name('admin.index');
     Route::resource('tool', 'ToolController');

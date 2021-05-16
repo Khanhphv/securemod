@@ -146,6 +146,12 @@ return [
             'icon' => 'cog',
             'role' => 'admin'
         ],
+        [
+            'text' => 'System Settings ',
+            'route' => 'setting_system',
+            'icon' => 'tree',
+            'role' => 'admin'
+        ],
         'ACCOUNT MANAGE',
         [
             'text' => 'Member',
