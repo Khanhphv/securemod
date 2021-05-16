@@ -5,7 +5,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>System Interface Settings</h1>
+    <h1>Master Site Settings</h1>
 @stop
 
 @section('content')
