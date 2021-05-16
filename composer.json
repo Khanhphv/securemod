@@ -15,7 +15,7 @@
     "barryvdh/laravel-ide-helper": "^2.6",
     "fideloper/proxy": "^4.0",
     "jeroennoten/laravel-adminlte": "^3.5",
-    "laravel/framework": "7.0.*",
+    "laravel/framework": "^7.30",
     "laravel/socialite": "^4.3",
     "laravel/tinker": "^2.0",
     "laravel/ui": "2.0",
