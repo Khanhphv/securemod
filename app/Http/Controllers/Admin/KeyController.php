@@ -9,7 +9,6 @@ use App\HwidLogs;
 use App\Tool;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Input;
 use Auth;
 
 class KeyController extends Controller
@@ -232,6 +231,6 @@ class KeyController extends Controller
         if ($key == null && $userID != null && $toolID != 0) {
             $listKeys = Key::where('user_id', '=', $userID)->where('tool_id', $toolID)->paginate(50);
         }
-        return view('admin.keys.result', ['listKeys' => $listKeys->appends(Input::except('page'))]);
+        return view('admin.keys.result', ['listKeys' => $listKeys->appends($request->except('page'))]);
     }
 }
