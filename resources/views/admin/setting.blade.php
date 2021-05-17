@@ -10,6 +10,15 @@
 
 @section('content')
     @include('layouts.success')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <!-- change icon web system -->
     <div class="content">
         <div>
