@@ -82,12 +82,12 @@ class SystemSettingController extends Controller
     /**
      *  store file
      */
-    public function store($request, $settings, $file)
+    public function store($request, $settings, $logo)
     {
-        $oldFile = $settings[$file];
+        $oldFile = $settings[$logo];
         File::Delete($oldFile);
-        $file = $request[$file];
-        $uploadFolder = '/images/logo/';
+        $file = $request[$logo];
+        $uploadFolder = ($logo == 'favicon' ? '/' : '/images/logo/');
         $filename = Str::random() . '.' . $file->getClientOriginalExtension();
         $file->move(public_path() . $uploadFolder, $filename);
         return $filename;
