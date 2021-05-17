@@ -117,9 +117,7 @@
                                                     'about_us',
                                                     '<i class="fa fa-info-circle"></i> ' . 'About Us'
                                                     ,
-                                                    [
-
-                                                    ]
+                                                    []
                                                 )
                                             ) !!}
                                         </div>

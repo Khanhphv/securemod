@@ -16,7 +16,11 @@
 		<meta property="og:image" content="{{url('/images/s6_bg.png')}}"/>
 	@endif
 
-	<link rel="shortcut icon" type="image/png" href="{{asset('')}}/favicon.ico"/>
+    @if($master_site_settings && $master_site_settings['favicon'])
+	    <link rel="shortcut icon" type="image/png" href="/{{$master_site_settings['favicon']}}"/>
+    @else
+        <link rel="shortcut icon" type="image/png" href="{{asset('')}}/favicon.ico"/>
+    @endif
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
 	<title>@yield('title') - CHEATSHARP.COM - HACK GAME ONLIINE</title>
 	<!-- Styles -->

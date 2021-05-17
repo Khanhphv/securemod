@@ -541,7 +541,7 @@
                             Html::linkRoute(
                                 'home',
                                 Html::image(
-                                    '/images/logo/logo_mini.png',
+                                    '/images/logo/'. $master_site_settings['logo_mini'],
                                     'Home Page',
                                     [
                                         'class' => 'img-fluid',
@@ -559,7 +559,7 @@
                             Html::linkRoute(
                                 'home',
                                 Html::image(
-                                    '/images/logo/logo.png',
+                                    '/images/logo/' . $master_site_settings['text_logo'],
                                     'Home Page',
                                     [
                                         'class' => 'img-fluid',
@@ -961,19 +961,29 @@
                         <div>
                             <h5>About us</h5>
                             <div>
-                                SecureCheats is now about 3 years old since it was founded - our team of coders are professional and are specialized in many aspects in programming,
-                                reverse engineering, exploiting and have made many cheats/hacks/exploits in almost all game engines out there!
+                                {{$master_site_settings['about_us']}}
                             </div>
                         </div>
                         <div class="space-20px"></div>
                         <div>
                             <h5>For support: </h5>
-                            Email : support@securecheat.xyz<br>
+                            Email : {{$master_site_settings['for_support']}}<br>
                             <br>
                             <h5>Verified Seller By</h5>
-                            <a target="blank" href="https://www.elitepvpers.com/">
-                                <img src="../images/logo/verified_logo.png" alt="seller" width="100">
-                            </a>
+                            {!! html_entity_decode(
+                                Html::link(
+                                    $master_site_settings['verified_seller_url'],
+                                    Html::image(
+                                        '/images/logo/' . $master_site_settings['verified_seller_logo'],
+                                        'Home Page',
+                                        [
+                                            'class' => 'img-fluid',
+                                            'alt' => 'seller',
+                                            'width' => 100
+                                        ]
+                                    )
+                                )
+                            ) !!}
                         </div>
                         <div class="space-20px"></div>
                         <div>
