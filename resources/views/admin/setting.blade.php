@@ -10,6 +10,15 @@
 
 @section('content')
     @include('layouts.success')
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <!-- change icon web system -->
     <div class="content">
         <div>
@@ -91,7 +100,7 @@
                                         </div>
                                         <div class="col-md-8 col-xs-12">
                                             {!! Form::file(
-                                                'fav_icon',
+                                                'favicon',
                                                 [
                                                     'id' => 'file_upload_favicon',
                                                     'accept' => 'image/*',
@@ -243,31 +252,6 @@
 
 @section('js')
     <script>
-
-        function previewImage($file_upload, $image, $file) {
-            console.log('#'+ $image)
-            document.querySelector('#'+ $file_upload).onchange = function(){loadFile(event)};
-                var loadFile = function(event) {
-                var reader = new FileReader();
-                reader.onload = function(){
-                    var output = document.getElementById($image);
-                    output.src = reader.result;
-                };
-                reader.readAsDataURL(event.target.files[0]);
-            };
-
-            $(document).ready(function(e){
-                $('#'+ $file_upload).change(function(e){
-                    var filename = $('#'+$file_upload).val().toString();
-                    if (filename.substring(3,11) == 'fakepath') {
-                        filename = filename.substring(12);
-                    }
-                    $('#'.$file).text(filename);
-                })
-            })
-        }
-        previewImage('file_upload_logo_mini', 'logo_mini', 'file_name_logo_mini')
-        previewImage('file_upload_logo_text', 'logo_text', 'file_name_logo_text')
     </script>
 @stop
 

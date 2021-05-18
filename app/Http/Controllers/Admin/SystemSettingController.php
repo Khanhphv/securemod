@@ -38,6 +38,12 @@ class SystemSettingController extends Controller
      */
     public function ChangeLogoSystem(Request $request)
     {
+        # validate request
+        $request->validate([
+            'for_support' => ['required', 'email'],
+            'verified_seller_url' =>['required', 'url'],
+            'about_us' => ['required']
+        ]);
         $settings = MasterSiteSetting::find(1);
 
         // change logo mini
@@ -82,12 +88,12 @@ class SystemSettingController extends Controller
     /**
      *  store file
      */
-    public function store($request, $settings, $file)
+    public function store($request, $settings, $logo)
     {
-        $oldFile = $settings[$file];
+        $oldFile = $settings[$logo];
         File::Delete($oldFile);
-        $file = $request[$file];
-        $uploadFolder = '/images/logo/';
+        $file = $request[$logo];
+        $uploadFolder = ($logo == 'favicon' ? '/' : '/images/logo/');
         $filename = Str::random() . '.' . $file->getClientOriginalExtension();
         $file->move(public_path() . $uploadFolder, $filename);
         return $filename;
