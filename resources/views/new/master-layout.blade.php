@@ -536,24 +536,39 @@
             </div>
             <div class="menu" style="box-shadow: 1px 1px 10px #afafaf">
                 <div>
-                    <svg class="icon-menu" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <a xlink:href="/home">
-                            <path
-                                d="M6.37871478,9 L12,4.43270576 L19.0541111,10.164171 C19.697065,10.686571 20.641771,10.5888428 21.164171,9.94588894 C21.686571,9.30293505 21.5888428,8.35822904 20.9458889,7.835829 L12.9458889,1.335829 C12.3947849,0.888057 11.6052151,0.888057 11.0541111,1.335829 L3.05411106,7.835829 C2.31529631,8.43611598 2.31529631,9.56388402 3.05411106,10.164171 L11.0541111,16.664171 C11.697065,17.186571 12.641771,17.0888428 13.164171,16.4458889 C13.686571,15.802935 13.5888428,14.858229 12.9458889,14.335829 L6.37871478,9 Z"
-                                id="Path" fill-rule="nonzero" />
-                            <path
-                                d="M6.37871478,15.5 L12,10.9327058 L19.0541111,16.664171 C19.697065,17.186571 20.641771,17.0888428 21.164171,16.4458889 C21.686571,15.802935 21.5888428,14.858229 20.9458889,14.335829 L12.9458889,7.835829 C12.3947849,7.388057 11.6052151,7.388057 11.0541111,7.835829 L3.05411106,14.335829 C2.31529631,14.936116 2.31529631,16.063884 3.05411106,16.664171 L11.0541111,23.164171 C11.697065,23.686571 12.641771,23.5888428 13.164171,22.9458889 C13.686571,22.302935 13.5888428,21.358229 12.9458889,20.835829 L6.37871478,15.5 Z"
-                                id="Path" fill-rule="nonzero"
-                                transform="translate(12.000024, 15.500024) rotate(-180.000000) translate(-12.000024, -15.500024) " />
-                        </a>
-                    </svg>
+                    <div class="icon-menu" width="24px" height="24px">
+                        {!! html_entity_decode(
+                            Html::linkRoute(
+                                'home',
+                                Html::image(
+                                    '/images/logo/'. $master_site_settings['logo_mini'],
+                                    'Home Page',
+                                    [
+                                        'class' => 'img-fluid',
+                                        'width' => 24,
+                                        'height' => 24
+                                    ]
+                                )
+                            )
+                        ) !!}
+                    </div>
                     <div class="space-20px desktop"></div>
                     <div class="space-20px"></div>
                     <div style="color: var(--text-primary-color); padding-right: 1em" class="text-logo">
-                        <a href="/home">
-                            <b>SECURE</b>
-                            CHEATS
-                        </a>
+                        {!! html_entity_decode(
+                            Html::linkRoute(
+                                'home',
+                                Html::image(
+                                    '/images/logo/' . $master_site_settings['text_logo'],
+                                    'Home Page',
+                                    [
+                                        'class' => 'img-fluid',
+                                        'width' => 230,
+                                        'height' => 30
+                                    ]
+                                )
+                            )
+                        ) !!}
                     </div>
                     <div class="space-20px desktop"></div>
                     <div class="space-20px desktop"></div>
@@ -629,7 +644,7 @@
                                         <img style="height: -webkit-fill-available" src="{{ asset('img/stripe.png')}}" alt="stripe-popup">
                                     </a>
                                 </div>
-                               
+
                                 @endif --}}
                                 @if(\App\Option::where('option', 'stripe_payment')->get()->first()->value != 0)
                                 <div class="space-height-20px"></div>
@@ -946,20 +961,29 @@
                         <div>
                             <h5>About us</h5>
                             <div>
-                                SecureCheats is now about 3 years old since it was founded - our team of coders are professional and are specialized in many aspects in programming,
-                                reverse engineering, exploiting and have made many cheats/hacks/exploits in almost all game engines out there!
+                                {{$master_site_settings['about_us']}}
                             </div>
                         </div>
                         <div class="space-20px"></div>
                         <div>
                             <h5>For support: </h5>
-                            Email : support@securecheat.xyz<br>
+                            Email : {{$master_site_settings['for_support']}}<br>
                             <br>
                             <h5>Verified Seller By</h5>
-                            <a target="blank" href="https://www.elitepvpers.com/">
-                                <img src="https://cdn.discordapp.com/attachments/796683451087585280/809374850102722580/logo.png" alt="seller" width="100">
-                            </a>
-
+                            {!! html_entity_decode(
+                                Html::link(
+                                    $master_site_settings['verified_seller_url'],
+                                    Html::image(
+                                        '/images/logo/' . $master_site_settings['verified_seller_logo'],
+                                        'Home Page',
+                                        [
+                                            'class' => 'img-fluid',
+                                            'alt' => 'seller',
+                                            'width' => 100
+                                        ]
+                                    )
+                                )
+                            ) !!}
                         </div>
                         <div class="space-20px"></div>
                         <div>

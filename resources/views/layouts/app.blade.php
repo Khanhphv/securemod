@@ -16,7 +16,9 @@
 		<meta property="og:image" content="{{url('/images/s6_bg.png')}}"/>
 	@endif
 
-	<link rel="shortcut icon" type="image/png" href="{{asset('')}}/favicon.ico"/>
+
+
+    {{ Html::favicon( $master_site_settings['favicon'] ) }}
 	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
 	<title>@yield('title') - CHEATSHARP.COM - HACK GAME ONLIINE</title>
 	<!-- Styles -->

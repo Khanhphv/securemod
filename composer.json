@@ -19,6 +19,7 @@
     "laravel/socialite": "^4.3",
     "laravel/tinker": "^2.0",
     "laravel/ui": "2.0",
+    "laravelcollective/html": "^6.2",
     "mews/captcha": "^3.2",
     "paypal/paypal-checkout-sdk": "1.0.1",
     "pragmarx/countries": "^0.7.2",
