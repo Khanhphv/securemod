@@ -629,14 +629,14 @@
                                         <img style="height: -webkit-fill-available" src="{{ asset('img/stripe.png')}}" alt="stripe-popup">
                                     </a>
                                 </div>
-                               
+
                                 @endif --}}
                                 @if(\App\Option::where('option', 'stripe_payment')->get()->first()->value != 0)
                                 <div class="space-height-20px"></div>
                                 <div style="display: flex; align-items: center;">
                                     <a target="blank" class="waves-effect waves-light btn-large modal-trigger" href="#lexholding-popup"
-                                       style="background: white; width: 150px;">
-                                        <strong style="font-weight: 700; color: #039be5">New payment</strong>
+                                       style="background: white; width: 150px; padding: 0">
+                                        <strong style="font-weight: 700;font-size: 10px; white-space: nowrap; color: #039be5">Visa / MasterCard</strong>
                                     </a>
                                 </div>
                                 @endif
