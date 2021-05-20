@@ -80,6 +80,15 @@ class AppServiceProvider extends ServiceProvider
             }
         });
 
+        view()->composer('*', function ($view) {
+            $theme = \Cookie::get('theme');
+            if ($theme == '' || ($theme != 'dark' && $theme != 'light')) {
+                $theme = 'light';
+            }
+
+            $view->with('theme', $theme);
+        });
+
     }
 
     /**
