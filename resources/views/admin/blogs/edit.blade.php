@@ -50,13 +50,12 @@
             <input type="text" class="form-control" name="thumbnail" id="thumbnail"
                    value="{{old('thumbnail',isset($blog->thumbnail)? $blog->thumbnail: null)}}" required>
         </div>
-        
+
         <div class="form-group">
             <label for="content">Content</label>
-            <textarea id="content" name="content" rows="20"
-                      class="form-control my-editor">{{old('content', isset($blog)? $blog->content: null)}}</textarea>
+            <textarea name="content" id="editor1" rows="10"  class="form-control" >{{ old('content') ? old('content') : $blog->content }}</textarea>
         </div>
-        
+
         <br>
 
         <a href="{{URL::previous()}}" class="btn btn-warning">BACK</a>
@@ -67,23 +66,14 @@
 @section('js')
     <script src="https://cdn.tinymce.com/4/tinymce.min.js"></script>
 
-    <script>
-
-        var editor_config = {
-            path_absolute: "/",
-            selector: ".my-editor",
-            plugins: [
-                "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-                "searchreplace wordcount visualblocks visualchars code fullscreen",
-                "insertdatetime media nonbreaking save table contextmenu directionality",
-                "emoticons template paste textcolor colorpicker textpattern"
-            ],
-            blogbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
-
-            relative_urls: false,
+    <script type="text/javascript" >
+        var options = {
+            height: 500,
+            extraPlugins: 'codesnippet',
+            codeSnippet_theme: 'monokai_sublime',
         };
+        CKEDITOR.replace('editor1', options);
 
-        tinymce.init(editor_config);
     </script>
 
 @stop

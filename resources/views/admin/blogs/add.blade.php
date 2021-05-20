@@ -48,7 +48,7 @@
         </div>
         <div class="form-group">
             <label for="content">Content</label>
-            <textarea id="content" name="content" rows="20" class="form-control my-editor">{{ old('content') }}</textarea>
+            <textarea id="editor1" name="content" rows="20" class="form-control my-editor" placeholder="Enter a content">{{ old('content') }}</textarea>
         </div>
         <br>
         @if(count($games) > 0)
@@ -63,23 +63,14 @@
 @section('js')
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 
-    <script>
-
-        var editor_config = {
-            path_absolute: "/",
-            selector: "textarea.my-editor",
-            plugins: [
-                "advlist autolink lists link image charmap print preview hr anchor pagebreak",
-                "searchreplace wordcount visualblocks visualchars code fullscreen",
-                "insertdatetime media nonbreaking save table contextmenu directionality",
-                "emoticons template paste textcolor colorpicker textpattern"
-            ],
-            blogbar: "insertfile undo redo | styleselect | bold italic | forecolor backcolor | fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media",
-
-            relative_urls: false,
+    <script type="text/javascript" >
+        var options = {
+            height: 500,
+            extraPlugins: 'codesnippet',
+            codeSnippet_theme: 'monokai_sublime',
         };
+        CKEDITOR.replace('editor1', options);
 
-        tinymce.init(editor_config);
     </script>
 
 @stop
