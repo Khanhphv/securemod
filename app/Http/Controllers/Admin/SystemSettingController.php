@@ -19,19 +19,6 @@ class SystemSettingController extends Controller
         return view('admin.setting', compact('settings'));
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param array $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-//    protected function validator(array $data)
-//    {
-//        return Validator::make($data, [
-//            'logo_mini' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-//            'logo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
-//        ]);
-//    }
 
     /**
      *  change logo function

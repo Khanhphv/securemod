@@ -15,6 +15,9 @@ class DatabaseSeeder extends Seeder
 //        $this->call(GamesTableSeeder::class);
 //        $this->call(ToolsTableSeeder::class);
 //        $this->call(OptionsTableSeeder::class);
-        $this->call(MasterSiteSettingsTableSeeder::class);
+//        $this->call(MasterSiteSettingsTableSeeder::class);
+        $this->call(PostsTableSeeder::class);
+        $this->call(TagsTableSeeder::class);
+        $this->call(PostTagTableSeeder::class);
     }
 }
