@@ -14,7 +14,7 @@
         <p>There are no post</p>
     @else
         <div class="table-responsive">
-            <table class="table table-hover" style="background: #FFF">
+            <table class="table table-hover datatables" style="background: #FFF">
                 <tr>
                     <th>ID</th>
                     <th>Author</th>
@@ -35,21 +35,20 @@
                         </td>
                         <td>{{$post->updated_at}}</td>
                         <td>
-{{--                            {!! html_entity_decode(--}}
-{{--                                Html::linkRoute(--}}
-{{--                                'post.edit',--}}
-{{--                                '<i class="far fa-edit"></i>',--}}
-{{--                                [--}}
-{{--                                    'id' => $post->id,--}}
-{{--                                ],--}}
-{{--                                [--}}
-{{--                                    'class' => 'btn btn-warning',--}}
-{{--                                ]--}}
-{{--                                )--}}
-{{--                            )--}}
-{{--                            !!}--}}
-                            <a href="{{route('post.edit',$post->id)}}" class="btn btn-warning">Edit</a>
-                            <a href="{{route('post.delete',$post->id)}}" onclick="return confirm('Do you want to delete post?" class="btn btn-danger" >Delete</a>
+                            {!! html_entity_decode(
+                                Html::linkRoute(
+                                    'post.edit',
+                                    'Edit',
+                                    [
+                                        'post' => $post,
+                                    ],
+                                    [
+                                        'class' => 'btn btn-warning',
+                                    ]
+                                )
+                            )
+                            !!}
+                            <a href="{{route('post.delete',$post->id)}}" onclick="return confirm('Do you want to delete post?')" class="btn btn-danger" >Delete</a>
                         </td>
                     </tr>
                 @endforeach
@@ -58,3 +57,4 @@
     @endif
 
 @stop
+
