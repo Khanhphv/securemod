@@ -87,7 +87,14 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->title = $request->title;
+        $post->sumary = $request->summary;
+        $post->content = $request->content;
+        $post->thumbnail = $request->thumbnail;
+        $post->save();
+        $post->tag()->sync((array)$request->input('tag'));
+        return redirect()->route('post.index');
     }
 
     /**

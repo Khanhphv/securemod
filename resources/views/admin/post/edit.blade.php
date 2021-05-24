@@ -22,7 +22,7 @@
 
     <div class="content">
         {!! Form::open([
-            'route' => ['post.store'],
+            'route' => ['post.update', $post->id],
             'method' => 'PUT',
             'enctype' => 'multipart/form-data',
             'class' => 'form-horizontal',
@@ -121,7 +121,7 @@
             {!! Form::select(
                   'tag[]',
                    $tags,
-                   old('tag'),
+                   old('tag')? old('tag') : $post->tag->pluck('id')->toArray(),
                    [
                        'class' => 'form-control select2',
                         'multiple' => 'multiple',
@@ -137,13 +137,13 @@
         </div>
         <div class="form-group">
             {!! Form::submit(
-                            'Create',
+                            'Update',
                             [
                                 'class' => 'btn btn-success',
                             ]
                         ) !!}
             {!! Html::linkRoute(
-                'post.create',
+                'post.index',
                 'Cancel',
                 [],
                 [
