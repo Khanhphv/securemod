@@ -26,7 +26,7 @@ Route::group(['middleware' => ['locale', 'web']], function () {
     Route::get('/', 'HomeController@landing');
     Route::get('/blog', 'BlogController@index');
     Route::get('/posts', 'PostController@index');
-    Route::get('/post/{id}', 'PostController@show');
+    Route::get('/post/{id}', 'PostController@show')->name('post-content');
     Route::get('/blog_game/{game_id}', 'BlogController@blogOfGame')->name('blog_game');
     Route::get('/terms-of-services', 'BlogController@show')->name('blog');
 //    Route::get('/membership-plan', 'BlogController@blog');
