@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Tag;
+use App\LikePost;
 
 class Post extends Model
 {
@@ -12,5 +13,9 @@ class Post extends Model
     public function tag()
     {
         return $this->belongsToMany(Tag::class, 'post_tag');
+    }
+
+    public function like_post(){
+        return $this->hasOne(LikePost::class);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Tag;
+use App\LikePost;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostsRequest;
 use Auth;
@@ -52,6 +53,9 @@ class PostController extends Controller
         $post->view = 0;
         $post->save();
         $post->tag()->sync((array)$request->input('tag'));
+        $like_post = new LikePost();
+        $like_post->post_id = $post->id;
+        $like_post->save();
         return redirect()->route('post.index')->with(['msg' => 'Add new post successfull']);
     }
 

@@ -38,7 +38,11 @@
                                                     {{ $post->view }}
                                                 </div>
                                                 <div>
-                                                    {{-- like--}}
+                                                    <div class="right-align">
+                                                        <span>
+                                                            Like: {{ $post->like_post ? $post->like_post->like_count : 0 }}
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
