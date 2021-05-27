@@ -542,3 +542,49 @@ svg.icon-menu path{
       -webkit-animation-timing-function:ease-in-out;
       -webkit-animation-direction: alternate;
   }
+
+/*css for post*/
+.label-tag {
+    background-color: #00c0ef !important;
+    color: #fff !important;
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+    box-sizing: border-box;
+}
+
+.post-block {
+    /*width     : 80%;*/
+    margin-top: 50px;
+    display   : flex;
+    flex-direction: column;
+}
+.post-block>div {
+    width: 95%;
+    display: flex;
+    margin: 0 auto;
+}
+
+.post-block>div>div {
+    flex          : 1;
+    display       : flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.post-block>div>div>div {
+    flex          : 1;
+    display       : flex;
+    flex-direction: column;
+}
+
+.pagi {
+    width: 95%;
+    margin: 0 auto;
+}

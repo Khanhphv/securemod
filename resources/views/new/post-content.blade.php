@@ -14,6 +14,11 @@
             <div class="blog-title">
 {{--                Title--}}
                 <h1 class="mt4 text-primary">{{ $post->title }}</h1>
+                <div>
+                    @foreach ($post->tag as $singleTag)
+                        <span class="label-tag">{{ $singleTag->name }}</span>
+                    @endforeach
+                </div>
                 <label>
                     <i style="font-size: inherit" class="material-icons dp48">access_time</i>
                     {{ $post->created_at }}
@@ -44,7 +49,7 @@
                 {!! html_entity_decode(
                     Form::label(
                         'author',
-                        'Post by: '. $post->user_name,
+                        'Post by: '.$author,
                         [
                             'class' => 'd-flex justify-content-end'
                         ]
