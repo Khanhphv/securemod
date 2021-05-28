@@ -1,0 +1,30 @@
+[data-theme="dark"] {
+    --color-bg: #000000;
+    --top-menu-bg: #191c24;
+    --border-color: #686d79;
+    --top-menu-color: #ffffff;
+    --primary-color: #e0e0e0;
+    --toolbar-bg-color: #151212;
+    --dropdown-color: #fff;
+    --text-primary-color: #fff;
+    --toolbar-icon-color: #039be5;
+    --content-view-bg: #000;
+    --footer-bg: #191c24;
+    --footer-color: rgba(255, 255, 255, 0.87);
+    --top-menu-shadow: #000;
+    --content-color: #fff;
+    --content-box-bg: #191c24;
+}
+:root {
+    --color-bg: #fff;
+    --top-menu-bg:#fff;
+    --border-color: #fff;
+    --top-menu-color: #000;
+    --toolbar-icon-color: #9e9ea7;
+    --content-view-bg: #fff;
+    --footer-bg: #fff;
+    --footer-color: rgba(0,0,0,0.87);
+    --top-menu-shadow: #afafaf;
+    --content-color: #000;
+    --content-box-bg: #fff;
+}

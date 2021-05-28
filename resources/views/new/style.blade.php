@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="/css/sweetalert2.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
+<link rel="stylesheet" type="text/css" href="/css/theme.css">
 <link rel="stylesheet" type="text/css" href="/css/reset2.css">
 <link rel="stylesheet" type="text/css" href="/css/style2.css">
 <link rel="stylesheet" type="text/css" href="/css/responsive2.css">
@@ -13,6 +13,9 @@
 <style>
     #selectbox-games{
         width: 200px;
+        background: var(--top-menu-bg);
+        border: 1px solid var(--border-color);
+        color: var(--top-menu-color);
     }
     .pagination li {
         height: auto;
@@ -22,17 +25,29 @@
         border-color: #ee6e73 ;
     }
     .bg-white{
-        background: #fff;
+        background: var(--content-box-bg);
         padding: 0 15px;
         padding-bottom: 2em;
         border-radius: 10px;
         min-width: 100%;
         height: fit-content;
         min-height: 50vh;
+        color: var(--content-color);
     }
     .dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter {
         text-align: left;
     }
+    .dataTables_filter input {
+        color: var(--content-color);
+    }
+    .dataTable tbody tr.odd , .dataTable tbody tr.even {
+        background: var(--content-box-bg) !important;
+    }
+
+    .dataTable tbody tr td.sorting_1 {
+        background: var(--content-box-bg) !important;
+    }
+
     .menu .dropdown-content.select-dropdown {
         width: max-content!important;
     }
@@ -49,8 +64,9 @@
         width: 100%;
         background: white;
         margin-top: 20px;
-        border-left: 1px solid #efefef;
         padding: 40px calc(10%);
+        background: var(--footer-bg);
+        color: var(--footer-color);
     }
 
     .footer>div {

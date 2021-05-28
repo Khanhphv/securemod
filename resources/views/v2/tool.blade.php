@@ -169,7 +169,7 @@
         }
     </style>
 </head>
-<body>
+<body @if($theme == 'dark') data-theme="dark" @endif>
 @extends('new.master-layout')
 @section('content')
     <h1 style="display:none">{{ $game->name }}</h1>
@@ -181,7 +181,7 @@
                         <div class="product__price-tag">
                             <p class="product__price-tag-price">{{$tool->note}}</p>
                         </div>
-                    @endif      
+                    @endif
                     @if($tool->discount && $tool->discount > 0)
                         <div style="position: absolute; right: 0">
                             <div class="ribbon  ribbon--red">SAVE {{ $tool->discount }}%</div>

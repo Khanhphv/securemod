@@ -534,7 +534,7 @@
                     </div>
                 </div>
             </div>
-            <div class="menu" style="box-shadow: 1px 1px 10px #afafaf">
+            <div class="menu">
                 <div>
                     <div class="icon-menu" width="24px" height="24px">
                         {!! html_entity_decode(
@@ -582,7 +582,6 @@
                 <div class="desktop">
                     @auth()
                     <div class="space-20px"></div>
-                    <div class="border-right-2px" style="height: 40px;"></div>
                     <div class="btn-rechange">
                         <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                             <path
@@ -605,7 +604,6 @@
                         <div class="user-dropdown">
                             <span>Payment</span>
                             <div class="space-height-20px"></div>
-                            <div class="border-bottom-2px"></div>
                             @auth
                                 @if(\App\Option::where('option', 'paypal_payment')->get()->first()->value != 0)
                                 <div class="space-height-20px"></div>
@@ -688,8 +686,6 @@
                         </label>
                         @endguest
                     <div class="space-20px"></div>
-                    <div class="border-right-2px" style="height: 40px;"></div>
-
                     @auth()
                         <div class="space-20px"></div>
                         <div class="space-20px"></div>
@@ -722,7 +718,6 @@
                             <p>Welcome back,</p>
                             <span>{{ Auth::user()->name }}</span>
                             <div class="space-height-20px"></div>
-                            <div class="border-bottom-2px"></div>
                             <div class="space-height-20px"></div>
                             <div style="display: flex; align-items: center;" onclick="copyMessage('{{ Auth::user()->id }}')">
                                 <svg width="16px" height="16px" viewBox="0 0 16 16">
@@ -762,6 +757,17 @@
                                 </svg>
                                 <div class="space-20px"></div>
                                     Link invite
+                            </div>
+                            <div class="space-height-20px"></div>
+                            <div style="display: flex; align-items: center;">
+                                Dark mode
+                                <div class="space-20px"></div>
+                                <div class="switch">
+                                    <label>
+                                        <input type="checkbox" id="themeSwitch">
+                                        <span class="lever"></span>
+                                    </label>
+                                </div>
                             </div>
                         </div>
                     @endauth
@@ -1048,6 +1054,23 @@
         let event = new Event('change')
         $('#paypal_amount')[0].dispatchEvent(event)
     })
+    $(document).ready(function () {
+        if ($('body').data('theme') == 'dark') {
+            $('#themeSwitch').prop('checked', true);
+        }
+    });
+    $('#themeSwitch').on('change', function(event){
+        if (event.target.checked) {
+            document.body.setAttribute('data-theme', 'dark');
+            let d = new Date();
+            d.setTime(d.getTime() + (365*24*60*60*1000));
+            let expires = "expires=" + d.toUTCString();
+            document.cookie = "theme=dark" + ";" + expires + ";path=/";
+        } else {
+            document.body.removeAttribute('data-theme');
+            document.cookie = 'theme=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        }
+    });
 </script>
 @endauth
 

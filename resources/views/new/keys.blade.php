@@ -9,7 +9,7 @@
     <meta name="author" content="support@securecheats.xyz">
     @include('new.style')
 </head>
-<body>
+<body @if($theme == 'dark') data-theme="dark" @endif>
     @extends('new.master-layout')
     @section('content')
         <div class="tab-content mobile" style="display: flex">
