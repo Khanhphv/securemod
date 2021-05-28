@@ -141,6 +141,12 @@ return [
             'role' => 'admin'
         ],
         [
+            'text' => 'List Posts',
+            'route' => 'post.index',
+            'icon' => 'newspaper-o',
+            'role' => 'admin'
+        ],
+        [
             'text' => 'Setting',
             'route' => 'setting.index',
             'icon' => 'cog',

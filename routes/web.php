@@ -25,7 +25,7 @@ Route::group(['middleware' => ['locale', 'web']], function () {
     Auth::routes();
     Route::get('/', 'HomeController@landing');
     Route::get('/blog', 'BlogController@index');
-    Route::get('/posts', 'PostController@index');
+    Route::get('/post', 'PostController@index');
     Route::get('/post/{id}', 'PostController@show')->name('post-content');
     Route::put('/user/{user_id}/post/{id}', 'PostController@like_post')->name('like');
     Route::get('/blog_game/{game_id}', 'BlogController@blogOfGame')->name('blog_game');
