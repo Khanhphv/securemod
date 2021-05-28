@@ -588,3 +588,9 @@ svg.icon-menu path{
     width: 95%;
     margin: 0 auto;
 }
+.like-icon {
+    margin-right: 10px !important;
+}
+.liked-icon {
+    color: #0d4dff !important;
+}
