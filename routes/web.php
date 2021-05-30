@@ -117,6 +117,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'is_a
     });
     Route::get('/setting_system', 'SystemSettingController@index')->name('setting_system');
     Route::put('/setting_system/edit', 'SystemSettingController@ChangeLogoSystem')->name('setting_system_edit');
+    Route::get('/payment', 'PaymentSettingController@index')->name('payment_settings');
     Route::get('/summary', 'SummaryController@getMoneySummary')->name('summary');
     Route::get('/', 'AdminController@statics')->name('admin.index');
     Route::resource('tool', 'ToolController');
