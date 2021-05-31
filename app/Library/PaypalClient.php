@@ -6,6 +6,7 @@ use PayPalCheckoutSdk\Core\PayPalHttpClient;
 use PayPalCheckoutSdk\Core\SandboxEnvironment;
 use PayPalCheckoutSdk\Core\ProductionEnvironment;
 use App\Option;
+use App\Payment;
 ini_set('error_reporting', E_ALL); // or error_reporting(E_ALL);
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
@@ -37,7 +38,8 @@ class PaypalClient
 //        $clientSecret = getenv("CLIENT_SECRET") ?: "EBqrX5N9n1fNppd1D1wVCkFJ0PyvV8FpD6xoev3xForef2WSrsKGz_EngfpLsrh8SmH-WqXVhZYLJfhc";
 
         $clientId = getenv("CLIENT_ID") ?: Option::where('option', 'paypal_id')->join('paypal', 'paypal.id', 'options.value')->get()->first()->client_id;
-        $clientSecret = getenv("CLIENT_SECRET") ?: Option::where('option', 'paypal_id')->join('paypal', 'paypal.id', 'options.value')->get()->first()->client_secret;
+//        $clientSecret = getenv("CLIENT_SECRET") ?: Option::where('option', 'paypal_id')->join('paypal', 'paypal.id', 'options.value')->get()->first()->client_secret;
+        $clientSecret = Payment::where('payment_type', 'Paypal')->get()->first()->client_secret;
         return new ProductionEnvironment($clientId, $clientSecret);
     }
 }

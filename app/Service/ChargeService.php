@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Model\History;
 use App\User;
+use App\Payment;
 use Auth;
 use DB;
 use Exception;
@@ -11,15 +12,20 @@ use Log;
 
 class ChargeService
 {
+    public function get_lex_holding_key(){
+        $lex_holding_key = Payment::where('payment_type', 'Lex Holding')->get()->first()->client_secret;
+        return $lex_holding_key;
+    }
 
     public function chargeViaLexHolding($order, $url)
     {
         $webhookURL = "https://securecheat.xyz/api/charge";
         $returnURL = "https://securecheat.xyz/balance";
         $url = "https://lexholdingsgroup.com/create";
+        $lex_holding_key = $this->get_lex_holding_key();
         try {
             $data = array(
-                "secret" => getenv("LEX_HOLDING_KEY"),
+                "secret" => $lex_holding_key,
                 "email" => Auth::user()->email,
                 "amount" => $order->input("amount"),
                 "webhookURL" => $webhookURL,
@@ -59,9 +65,10 @@ class ChargeService
         // dd($order);
         $transactionStatus = $order->status;
         $secret = $order->secret;
+        $lex_holding_key = $this->get_lex_holding_key();
         DB::beginTransaction();
         try {
-            if ($transactionStatus == "paid" && $secret == getenv("LEX_HOLDING_KEY")) {
+            if ($transactionStatus == "paid" && $secret == $lex_holding_key) {
                 #add to user
                 $user_recharge = User::where("email", $order->email)->get()->first();
                 if(!$user_recharge ) {
