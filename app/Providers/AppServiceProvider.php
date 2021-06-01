@@ -7,6 +7,7 @@ use App\Model\History;
 use App\Option;
 use App\MasterSiteSetting;
 use App;
+use App\PaypalSeller;
 use DB;
 use Illuminate\Contracts\Events\Dispatcher;
 use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
@@ -58,6 +59,9 @@ class AppServiceProvider extends ServiceProvider
 
         $master_site_settings = MasterSiteSetting::find(1);
         View::share('master_site_settings', $master_site_settings);
+
+        $list_seller = PaypalSeller::all();
+        View::share('list_seller', $list_seller);
 
         if (Schema::hasTable('options')) {
             $siteSettings = Option::select('option', 'value')->get()->keyBy('option')->pluck('value', 'option');

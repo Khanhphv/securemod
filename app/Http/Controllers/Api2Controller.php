@@ -6,74 +6,30 @@ use App\Hwid;
 use App\HwidLogs;
 use App\Key;
 use App\Library\Nix\License;
+use App\Service\ApiService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Service\CommonService;
 
 class Api2Controller extends Controller
 {
+    public CommonService $commonService;
+    public ApiService $apiService;
 
-    private function RandomString($length = 10)
+    /**
+     * Api2Controller constructor.
+     * @param CommonService $commonService
+     * @param ApiService $apiService
+     */
+    public function __construct(CommonService $commonService, ApiService $apiService)
     {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $randstring = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randstring .= $characters[rand(0, strlen($characters) - 1)];
-        }
-        return $randstring;
+        $this->commonService = $commonService;
+        $this->apiService = $apiService;
     }
 
     public function loaderVer($toolId = 2)
     {
-        $this->exportFile('Starter/'.$toolId, "haha", 'starter_version.txt', "");
-    }
-
-    private function exportFile($subFolder, $code, $realFileName = "", $fixedFileName = "")
-    {
-        $rootFolderPath = '/home/cheatsharp.com/public_html/files/';
-        $fileLocation = $rootFolderPath . $subFolder . '/';
-        // If realFileName is empty, choose a random file in folder
-        $tempInt = 0;
-        if ($realFileName == "") {
-            $codeToChars = str_split($code);
-            foreach ($codeToChars AS $c) {
-                $tempInt += ord($c);
-            }
-            $randomFiles = array();
-            $files = scandir($fileLocation);
-            foreach ($files AS $f) {
-                if ($f != '.' && $f != '..') {
-                    $randomFiles[] = $f;
-                }
-            }
-            if (count($randomFiles) == 0) {
-                $filePath = $rootFolderPath . 'NOT_FOUND_ANY_FILE.exe';
-                $fixedFileName = 'NOT_FOUND_ANY_FILE.exe';
-            } else {
-                $filePath = $fileLocation . $randomFiles[$tempInt % count($randomFiles)];
-            }
-        } else {
-            $filePath = $fileLocation . $realFileName;
-        }
-
-        if (file_exists($filePath)) {
-
-            header($_SERVER["SERVER_PROTOCOL"] . " 200 OK");
-            header("Cache-Control: public"); // needed for internet explorer
-            header("Content-Type: application/octet-stream");
-            header("Content-Transfer-Encoding: Binary");
-            header("Content-Length:" . filesize($filePath));
-            if ($fixedFileName != '') {
-                header("Content-Disposition: attachment; filename=" . $fixedFileName);
-            } else {
-                header("Content-Disposition: attachment; filename=" . ($this->RandomString(10)));
-            }
-            readfile($filePath);
-            file_put_contents('log.txt', date("d/m/Y H:i:s", time()) . ' Xuat file ' . $filePath . "\n", FILE_APPEND);
-            die();
-        } else {
-            file_put_contents('log.txt', date("d/m/Y H:i:s", time()) . ' Error: File not found. ' . $filePath . "\n", FILE_APPEND);
-            die("Error: File not found.");
-        }
+        $this->apiService->exportFile('Starter/'.$toolId, "haha", 'starter_version.txt', "");
     }
 
     public function download($toolId = 999, $fileType, $code, $sub_folder = "")
@@ -87,7 +43,7 @@ class Api2Controller extends Controller
 
         if (!$key) {
             // Nếu không thấy thì trả về file KEY_NOT_FOUND.exe
-            $this->exportFile('', 'BLAHBLADCODE', 'KEY_NOT_FOUND.exe', 'KEY_NOT_FOUND.exe');
+            $this->apiService->exportFile('', 'BLAHBLADCODE', 'KEY_NOT_FOUND.exe', 'KEY_NOT_FOUND.exe');
         }
         if ($toolId == 999) {
             $toolId = $key->tool_id;
@@ -95,36 +51,36 @@ class Api2Controller extends Controller
 
         // Check xem có hết giờ thì trả về file EXPIRED.exe
         if ($key->active_time != null && Carbon::createFromTimestamp($key->active_time)->addHour($key->package) < Carbon::now()->addSeconds($key->hwid_count * 60 * 10)) {
-            $this->exportFile('', 'BLAHBLADCODE', 'EXPIRED.exe', 'EXPIRED.exe');
+            $this->apiService->exportFile('', 'BLAHBLADCODE', 'EXPIRED.exe', 'EXPIRED.exe');
         }
 
         switch ($fileType) {
             case 'st':
-                $this->exportFile('Starter/'.$toolId, $code, "", "");
+                $this->apiService->exportFile('Starter/'.$toolId, $code, "", "");
                 break;
             case 'dn':
-                $this->exportFile('Driver', $code, "driver_name.txt", "");
+                $this->apiService->exportFile('Driver', $code, "driver_name.txt", "");
                 break;
             case 'loader':
-                $this->exportFile('Driver/Loader', $code, "", "");
+                $this->apiService->exportFile('Driver/Loader', $code, "", "");
                 break;
             case 'ed':
-                $this->exportFile('Tool/' . $toolId . '/DLL', $code, "", "");
+                $this->apiService->exportFile('Tool/' . $toolId . '/DLL', $code, "", "");
                 break;
             case 'dd':
-                $this->exportFile('Tool/' . $toolId . '/Data/' . $sub_folder, $code, "", "");
+                $this->apiService->exportFile('Tool/' . $toolId . '/Data/' . $sub_folder, $code, "", "");
                 break;
             case 'sd':
-                $this->exportFile('Driver/sDriver', $code, "", "");
+                $this->apiService->exportFile('Driver/sDriver', $code, "", "");
                 break;
             case 'ud':
-                $this->exportFile('Driver/usDriver', $code, "", "");
+                $this->apiService->exportFile('Driver/usDriver', $code, "", "");
                 break;
             case 'cl':
-                $this->exportFile('Tool/Caller', $code, "", "");
+                $this->apiService->exportFile('Tool/Caller', $code, "", "");
                 break;
             default:
-                $this->exportFile('', 'BLAHBLADCODE', 'METHOD_NOT_FOUND.exe', 'METHOD_NOT_FOUND.exe');
+                $this->apiService->exportFile('', 'BLAHBLADCODE', 'METHOD_NOT_FOUND.exe', 'METHOD_NOT_FOUND.exe');
                 break;
         }
     }
@@ -204,7 +160,7 @@ class Api2Controller extends Controller
             //$l->email = 'HSD: '.$endTime.' (GMT+7)';
             //$l->CreateSerialNumber($sn_data);
             //die("OK\n" . $l->sn);
-            
+
             //FREEEE
             die($ACT_BAD);
         }
@@ -213,7 +169,7 @@ class Api2Controller extends Controller
         $keyMode = base64_encode($key->mode);
 
         // Check hwid bị khóa thì thoi
-        if ($this->checkHackByHwid($hwid)) {
+        if ($this->apiService->checkHackByHwid($hwid)) {
             $log = new HwidLogs();
             $log->hwid = $hwid;
             $log->ip_address = $ipAddress;
@@ -246,11 +202,11 @@ class Api2Controller extends Controller
             $l->data = 'standard';
             // $l->name = $ipAddress;
             $l->email = '' . $endTime . ' (GMT)';
-            
+
             //if ($key->hwid_count > 1) {
             //    $l->email .= ' (-'.number_format($key->hwid_count * 60).' minutes because change computer)';
             //}
-           
+
             $l->CreateSerialNumber($sn_data);
             // Ghi lịch sử HWID
             $log = new HwidLogs();
@@ -295,11 +251,11 @@ class Api2Controller extends Controller
                 $sn_data = array("hardwareid" => $hwid, 'expiredate' => $timeExpire, 'data' => $keyMode);
                 $l = $this->initLicense($toolId);
                 $l->email = '' . $endTime . ' (GMT)';
-                
+
                 //if ($key->hwid_count > 1) {
                 //    $l->email .= ' (-'.number_format($key->hwid_count * 60).' minutes because change computer)';
                 //}
-                
+
                 $l->CreateSerialNumber($sn_data);
 
                 $log = new HwidLogs();
@@ -316,7 +272,7 @@ class Api2Controller extends Controller
                 $sn_data = array("hardwareid" => $hwid, 'expiredate' => $timeExpire, 'data' => $keyMode);
                 $l = $this->initLicense($toolId);
                 $l->email = '' . $endTime . ' (GMT)';
-                
+
                 //if ($key->hwid_count > 1) {
                 //    $l->email .= ' (-'.number_format($key->hwid_count * 60).' minutes because change computer)';
                 //}
@@ -378,7 +334,7 @@ class Api2Controller extends Controller
         $keyMode = base64_encode($key->mode);
 
         // Check hwid bị khóa thì thoi
-        if ($this->checkHackByHwid($hwid)) {
+        if ($this->apiService->checkHackByHwid($hwid)) {
             $log = new HwidLogs();
             $log->hwid = $hwid;
             $log->ip_address = $ipAddress;
@@ -509,16 +465,6 @@ class Api2Controller extends Controller
         return response()->json($hacker);
     }
 
-    public function checkHackByHwid($hwid)
-    {
-        $hwid = substr($hwid, 0, -3);
-        $hackCount = Hwid::where('hwid', 'LIKE', '%' . $hwid . '%')->orderBy('updated_at', 'desc')->get();
-        if (count($hackCount) > 1) {
-            return true;
-        } else
-            return false;
-    }
-
     public function downloadFake(Request $request)
     {
         $code = preg_replace('/[^A-Za-z0-9]/', '', $_GET['key']);
@@ -531,7 +477,7 @@ class Api2Controller extends Controller
                 exit('Key is expired');
             }
         }
-        $fileName = $this->RandomString(rand(5, 10)) . '.exe';
-        return $this->exportFile('Starter/2', $request->key, '', $fileName);
+        $fileName = $this->commonService->randomString(rand(5, 10)) . '.exe';
+        return $this->apiService->exportFile('Starter/2', $request->key, '', $fileName);
     }
 }

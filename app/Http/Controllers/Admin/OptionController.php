@@ -4,11 +4,25 @@ namespace App\Http\Controllers\Admin;
 
 use App\Option;
 use App\Paypal;
+use App\Service\OptionService;
+use App\Service\PaypalService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class OptionController extends Controller
 {
+    protected OptionService $optionService;
+    protected PaypalService $paypalService;
+    /**
+     * OptionController constructor.
+     * @param OptionService $optionService
+     */
+    public function __construct(OptionService $optionService, PaypalService $paypalService)
+    {
+        $this->optionService = $optionService;
+        $this->paypalService = $paypalService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,9 +33,8 @@ class OptionController extends Controller
         if (isset(request()->lang) === false) {
             request()->lang = 'en';
         }
-        $siteSettings = Option::select('option', 'value')->where('locate', request()->lang)->get()->keyBy('option')->pluck('value', 'option');
-        $listPayment = Paypal::from('paypal as p')
-            ->select('p.id','p.name', 'p.client_id', 'p.client_secret')->get();
+        $siteSettings = $this->optionService->getOption(request()->lang);
+        $listPayment = $this->paypalService->getListPayment();
         return view('admin.options.index', compact('siteSettings','listPayment'));
     }
 
@@ -33,9 +46,7 @@ class OptionController extends Controller
 
     public function update(Request $request)
     {
-        foreach ($request->all() as $key => $value) {
-            Option::where('option', $key)->where('locate', '=', $request->locate)->update(['value' => $value, 'locate' => $request->locate]);
-        }
+        $this->optionService->updateOption($request);
         return redirect()->route('setting.index')->with(['level' => 'success', 'message' => 'Cập nhật thành công']);
     }
 

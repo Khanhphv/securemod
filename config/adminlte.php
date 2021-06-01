@@ -158,6 +158,12 @@ return [
             'icon' => 'tree',
             'role' => 'admin'
         ],
+        [
+            'text' => 'Payment Settings ',
+            'route' => 'payment_settings',
+            'icon' => 'credit-card',
+            'role' => 'admin'
+        ],
         'ACCOUNT MANAGE',
         [
             'text' => 'Member',

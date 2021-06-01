@@ -19,5 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PostsTableSeeder::class);
         $this->call(TagsTableSeeder::class);
         $this->call(PostTagTableSeeder::class);
+        $this->call(PaymentsTableSeeder::class);
+        $this->call(PaypalSellersTableSeeder::class);
     }
 }

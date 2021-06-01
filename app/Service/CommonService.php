@@ -53,4 +53,18 @@ class CommonService
             'discount' => $discount
         ];
     }
+
+    /** Random string
+     * @param int $length
+     * @return string
+     */
+    public function randomString($length = 10): string
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $randString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randString .= $characters[rand(0, strlen($characters) - 1)];
+        }
+        return $randString;
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Blacklist;
 use App\Key;
 use App\Tool;
 use App\Model\History;
@@ -164,5 +165,22 @@ class AdminController extends Controller
         $histories = History::where('need_to_verify', true)->orderBy('created_at', 'DESC')->get();
         $blacklist = \App\Blacklist::get();
         return view('support.statistic', compact('histories', 'blacklist'));
+    }
+
+    public function getPaypalTransaction($transId) {
+        $check = History::where('nl_token', $transId)->first();
+        if ($check) {
+            echo 'User: ' . $check->user_id . ' - Số tiền: ' . $check->amount . ' - Nội dung: ' . $check->content . ' - Thời gian ' . $check->updated_at.'<br>';
+            echo '<a href="https://securecheat.xyz/admin/user/edit/'.$check->user_id.'">Xem toàn bộ giao dịch</a>';
+        }
+    }
+
+    public function addBlackList(Request $request) {
+        if (isset($request->email) && \Auth::check() && \Auth::user()->type == 'admin') {
+            $blackuser = new Blacklist();
+            $blackuser->email = $request->email;
+            $blackuser->save();
+            return redirect()->back();
+        }
     }
 }

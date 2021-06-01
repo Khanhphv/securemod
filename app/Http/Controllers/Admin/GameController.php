@@ -3,12 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Model\Game;
+use App\Service\GameService;
 use App\Tool;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Session;
 class GameController extends Controller
 {
+    protected GameService $gameService;
+
+    public function __construct(GameService $gameService)
+    {
+        $this->gameService = $gameService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +24,7 @@ class GameController extends Controller
      */
     public function index()
     {
-        $listGames = Game::orderBy('order')->get();
+        $listGames = $this->gameService->getAllGames();
         return view('admin.game.list', compact('listGames'));
     }
 
@@ -41,16 +49,7 @@ class GameController extends Controller
             'thumb_image' => 'required',
             'order' => 'required'
         ]);
-        $game = new Game();
-        $game->name = $request->name;
-        $game->description = $request->description;
-        $game->description_eng = $request->description_eng;
-        $game->notice = $request->notice;
-        $game->notice_eng = $request->notice_eng;
-        $game->thumb_image = $request->thumb_image;
-        $game->slug = $request->slug;
-        $game->order = $request->order;
-        $game->save();
+        $this->gameService->createGame($request);
         return redirect()->route('game.index')->with(['level' => 'success', 'message' => 'Thêm thành công!']);
     }
 
@@ -63,10 +62,9 @@ class GameController extends Controller
     public function show($slug)
     {
         try {
-            $game = Game::where('slug', $slug)->get()->first();
-            $listTools = Tool::where('active', true)->where('game_id', $game->id)->orderBy('order')->get();
-            $game->views = $game->views + config('const.plus_views');
-            $game->save();
+            $result = $this->gameService->showGame($slug);
+            $game = $result[0];
+            $listTools = $result[1];
             Session::put('selectedGame', $game->slug);
         } catch (Exception $e) {
             abort(500);
@@ -83,7 +81,7 @@ class GameController extends Controller
      */
     public function edit($id)
     {
-        $game = Game::findOrFail($id);
+        $game = $this->gameService->getGame($id);
         return view('admin.game.edit', compact('game'));
     }
 
@@ -98,17 +96,8 @@ class GameController extends Controller
             'thumb_image' => 'required',
             'order' => 'required',
         ]);
-        $game = Game::findOrFail($id);
-        $game->name = $request->name;
-        $game->slug = $request->slug;
-        $game->description_eng = $request->description_eng;
-        $game->notice = $request->notice;
-        $game->notice_eng = $request->notice_eng;
-        $game->notice = $request->notice;
-        $game->thumb_image = $request->thumb_image;
-        $game->order = $request->order;
-        $game->save();
-        return redirect()->route('game.edit', $game->id)->with(['level' => 'success', 'message' => 'Cập nhật thành công!']);
+        $updatedId = $this->gameService->updateGame($id, $request);
+        return redirect()->route('game.edit', $updatedId)->with(['level' => 'success', 'message' => 'Cập nhật thành công!']);
     }
 
     /**
@@ -119,8 +108,7 @@ class GameController extends Controller
      */
     public function destroy($id)
     {
-        $game = Game::findOrFail($id);
-        if ($game->delete()) {
+        if ($this->gameService->deleteGame($id)) {
             return redirect()->route('game.index')->with(['level' => 'success', 'message' => 'Xóa thành công!']);
         }
         return redirect()->route('game.index')->with(['level' => 'danger', 'message' => 'Xóa thất bại!']);

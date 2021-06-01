@@ -6,6 +6,7 @@ use App\Key;
 use App\Model\History;
 use App\Hwid;
 use App\HwidLogs;
+use App\Service\KeyService;
 use App\Tool;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -13,6 +14,15 @@ use Auth;
 
 class KeyController extends Controller
 {
+
+    protected KeyService $keyService;
+
+
+    public function __construct(KeyService $keyService)
+    {
+        $this->keyService = $keyService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +30,7 @@ class KeyController extends Controller
      */
     public function index()
     {
-        $listKeys = Key::orderBy('updated_at', 'desc')->paginate(50);
+        $listKeys = $this->keyService->getAllKey();
         return view('admin.keys.list', compact('listKeys'));
     }
 
@@ -31,7 +41,7 @@ class KeyController extends Controller
      */
     public function create()
     {
-       $listTool = Tool::join('games', 'games.id', '=', 'tools.game_id')->select('tools.*', 'games.name AS game_name')->where('tools.active', 1)->orderBy('game_id', 'desc')->get();
+       $listTool = $this->keyService->getTool();
 	   return view('admin.keys.add', compact('listTool'));
     }
 
@@ -50,28 +60,7 @@ class KeyController extends Controller
             'package' => 'required'
         ], []);
 
-        $lines = explode(PHP_EOL, $request->keys);
-
-        $listKeyExists = Key::select('key')->where('tool_id', $request->tool_id)->get()->toArray();
-        $check = array();
-        foreach ($listKeyExists as $key => $value) {
-            $check[] = $value['key'];
-        }
-
-        $checkKey = array();
-        foreach ($lines AS $line) {
-            $line = str_replace(array("\n", "\r", " "), "", $line);
-            if ($line != "" && !in_array($line, $check)) {
-                $key = new Key();
-                $key->tool_id = $request->tool_id;
-                $key->package = $request->package;
-                $key->key = str_replace(array("\n", "\r", " "), "", $line);
-                $key->user_id = 0;
-                $key->save();
-            } else {
-                $checkKey[] = $line;
-            }
-        }
+        $checkKey = $this->keyService->saveKey($request);
         if (count($checkKey) == 0) {
             return back()->with(['level' => 'success', 'message' => 'Thêm thành công, có 0 key bị trùng!']);
         } else
@@ -96,75 +85,10 @@ class KeyController extends Controller
      * @param Key $key
      * @return \Illuminate\Http\Response
      */
-//    public function edit(Key $key)
     public function edit($idKey)
     {
-        $listTool = Tool::join('games', 'games.id', '=', 'tools.game_id')->select('tools.*', 'games.name AS game_name')->where('tools.active', 1)->orderBy('game_id', 'desc')->get();
-        $key = Key::findOrFail($idKey);
-        $history = Key::join('histories', 'keys.history_id', '=', 'histories.id')->where('keys.id', $idKey)->first();
-        $hwidLogs = Key::join('hwid_logs', 'keys.id', '=', 'hwid_logs.key_id')->where('keys.id', $idKey)->get();
-        $tool = Key::join('tools', 'tools.id', '=', 'keys.tool_id')->where('keys.id', $idKey)->get();
-        $debugs = Key::join('debugs', 'keys.id', '=', 'debugs.key_id')->where('keys.id', $idKey)->get();
-
-        $error_code = json_decode($tool[0]->error_code, true);
-        $error_content = array();
-        if (isset($error_code)) {
-            foreach ($error_code AS $k => $text) {
-                $ks = explode('|', $k);
-                if (count($ks) > 1) {
-                    $ks[0] = str_replace(" ", "", $ks[0]);
-                    $ks[1] = str_replace(" ", "", $ks[1]);
-                    $error_content[$ks[0]][$ks[1]] = $text;
-                }
-            }
-        }
-
-//echo '<pre>';
-//print_r($error_content);
-//echo '</pre>';
-
-
-        foreach ($debugs AS &$debug) {
-            $info = json_decode($debug->info);
-            $info->log_code = str_replace(" ", "", $info->log_code);
-            if ($info->log_type == 1) {
-                $debug->log_type_text = "Error";
-            } else {
-                $debug->log_type_text = "Log";
-            }
-            $debug->log_note = $info->log_note;
-
-
-            $log_code_parts = explode("_", $info->log_code);
-            if (count($log_code_parts) != 3) {
-                $debug->log_code_text = "Sai định dạng x_y_z";
-                continue;
-            }
-
-            $log_code = $log_code_parts[0] . "_" . $log_code_parts[1] . "_" . $log_code_parts[2];
-            if (isset($error_content['log_code'][$log_code])) {
-                $debug->log_code_text = $error_content['log_code'][$log_code];
-            } else {
-                $debug->log_code_text = $log_code;
-            }
-
-            $function_code = $log_code_parts[0] . "_" . $log_code_parts[1];
-            if (isset($error_content['function_code'][$function_code])) {
-                $debug->function_code_text = $error_content['function_code'][$function_code];
-            } else {
-                $debug->function_code_text = $function_code;
-            }
-
-            $file_code = $log_code_parts[0];
-            if (isset($error_content['file_code'][$file_code])) {
-                $debug->file_code_text = $error_content['file_code'][$file_code];
-            } else {
-                $debug->file_code_text = $file_code;
-            }
-
-            $debug->log_line = $info->function_line;
-
-        }
+        $edited = $this->keyService->editKey($idKey);
+        list($key, $listTool, $history, $hwidLogs, $debugs) = $edited;
         if ($key->hwid != null) {
             $hwid = substr($key->hwid, 0, strlen($key->hwid) - 3);
             $historyHwids = Hwid::where('hwid', 'LIKE', '%' . $hwid . '%')->get();
@@ -184,8 +108,8 @@ class KeyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = request()->except(['_token', '_method']);
-        Key::where('id', $id)->update($data);
+        $data = $request->except(['_token', '_method']);
+        $this->keyService->updateKey($id, $data);
         return back()->with(['level' => 'success', 'message' => 'Cập nhật thành công!']);
     }
 
@@ -207,30 +131,7 @@ class KeyController extends Controller
 
     public function searchVc(Request $request)
     {
-        $key = $request->key;
-        $toolID = $request->toolID;
-        $userID = $request->userID;
-        if ($key != null && $userID != null && $toolID != null) {
-            $listKeys = Key::where('key', 'LIKE', '%' . $key . '%')->where('user_id', $userID)->where('tool_id', $toolID)->paginate(50);
-        }
-        if ($key != null && $userID == null && $toolID == 0) {
-            $listKeys = Key::where('key', 'LIKE', '%' . $key . '%')->paginate(50);
-        }
-        if ($key == null && $userID != null && $toolID == 0) {
-            $listKeys = Key::where('user_id', '=', $userID)->paginate(50);
-        }
-        if ($key == null && $userID == null && $toolID != 0) {
-            $listKeys = Key::where('tool_id', '=', $toolID)->paginate(50);
-        }
-        if ($key != null && $userID == null && $toolID != 0) {
-            $listKeys = Key::where('tool_id', '=', $toolID)->where('key', $key)->paginate(50);
-        }
-        if ($key != null && $userID != null && $toolID == 0) {
-            $listKeys = Key::where('user_id', '=', $userID)->where('key', $key)->paginate(50);
-        }
-        if ($key == null && $userID != null && $toolID != 0) {
-            $listKeys = Key::where('user_id', '=', $userID)->where('tool_id', $toolID)->paginate(50);
-        }
+        $listKeys = $this->keyService->searchVc($request);
         return view('admin.keys.result', ['listKeys' => $listKeys->appends($request->except('page'))]);
     }
 }

@@ -347,5 +347,27 @@ class HomeController extends Controller
         }
     }
 
+    public function getBalance() {
+        if (Auth::user()) {
+            $user = Auth::user();
+            $histories = History::where('user_id', $user->id)
+                ->orderBy('updated_at', 'desc')
+                ->get();
+        }
+        return view('new.balance', compact('histories'));
+    }
+
+    public function getKeys() {
+        if (Auth::user()) {
+            $user = Auth::user();
+            $keys = Key::where('keys.user_id', $user->id)
+                ->join('histories', 'keys.history_id', '=', 'histories.id')
+                ->join('tools', 'keys.tool_id', '=', 'tools.id')
+                ->join('games', 'tools.game_id', '=', 'games.id')
+                ->select("keys.*", "histories.created_at AS history_created_at", "tools.name AS tool_name", "games.name AS game_name")
+                ->orderBy('history_created_at', 'desc')->get();
+        }
+        return view('new.keys', compact('keys'));
+    }
 }
 
