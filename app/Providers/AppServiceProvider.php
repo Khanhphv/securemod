@@ -57,11 +57,11 @@ class AppServiceProvider extends ServiceProvider
             $tools = [];
         View::share('tools', $tools);
 
-        $master_site_settings = MasterSiteSetting::find(1);
-        View::share('master_site_settings', $master_site_settings);
-
-        $list_seller = PaypalSeller::all();
-        View::share('list_seller', $list_seller);
+//        $master_site_settings = MasterSiteSetting::find(1);
+//        View::share('master_site_settings', $master_site_settings);
+//
+//        $list_seller = PaypalSeller::all();
+//        View::share('list_seller', $list_seller);
 
         if (Schema::hasTable('options')) {
             $siteSettings = Option::select('option', 'value')->get()->keyBy('option')->pluck('value', 'option');
