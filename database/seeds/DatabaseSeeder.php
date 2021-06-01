@@ -16,7 +16,10 @@ class DatabaseSeeder extends Seeder
 //        $this->call(ToolsTableSeeder::class);
 //        $this->call(OptionsTableSeeder::class);
 //        $this->call(MasterSiteSettingsTableSeeder::class);
-//        $this->call(PaymentsTableSeeder::class);
+        $this->call(PostsTableSeeder::class);
+        $this->call(TagsTableSeeder::class);
+        $this->call(PostTagTableSeeder::class);
+        $this->call(PaymentsTableSeeder::class);
         $this->call(PaypalSellersTableSeeder::class);
     }
 }
