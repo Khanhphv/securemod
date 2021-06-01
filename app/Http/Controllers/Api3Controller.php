@@ -10,11 +10,21 @@ use App\Library\Nix\License;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Debug;
+use App\Service\ApiService;
+use App\Service\CommonService;
 
 class Api3Controller extends Controller
 {
-	
-	public function PaypalTransaction(Request $request) {
+    public ApiService $apiService;
+    public CommonService $commonService;
+
+    public function __construct(ApiService $apiService, CommonService $commonService)
+    {
+        $this->commonService = $commonService;
+        $this->apiService = $apiService;
+    }
+
+    public function PaypalTransaction(Request $request) {
 		$transactions = $request->input('transactions');
 		$access_token = $request->input('access_token');
 		if($access_token != 'GHVTHV1') {
@@ -27,21 +37,11 @@ class Api3Controller extends Controller
 		exit('OK');
 	}
 
-    private function RandomString($length = 10)
-    {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $randstring = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randstring .= $characters[rand(0, strlen($characters) - 1)];
-        }
-        return $randstring;
-    }
-
     public function loaderVer($toolId = 2)
     {
-        $this->exportFile($toolId.'/RootLoader/', "haha", 'version.txt', "");
+        $this->apiService->exportFile($toolId.'/RootLoader/', "haha", 'version.txt', "", 'files_v3');
     }
-	
+
 	public function DebugReceive($code = null, $log_type = null, $info = null, $function_line = null, $log_note = null) {
         if ($code == null) {
             exit('empty');
@@ -93,9 +93,9 @@ public function activeKey($toolId)
         $hwid = substr($_GET["hwid"], 0, 32);
 
         // Tìm key
-       
+
         $key = Key::where('key', '=', $code)->where('tool_id', $toolId)->first();
-		
+
         if ($key == null) {
             //FREEEE
             /*
@@ -116,7 +116,7 @@ public function activeKey($toolId)
         $keyMode = base64_encode($key->mode);
 
         // Check hwid bị khóa thì thoi
-        if ($this->checkHackByHwid($hwid)) {
+        if ($this->apiService->checkHackByHwid($hwid)) {
             $log = new HwidLogs();
             $log->hwid = $hwid;
             $log->ip_address = $ipAddress;
@@ -181,7 +181,7 @@ public function activeKey($toolId)
 					exit();
 				}
 			}
-			
+
             $lastLogin = HwidLogs::where('key_id', '=', $key->id)->latest()->first();
             // Nếu hwid không giống trước thì tăng số lần đếm
             if ($lastLogin == null || $lastLogin->hwid != $hwid) {
@@ -236,7 +236,7 @@ public function activeKey($toolId)
 
         die($DEACT_UNKNOWN);
     }
-	
+
     private function exportFile($subFolder, $code, $realFileName = "", $fixedFileName = "")
     {
         $rootFolderPath = '/home/cheatsharp.com/public_html/files_v3/';
@@ -275,7 +275,7 @@ public function activeKey($toolId)
             if ($fixedFileName != '') {
                 header("Content-Disposition: attachment; filename=" . $fixedFileName);
             } else {
-                header("Content-Disposition: attachment; filename=" . ($this->RandomString(10)));
+                header("Content-Disposition: attachment; filename=" . ($this->commonService->randomString(10)));
             }
             readfile($filePath);
             file_put_contents('log.txt', date("d/m/Y H:i:s", time()) .' '. $code . ' Xuat file ' . $filePath . "\n", FILE_APPEND);
@@ -290,14 +290,14 @@ public function activeKey($toolId)
     {
         // Xóa hết kí tự đặc biệt trong key
         $code = preg_replace('/[^A-Za-z0-9]/', '', $code);
- 
+
         // Tìm key trong database
         $key = Key::where('key', '=', $code)->first();
 
 
         if (!$key) {
             // Nếu không thấy thì trả về file KEY_NOT_FOUND.exe
-            $this->exportFile('', 'BLAHBLADCODE', 'KEY_NOT_FOUND.exe', 'KEY_NOT_FOUND.exe');
+            $this->apiService->exportFile('', 'BLAHBLADCODE', 'KEY_NOT_FOUND.exe', 'KEY_NOT_FOUND.exe', 'files_v3');
         }
         if ($toolId == 999) {
             $toolId = $key->tool_id;
@@ -305,41 +305,41 @@ public function activeKey($toolId)
 
         // Check xem có hết giờ thì trả về file EXPIRED.exe
         if ($key->active_time != null && Carbon::createFromTimestamp($key->active_time)->addHour($key->package) < Carbon::now()->addSeconds($key->hwid_count * 60 * 10)) {
-            $this->exportFile('', 'BLAHBLADCODE', 'EXPIRED.exe', 'EXPIRED.exe');
+            $this->apiService->exportFile('', 'BLAHBLADCODE', 'EXPIRED.exe', 'EXPIRED.exe', 'files_v3');
         }
 
         switch ($fileType) {
 			case 'rl':
-				$fileName = $this->RandomString(5).'.exe';
-                $this->exportFile($toolId.'/RootLoader/Random', $code, "", $fileName);
+				$fileName = $this->commonService->randomString(5).'.exe';
+                $this->apiService->exportFile($toolId.'/RootLoader/Random', $code, "", $fileName, 'files_v3');
                 break;
             case 'st':
-                $this->exportFile($toolId.'/Starter', $code, "", "");
+                $this->apiService->exportFile($toolId.'/Starter', $code, "", "", 'files_v3');
                 break;
             case 'dn':
-                $this->exportFile($toolId.'/Driver', $code, "driver_name.txt", "");
+                $this->apiService->exportFile($toolId.'/Driver', $code, "driver_name.txt", "", 'files_v3');
                 break;
             case 'loader':
-                $this->exportFile($toolId.'/Driver/Loader', $code, "", "");
+                $this->apiService->exportFile($toolId.'/Driver/Loader', $code, "", "", 'files_v3');
                 break;
             case 'sd':
-                $this->exportFile($toolId.'/Driver/sDriver', $code, "", "");
+                $this->apiService->exportFile($toolId.'/Driver/sDriver', $code, "", "", 'files_v3');
                 break;
             case 'ud':
-                $this->exportFile($toolId.'/Driver/usDriver', $code, "", "");
+                $this->apiService->exportFile($toolId.'/Driver/usDriver', $code, "", "", 'files_v3');
                 break;
-				
+
             case 'cl':
-                $this->exportFile($toolId.'/Tool/Caller', $code, "", "");
+                $this->apiService->exportFile($toolId.'/Tool/Caller', $code, "", "", 'files_v3');
                 break;
 			case 'ed':
-                $this->exportFile($toolId.'/Tool/Main', $code, "", "");
+                $this->apiService->exportFile($toolId.'/Tool/Main', $code, "", "", 'files_v3');
                 break;
             case 'dd':
-                $this->exportFile($toolId.'/Tool/Data/'.$sub_folder, $code, "", "");
+                $this->apiService->exportFile($toolId.'/Tool/Data/'.$sub_folder, $code, "", "", 'files_v3');
                 break;
             default:
-                $this->exportFile('', 'BLAHBLADCODE', 'METHOD_NOT_FOUND.exe', 'METHOD_NOT_FOUND.exe');
+                $this->apiService->exportFile('', 'BLAHBLADCODE', 'METHOD_NOT_FOUND.exe', 'METHOD_NOT_FOUND.exe');
                 break;
         }
     }
@@ -386,16 +386,6 @@ public function activeKey($toolId)
             $l->init($bits, $product_code, $public_exp, $private_exp, $moduls);
         }
         return $l;
-    }
-
-    public function checkHackByHwid($hwid)
-    {
-        $hwid = substr($hwid, 0, -3);
-        $hackCount = Hwid::where('hwid', 'LIKE', '%' . $hwid . '%')->orderBy('updated_at', 'desc')->get();
-        if (count($hackCount) > 1) {
-            return true;
-        } else
-            return false;
     }
 
     public function DownloadRootLoader(Request $request)

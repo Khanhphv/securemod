@@ -7,14 +7,20 @@ use App\HwidLogs;
 use App\Key;
 use App\Library\Nix\License;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
+use App\Service\ApiService;
 
 class ApiController extends Controller
 {
-	
-	  public function checkKeyBear()
+	public ApiService $apiService;
+
+	public function __construct(ApiService $apiService)
     {
-		
+        $this->apiService = $apiService;
+    }
+
+    public function checkKeyBear()
+    {
+
         $ACT_BAD = "BAD";
         $ACT_BANNED = "BANNED";
         $ACT_USED = "USED";
@@ -35,7 +41,7 @@ class ApiController extends Controller
         $hwid = substr($_GET["hwid"], 0, 32);
         // Tìm key
         $key = Key::where('key', '=', $code)->where('tool_id', 5)->first();
-		
+
         if ($key == null) {
 			//FREEEE
 			/*
@@ -51,9 +57,9 @@ class ApiController extends Controller
 			//FREEEE
             die($ACT_BAD);
         }
-				
+
         // Check hwid bị khóa thì thoi
-        if ($this->checkHackByHwid($hwid)) {
+        if ($this->apiService->checkHackByHwidOld($hwid)) {
             $log = new HwidLogs();
             $log->hwid = $hwid;
             $log->ip_address = $ipAddress;
@@ -92,7 +98,7 @@ class ApiController extends Controller
 			/*
 			if ($key->hwid_count > 1) {
 				$l->email .= ' (-'.number_format($key->hwid_count * 60).' minutes because change computer)';
-			} 
+			}
 			*/
             $l->CreateSerialNumber($sn_data);
             // Ghi lịch sử HWID
@@ -110,7 +116,7 @@ class ApiController extends Controller
 				die($ACT_BANNED);
 				exit();
 			}
-			
+
 			if ($key->package > 720 && $key->hwid_count > 200) {
 				if($key->hwid_fixed == "") {
 					die($ACT_BANNED);
@@ -120,7 +126,7 @@ class ApiController extends Controller
 					exit();
 				}
 			}
-			
+
 			$lastLogin = HwidLogs::where('key_id', '=', $key->id)->latest()->first();
             // Nếu hwid không giống trước thì tăng số lần đếm
             if ($lastLogin == null || $lastLogin->hwid != $hwid) {
@@ -134,7 +140,7 @@ class ApiController extends Controller
 					$key->hwid_fixed = $hwid;
 				}
                 $key->save();
-				
+
                 $timeExpire = Carbon::createFromTimestamp($key->active_time + $key->hwid_count * 60 * 60)->addHour($key->package)->format('Y-m-d');
 				$endTime = date("H:i d/m", ($key->package) * 60 * 60 + $key->active_time - 60 * 60 * ($key->hwid_count));
                 $sn_data = array("hardwareid" => $hwid, 'expiredate' => $timeExpire, 'data' => ''.time().'');
@@ -174,7 +180,7 @@ class ApiController extends Controller
 				die("OK\n".$l->sn);
             }
         }
-        
+
 		die($DEACT_UNKNOWN);
 
         // Call to API to get $res
@@ -184,7 +190,7 @@ class ApiController extends Controller
 
     public function checkKeyNix()
     {
-		
+
         $ACT_BAD = "BAD";
         $ACT_BANNED = "BANNED";
         $ACT_USED = "USED";
@@ -205,7 +211,7 @@ class ApiController extends Controller
         $hwid = substr($_GET["hwid"], 0, 32);
         // Tìm key
         $key = Key::where('key', '=', $code)->first();
-		
+
         if ($key == null) {
 			//FREEEE
 			/*
@@ -221,9 +227,9 @@ class ApiController extends Controller
 			//FREEEE
             die($ACT_BAD);
         }
-		
+
         // Check hwid bị khóa thì thoi
-        if ($this->checkHackByHwid($hwid)) {
+        if ($this->apiService->checkHackByHwidOld($hwid)) {
             $log = new HwidLogs();
             $log->hwid = $hwid;
             $log->ip_address = $ipAddress;
@@ -262,7 +268,7 @@ class ApiController extends Controller
 			/*
 			if ($key->hwid_count > 1) {
 				$l->email .= ' (-'.number_format($key->hwid_count * 60).' minutes because change computer)';
-			} 
+			}
 			*/
             $l->CreateSerialNumber($sn_data);
             // Ghi lịch sử HWID
@@ -302,7 +308,7 @@ class ApiController extends Controller
 					$key->hwid_fixed = $hwid;
 				}
                 $key->save();
-				
+
                 $timeExpire = Carbon::createFromTimestamp($key->active_time + $key->hwid_count * 60 * 10)->addHour($key->package)->format('Y-m-d');
 				$endTime = date("H:i d/m", ($key->package) * 60 * 60 + $key->active_time - 10 * 60 * ($key->hwid_count));
                 $sn_data = array("hardwareid" => $hwid, 'expiredate' => $timeExpire, 'data' => ''.time().'');
@@ -342,7 +348,7 @@ class ApiController extends Controller
 				die("OK\n".$l->sn);
             }
         }
-        
+
 		die($DEACT_UNKNOWN);
 
         // Call to API to get $res
@@ -363,7 +369,7 @@ class ApiController extends Controller
         } else {
 			// Them 2h
             // HWID bị khóa
-            if ($this->checkHackByHwid($hwid) && $code != 'NEWKEYNEWKEYNEWKEY') {
+            if ($this->apiService->checkHackByHwidOld($hwid) && $code != 'NEWKEYNEWKEYNEWKEY') {
                 $log = new HwidLogs();
                 $log->hwid = $hwid;
                 $log->ip_address = $ipAddress;
@@ -434,18 +440,4 @@ class ApiController extends Controller
         return response()->json($hacker);
     }
 
-    public function checkHackByHwid($hwid)
-    {
-		// Thang nay do pass cua minh
-		if (strpos($hwid, 'kDMQph3TtKMTYV5dOtAnE') !== false) {
-			return true;
-		}
-		
-        $hwid = substr($hwid, 0, -3);
-        $hackCount = Hwid::where('hwid', 'LIKE', '%' . $hwid . '%')->orderBy('updated_at', 'desc')->get();
-        if (count($hackCount) > 1) {
-            return true;
-        } else
-            return false;
-    }
 }

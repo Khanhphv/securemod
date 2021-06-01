@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 
 use App\Model\History;
 use App\Option;
+use App\User;
+use Auth;
 use Illuminate\Http\Request;
 use PragmaRX\Countries\Package\Countries;
 
@@ -85,7 +87,7 @@ class CheckoutController
                 if ($processedTransaction) {
                     abort(500);
                 }
-                $user = \Auth::user();
+                $user = Auth::user();
                 $nl_token = $paymentInfo['id'];
                 $transactionID = $nl_token;
                 $amount = (float)($paymentInfo['amount'] /100);
@@ -135,5 +137,52 @@ class CheckoutController
             return true;
         }
         return false;
+    }
+
+    public function acceptPayment($historyId) {
+        if (Auth::user()->type == 'support' || Auth::user()->type == 'admin') {
+            $history = History::where('id', $historyId)->where('need_to_verify', true)->first();
+            if ($history && $history->need_to_verify == true /*&& $history->paypal_transaction_status == "Completed"*/) {
+                $user_id = $history->user_id;
+                $amount = $history->amount;
+                $history->need_to_verify = false;
+                $bonus = 0; //mac dinh
+                switch ((int)$amount){
+                    case 100:
+                        $bonus = 2.5;
+                        break;
+                    case 200:
+                        $bonus = 5;
+                        break;
+                    case 500:
+                        $bonus = 7.5;
+                        break;
+                }
+                $user = User::where('id', $user_id)->first();
+                $old_money_user = $user->credit;
+                $user->credit = $user->credit + $amount + ($amount * $bonus /100);
+                $user->total_paypal_credit += $amount;
+
+                $support = Auth::user()->id;
+
+                $accept_history = new History();
+                $accept_history->action = 'ACCEPTED_PAYMENT';
+                $accept_history->user_id = $user->id;
+                $accept_history->amount = 0;
+                $accept_history->content = "Staff " . $support . " accepted your transaction. Your balance from " . number_format($old_money_user) . " to " . number_format($user->credit);
+                $accept_history->revenue = 0;
+                $accept_history->nl_token = null;
+
+                $history->save();
+                $accept_history->save();
+                $user->save();
+
+                return redirect()->back();
+            }
+        } else {
+            exit("Invalid request");
+        }
+
+        return null;
     }
 }

@@ -20,7 +20,7 @@ use Illuminate\Http\Request;
 use App\Model\History;
 use App\User;
 
-
+// Guest router
 Route::group(['middleware' => ['locale', 'web']], function () {
     Auth::routes();
     Route::get('/', 'HomeController@landing');
@@ -28,41 +28,10 @@ Route::group(['middleware' => ['locale', 'web']], function () {
     Route::get('/blog_game/{game_id}', 'BlogController@blogOfGame')->name('blog_game');
     Route::get('/terms-of-services', 'BlogController@show')->name('blog');
 //    Route::get('/membership-plan', 'BlogController@blog');
-    Route::post('customer_login', function (Request $data) {
-        $check_exist = DB::table('users')->where('email', $data['email'])->first();
-        if ($check_exist) {
-            return app()->call('App\Http\Controllers\Auth\LoginController@login');
-        } else {
-            return app()->call('App\Http\Controllers\Auth\RegisterController@register');
-        }
-    })->name('custom_auth');
-    Route::get('logout', function () {
-        Auth::logout();
-        return redirect()->back();
-    });
+    Route::post('customer_login', 'Auth\LoginController@customerLogin')->name('custom_auth');
+    Route::get('logout', 'Auth\LoginController@logout');
     Route::get('home', 'HomeController@homePage')->name('home');
-    Route::get('balance', function () {
-        if (Auth::user()) {
-            $user = Auth::user();
-            $histories = History::where('user_id', $user->id)
-            ->orderBy('updated_at', 'desc')
-            ->get();
-        }
-        return view('new.balance', compact('histories'));
-    })->name('balance');
 
-    Route::get('keys', function () {
-        if (Auth::user()) {
-            $user = Auth::user();
-            $keys = Key::where('keys.user_id', $user->id)
-            ->join('histories', 'keys.history_id', '=', 'histories.id')
-            ->join('tools', 'keys.tool_id', '=', 'tools.id')
-            ->join('games', 'tools.game_id', '=', 'games.id')
-            ->select("keys.*", "histories.created_at AS history_created_at", "tools.name AS tool_name", "games.name AS game_name")
-            ->orderBy('history_created_at', 'desc')->get();
-        }
-        return view('new.keys', compact('keys'));
-    })->name('keys');
     Route::put('account/subscribe','HomeController@updateSubscribe')->name('subscribe');
     Route::get('account/unsubscribe', 'HomeController@unsubscribe');
 
@@ -91,6 +60,12 @@ Route::group(['middleware' => ['locale', 'web']], function () {
     Route::get('login_via_discord/callback', 'Auth\LoginController@handleProviderCallbackDiscord')->name('callback_from_discord');
 });
 
+// Auth router
+Route::group(['middleware' => ['locale', 'auth']], function () {
+    Route::get('balance', 'HomeController@getBalance')->name('balance');
+    Route::get('keys', 'HomeController@getKeys')->name('keys');
+});
+
 Route::get('check_order_paypal/{order_id_paypal}', 'PayPalController@CheckOrder');
 Route::get('/payment', 'HomeController@payment');
 Route::get('test', 'PayPalController@checkTransaction');
@@ -108,13 +83,7 @@ Route::group(['middleware' => 'can_access'], function () {
 
 //-----------------------ADMIN-----------------------
 Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'is_admin'], function () {
-    Route::get('paypal/{transaction_id?}', function ($transaction_id) {
-        $check = History::where('nl_token', $transaction_id)->first();
-        if ($check) {
-            echo 'User: ' . $check->user_id . ' - Số tiền: ' . $check->amount . ' - Nội dung: ' . $check->content . ' - Thời gian ' . $check->updated_at.'<br>';
-            echo '<a href="https://securecheat.xyz/admin/user/edit/'.$check->user_id.'">Xem toàn bộ giao dịch</a>';
-        }
-    });
+    Route::get('paypal/{transaction_id?}', 'AdminController@getPaypalTransaction');
     Route::get('/setting_system', 'SystemSettingController@index')->name('setting_system');
     Route::put('/setting_system/edit', 'SystemSettingController@ChangeLogoSystem')->name('setting_system_edit');
     Route::get('/payment', 'PaymentSettingController@index')->name('payment_settings');
@@ -148,61 +117,10 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'is_a
 
     });
 
+    Route::get('add-blacklist', 'AdminController@addBlackList')->name('add-blacklist');
 });
 
-Route::get('add-blacklist', function (Request $request) {
-    if (isset($request->email) && Auth::check() && Auth::user()->type == 'admin') {
-        $blackuser = new \App\Blacklist();
-        $blackuser->email = $request->email;
-        $blackuser->save();
-        return redirect()->back();
-    }
-})->name('add-blacklist');
-
-Route::get('accept-payment/{history_id?}', function ($history_id) {
-    if (Auth::user()->type == 'support' || Auth::user()->type == 'admin') {
-        $history = History::where('id', $history_id)->where('need_to_verify', true)->first();
-        if ($history && $history->need_to_verify == true /*&& $history->paypal_transaction_status == "Completed"*/) {
-            $user_id = $history->user_id;
-            $amount = $history->amount;
-            $history->need_to_verify = false;
-            $bonus = 0; //mac dinh
-            switch ((int)$amount){
-                case 100:
-                    $bonus = 2.5;
-                    break;
-                case 200:
-                    $bonus = 5;
-                    break;
-                case 500:
-                    $bonus = 7.5;
-                    break;
-            }
-            $user = User::where('id', $user_id)->first();
-            $old_money_user = $user->credit;
-            $user->credit = $user->credit + $amount + ($amount * $bonus /100);
-            $user->total_paypal_credit += $amount;
-
-            $support = Auth::user()->id;
-
-            $accept_history = new History();
-            $accept_history->action = 'ACCEPTED_PAYMENT';
-            $accept_history->user_id = $user->id;
-            $accept_history->amount = 0;
-            $accept_history->content = "Staff " . $support . " accepted your transaction. Your balance from " . number_format($old_money_user) . " to " . number_format($user->credit);
-            $accept_history->revenue = 0;
-            $accept_history->nl_token = null;
-
-            $history->save();
-            $accept_history->save();
-            $user->save();
-
-            return redirect()->back();
-        }
-    } else {
-      exit("Invalid request");
-  }
-})->name('accept-payment');
+Route::get('accept-payment/{history_id?}', 'CheckoutController@acceptPayment')->name('accept-payment');
 
 //--------------------------Test route cho blog mới---------------------------
  Route::group(['middleware' => ['locale', 'web']], function () {

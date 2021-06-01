@@ -135,4 +135,13 @@ class LoginController extends Controller
         }
         return $user;
     }
+
+    public function customerLogin(Request $request) {
+        $check_exist = \DB::table('users')->where('email', $request['email'])->first();
+        if ($check_exist) {
+            return app()->call('App\Http\Controllers\Auth\LoginController@login');
+        } else {
+            return app()->call('App\Http\Controllers\Auth\RegisterController@register');
+        }
+    }
 }
