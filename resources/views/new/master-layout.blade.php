@@ -908,8 +908,20 @@
                                 </a>
                             </svg>
                         </a>
-
-
+                        {!! html_entity_decode(
+                            Html::linkRoute(
+                                'post',
+                                Html::image(
+                                    '/images/logo/article.png',
+                                    'Home Page',
+                                    [
+                                        'class' => 'img-fluid',
+                                        'width' => 24,
+                                        'style' => "margin : 30px"
+                                    ]
+                                )
+                            )
+                        ) !!}
 
                     </div>
                     <div>

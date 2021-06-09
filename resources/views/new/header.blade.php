@@ -1,4 +1,5 @@
 <title>@yield('headerTitle')</title>
+<meta name="description" content="@yield('description')">
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LQK3B0XLXY"></script>
 <script>

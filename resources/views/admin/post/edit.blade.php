@@ -49,18 +49,37 @@
         <div class="form-group">
             {!! html_entity_decode(
                 Form::label(
-                    'summary',
-                    'Summary',
+                    'header_title',
+                    'Header Title',
                     []
                 )
             ) !!}
             {!! Form::text(
-                'summary',
-                $post['sumary'],
+                'header_title',
+                $post['header_title'],
                 [
-                    'id' => 'summary',
+                    'id' => 'header_title',
                     'class' => 'form-control',
-                    'placeholder' => 'Summary for the  post ...',
+                    'placeholder' => 'Changing the title in the Browser Tab ...',
+                    'required' => 'required',
+                ]
+            ) !!}
+        </div>
+        <div class="form-group">
+            {!! html_entity_decode(
+                Form::label(
+                    'header_description',
+                    'Header Description',
+                    []
+                )
+            ) !!}
+            {!! Form::text(
+                'header_description',
+                $post['header_description'],
+                [
+                    'id' => 'header_description',
+                    'class' => 'form-control',
+                    'placeholder' => 'Define a description of your web page ...',
                     'required' => 'required',
                 ]
             ) !!}

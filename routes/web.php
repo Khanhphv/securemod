@@ -25,11 +25,11 @@ Route::group(['middleware' => ['locale', 'web']], function () {
     Auth::routes();
     Route::get('/', 'HomeController@landing');
     Route::get('/blog', 'BlogController@index');
-    Route::get('/post', 'PostController@index');
+    Route::get('/post', 'PostController@index')->name('post');
     Route::get('/post/{id}', 'PostController@show')->name('post-content');
     Route::put('/user/{user_id}/post/{id}', 'PostController@like_post')->name('like');
     Route::get('/blog_game/{game_id}', 'BlogController@blogOfGame')->name('blog_game');
-    Route::get('/terms-of-services', 'BlogController@show')->name('blog');
+    Route::get('/terms-of-services', 'PostController@terms_of_services')->name('terms_of_services');
 //    Route::get('/membership-plan', 'BlogController@blog');
     Route::post('customer_login', 'Auth\LoginController@customerLogin')->name('custom_auth');
     Route::get('logout', 'Auth\LoginController@logout');
@@ -99,9 +99,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'is_a
     Route::resource('tool', 'ToolController');
     Route::get('tool/delete/{id}', 'ToolController@destroy')->name('tool.delete');
     Route::resource('key', 'KeyController');
-    Route::resource('blog', 'BlogController');
+//    Route::resource('blog', 'BlogController');
     Route::resource('post', 'PostController');
-    Route::get('blog/delete/{id}', 'BlogController@destroy')->name('blog.delete');
+//    Route::get('blog/delete/{id}', 'BlogController@destroy')->name('blog.delete');
     Route::get('post/delete/{id}', 'PostController@destroy')->name('post.delete');
 
     Route::get('filter', 'KeyController@searchVc')->name('key.search');

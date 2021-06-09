@@ -2,18 +2,19 @@
 <html lang="en">
 <head>
     @extends('new.header')
-    @section('headerTitle', $post->title)
-    @include('new.post-style')
+    @section('headerTitle', $post->header_title)
+    @section('description', $post->header_description)
+    @include('new.style')
 </head>
 <body>
 @extends('new.master-layout')
 @section('content')
     <div class="tab-content mobile" style="display: flex">
-        <div class="row bg-white blog-content">
+        <div class="row bg-white post-content">
 {{--            Post content--}}
-            <div class="blog-title">
+            <div class="post-title">
 {{--                Title--}}
-                <h1 class="mt4 text-primary">{{ $post->title }}</h1>
+                <h1 class="mt-4" style="color: #0d4dff">{{ $post->title }}</h1>
                 <div class="content">
                     @foreach ($post->tag as $singleTag)
                         <span class="label-tag">{{ $singleTag->name }}</span>
@@ -52,8 +53,8 @@
                 </div>
 
             </div>
-            <div class="col-lg-10 mx-auto">
-                <div class="my-4">
+            <div class="col s10">
+                <div class="post-image">
                     {!! html_entity_decode(
                         Html::image(
                             $post->thumbnail,
