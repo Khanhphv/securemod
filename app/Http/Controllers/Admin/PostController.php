@@ -47,7 +47,8 @@ class PostController extends Controller
         $post = new Post();
         $post->user_id = Auth::user()->id;
         $post->title = $request->title;
-        $post->sumary = $request->summary;
+        $post->header_title = $request->header_title;
+        $post->header_description = $request->header_description;
         $post->content = $request->content;
         $post->thumbnail = $request->thumbnail;
         $post->view = 0;
@@ -93,7 +94,8 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $post->title = $request->title;
-        $post->sumary = $request->summary;
+        $post->header_title = $request->header_title;
+        $post->header_description = $request->header_description;
         $post->content = $request->content;
         $post->thumbnail = $request->thumbnail;
         $post->save();

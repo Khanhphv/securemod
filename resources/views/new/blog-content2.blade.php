@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     @extends('new.header')
-    @section('headerTitle', $content->title)
+    @section('headerTitle', $content->header_title)
+    @section('description', $content->header_description)
     @include('new.style')
 </head>
 <body @if($theme == 'dark') data-theme="dark" @endif>
@@ -10,13 +11,31 @@
 @section('content')
     <div class="tab-content mobile" style="display: flex">
         <div class="row bg-white blog-content">
+            @if (Auth::check() && Auth::user()->type == "admin")
+                <div class="content">
+                    {!! html_entity_decode(
+                        Html::linkRoute(
+                            'post.edit',
+                            '<i class="material-icons e3c9">edit</i>  Edit Terms of Service',
+                            [
+                                'post' => $content,
+                            ],
+                            [
+                                'class' => 'btn btn-warning',
+                                'style' => 'float:right;  font-size: 16px'
+                            ]
+                        )
+                    )
+                    !!}
+                </div>
+            @endif
+
             <div class="col s12 m12 head-link">
-                <a href="/blogs"><label>Hacking News</label></a>
+                <a href="/post"><label>Hacking News</label></a>
                 <i class="material-icons dp48">chevron_right</i>
                 <a href="">
                     <label for="">{{ $content->title }}</label>
                 </a>
-
             </div>
             <div class="col s12 m12 blog-title">
                 <h1>{{ $content->title }}</h1>

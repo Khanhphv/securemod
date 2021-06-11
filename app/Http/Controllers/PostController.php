@@ -28,6 +28,11 @@ class PostController extends Controller
         return view('new.post-content', compact('post', 'author', 'user_login', 'is_like'));
     }
 
+    public function terms_of_services($id = 1){
+        $content = Post::find($id);
+        return view('new.blog-content2', compact('content'));
+    }
+
     /**
      * Update the specified resource in storage.
      *
