@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePostTagTable extends Migration
+class CreatePaypalTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreatePostTagTable extends Migration
      */
     public function up()
     {
-        Schema::create('post_tag', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('post_id')->unsigned()->nullable();
-            $table->integer('tag_id')->unsigned()->nullable();
+        Schema::create('paypal', function (Blueprint $table) {
+            $table->id();
+            $table->text('name');
+            $table->text('client_id');
+            $table->text('client_secret');
+            $table->text('status');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreatePostTagTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post_tag');
+        Schema::dropIfExists('paypal');
     }
 }

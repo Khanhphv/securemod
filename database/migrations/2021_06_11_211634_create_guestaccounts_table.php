@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePostTagTable extends Migration
+class CreateGuestaccountsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreatePostTagTable extends Migration
      */
     public function up()
     {
-        Schema::create('post_tag', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('post_id')->unsigned()->nullable();
-            $table->integer('tag_id')->unsigned()->nullable();
-            $table->timestamps();
+        Schema::create('guestaccounts', function (Blueprint $table) {
+            $table->id();
+            $table->integer('device_owner');
+            $table->text('device_uuid')->nullable();
+            $table->text('device_install')->nullable();
+
         });
     }
 
@@ -28,6 +29,6 @@ class CreatePostTagTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('post_tag');
+        Schema::dropIfExists('guestaccounts');
     }
 }

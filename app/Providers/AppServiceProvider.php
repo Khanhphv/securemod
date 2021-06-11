@@ -30,8 +30,11 @@ class AppServiceProvider extends ServiceProvider
         if (request()->get('ref') !== null) {
             session(['ref' => request()->get('ref')]);
         }
-        $game = App\Model\Game::all();
-        View::share('blogGame', $game);
+        if (Schema::hasTable('games')) {
+            $game = App\Model\Game::all();
+            View::share('blogGame', $game);
+        }
+
         if (Schema::hasTable('tools')) {
             // Share tools list for all views
             $tools =  Tool::join('games', 'games.id', '=', 'tools.game_id')->select('tools.*', 'games.name AS game_name')->orderBy('game_id', 'desc')->get();
@@ -57,11 +60,16 @@ class AppServiceProvider extends ServiceProvider
             $tools = [];
         View::share('tools', $tools);
 
-        $master_site_settings = MasterSiteSetting::find(1);
-        View::share('master_site_settings', $master_site_settings);
+        if (Schema::hasTable('master_site_settings')) {
+            $master_site_settings = MasterSiteSetting::find(1);
+            View::share('master_site_settings', $master_site_settings);
+        }
 
-        $list_seller = PaypalSeller::all();
-        View::share('list_seller', $list_seller);
+        if (Schema::hasTable('paypal_sellers')) {
+            $list_seller = PaypalSeller::all();
+            View::share('list_seller', $list_seller);
+        }
+
 
         if (Schema::hasTable('options')) {
             $siteSettings = Option::select('option', 'value')->get()->keyBy('option')->pluck('value', 'option');

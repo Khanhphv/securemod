@@ -16,12 +16,13 @@ class CreateHistoriesTable extends Migration
         Schema::create('histories', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->string('action');
-			$table->string('nl_token')->default('');
-            $table->integer('amount');
-            $table->integer('revenue')->nullable();
+            $table->string('action', 191);
+			$table->string('nl_token', 191)->default('');
+            $table->float('amount');
+            $table->float('revenue')->nullable();
             $table->text('content');
-            $table->text('content_eng')->nullable();
+            $table->string('ip', 255)->nullable();
+            $table->tinyInteger('need_to_verify');
             $table->timestamps();
         });
     }

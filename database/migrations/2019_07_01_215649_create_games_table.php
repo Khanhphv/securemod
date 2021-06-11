@@ -24,6 +24,8 @@ class CreateGamesTable extends Migration
             $table->text('notice_eng')->nullable();
             $table->text('thumb_image')->nullable();
             $table->unsignedInteger('order')->default(1);
+            $table->integer('views')->nullable();
+            $table->string('keyword', 255)->nullable();
             $table->timestamps();
         });
     }

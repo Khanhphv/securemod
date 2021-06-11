@@ -13,7 +13,6 @@ class CreateOptionsTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('options');
         Schema::create('options', function (Blueprint $table) {
             $table->increments('id');
 			$table->string('option');
