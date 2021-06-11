@@ -242,6 +242,127 @@
                 </div>
             {!! Form::close() !!}
         </div>
+        <div class="mt-3">
+            <br/>
+        </div>
+        {{--change head tags--}}
+        <div class="col-md">
+            {!! Form::open([
+                'route' => ['edit_head'],
+                'method' => 'PUT',
+                'enctype' => 'multipart/form-data',
+                'class' => 'form-horizontal',
+            ]) !!}
+            <div class="box box-primary">
+                <div class="box-body">
+                    <label>Setting Meta Tag</label>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-md-2 col-xs-12">
+                                    {!! html_entity_decode(
+                                        Form::label(
+                                            'select_page_type',
+                                            'Select page type'
+                                            ,
+                                            [
+                                                'style' => 'margin-top: 5px'
+                                            ]
+                                        )
+                                    ) !!}
+                                </div>
+                                <div class="col-md-6 col-xs-12">
+                                    {!!
+                                       Form::select(
+                                           'type',
+                                            [
+                                                'welcome' => 'Welcome',
+                                                'home' => 'Home',
+                                                'list_post' => 'List Post'
+                                            ],
+                                            'welcome',
+                                            [
+                                                'id' => 'type_select',
+                                                'class' => 'form-control'
+                                            ]
+                                       )
+                                    !!}
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-md-2 col-xs-12">
+                                    {!! html_entity_decode(
+                                        Form::label(
+                                            'head_title',
+                                            'Header Title',
+                                            ['style' => 'margin-top: 5px']
+                                        )
+                                    ) !!}
+                                </div>
+                                <div class="col-md-10 col-xs-12">
+                                    {!! Form::text(
+                                        'head_title',
+                                        old('head_title'),
+                                        [
+                                            'id' => 'head_title',
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Changing the title in the Browser Tab ...',
+                                            'required' => 'required',
+                                        ]
+                                    ) !!}
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-md-2 col-xs-12">
+                                    {!! html_entity_decode(
+                                        Form::label(
+                                            'head_description',
+                                            'Header Description',
+                                            ['style' => 'margin-top: 5px']
+                                        )
+                                    ) !!}
+                                </div>
+                                <div class="col-md-10 col-xs-12">
+                                    {!! Form::text(
+                                        'head_description',
+                                        old('head_description'),
+                                        [
+                                            'id' => 'head_description',
+                                            'class' => 'form-control',
+                                            'placeholder' => 'Define a description of your web page ...',
+                                            'required' => 'required',
+                                        ]
+                                    ) !!}
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-9 col-md-offset-5">
+                    {!! Form::submit(
+                        'Update',
+                        [
+                            'class' => 'btn btn-success',
+                        ]
+                    ) !!}
+                    {!! Html::linkRoute(
+                        'setting_system',
+                        'Cancel',
+                        [],
+                        [
+                            'class' => 'btn btn-warning',
+                        ]
+                    ) !!}
+                </div>
+            </div>
+            {!! Form::close() !!}
+        </div>
     </div>
 
 @stop

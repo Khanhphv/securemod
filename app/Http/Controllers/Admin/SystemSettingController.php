@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\HeadTag;
 use App\Service\SystemService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -59,5 +60,21 @@ class SystemSettingController extends Controller
         $filename = Str::random() . '.' . $file->getClientOriginalExtension();
         $file->move(public_path() . $uploadFolder, $filename);
         return $filename;
+    }
+
+    public function edit_head(Request $request)
+    {
+        $this->validate($request, [
+            'type' => 'required|max:500',
+            'head_title' => 'required|max:500',
+            'head_description' => 'required|max:500',
+        ]);
+
+        $head_tags = HeadTag::where('type', $request->type)->first();
+        $head_tags->head_title = $request->head_title;
+        $head_tags->head_description = $request->head_description;
+        $head_tags->save();
+
+        return redirect()->route('setting_system')->with(['msg' => 'Update site settings successful']);
     }
 }

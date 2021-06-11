@@ -3,6 +3,8 @@ namespace App\Service;
 
 use App\Model\Game;
 use App\Tool;
+use App\HeadTag;
+use Illuminate\Database\Eloquent\Model;
 
 class GameService
 {
@@ -21,6 +23,14 @@ class GameService
         $game->slug = $request->slug;
         $game->order = $request->order;
         $game->save();
+
+        # add head tags
+        $head_tags = new HeadTag();
+        $head_tags->type = 'game';
+        $head_tags->type_id = $game->id;
+        $head_tags->head_title = $request->head_title;
+        $head_tags->head_description = $request->head_description;
+        $head_tags->save();
     }
 
     public function showGame($slug) {
@@ -47,6 +57,20 @@ class GameService
         $game->thumb_image = $request->thumb_image;
         $game->order = $request->order;
         $game->save();
+
+        # update head tags for game
+        $head_tags = HeadTag::where('type', 'game')->where('type_id', $id)->first();
+        if ($head_tags) {
+            $head_tags->head_title = $request->head_title;
+            $head_tags->head_description = $request->head_description;
+        } else{
+            $head_tags = new HeadTag();
+            $head_tags->type = 'game';
+            $head_tags->type_id = $id;
+            $head_tags->head_title = $request->head_title;
+            $head_tags->head_description = $request->head_description;
+        }
+        $head_tags->save();
 
         return $game->id;
     }

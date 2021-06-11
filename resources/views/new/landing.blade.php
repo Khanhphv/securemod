@@ -8,9 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
+    <meta name="description" content="<?php echo $head_tags->head_description; ?>">
     <meta name="author" content="">
-    <title>Best PUBG Cheat, APEX Cheat, PUBG Mobile Cheat.... Providers</title>
+    <title><?php echo $head_tags->head_title; ?></title>
     <!-- Bootstrap core CSS -->
     <link rel="preload" href="/css/bootstrapv1.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript>

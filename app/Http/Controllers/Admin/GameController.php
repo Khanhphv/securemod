@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Model\Game;
 use App\Service\GameService;
 use App\Tool;
+use App\HeadTag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Session;
@@ -69,7 +70,10 @@ class GameController extends Controller
         } catch (Exception $e) {
             abort(500);
         }
-        return view('v2.tool')->with(['tools' => $listTools, 'game' => $game]);
+
+        # get head tags
+        $head_tags = HeadTag::where('type', 'game')->where('type_id', $game->id)->first();
+        return view('v2.tool')->with(['tools' => $listTools, 'game' => $game, 'head_tags' => $head_tags]);
 
     }
 

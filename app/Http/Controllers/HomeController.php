@@ -12,6 +12,7 @@ use App\Transaction;
 use App\User;
 use App\Hwid;
 use App\HwidLogs;
+use App\HeadTag;
 use Carbon\Carbon;
 use Card_charging_api;
 use Card_charging_Exception;
@@ -36,7 +37,10 @@ class HomeController extends Controller
     public function landing(): View
     {
       $games = Game::get();
-      return view('new.landing', compact('games'));
+
+      # get head tags
+      $head_tags = HeadTag::where('type', 'welcome')->first();
+      return view('new.landing', compact('games', 'head_tags'));
     }
 
     /**
@@ -62,7 +66,10 @@ class HomeController extends Controller
             ->get();
         Session::remove('selectedGame');
         $listTools = Tool::where('active', true)->orderBy('order')->get();
-        return view('new.home', compact('games'));
+
+        # get head tags
+        $head_tags = HeadTag::where('type', 'home')->first();
+        return view('new.home', compact('games', 'head_tags'));
     }
 
 

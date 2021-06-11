@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\LikePost;
 use Illuminate\Http\Request;
 use App\Post;
+use App\HeadTag;
 use App\UserLikePost;
 use Auth;
 
@@ -13,7 +14,10 @@ class PostController extends Controller
     public function index(){
         $posts = Post::join('users', 'users.id', '=', 'posts.user_id')->
         select('posts.*', 'users.name AS user_name')->orderBy('id', 'desc')->paginate(20);
-        return view('new.post', compact('posts'));
+
+        # get head tags
+        $head_tags = HeadTag::where('type', 'list_post')->first();
+        return view('new.post', compact('posts', 'head_tags'));
     }
 
     public function show($id){
@@ -25,12 +29,16 @@ class PostController extends Controller
         $post = $this->update($post->id);
         $user_login = Auth::user() ? Auth::user()->id : 0;
         $is_like = in_array($user_login, $post->users_like->pluck('id')->toArray()) ? 1 : 0;
-        return view('new.post-content', compact('post', 'author', 'user_login', 'is_like'));
+
+        # get head tags
+        $head_tags = HeadTag::where('type', 'post')->where('type_id', $id)->first();
+        return view('new.post-content', compact('post', 'author', 'user_login', 'is_like', 'head_tags'));
     }
 
     public function terms_of_services($id = 1){
         $content = Post::find($id);
-        return view('new.blog-content2', compact('content'));
+        $head_tags = HeadTag::where('type', 'post')->where('type_id', $id)->first();
+        return view('new.blog-content2', compact('content', 'head_tags'));
     }
 
     /**

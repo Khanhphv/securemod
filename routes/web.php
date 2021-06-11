@@ -89,6 +89,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'is_a
     Route::get('paypal/{transaction_id?}', 'AdminController@getPaypalTransaction');
     Route::get('/setting_system', 'SystemSettingController@index')->name('setting_system');
     Route::put('/setting_system/edit', 'SystemSettingController@ChangeLogoSystem')->name('setting_system_edit');
+    Route::put('/setting_system/edit_head', 'SystemSettingController@edit_head')->name('edit_head');
     Route::get('/payment', 'PaymentSettingController@index')->name('payment_settings');
     Route::put('/payment/edit', 'PaymentSettingController@change_key')->name('change_payment');
     Route::put('/paypal_seller/edit', 'PaypalSellerController@update')->name('paypal_seller.update');

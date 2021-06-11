@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     @extends('new.header')
-    @section('headerTitle', $game->name)
+    @section('headerTitle', $head_tags ?  $head_tags->head_title : $game->name)
+    @section('description', $head_tags ?  $head_tags->head_description : '')
     <meta charset="UTF-8">
     <meta name="description" content="{{ $game->description }}">
     <meta name="keywords" content="{{ $game->keyword }}">
