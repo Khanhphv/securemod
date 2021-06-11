@@ -35,9 +35,10 @@
             <label for="">Đường dẫn</label>
             <input type="text" class="form-control" name="slug" id="" placeholder="pubg-mobile" required>
         </div>
-		<div class="form-group">
+        <div class="form-group">
             <label for="thumb_image">Ảnh đại diện</label>
-            <input type="text" class="form-control" name="thumb_image" id="" placeholder="Nhập link ảnh online tại đây" required>
+            <input type="text" class="form-control" name="thumb_image" id="" placeholder="Nhập link ảnh online tại đây"
+                   required>
         </div>
 
         <div class="form-group">
@@ -46,15 +47,55 @@
         </div>
         <div class="form-group">
             <label for="description_eng">Mô tả ngắn (tiếng Anh)</label>
-            <input id="description_eng" name="description_eng" class="form-control" value="{{ old('description_eng') }}"/>
+            <input id="description_eng" name="description_eng" class="form-control"
+                   value="{{ old('description_eng') }}"/>
+        </div>
+        <div class="form-group">
+            {!! html_entity_decode(
+                Form::label(
+                    'head_title',
+                    'Header Title',
+                    []
+                )
+            ) !!}
+            {!! Form::text(
+                'head_title',
+                old('head_title'),
+                [
+                    'id' => 'head_title',
+                    'class' => 'form-control',
+                    'placeholder' => 'Changing the title in the Browser Tab ...',
+                    'required' => 'required',
+                ]
+            ) !!}
+        </div>
+        <div class="form-group">
+            {!! html_entity_decode(
+                Form::label(
+                    'head_description',
+                    'Header Description',
+                    []
+                )
+            ) !!}
+            {!! Form::text(
+                'head_description',
+                old('head_description'),
+                [
+                    'id' => 'head_description',
+                    'class' => 'form-control',
+                    'placeholder' => 'Define a description of your web page ...',
+                    'required' => 'required',
+                ]
+            ) !!}
         </div>
         <div class="form-group">
             <label for="notice">Nội dung thông báo</label>
-            <textarea id="notice" name="notice" rows="10" class="form-control my-editor">{{ old('notice') }}</textarea>
+            <textarea id="notice" name="notice" rows="10" class="form-control">{{ old('notice') }}</textarea>
         </div>
         <div class="form-group">
             <label for="notice_eng">Nội dung thông báo (tiếng Anh)</label>
-            <textarea id="notice_eng" name="notice_eng" rows="10" class="form-control my-editor">{{ old('notice_eng') }}</textarea>
+            <textarea id="notice_eng" name="notice_eng" rows="10"
+                      class="form-control">{{ old('notice_eng') }}</textarea>
         </div>
         <div class="form-group">
             <label for="">Thứ tự sắp xếp</label>
@@ -68,6 +109,7 @@
 @stop
 
 @section('js')
+
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
 
     <script>

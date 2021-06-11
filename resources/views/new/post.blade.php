@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 @extends('new.header')
-@section('headerTitle', 'Post')
+@section('headerTitle', $head_tags ?  $head_tags->head_title : 'Post')
+@section('description', $head_tags ?  $head_tags->head_description : '')
 @include('new.style')
 </head>
 <body>

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     @extends('new.header')
-    @section('headerTitle', $content->header_title)
-    @section('description', $content->header_description)
+    @section('headerTitle', $head_tags ?  $head_tags->head_title : $content->title)
+    @section('description', $head_tags ?  $head_tags->head_description : '')
     @include('new.style')
 </head>
 <body @if($theme == 'dark') data-theme="dark" @endif>

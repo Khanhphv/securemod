@@ -57,14 +57,52 @@
                    class="form-control" value="{{old("description_eng", isset($game->description_eng) ? $game->description_eng : '')}}"/>
         </div>
         <div class="form-group">
+            {!! html_entity_decode(
+                Form::label(
+                    'head_title',
+                    'Header Title',
+                    []
+                )
+            ) !!}
+            {!! Form::text(
+                'head_title',
+                old('head_title'),
+                [
+                    'id' => 'head_title',
+                    'class' => 'form-control',
+                    'placeholder' => 'Changing the title in the Browser Tab ...',
+                    'required' => 'required',
+                ]
+            ) !!}
+        </div>
+        <div class="form-group">
+            {!! html_entity_decode(
+                Form::label(
+                    'head_description',
+                    'Header Description',
+                    []
+                )
+            ) !!}
+            {!! Form::text(
+                'head_description',
+                old('head_description'),
+                [
+                    'id' => 'head_description',
+                    'class' => 'form-control',
+                    'placeholder' => 'Define a description of your web page ...',
+                    'required' => 'required',
+                ]
+            ) !!}
+        </div>
+        <div class="form-group">
             <label for="notice">Nội dung thông báo</label>
             <textarea id="notice" name="notice" rows="10"
-                      class="form-control my-editor">{{old("notice", isset($game->notice) ? $game->notice : '')}}</textarea>
+                      class="form-control ">{{old("notice", isset($game->notice) ? $game->notice : '')}}</textarea>
         </div>
         <div class="form-group">
             <label for="notice_eng">Nội dung thông báo (tiếng Anh)</label>
             <textarea id="notice_eng" name="notice_eng" rows="10"
-                      class="form-control my-editor">{{old("notice_eng", isset($game->notice_eng) ? $game->notice_eng : '')}}</textarea>
+                      class="form-control ">{{old("notice_eng", isset($game->notice_eng) ? $game->notice_eng : '')}}</textarea>
         </div>
         <div class="form-group">
             <label for="">Thứ tự sắp xếp</label>

@@ -9,7 +9,7 @@ use App\User;
 
 class Post extends Model
 {
-    protected $fillable = ['user_id', 'title','content', 'thumbnail', 'view', 'header_title', 'header_description'];
+    protected $fillable = ['user_id', 'title','content', 'thumbnail', 'view'];
 
     public function tag()
     {

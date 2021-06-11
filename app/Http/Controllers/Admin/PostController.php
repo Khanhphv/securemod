@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Tag;
 use App\LikePost;
+use App\HeadTag;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostsRequest;
 use Auth;
@@ -47,16 +48,25 @@ class PostController extends Controller
         $post = new Post();
         $post->user_id = Auth::user()->id;
         $post->title = $request->title;
-        $post->header_title = $request->header_title;
-        $post->header_description = $request->header_description;
         $post->content = $request->content;
         $post->thumbnail = $request->thumbnail;
         $post->view = 0;
         $post->save();
         $post->tag()->sync((array)$request->input('tag'));
+
+        # init like post
         $like_post = new LikePost();
         $like_post->post_id = $post->id;
         $like_post->save();
+
+        # add head tasg
+        $head_tags = new HeadTag();
+        $head_tags->type = 'post';
+        $head_tags->type_id = $post->id;
+        $head_tags->head_title = $request->header_title;
+        $head_tags->head_description = $request->header_description;
+        $head_tags->save();
+
         return redirect()->route('post.index')->with(['msg' => 'Add new post successfull']);
     }
 
@@ -94,12 +104,24 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $post->title = $request->title;
-        $post->header_title = $request->header_title;
-        $post->header_description = $request->header_description;
         $post->content = $request->content;
         $post->thumbnail = $request->thumbnail;
         $post->save();
         $post->tag()->sync((array)$request->input('tag'));
+
+        # update head tasg
+        $head_tags = HeadTag::where('type', 'post')->where('type_id', $id)->first();
+        if ($head_tags) {
+            $head_tags->head_title = $request->header_title;
+            $head_tags->head_description = $request->header_description;
+        } else{
+            $head_tags = new HeadTag();
+            $head_tags->type = 'post';
+            $head_tags->type_id = $id;
+            $head_tags->head_title = $request->header_title;
+            $head_tags->head_description = $request->header_description;
+        }
+        $head_tags->save();
         return redirect()->route('post.index');
     }
 
