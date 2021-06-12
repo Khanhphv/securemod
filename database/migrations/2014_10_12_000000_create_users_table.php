@@ -29,6 +29,8 @@ class CreateUsersTable extends Migration
             $table->integer('user_ref_count');
             $table->integer('user_ref_commission');
             $table->string('password');
+            $table->string('avatar', 255)->nullable();
+            $table->integer('role_member');
             $table->rememberToken();
             $table->timestamps();
         });
