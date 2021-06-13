@@ -34,13 +34,14 @@ class HomeController extends Controller
         //$this->middleware('auth');
     }
 
-    public function landing(): View
+    public function landing()
     {
-      $games = Game::get();
-
-      # get head tags
-      $head_tags = HeadTag::where('type', 'welcome')->first();
-      return view('new.landing', compact('games', 'head_tags'));
+//      $games = Game::get();
+//
+//      # get head tags
+//      $head_tags = HeadTag::where('type', 'welcome')->first();
+//      return view('new.landing', compact('games', 'head_tags'));
+        return redirect()->route('home');
     }
 
     /**
