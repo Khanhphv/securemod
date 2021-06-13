@@ -12,7 +12,7 @@ class HeadTagsTableSeeder extends Seeder
     public function run()
     {
         DB::table('head_tags')->insert([
-            'type' => 'wellcome',
+            'type' => 'welcome',
             'type_id' => null,
             'head_title' => 'Best PUBG Cheat',
             'head_description' => 'Best PUBG Cheat'
