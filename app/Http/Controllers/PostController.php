@@ -20,9 +20,9 @@ class PostController extends Controller
         return view('new.post', compact('posts', 'head_tags'));
     }
 
-    public function show($id){
-        $post = Post::join('users', 'users.id', '=', 'posts.user_id')->
-        select('posts.*', 'users.name AS user_name')->find($id);
+    public function show($slug){
+        $post = Post::where('slug', $slug)->join('users', 'users.id', '=', 'posts.user_id')->
+        select('posts.*', 'users.name AS user_name')->first();
         $author = $post->user_name;
 
         # add view
@@ -31,7 +31,7 @@ class PostController extends Controller
         $is_like = in_array($user_login, $post->users_like->pluck('id')->toArray()) ? 1 : 0;
 
         # get head tags
-        $head_tags = HeadTag::where('type', 'post')->where('type_id', $id)->first();
+        $head_tags = HeadTag::where('type', 'post')->where('type_id', $post->id)->first();
         return view('new.post-content', compact('post', 'author', 'user_login', 'is_like', 'head_tags'));
     }
 
@@ -56,11 +56,15 @@ class PostController extends Controller
         return $post;
     }
 
-    public function like_post($post_id, $user_id) {
+    public function like_post(Request $request) {
+        $post_id = $request->post_id;
+        $user_id = $request->user_id;
         $post = Post::find($post_id);
+        $status = "Like";
         if (in_array($user_id, $post->users_like->pluck('id')->toArray())){
             LikePost::where('post_id', $post_id)->decrement('like_count');
             UserLikePost::where('user_id', $user_id)->where('post_id', $post_id)->delete();
+            $status = "Dislike";
         } else{
             LikePost::where('post_id', $post_id)->increment('like_count');
             $user_like_post = new UserLikePost();
@@ -68,6 +72,8 @@ class PostController extends Controller
             $user_like_post->user_id = $user_id;
             $user_like_post->save();
         }
-        return redirect()->back();
+        return response()->json([
+            'bool'=> $status
+        ]);
     }
 }

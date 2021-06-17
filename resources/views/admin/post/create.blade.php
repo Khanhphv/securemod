@@ -49,6 +49,25 @@
             <div class="form-group">
                 {!! html_entity_decode(
                     Form::label(
+                        'path_url',
+                        'Path URL',
+                        []
+                    )
+                ) !!}
+                {!! Form::text(
+                    'slug',
+                    old('slug'),
+                    [
+                        'id' => 'slug',
+                        'class' => 'form-control',
+                        'placeholder' => 'path-url',
+                        'required' => 'required',
+                    ]
+                ) !!}
+            </div>
+            <div class="form-group">
+                {!! html_entity_decode(
+                    Form::label(
                         'header_title',
                         'Header Title',
                         []

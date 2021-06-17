@@ -49,6 +49,25 @@
         <div class="form-group">
             {!! html_entity_decode(
                 Form::label(
+                    'path_url',
+                    'Path URL',
+                    []
+                )
+            ) !!}
+            {!! Form::text(
+                'slug',
+                $post['slug'],
+                [
+                    'id' => 'slug',
+                    'class' => 'form-control',
+                    'placeholder' => 'path-url',
+                    'required' => 'required',
+                ]
+            ) !!}
+        </div>
+        <div class="form-group">
+            {!! html_entity_decode(
+                Form::label(
                     'header_title',
                     'Header Title',
                     []
@@ -56,7 +75,7 @@
             ) !!}
             {!! Form::text(
                 'header_title',
-                $post['header_title'],
+                $head_tags ? $head_tags->head_title : "",
                 [
                     'id' => 'header_title',
                     'class' => 'form-control',
@@ -75,7 +94,7 @@
             ) !!}
             {!! Form::text(
                 'header_description',
-                $post['header_description'],
+                $head_tags ? $head_tags->head_description : "",
                 [
                     'id' => 'header_description',
                     'class' => 'form-control',

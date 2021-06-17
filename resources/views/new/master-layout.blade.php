@@ -113,6 +113,16 @@
                 </a>
                 @endif
                 <div class="space-height-20px"></div>
+                @if(\App\Option::where('option', 'stripe_payment')->get()->first()->value != 0)
+                <div class="border-bottom-2px"></div>
+                <div class="space-height-20px"></div>
+                <a target="blank" class="title-icon modal-trigger" href="#lexholding-popup">
+                    <div style="display: flex; align-items: center;">
+                        <strong style="font-weight: 700;">New payment</strong>
+                    </div>
+                </a>
+                @endif
+                <div class="space-height-20px"></div>
                 <div class="border-bottom-2px"></div>
                 <div class="space-height-20px"></div>
                 @endauth
@@ -246,6 +256,28 @@
                         </svg>
                         <div class="space-20px"></div>
                         Terms of services
+                    </div>
+                </a>
+                <div class="space-height-20px"></div>
+                <div class="border-bottom-2px"></div>
+                <div class="space-height-20px"></div>
+                <a href="/post" class="title-icon">
+                    <div style="display: flex; align-items: center;">
+                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                            <a xlink:href="/post">
+                                <path
+                                    d="M6,0 L13,0 L18,0 C19.6568542,-3.04359188e-16 21,1.34314575 21,3 L21,7.9934309 L21,21 C21,22.6568542 19.6568542,24 18,24 L6,24 C4.34314575,24 3,22.6568542 3,21 L3,3 C3,1.34314575 4.34314575,3.04359188e-16 6,0 Z"
+                                    id="Path" fill-rule="nonzero" />
+                                <path
+                                    d="M7.51158831,9 L16.5,9 C16.7761424,9 17,8.77614237 17,8.5 C17,8.22385763 16.7761424,8 16.5,8 L7.51158831,8 C7.23544593,8 7.01158831,8.22385763 7.01158831,8.5 C7.01158831,8.77614237 7.23544593,9 7.51158831,9 Z"
+                                    id="Path" fill="#FFFFFF" fill-rule="nonzero" />
+                                <path
+                                    d="M7.51158831,13 L16.5,13 C16.7761424,13 17,12.7761424 17,12.5 C17,12.2238576 16.7761424,12 16.5,12 L7.51158831,12 C7.23544593,12 7.01158831,12.2238576 7.01158831,12.5 C7.01158831,12.7761424 7.23544593,13 7.51158831,13 Z"
+                                    id="Path" fill="#FFFFFF" fill-rule="nonzero" />
+                            </a>
+                        </svg>
+                        <div class="space-20px"></div>
+                        Latest News
                     </div>
                 </a>
                 <div class="space-height-20px"></div>
@@ -908,21 +940,21 @@
                                 </a>
                             </svg>
                         </a>
-                        {!! html_entity_decode(
-                            Html::linkRoute(
-                                'post',
-                                Html::image(
-                                    '/images/logo/article.png',
-                                    'Home Page',
-                                    [
-                                        'class' => 'img-fluid',
-                                        'width' => 24,
-                                        'style' => "margin : 30px"
-                                    ]
-                                )
-                            )
-                        ) !!}
-
+                        <a href="/post">
+                            <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                <a xlink:href="/post">
+                                    <path
+                                        d="M6,0 L13,0 L18,0 C19.6568542,-3.04359188e-16 21,1.34314575 21,3 L21,7.9934309 L21,21 C21,22.6568542 19.6568542,24 18,24 L6,24 C4.34314575,24 3,22.6568542 3,21 L3,3 C3,1.34314575 4.34314575,3.04359188e-16 6,0 Z"
+                                        id="Path" fill-rule="nonzero" />
+                                    <path
+                                        d="M7.51158831,9 L16.5,9 C16.7761424,9 17,8.77614237 17,8.5 C17,8.22385763 16.7761424,8 16.5,8 L7.51158831,8 C7.23544593,8 7.01158831,8.22385763 7.01158831,8.5 C7.01158831,8.77614237 7.23544593,9 7.51158831,9 Z"
+                                        id="Path" fill="#FFFFFF" fill-rule="nonzero" />
+                                    <path
+                                        d="M7.51158831,13 L16.5,13 C16.7761424,13 17,12.7761424 17,12.5 C17,12.2238576 16.7761424,12 16.5,12 L7.51158831,12 C7.23544593,12 7.01158831,12.2238576 7.01158831,12.5 C7.01158831,12.7761424 7.23544593,13 7.51158831,13 Z"
+                                        id="Path" fill="#FFFFFF" fill-rule="nonzero" />
+                                </a>
+                            </svg>
+                        </a>
                     </div>
                     <div>
                         <a href="/logout">

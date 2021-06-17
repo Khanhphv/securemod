@@ -5,6 +5,12 @@
     @section('headerTitle', $head_tags ?  $head_tags->head_title : $post->title)
     @section('description', $head_tags ?  $head_tags->head_description : '')
     @include('new.style')
+    <style>
+        pre {
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+    </style>
 </head>
 <body>
 @extends('new.master-layout')
@@ -29,46 +35,31 @@
                         <i class="material-icons e417">remove_red_eye</i>
                         {{ $post->view }}
                     </label>
-                    <div id="like-icon" class="like-icon" style="font-size: 16px; float:right; color: #9e9e9e">
-                        {!! Form::open([
-                                'route' => ['like',  $post->id, $user_login],
-                                'method' => 'PUT',
-                                'id' => 'like-post-' . $post->id,
-                                'style' => 'display: none;',
-                            ]) !!}
-
-                        {!! Form::close() !!}
-                        {!! html_entity_decode(
-                            Html::link(
-                                null,
-                                '<i class="material-icons e8dc">thumb_up</i>'. $post->like_post->like_count,
-                                [
-                                    'class' => 'like-post',
-                                    'data-id' => $post->id
-                                ]
-                            )
-                        )
-                        !!}
+                    <div  class="like-icon" style="font-size: 16px; float:right; color: #9e9e9e">
+                        <label for="like-post" class="like-post" data-id="{{$post->id}}">
+                            <i id="like-icon" class="material-icons e8dc">thumb_up</i>
+                            <span class="like-count">{{$post->like_post->like_count}}</span>
+                        </label>
                     </div>
                 </div>
 
             </div>
-            <div class="col s10">
+            <div class="col s12 m12">
                 <div class="post-image">
                     {!! html_entity_decode(
                         Html::image(
                             $post->thumbnail,
                             'Post Image',
                             [
-                                'class' => 'img-fluid',
+                                'class' => 'responsive-img',
                             ]
                         )
                     ) !!}
                 </div>
                 <br/>
-                <p>
+                <div id="detail-post">
                     {!! $post->content !!}
-                </p>
+                </div>
                 <br/>
                 <hr/>
                 {!! html_entity_decode(
@@ -91,27 +82,40 @@
     </script>
     <script>
         window.addEventListener('load', function() {
-            $(document).ready(function() {
+            // add class for image in post content
+            $('#detail-post').find('img').addClass('responsive-img')
+
+            // action like and dislike
+            $(document).on('click','.like-post',function(){
+                var postId = $(this).attr('data-id');
                 var userId = {{$user_login}};
-                $('.like-post').click(function() {
-                    event.preventDefault();
-                    if (userId){
-                        if({{$is_like}}){
-                            if (confirm('Are you want to unlike this post?')) {
-                                var postId = $(this).attr('data-id');
-                                $("#like-post-" + postId).submit();
-                            }
-                        } else{
-                            if (confirm('Are you want to like this post?')) {
-                                var postId = $(this).attr('data-id');
-                                $("#like-post-" + postId).submit();
-                            }
+                var vm=$(this);
+                // Run Ajax
+                $.ajax({
+                    url:"{{ url('like') }}",
+                    type:"post",
+                    // dataType:'json',
+                    data:{
+                        post_id:postId,
+                        user_id:userId,
+                        _token:"{{ csrf_token() }}"
+                    },
+                    success:function(res){
+                        var class_name = 'liked-icon';
+                        if(res.bool==="Like"){
+                            document.getElementById("like-icon").classList.add(class_name);
+                            var _prevCount=$(".like-count").text();
+                            _prevCount++;
+                            $(".like-count").text(_prevCount);
+                        } else {
+                            document.getElementById("like-icon").classList.remove(class_name);
+                            var _prevCount=$(".like-count").text();
+                            _prevCount--;
+                            $(".like-count").text(_prevCount);
                         }
-                    } else {
-                        alert('Login to continue');
                     }
-                })
-            })
+                });
+            });
         })
     </script>
 @endsection
