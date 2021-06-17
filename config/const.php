@@ -10,7 +10,7 @@ return [
     'limited_times' => 3,
     'plus_views' => 1,
     'menu' => [
-        '/home', '/balance', '/keys', '/keys', '/terms-of-services'
+        '/home', '/balance', '/keys', '/keys', '/terms-of-services', '/post'
     ],
     'paypal_status' => [
         'completed' => 'COMPLETED'
