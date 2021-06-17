@@ -5,6 +5,12 @@
     @section('headerTitle', $head_tags ?  $head_tags->head_title : $post->title)
     @section('description', $head_tags ?  $head_tags->head_description : '')
     @include('new.style')
+    <style>
+        pre {
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+    </style>
 </head>
 <body>
 @extends('new.master-layout')
@@ -38,22 +44,22 @@
                 </div>
 
             </div>
-            <div class="col s10">
+            <div class="col s12 m12">
                 <div class="post-image">
                     {!! html_entity_decode(
                         Html::image(
                             $post->thumbnail,
                             'Post Image',
                             [
-                                'class' => 'img-fluid',
+                                'class' => 'responsive-img',
                             ]
                         )
                     ) !!}
                 </div>
                 <br/>
-                <p>
+                <div id="detail-post">
                     {!! $post->content !!}
-                </p>
+                </div>
                 <br/>
                 <hr/>
                 {!! html_entity_decode(
@@ -76,6 +82,10 @@
     </script>
     <script>
         window.addEventListener('load', function() {
+            // add class for image in post content
+            $('#detail-post').find('img').addClass('responsive-img')
+
+            // action like and dislike
             $(document).on('click','.like-post',function(){
                 var postId = $(this).attr('data-id');
                 var userId = {{$user_login}};
