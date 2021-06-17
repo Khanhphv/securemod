@@ -29,26 +29,11 @@
                         <i class="material-icons e417">remove_red_eye</i>
                         {{ $post->view }}
                     </label>
-                    <div id="like-icon" class="like-icon" style="font-size: 16px; float:right; color: #9e9e9e">
-                        {!! Form::open([
-                                'route' => ['like',  $post->id, $user_login],
-                                'method' => 'PUT',
-                                'id' => 'like-post-' . $post->id,
-                                'style' => 'display: none;',
-                            ]) !!}
-
-                        {!! Form::close() !!}
-                        {!! html_entity_decode(
-                            Html::link(
-                                null,
-                                '<i class="material-icons e8dc">thumb_up</i>'. $post->like_post->like_count,
-                                [
-                                    'class' => 'like-post',
-                                    'data-id' => $post->id
-                                ]
-                            )
-                        )
-                        !!}
+                    <div  class="like-icon" style="font-size: 16px; float:right; color: #9e9e9e">
+                        <label for="like-post" class="like-post" data-id="{{$post->id}}">
+                            <i id="like-icon" class="material-icons e8dc">thumb_up</i>
+                            <span class="like-count">{{$post->like_post->like_count}}</span>
+                        </label>
                     </div>
                 </div>
 
@@ -91,27 +76,36 @@
     </script>
     <script>
         window.addEventListener('load', function() {
-            $(document).ready(function() {
+            $(document).on('click','.like-post',function(){
+                var postId = $(this).attr('data-id');
                 var userId = {{$user_login}};
-                $('.like-post').click(function() {
-                    event.preventDefault();
-                    if (userId){
-                        if({{$is_like}}){
-                            if (confirm('Are you want to unlike this post?')) {
-                                var postId = $(this).attr('data-id');
-                                $("#like-post-" + postId).submit();
-                            }
-                        } else{
-                            if (confirm('Are you want to like this post?')) {
-                                var postId = $(this).attr('data-id');
-                                $("#like-post-" + postId).submit();
-                            }
+                var vm=$(this);
+                // Run Ajax
+                $.ajax({
+                    url:"{{ url('like') }}",
+                    type:"post",
+                    // dataType:'json',
+                    data:{
+                        post_id:postId,
+                        user_id:userId,
+                        _token:"{{ csrf_token() }}"
+                    },
+                    success:function(res){
+                        var class_name = 'liked-icon';
+                        if(res.bool==="Like"){
+                            document.getElementById("like-icon").classList.add(class_name);
+                            var _prevCount=$(".like-count").text();
+                            _prevCount++;
+                            $(".like-count").text(_prevCount);
+                        } else {
+                            document.getElementById("like-icon").classList.remove(class_name);
+                            var _prevCount=$(".like-count").text();
+                            _prevCount--;
+                            $(".like-count").text(_prevCount);
                         }
-                    } else {
-                        alert('Login to continue');
                     }
-                })
-            })
+                });
+            });
         })
     </script>
 @endsection

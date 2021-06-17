@@ -48,6 +48,7 @@ class PostController extends Controller
         $post = new Post();
         $post->user_id = Auth::user()->id;
         $post->title = $request->title;
+        $post->slug = $request->slug;
         $post->content = $request->content;
         $post->thumbnail = $request->thumbnail;
         $post->view = 0;
@@ -90,7 +91,12 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $tags = Tag::get()->pluck('name', 'id');
-        return view('admin.post.edit', compact('post', 'tags'));
+        if ($post->id != 1){
+            $head_tags = HeadTag::where('type', 'post')->where('type_id', $post->id)->first();
+        } else{
+            $head_tags = HeadTag::where('type', 'term')->first();
+        }
+        return view('admin.post.edit', compact('post', 'tags', "head_tags"));
     }
 
     /**
@@ -98,31 +104,28 @@ class PostController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, $id)
     {
         $post = Post::findOrFail($id);
         $post->title = $request->title;
+        $post->slug = $request->slug;
         $post->content = $request->content;
         $post->thumbnail = $request->thumbnail;
         $post->save();
         $post->tag()->sync((array)$request->input('tag'));
 
         # update head tasg
-        $head_tags = HeadTag::where('type', 'post')->where('type_id', $id)->first();
-        if ($head_tags) {
-            $head_tags->head_title = $request->header_title;
-            $head_tags->head_description = $request->header_description;
+        if ($id != 1){
+            $head_tags = HeadTag::where('type', 'post')->where('type_id', $id)->first();
         } else{
-            $head_tags = new HeadTag();
-            $head_tags->type = 'post';
-            $head_tags->type_id = $id;
-            $head_tags->head_title = $request->header_title;
-            $head_tags->head_description = $request->header_description;
+            $head_tags = HeadTag::where('type', 'term')->first();
         }
+        $head_tags->head_title = $request->header_title;
+        $head_tags->head_description = $request->header_description;
         $head_tags->save();
-        return redirect()->route('post.index');
+        return redirect()->back()->with(['msg', 'Update successful']);
     }
 
     /**

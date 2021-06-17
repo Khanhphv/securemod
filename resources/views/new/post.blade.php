@@ -24,7 +24,7 @@
                             <div>
                                 @foreach($post_row as $post)
 
-                                    <div class="item" onclick="redirectToSpecificPost('{{ $post->id }}')" style="background-image: url('{{ $post->thumbnail }}'); background-position: inherit">
+                                    <div class="item" onclick="redirectToSpecificPost('{{ $post->slug }}')" style="background-image: url('{{ $post->thumbnail }}'); background-position: inherit">
                                         <div>
                                             <p>{{ $post->title }}</p>
                                             <span>{{ $post->user_name }}</span>
@@ -84,8 +84,8 @@
     </div>
 @endsection
 <script>
-    function redirectToSpecificPost(id) {
-        window.location.href = '/post/' +id;
+    function redirectToSpecificPost(slug) {
+        window.location.href = '/post/' +slug;
     }
 </script>
 </body>

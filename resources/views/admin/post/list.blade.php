@@ -54,6 +54,9 @@
                 @endforeach
             </table>
         </div>
+        <div class="pagi d-flex justify-content-end">
+            {{ $posts->links() }}
+        </div>
     @endif
 
 @stop
