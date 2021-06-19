@@ -168,6 +168,9 @@
             left: 0px;
             top: 50px;
         }
+        .select-wrapper input.select-dropdown {
+            color: #000;
+        }
     </style>
 </head>
 <body @if($theme == 'dark') data-theme="dark" @endif>
