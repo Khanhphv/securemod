@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Danh sách thành viên')
+@section('title', 'User list')
 
 @section('content_header')
-    <h1>Danh sách thành viên</h1>
+    <h1>User list</h1>
 @stop
 
 @section('content')
@@ -14,7 +14,7 @@
     @endif
 
     @if (count($users) == 0)
-        <div>Hiện không có thành viên nào</div>
+        <div>No user found</div>
     @else
          <form role="form" class="form-horizontal" action="{{route('user.search')}}" method="POST">
             @csrf
@@ -33,7 +33,7 @@
         </div>
         <div class="form-group">
             <div class="col-sm-12">
-                <button class="btn btn-success form-control" type="submit">Cập nhật người dùng</button>
+                <button class="btn btn-success form-control" type="submit">Search user</button>
             </div>
         </div>
     </form>
@@ -42,12 +42,12 @@
         <table class="table table-hover" style="background: #FFF">
             <tr>
                 <th>ID</th>
-                <th>Tên</th>
+                <th>Name</th>
 {{--                <th>Số điện thoại</th>--}}
-                <th>Số dư tài khoản</th>
-                <th>Vai trò</th>
+                <th>Balance</th>
+                <th>Role</th>
                 @if(Auth::user()->type == 'admin')
-                <th>Thao tác</th>
+                <th>Action</th>
                 @endif
             </tr>
             @foreach ($users as $user)
@@ -58,7 +58,7 @@
                     <td>{{number_format($user->credit)}}</td>
                     <td>{{$user->type}}</td>
                     @if(Auth::user()->type == 'admin')
-                    <td><a href="{{route('user.edit', $user->id)}}" class="btn btn-warning">Sửa</a>
+                    <td><a href="{{route('user.edit', $user->id)}}" class="btn btn-warning">Edit</a>
                     @endif
                     </td>
                 </tr>

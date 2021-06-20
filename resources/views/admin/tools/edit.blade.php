@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Sửa tool')
+@section('title', 'Edit tool')
 
 @section('content_header')
-    <h1>Sửa tool {{$tool->name}}</h1>
+    <h1>Edit tool {{$tool->name}}</h1>
     <br>
     @if(Session::has('message'))
         <div class="alert alert-{{Session::get('level')}}">
@@ -28,20 +28,20 @@
             </ol>
         @endif
         <div class="form-group">
-            <label for="game">Loại game</label>
+            <label for="game">Game</label>
             <select class="form-control" id="game" required name="game_id">
                 @if(count($games) > 0)
                     @foreach($games as $item)
                         <option value="{{$item->id}}" {{$item->id == $tool->game_id ? "selected" : ""}}>{{$item->name}}</option>
                     @endforeach
                 @else
-                    <option value="null">-- Chưa có game nào</option>
+                    <option value="null">-- No game found</option>
                 @endif
             </select>
         </div>
 
         <div class="form-group">
-            <label for="">Tên tool</label>
+            <label for="">Tool name</label>
             <input type="text" class="form-control" name="name" id=""
                    value="{{old('name',isset($tool->name)? $tool->name: null)}}" required>
         </div>
@@ -51,12 +51,12 @@
                    value="{{old('note',isset($tool->note)? $tool->note: null)}}">
         </div>
         <div class="form-group">
-            <label for="">Link ảnh logo</label>
+            <label for="">Logo</label>
             <input type="text" class="form-control" name="logo" id=""
                    value="{{old('logo',isset($tool->logo)? $tool->logo: null)}}" required>
         </div>
         <div class="form-group">
-            <label for="">Ảnh slide</label>
+            <label for="">Slide</label>
             <textarea type="text" class="form-control" name="images" id="images" required
                       placeholder="Mỗi link ảnh trên 1 dòng">{{old('images',isset($tool->images)? $tool->images: null)}}</textarea>
         </div>
@@ -66,22 +66,22 @@
                    value="{{old('video_intro',isset($tool->video_intro)? $tool->video_intro: null)}}">
         </div>
         <div class="form-group">
-            <label for="">Link tải</label>
+            <label for="">Download link</label>
             <input type="text" class="form-control" name="link" id="" required
                    value="{{old('link',isset($tool->link)? $tool->link: null)}}">
         </div>
         <div class="form-group">
-            <label for="">Link dự phòng</label>
+            <label for="">Backup link</label>
             <input type="text" class="form-control" name="link_backup" id=""
                    value="{{old('link_backup',isset($tool->link_backup)? $tool->link_backup: null)}}">
         </div>
         <div class="form-group">
-            <label for="cost">Giá nhập tool (mỗi gói 1 dòng viết dạng 12=30000)</label>
+            <label for="cost">Tool input price (each pack 1 line written in the form 12=3000) </label>
             <textarea id="cost" name="cost" class="form-control"
                       rows="4">{{old('cost', isset($tool->cost)? $tool->cost: null)}}</textarea>
         </div>
         <div class="form-group">
-            <label for="package">Các gói của tool (mỗi gói 1 dòng viết dạng 12=30000)</label>
+            <label for="package">Packages of the tool (each pack 1 line written in the form 12=3000) </label>
             <textarea name="package" id="package" class="form-control"
                       rows="3">{{old('package', isset($tool->package)? $tool->package: null)}}</textarea>
         </div>
@@ -89,12 +89,12 @@
         <div class="form-group">
             <label for="discount">Discount(%)</label>
             <input type="number" class="form-control" name="discount" id="discount"
-                   placeholder="Nhập phần trăm discount"
+                   placeholder="Discount percent"
                    value="{{old('discount',isset($tool->discount)? $tool->discount: null)}}">
         </div>
 
         <div class="form-group">
-            <label for="youtube">Link hướng dẫn SD</label>
+            <label for="youtube">Usage link</label>
             <input type="text" class="form-control" name="youtube" id="" required
                    value="{{old('youtube',isset($tool->youtube)? $tool->youtube: null)}}">
         </div>
@@ -129,39 +129,37 @@
         </div>
 		-->
         <div class="form-group">
-            <label for="">Số thứ tự hiển thị</label>
+            <label for="">Order number</label>
             <input type="number" class="form-control" name="order" id="" required
                    value="{{old('order',isset($tool->order)? $tool->order: null)}}">
         </div>
         <div class="form-group">
-            <label for="">API lấy Key</label>
+            <label for="">API get Key</label>
             <input type="text" class="form-control" name="api_get_key" id=""
                    value="{{old('api_get_key',isset($tool->api_get_key)? $tool->api_get_key: null)}}">
         </div>
         <div class="form-group">
-            <label for="">Loại tool</label>
+            <label for="">Tool type</label>
             <select class="form-control" name="author">
-                <option value="me" {{$tool->author == 'me' ? "selected" : ''}}>Nhà trồng được</option>
-                <option value="rent" {{$tool->author == 'rent' ? "selected" : ''}}>Đi thuê</option>
+                <option value="me" {{$tool->author == 'me' ? "selected" : ''}}>Owner</option>
+                <option value="rent" {{$tool->author == 'rent' ? "selected" : ''}}>Hire</option>
             </select>
         </div>
         <div class="form-group">
             <div class="radio">
-                <label><input type="checkbox" name="updated" {{($tool->updated == 1) ? "checked" : ""}}> Đã cập
-                    nhật?</label>
+                <label><input type="checkbox" name="updated" {{($tool->updated == 1) ? "checked" : ""}}> Updated?</label>
             </div>
         </div>
 
         <div class="form-group">
             <div class="radio">
-                <label><input type="checkbox" name="active" {{($tool->active == 1) ? "checked" : ""}}> Tool đang hoạt
-                    động?</label>
+                <label><input type="checkbox" name="active" {{($tool->active == 1) ? "checked" : ""}}> Active?</label>
             </div>
         </div>
         <br>
 
-        <a href="{{URL::previous()}}" class="btn btn-warning">QUAY LẠI</a>
-        <button type="submit" class="btn btn-success pull-right" style="width: 90px">LƯU</button>
+        <a href="{{URL::previous()}}" class="btn btn-warning">BACK</a>
+        <button type="submit" class="btn btn-success pull-right" style="width: 90px">SAVE</button>
     </form>
 @stop
 

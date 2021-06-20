@@ -29,17 +29,17 @@
 
 
         <div class="form-group">
-            <label for="">Tên game</label>
+            <label for="">Name</label>
             <input type="text" class="form-control" name="name" id="" placeholder="PUBG Mobile"
                    value="{{old("name", isset($game->name) ? $game->name : '')}}" required>
         </div>
         <div class="form-group">
-            <label for="">Đường dẫn</label>
+            <label for="">Path</label>
             <input type="text" class="form-control" name="slug" id="" placeholder="pubg-mobile"
                    value="{{old("slug", isset($game->slug) ? $game->slug : '')}}" required>
         </div>
         <div class="form-group">
-            <label for="thumb_image">Ảnh đại diện</label>
+            <label for="thumb_image">Picture</label>
             <input type="text" class="form-control" name="thumb_image" id=""
                    value="{{old("thumb_image", isset($game->thumb_image) ? $game->thumb_image : '')}}"
                    placeholder="Nhập link ảnh online tại đây"
@@ -47,12 +47,12 @@
         </div>
 
         <div class="form-group">
-            <label for="description">Mô tả ngắn</label>
+            <label for="description">Short description</label>
             <input id="description" name="description"
                       class="form-control" value="{{old("description", isset($game->description) ? $game->description : '')}}"/>
         </div>
         <div class="form-group">
-            <label for="description_eng">Mô tả ngắn (tiếng Anh)</label>
+            <label for="description_eng">Short description (English)</label>
             <input id="description_eng" name="description_eng"
                    class="form-control" value="{{old("description_eng", isset($game->description_eng) ? $game->description_eng : '')}}"/>
         </div>
@@ -95,25 +95,25 @@
             ) !!}
         </div>
         <div class="form-group">
-            <label for="notice">Nội dung thông báo</label>
+            <label for="notice">Notice content</label>
             <textarea id="notice" name="notice" rows="10"
                       class="form-control ">{{old("notice", isset($game->notice) ? $game->notice : '')}}</textarea>
         </div>
         <div class="form-group">
-            <label for="notice_eng">Nội dung thông báo (tiếng Anh)</label>
+            <label for="notice_eng">Notice content (English)</label>
             <textarea id="notice_eng" name="notice_eng" rows="10"
                       class="form-control ">{{old("notice_eng", isset($game->notice_eng) ? $game->notice_eng : '')}}</textarea>
         </div>
         <div class="form-group">
-            <label for="">Thứ tự sắp xếp</label>
+            <label for="">Sort</label>
             <input type="number" class="form-control" name="order" id=""
                    value="{{old("name", isset($game->order) ? $game->order : '')}}" required>
         </div>
 
         <br>
 
-        <a href="{{URL::previous()}}" class="btn btn-warning">QUAY LẠI</a>
-        <button type="submit" class="btn btn-success pull-right" style="width: 90px">Cập nhật</button>
+        <a href="{{URL::previous()}}" class="btn btn-warning">BACK</a>
+        <button type="submit" class="btn btn-success pull-right" style="width: 90px">UPDATE</button>
     </form>
 @stop
 

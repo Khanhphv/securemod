@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Thêm tool mới')
+@section('title', 'Add new tool')
 
 @section('content_header')
-    <h1>Thêm tool mới</h1>
+    <h1>Add new tool</h1>
     <br>
     @if(Session::has('message'))
         <div class="alert alert-{{Session::get('level')}}">
@@ -26,20 +26,20 @@
             </ol>
         @endif
         <div class="form-group">
-            <label for="game">Loại game</label>
+            <label for="game">Game</label>
             <select class="form-control" id="game" required name="game_id">
                 @if(count($games) > 0)
                     @foreach($games as $game)
                         <option value="{{$game->id}}">{{$game->name}}</option>
                     @endforeach
                 @else
-                    <option value="null">-- Chưa có game nào</option>
+                    <option value="null">-- No game found</option>
                 @endif
             </select>
         </div>
 
         <div class="form-group">
-            <label for="">Tên tool</label>
+            <label for="">Tool name</label>
             <input type="text" class="form-control" name="name" id="" placeholder="Hack pubg.." required>
         </div>
         <div class="form-group">
@@ -47,45 +47,45 @@
             <input type="text" class="form-control" name="note" id="" placeholder="Note">
         </div>
         <div class="form-group">
-            <label for="">Link ảnh logo</label>
+            <label for="">Logo</label>
             <input type="text" class="form-control" name="logo" id="" placeholder="logo" required>
         </div>
 		<div class="form-group">
-            <label for="">Ảnh slide</label>
+            <label for="">Slide</label>
             <textarea type="text" class="form-control" name="images" id="images" required placeholder="Mỗi link ảnh trên 1 dòng"></textarea>
         </div>
         <div class="form-group">
-            <label for="">Link tải</label>
+            <label for="">Download link</label>
             <input type="text" class="form-control" name="link" id="" required>
         </div>
         <div class="form-group">
-            <label for="">Link dự phòng</label>
+            <label for="">Backup link</label>
             <input type="text" class="form-control" name="link_backup" id="">
         </div>
         <div class="form-group">
-            <label for="cost">Giá nhập tool (mỗi gói 1 dòng viết dạng 12=30000)</label>
+            <label for="cost">Tool input price (each pack 1 line written in the form 12=3000) </label>
             <textarea id="cost" name="cost" class="form-control" rows="4">{{ old('cost') }}</textarea>
         </div>
         <div class="form-group">
-            <label for="package">Các gói của tool (mỗi gói 1 dòng viết dạng 12=30000)</label>
+            <label for="package">Packages of the tool (each pack 1 line written in the form 12=3000) </label>
             <textarea id="package" name="package" class="form-control" rows="4">{{ old('package') }}</textarea>
         </div>
         <div class="form-group">
-            <label for="cost">Các gói bán cho đại lý (mỗi gói 1 dòng viết dạng 12=30000)</label>
+            <label for="cost">Packages sold to agents (each pack has 1 line written in the form 12=30000) </label>
             <textarea id="reseller" name="reseller" class="form-control" rows="4">{{ old('reseller') }}</textarea>
         </div>
 
         <div class="form-group">
-            <label for="thumb_image">Link hướng dẫn SD</label>
+            <label for="thumb_image">Tool usage link</label>
             <input type="text" class="form-control" name="youtube" id="" placeholder="ID Video Youtube" required>
         </div>
 		<div class="form-group">
-            <label for="showcase">ID của video showcase</label>
-            <input type="text" class="form-control" name="showcase" id="showcase" placeholder="ID trên youtube" required>
+            <label for="showcase">Video showcase ID</label>
+            <input type="text" class="form-control" name="showcase" id="showcase" placeholder="ID on youtube" required>
         </div>
         <div class="form-group">
             <label for="discount">Discount(%)</label>
-            <input type="number" class="form-control" name="discount" id="discount" placeholder="Nhập phần trăm discount">
+            <input type="number" class="form-control" name="discount" id="discount" placeholder="Discount percent">
         </div>
 		<!--
 		<div class="form-group">
@@ -111,34 +111,34 @@
         </div>
 		-->
         <div class="form-group">
-            <label for="">Số thứ tự</label>
+            <label for="">Order number</label>
             <input type="number" class="form-control" name="order" id="" value="99" required>
         </div>
 		<div class="form-group">
             <label for="" class="col-sm-2 control-label"></label>
 
             <select class="form-control" name="author">
-                <option value="me">Nhà trồng được</option>
-                <option value="rent">Đi thuê</option>
+                <option value="me">Owner</option>
+                <option value="rent">Hire</option>
             </select>
         </div>
         <div class="form-group">
             <div class="radio">
-                <label><input type="checkbox" name="active" checked> Hiển thị tool cho khách thấy?</label>
+                <label><input type="checkbox" name="active" checked> Show tool?</label>
             </div>
         </div>
 
         <div class="form-group">
             <div class="radio">
-                <label><input type="checkbox" name="updated" checked> Đã cập nhật?</label>
+                <label><input type="checkbox" name="updated" checked> Updated?</label>
             </div>
         </div>
         <br>
         @if(count($games) > 0)
-            <a href="{{URL::previous()}}" class="btn btn-warning">QUAY LẠI</a>
-            <button type="submit" class="btn btn-success pull-right" style="width: 90px">LƯU</button>
+            <a href="{{URL::previous()}}" class="btn btn-warning">BACK</a>
+            <button type="submit" class="btn btn-success pull-right" style="width: 90px">SAVE</button>
         @else
-            <h3>Vui lòng thêm game trước!</h3>
+            <h3>Please add game first !</h3>
         @endif
     </form>
 @stop

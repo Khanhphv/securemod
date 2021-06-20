@@ -1,12 +1,12 @@
 @extends('adminlte::page')
 
-@section('title', 'Cài đặt website')
+@section('title', 'Setting website')
 
 @section('content_header')
     @if(request()->lang =='en')
-        <h1>Cài đặt website tiếng Anh</h1>
+        <h1>Website setting</h1>
         <br>
-        <a href="{{route('setting.index').'?lang=vi'}}" class="btn btn-primary">Tiếng Việt</a>
+        <a href="{{route('setting.index').'?lang=vi'}}" class="btn btn-primary">Vietnamese</a>
     @else
         @php request()->lang ='vi'; @endphp
         <h1>Cài đặt website</h1>
@@ -28,7 +28,7 @@
     <form id="form" action="{{route('setting.update')}}" method="post" role="form">
         @csrf
         <input type="hidden" name="locate" value="{{request()->lang}}">
-        <button type="submit" class="btn btn-success pull-right" style="width: 90px; position: absolute; right: 20px; z-index: 999">LƯU</button>
+        <button type="submit" class="btn btn-success pull-right" style="width: 90px; position: absolute; right: 20px; z-index: 999">SAVE</button>
         @if(count($errors)>0)
             <ol>
                 @foreach($errors->all() as $err)
@@ -107,52 +107,52 @@
         </div>
 
         <div class="form-group">
-            <label for="">Tiêu đề ở header</label>
+            <label for="">Header title</label>
             <input type="text" class="form-control" name="header_title" id=""
                    value="{{old('header_title', isset($siteSettings['header_title'])? $siteSettings['header_title']: null)}}"
                    >
         </div>
         <div class="form-group">
-            <label for="">Tiêu đề phụ ở header</label>
+            <label for="">Header sub title</label>
             <input type="text" class="form-control" name="header_sub_title" id=""
                    value="{{old('header_sub_title',isset($siteSettings['header_sub_title'])? $siteSettings['header_sub_title']: null)}}"
                    >
         </div>
         <div class="form-group">
-            <label for="">Phần trăm hoa hồng mặc định khi tạo acc mới</label>
+            <label for="">Default bonus when create new account</label>
             <input type="text" class="form-control" name="commission" id=""
                    value="{{old('commission',isset($siteSettings['commission'])? $siteSettings['commission']: null)}}"
                    required>
         </div>
         <div class="form-group">
-            <label for="header_notice">Thông báo ở header trang chủ</label>
+            <label for="header_notice">Homepage notice</label>
             <textarea id="header_notice" name="header_notice" class="form-control my-editor"
                       rows="10">{{old('header_notice', isset($siteSettings['header_notice'])? $siteSettings['header_notice']: null)}}</textarea>
         </div>
 
         <div class="form-group">
-            <label for="popup">Popup ở trang chủ</label>
+            <label for="popup">Homepage popup</label>
             <textarea id="popup" name="popup" class="form-control my-editor"
                       rows="10">{{old('popup', isset($siteSettings['popup'])? $siteSettings['popup']: null)}}</textarea>
         </div>
         <div class="form-group">
-            <label for="float_content_left">Menu chạy bên trái web</label>
+            <label for="float_content_left">Right slide menu</label>
             <textarea id="float_content_left" name="float_content_left" class="form-control my-editor"
                       rows="3">{{old('float_content_left', isset($siteSettings['float_content_left'])? $siteSettings['float_content_left']: null)}}</textarea>
         </div>
         <div class="form-group">
-            <label for="float_content_right">Menu chạy bên phải web</label>
+            <label for="float_content_right">Left slide menu</label>
             <textarea id="float_content_right" name="float_content_right" class="form-control my-editor"
                       rows="3">{{old('float_content_right', isset($siteSettings['float_content_right'])? $siteSettings['float_content_right']: null)}}</textarea>
         </div>
 
         <div class="form-group">
-            <label for="header_code">Mã code đặt thêm vào header</label>
+            <label for="header_code">Header code</label>
             <textarea id="header_code" name="header_code" class="form-control"
                       rows="5">{{old('header_code', isset($siteSettings['header_code'])? $siteSettings['header_code']: null)}}</textarea>
         </div>
-        <a href="{{URL::previous()}}" class="btn btn-warning">QUAY LẠI</a>
-        <button type="submit" class="btn btn-success pull-right" style="width: 90px">LƯU</button>
+        <a href="{{URL::previous()}}" class="btn btn-warning">BACK</a>
+        <button type="submit" class="btn btn-success pull-right" style="width: 90px">SAVE</button>
     </form>
 @stop
 

@@ -1,11 +1,10 @@
 @extends('adminlte::page')
 
-@section('title', 'Danh sách key')
+@section('title', 'List key')
 
 @section('content_header')
-    <h1 style="float: left">Danh sách key</h1>
-    <a href="{{route('key.create')}}" class="btn btn-block btn-success pull-right" style="max-width: 200px">Thêm key
-        mới</a><br/><br/>
+    <h1 style="float: left">List key</h1>
+    <a href="{{route('key.create')}}" class="btn btn-block btn-success pull-right" style="max-width: 200px">Add new key</a><br/><br/>
 @stop
 
 @section('content')
@@ -17,7 +16,7 @@
     <form role="form" class="form-horizontal" action="{{route('key.search')}}" method="GET">
 
         <div class="form-group">
-            <div class="col-sm-6"><input type="text" class="form-control" placeholder="Nhập key vào đây" name="key"
+            <div class="col-sm-6"><input type="text" class="form-control" placeholder="Input key here" name="key"
                                          value="{{old('key',isset($request->key)? $request->key: null)}}">
             </div>
             <div class="col-sm-3">
@@ -25,38 +24,38 @@
                     @php
                         $packagesList = array();
                     @endphp
-                    <option value="0">-- Chọn tool --</option>
+                    <option value="0">-- Select tool --</option>
                     @foreach($tools as $tool)
                         <option value="{{$tool->id}}" @if (old('toolID') == $tool->id) {{ 'selected' }} @endif>{{$tool->name}}</option>
                     @endforeach
                 </select>
             </div>
             <div class="col-sm-3">
-                <input type="text" class="form-control" placeholder="ID người dùng" name="userID"
+                <input type="text" class="form-control" placeholder="ID user" name="userID"
                        value="{{ old('userID') }}">
             </div>
 
         </div>
         <div class="form-group">
             <div class="col-sm-12">
-                <button class="btn btn-success form-control" type="submit">Tìm kiếm</button>
+                <button class="btn btn-success form-control" type="submit">Search</button>
             </div>
         </div>
     </form>
 
     @if (count($listKeys) == 0)
-        <div>Hiện không có key nào</div>
+        <div>No key found</div>
     @else
         <div class="table-responsive">
             {!!$listKeys->render()!!}
             <table class="table table-hover" style="background: #FFF">
                 <tr>
-                    <th>STT</th>
-                    <th>Loại tool</th>
-                    <th>Gói</th>
+                    <th>Index</th>
+                    <th>Tool</th>
+                    <th>Package</th>
                     <th>Key</th>
                     <th>ID User</th>
-                    <th>Thao tác</th>
+                    <th>Action</th>
                 </tr>
                 @foreach ($listKeys as $key)
                     <tr>
@@ -73,7 +72,7 @@
                         <td>{{$key->package}}</td>
                         <td>{{$key->key}}</td>
                         <td>{{$key->user_id}}</td>
-                        <td><a href="{{route('key.edit',$key->id)}}" class="btn btn-warning">Sửa</a>
+                        <td><a href="{{route('key.edit',$key->id)}}" class="btn btn-warning">Edit</a>
                             {{--<a href="{{route('tool.ajax',$tool->id)}}" class="btn btn-danger" >Xóa</a>--}}
                         </td>
                     </tr>

@@ -1,11 +1,11 @@
 @extends('adminlte::page')
 
-@section('title', 'Danh sách tool')
+@section('title', 'Tool list')
 
 @section('content_header')
-    <h1 style="float: left">Danh sách Tool</h1>
+    <h1 style="float: left">Tool list</h1>
     <a href="{{route('tool.create')}}" type="button" class="btn btn-block btn-success pull-right"
-       style="max-width: 200px">Thêm loại tool mới</a><br/><br/>
+       style="max-width: 200px">Add tool</a><br/><br/>
 @stop
 
 @section('content')
@@ -15,27 +15,27 @@
         </div>
     @endif
     @if (count($tools) === 0)
-        <p>Hiện không có tool nào</p>
+        <p>No tool found</p>
     @else
         <div class="table-responsive">
         <table class="table table-hover" style="background: #FFF">
             <tr>
-                <th>Tên Tool</th>
-                <th>Đã update</th>
-                <th>Đang kích hoạt</th>
-                <th>Thứ tự sắp xếp</th>
-                <th>Thao tác</th>
+                <th>Name</th>
+                <th>Updated</th>
+                <th>Active</th>
+                <th>Sort</th>
+                <th>Action</th>
             </tr>
             @foreach ($listTool as $tool)
                 <tr>
                     <td><strong>{{$tool->game_name}}</strong> - {{$tool->name}}</td>
-                    <td>@if ($tool->updated === 1) <i class="fa fa-check-square"></i> Có @else <i
-                                class="fa fa-close"></i> Không @endif</td>
-                    <td>@if ($tool->active === 1) <i class="fa fa-check-square"></i> Có @else <i
-                                class="fa fa-close"></i> Không @endif</td>
+                    <td>@if ($tool->updated === 1) <i class="fa fa-check-square"></i> Yes @else <i
+                                class="fa fa-close"></i> No @endif</td>
+                    <td>@if ($tool->active === 1) <i class="fa fa-check-square"></i> Yes @else <i
+                                class="fa fa-close"></i> No @endif</td>
                     <td>{{$tool->order}}</td>
-                    <td><a href="{{route('tool.edit',$tool->id)}}" class="btn btn-warning">Sửa</a>
-                        <a href="{{route('tool.delete',$tool->id)}}" onclick="return confirm('XÓA TOOL {{$tool->name}} ĐỒNG NGHĨA VỚI VIỆC XÓA HẾT TOÀN BỘ KEY. HÀNH ĐỘNG NÀY CỰC KÌ NGUY HIỂM! SAU KHI ẤN OK SẼ KHÔNG THỂ PHÔI PHỤC ĐƯỢC NỮA')" class="btn btn-danger" >Xóa</a>
+                    <td><a href="{{route('tool.edit',$tool->id)}}" class="btn btn-warning">Edit</a>
+                        <a href="{{route('tool.delete',$tool->id)}}" onclick="return confirm('DELETE TOOL {{$tool->name}} MEANS DELETE ALL KEY. THIS ACTION IS EXTREMELY DANGEROUS! AFTER PRESSING OK WILL NOT BE RECOVERY ANY MORE ')" class="btn btn-danger" >Delete</a>
                     </td>
                 </tr>
             @endforeach

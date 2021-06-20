@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Sửa thông tin thành viên')
+@section('title', 'Update user')
 
 @section('content_header')
-    <h1>Sửa thông tin thành viên {{$user->name}}</h1>
+    <h1>Update user {{$user->name}}</h1>
     <br>
     @if(Session::has('message'))
         <div class="alert alert-{{Session::get('level')}}">
@@ -32,12 +32,12 @@
 
 
         <div class="form-group">
-            <label for="">Tên người dùng</label>
+            <label for="">Name</label>
             <input type="text" class="form-control" name="name" id=""
                    value="{{old('name',isset($user->name)? $user->name: null)}}" required>
         </div>
         <div class="form-group">
-            <label for="">Địa chỉ email</label>
+            <label for="">Email</label>
             <input type="text" class="form-control" name="email" id=""
                    value="{{old('email',isset($user->email)? $user->email: null)}}" required>
         </div>
@@ -47,39 +47,39 @@
         {{--               value="{{old('phone',isset($user->phone)? $user->phone: null)}}" required>--}}
         {{--    </div>--}}
         <div class="form-group">
-            <label for="">Số tiền hiện tại</label>
+            <label for="">Current balance</label>
             <input type="number" class="form-control" name="credit" id=""
                    value="{{old('credit',isset($user->credit)? $user->credit: null)}}" required>
         </div>
         <div class="form-group">
-            <label for="">Ghi chú</label>
+            <label for="">Note</label>
             <input type="text" class="form-control" name="note" id=""
                    value="{{old('note',isset($user->note)? $user->note: null)}}"
-                   placeholder="Ghi lý do giải thích cho khách hiểu tại sao cộng trừ tiền của họ">
+                   placeholder="Reason add or subtract">
         </div>
         <div class="form-group">
-            <label for="">Được phép giới thiệu thêm bao nhiêu người?</label>
+            <label for="">Allow invite people maximum times</label>
             <input type="number" class="form-control" name="user_ref_count" id=""
                    value="{{old('user_ref_count',isset($user->user_ref_count)? $user->user_ref_count: null)}}">
         </div>
         <div class="form-group">
-            <label for="">Phần trăm hoa hồng khi người giới thiệu nạp tiền</label>
+            <label for="">Bonus percent when invited people top-up</label>
             <input type="number" class="form-control" name="user_ref_commission" id=""
                    value="{{old('user_ref_commission',isset($user->user_ref_commission)? $user->user_ref_commission: null)}}">
         </div>
         <div class="form-group">
-            <label for="">Vai trò</label>
+            <label for="">Role</label>
             <select class="form-control" name="type">
                 <option value="admin" {{$user->type == 'admin' ? "selected" : ''}}>Admin</option>
-                <option value="reseller" {{$user->type == 'reseller' ? "selected" : ''}}>Đại lý</option>
-                <option value="support" {{$user->type == 'support' ? "selected" : ''}}>Hỗ trợ</option>
-                <option value="default" {{$user->type == 'default' ? "selected" : ''}}>Khách thường</option>
+                <option value="reseller" {{$user->type == 'reseller' ? "selected" : ''}}>Agency</option>
+                <option value="support" {{$user->type == 'support' ? "selected" : ''}}>Support</option>
+                <option value="default" {{$user->type == 'default' ? "selected" : ''}}>Client</option>
             </select>
         </div>
         <div class="form-group">
-            <label for="pw">Đổi mật khẩu</label>
+            <label for="pw">Change password</label>
             <input type="text" name="password" id="pw" class="form-control">
-            <small>Để trống nếu không muốn đổi mật khẩu</small>
+            <small>Leave it empty if do not change password</small>
         </div>
         <br>
 

@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Thêm game mới')
+@section('title', 'Add new game')
 
 @section('content_header')
-    <h1>Thêm game mới</h1>
+    <h1>Add new game</h1>
     <br>
     @if(Session::has('message'))
         <div class="alert alert-{{Session::get('level')}}">
@@ -28,25 +28,25 @@
 
 
         <div class="form-group">
-            <label for="">Tên game</label>
+            <label for="">Name</label>
             <input type="text" class="form-control" name="name" id="" placeholder="PUBG Mobile" required>
         </div>
         <div class="form-group">
-            <label for="">Đường dẫn</label>
+            <label for="">Path</label>
             <input type="text" class="form-control" name="slug" id="" placeholder="pubg-mobile" required>
         </div>
         <div class="form-group">
-            <label for="thumb_image">Ảnh đại diện</label>
+            <label for="thumb_image">Picture</label>
             <input type="text" class="form-control" name="thumb_image" id="" placeholder="Nhập link ảnh online tại đây"
                    required>
         </div>
 
         <div class="form-group">
-            <label for="description">Mô tả ngắn</label>
+            <label for="description">Short description</label>
             <input id="description" name="description" class="form-control" value="{{ old('description') }}"/>
         </div>
         <div class="form-group">
-            <label for="description_eng">Mô tả ngắn (tiếng Anh)</label>
+            <label for="description_eng">Short description (English)</label>
             <input id="description_eng" name="description_eng" class="form-control"
                    value="{{ old('description_eng') }}"/>
         </div>
@@ -89,22 +89,22 @@
             ) !!}
         </div>
         <div class="form-group">
-            <label for="notice">Nội dung thông báo</label>
+            <label for="notice">Notice content</label>
             <textarea id="notice" name="notice" rows="10" class="form-control">{{ old('notice') }}</textarea>
         </div>
         <div class="form-group">
-            <label for="notice_eng">Nội dung thông báo (tiếng Anh)</label>
+            <label for="notice_eng">Notice content (English)</label>
             <textarea id="notice_eng" name="notice_eng" rows="10"
                       class="form-control">{{ old('notice_eng') }}</textarea>
         </div>
         <div class="form-group">
-            <label for="">Thứ tự sắp xếp</label>
+            <label for="">Sort</label>
             <input type="number" class="form-control" name="order" id="" value="1" required>
         </div>
         <br>
 
-        <a href="{{URL::previous()}}" class="btn btn-warning">QUAY LẠI</a>
-        <button type="submit" class="btn btn-success pull-right" style="width: 90px">LƯU</button>
+        <a href="{{URL::previous()}}" class="btn btn-warning">BACK</a>
+        <button type="submit" class="btn btn-success pull-right" style="width: 90px">SAVE</button>
     </form>
 @stop
 

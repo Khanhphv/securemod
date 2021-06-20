@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Thêm key mới')
+@section('title', 'Add new key')
 
 @section('content_header')
-    <h1>Thêm key mới</h1>
+    <h1>Add new key</h1>
     <br>
     @if(Session::has('message'))
         <div class="alert alert-{{Session::get('level')}}">
@@ -29,14 +29,14 @@
         <div class="form-group">
 
             @if(count($listTool) == 0)
-                <label for="" class="">Chưa có tool nào!</label>
+                <label for="" class="">No tool found!</label>
             @else
                 <label for="" class="">Chọn tool</label>
                 <select class="form-control" id="tool" required name="tool_id">
                     @php
                         $packagesList = array();
                     @endphp
-                       <option value="null">-- Chọn tool --</option>
+                       <option value="null">-- Select tool --</option>
                     @foreach($tools as $tool)
                         @php
                             $packagesList["t".$tool->id] = $tool->package;
@@ -50,20 +50,20 @@
         </div>
 
         <div class="form-group">
-            <label for="package" class="">Chọn loại key</label>
+            <label for="package" class="">Select key</label>
             <select class="form-control" id="package" name="package">
             </select>
         </div>
         <div class="form-group">
-            <label for="">Danh sách key</label>
+            <label for="">List of key</label>
             <textarea name="keys" class="form-control" rows="15">{{ old('keys') }}</textarea>
         </div>
 
 
         <br>
 
-        <a href="{{URL::previous()}}" class="btn btn-warning">QUAY LẠI</a>
-        <button type="submit" class="btn btn-success pull-right" style="width: 90px">LƯU</button>
+        <a href="{{URL::previous()}}" class="btn btn-warning">BACK</a>
+        <button type="submit" class="btn btn-success pull-right" style="width: 90px">SAVE</button>
     </form>
 @stop
 
