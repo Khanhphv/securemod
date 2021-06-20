@@ -1,5 +1,7 @@
 <?php
 return [
+    'site_name' => 'Securecheats',
+    'site_url' => 'securecheats.com',
     'email' => [
       'subject' => [
           'invoice' => 'Payment Successful'

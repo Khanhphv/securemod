@@ -131,7 +131,7 @@
             <div class="intro-text col-md-7">
 
                 <h1 class="intro"><b>Your security</b> is our priority</h1>
-                <p class="hero-txt"><b>Securecheat's mission</b> is to create the world's most innovative and secure
+                <p class="hero-txt"><b>{{config('const.site_name')}}'s mission</b> is to create the world's most innovative and secure
                     technology - while achieving top levels in user-friendly software by applying Artificial
                     Intelligence into our cheat's future</p>
 
@@ -162,7 +162,7 @@
                 <div class="skills-text">
                     <h2><b>More About us:</b></h2>
 
-                    <p><b>SecureCheats is now about a year old since it was founded - our team of coders are
+                    <p><b>{{config('const.site_name')}} is now about a year old since it was founded - our team of coders are
                             professional and are specialized in many aspects in programming, reverse engineering,
                             exploiting and have made many cheats/hacks/exploits in almost all game engines out
                             there!</b></p>
@@ -174,7 +174,7 @@
                         like VAC, Fairfight, Easy Anti-cheat, and most notoriously Battleye and FACEIT Anti-cheat... You
                         can be sure that you're always safe while using our products.</p>
                     <p><b>Our goal is far more than just business, it's about customer satisfaction!<br> Welcome to
-                            SecureCheats, where your satisfaction is our success.
+                            {{config('const.site_name')}}, where your satisfaction is our success.
                         </b></p>
 
 
@@ -240,7 +240,7 @@
                 <h2><b>The Safest most Private</b><br>Chats Online...
                 </h2>
 
-                <p><b>SecureCheats are developed with the most of safety in mind, but don't think that we're lacking in
+                <p><b>{{config('const.site_name')}} are developed with the most of safety in mind, but don't think that we're lacking in
                         terms of functions...</b></p>
 
                 <p>We provide the world's deadliest and most accurate aimbot, with all the settings you can imagine at
@@ -291,7 +291,7 @@
                 <div class="mz-module-about">
                     <span class="lnr lnr-code why-us"></span>
                     <h3>Continued Development</h3>
-                    <p>At SecureCheats we will never stop working and developing new technologies, our team is always
+                    <p>At {{config('const.site_name')}} we will never stop working and developing new technologies, our team is always
                         looking to keep our cheats not only up-to-date but also undetected for the longest time possible
                         and provide new technologies to do so!</p>
                 </div>
@@ -465,7 +465,7 @@
                     positive discussions.<br>
                     Whether you need help setting up for the fire time, or just player with other fellow cheaters, our
                     forum will be very happy to help you with all that you need, we also have tutorials posted for you.
-                    We make sure that when you choose Securecheats, Cheating is only part of the full experience!
+                    We make sure that when you choose {{config('const.site_name')}}, Cheating is only part of the full experience!
 
                 </p>
 

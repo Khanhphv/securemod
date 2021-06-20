@@ -1,7 +1,7 @@
 <?php
 
 if (strstr(strtolower($_SERVER['HTTP_USER_AGENT']), "facebookexternalhit")) {
-echo '<title>SECURECHEAT.XYZ -  Hack all gane</title>';
+echo '<title>'.config('const.site_name').'.XYZ -  Hack all gane</title>';
 exit(0);
 }
 date_default_timezone_set('Asia/Ho_Chi_Minh');

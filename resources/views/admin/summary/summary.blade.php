@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Thống kê')
+@section('title', 'Sumary')
 
 
 @section('content')
@@ -29,23 +29,23 @@
                     <div class="row">
                         <div class="col-md-3 col-xs-4">
                             <div class="form-group">
-                                <label>Lọc theo </label>
+                                <label>Filter by </label>
                                 <select class="form-control" name="" id="top-key-type" onchange="showType()">
-                                    <option value="month">Tháng</option>
-                                    <option value="day">Ngày</option>
+                                    <option value="month">Month</option>
+                                    <option value="day">Date</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-3 col-xs-4">
                             <div class="form-group selection-day" style="display:none;">
-                                <label>Chọn ngày thống kê: </label>
+                                <label>Select date: </label>
                                 <input type="date" class="form-control" value="{{ now()->format('Y-m-d') }}" onchange="showType()" name="start" style=" margin-left: 10px">
                             </div>
                             <div class="form-group selection-month">
-                                <label>Chọn tháng </label>
+                                <label>Select month </label>
                                 <select class="form-control" name="start" onchange="showType()" id="">
                                     @for($i = 1; $i <=12; $i++ )
-                                        <option value="{{ now()->year }}-{{$i >= 10 ? $i : '0'. $i}}-01">Thang {{ $i  }}</option>
+                                        <option value="{{ now()->year }}-{{$i >= 10 ? $i : '0'. $i}}-01">{{ date('F', mktime(0, 0, 0, $i, 10))  }}</option>
                                         @endfor
                                 </select>
                             </div>
@@ -55,7 +55,7 @@
 {{--                        </div>--}}
                     </div>
                     <secction class="content-header">
-                        <h2 class="text-center"> Top 5 số key bán ra trong tháng</h2>
+                        <h2 class="text-center"> Top 5 keys in month</h2>
                     </secction>
                     <div class="row" style="display: flex; justify-content: center; padding-bottom: 25px">
                         <div class="">
@@ -77,7 +77,7 @@
                         <div class="col-md-12">
                             <div class="box box-info">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Thống kê key bán ra</h3>
+                                    <h3 class="box-title">Keys overview</h3>
                                     <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                                         </button>
@@ -87,7 +87,7 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="form-group">
-                                            <label>Chọn ngày thống kê: </label>
+                                            <label>Select date: </label>
                                             <input type="date" class="form-control" value="{{ now()->format('Y-m-d') }}" onchange="selectDay(event.target.value)" name="start">
                                             <i></i>
                                         </div>
@@ -100,9 +100,9 @@
                                             <thead>
                                             <tr>
                                                 <th>Tool</th>
-                                                <th>Gói</th>
-                                                <th>Số lượng</th>
-                                                <th>Tổng tiền</th>
+                                                <th>Group</th>
+                                                <th>Quantity</th>
+                                                <th>Amount</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -115,7 +115,7 @@
                             </div>
                             <div class="box box-info">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Biểu đồ</h3>
+                                    <h3 class="box-title">Chart</h3>
                                     <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                                         </button>
@@ -145,7 +145,7 @@
                                             </div>
                                             <div class="col-md-2">
                                                 <button type="button" class="btn btn-default" id="detail-button" onclick="detail()" data-toggle="modal" style="margin-top: 23px" data-target="#modal-default">
-                                                    Thống kê chi tiết
+                                                    Overview detail
                                                 </button>
                                             </div>
                                 </form>
@@ -184,7 +184,7 @@
                             <select class="form-control" name="startDate" onchange="detail()">
                                     <option value="">--</option>
                                 @for($i = 1; $i <=12; $i++ )
-                                    <option value="{{ now()->year }}-{{$i >= 10 ? $i : '0'. $i}}-01">Thang {{ $i  }}</option>
+                                    <option value="{{ now()->year }}-{{$i >= 10 ? $i : '0'. $i}}-01"> {{ date('F', mktime(0, 0, 0, $i, 10))  }}</option>
                                     @endfor
                             </select>
                         </div>
@@ -277,13 +277,13 @@
             data: {
                 labels: labelConfig,
                 datasets: [{
-                    label: 'Tiền nạp',
+                    label: 'Income',
                     fill: false,
                     backgroundColor: 'rgb(255, 159, 64)',
                     borderColor: 'rgb(255, 159, 64)',
                     data: money,
                 },{
-                    label: 'Tiền lãi',
+                    label: 'Interest',
                     fill: false,
                     backgroundColor: chartColor.blue,
                     borderColor: chartColor.blue,
@@ -294,7 +294,7 @@
                 responsive: true,
                 title: {
                     display: true,
-                    text: 'Thống kê số tiền'
+                    text: 'Money overview'
                 },
                 tooltips: {
                     mode: 'index',
@@ -384,7 +384,7 @@
                                     '#ff9f40',
                                     '#ff6384',
                                 ],
-                                label: 'Top key bán ra trong tháng',
+                                label: 'Top keys in month',
                             }],
                             labels: keyLabel
                         },
@@ -441,7 +441,7 @@
                             responsive: true,
                             title: {
                                 display: true,
-                                text: 'Thống kê số key'
+                                text: 'Keys overview'
                             },
                             tooltips: {
                                 mode: 'index',
@@ -515,7 +515,7 @@
                         let i = 0;
                         if (data.length === 0) {
                             let tr = document.createElement('tr');
-                            tr.innerHTML = '<td>' + 'Không có dữ liệu' + '<td>';
+                            tr.innerHTML = '<td>' + 'No data' + '<td>';
                             table.append(tr);
                         }
                         data.forEach((element ,index) => {

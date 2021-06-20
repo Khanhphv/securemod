@@ -1,10 +1,10 @@
 @extends('adminlte::page')
 
-@section('title', 'Thống kê')
+@section('title', 'Overview')
 
 @section('content_header')
 
-    <h1 class="text-white">Thống kê ngày {{\Carbon\Carbon::parse($start)->format('d-m-Y')}}
+    <h1 class="text-white">Overview {{\Carbon\Carbon::parse($start)->format('d-m-Y')}}
     </h1>
 
 @stop
@@ -34,12 +34,12 @@
         <div class="col-md-12">
             <form class="form-inline text-white" action="">
                 <div class="form-group">
-                    <label>Chọn ngày thống kê: </label>
+                    <label>Select date: </label>
                     <input type="date" class="form-control" value="{{old('start', isset($start) ? $start : "")}}"
                            name="start" style="margin-left: 10px">
                 </div>
 
-                <button type="submit" class="btn btn-warning" style="margin-left: 10px">Thống kê</button>
+                <button type="submit" class="btn btn-warning" style="margin-left: 10px">View</button>
             </form>
             <br>
         </div>
@@ -50,9 +50,9 @@
                 <span class="info-box-icon bg-aqua"><i class="fa fa-calendar"></i></span>
 
                 <div class="info-box-content">
-                    <strong>TIỀN VÀO TK CỦA KHÁCH: {{number_format($momoMoney+$cardMoney+$atmMoney+$commissionMoney+$adminMoney)}}</strong><br>
-                    THẺ: {{number_format($cardMoney)}} | MOMO: {{number_format($momoMoney)}}
-                    | ATM: {{number_format($atmMoney)}} |  ADMIN: {{number_format($adminMoney)}} | HOA HỒNG: {{number_format($commissionMoney)}}
+                    <strong>INCOME: {{number_format($momoMoney+$cardMoney+$atmMoney+$commissionMoney+$adminMoney)}}</strong><br>
+                    CARD: {{number_format($cardMoney)}} | MOMO: {{number_format($momoMoney)}}
+                    | ATM: {{number_format($atmMoney)}} |  ADMIN: {{number_format($adminMoney)}} | BONUS: {{number_format($commissionMoney)}}
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -62,7 +62,7 @@
             <div class="info-box">
                 <span class="info-box-icon bg-aqua"><i class="fa fa-calendar"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">KHÁCH TIÊU TRONG NGÀY</span>
+                    <span class="info-box-text">SPEND</span>
                     <span class="info-box-number">{{number_format($totalMoneySpent)}}
                         <small>$</small></span>
                 </div>
@@ -74,7 +74,7 @@
                 <span class="info-box-icon bg-red"><i class="fa fa-calendar"></i></span>
 
                 <div class="info-box-content">
-                    <span class="info-box-text">LÃI TRONG NGÀY</span>
+                    <span class="info-box-text">INTEREST</span>
                     <span class="info-box-number">{{number_format($moneyInterest)}}
                         <small>$</small></span>
                 </div>
@@ -87,7 +87,7 @@
                 <span class="info-box-icon bg-red"><i class="fa fa-calendar"></i></span>
 
                 <div class="info-box-content">
-                    <span class="info-box-text">TỔNG LÃI TRONG THÁNG</span>
+                    <span class="info-box-text">MONTHLY INTEREST</span>
                     <span class="info-box-number">{{number_format($totalMoneyMonth)}}
                         <small>$</small></span>
                 </div>
@@ -101,9 +101,9 @@
                 <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
 
                 <div class="info-box-content">
-                    <span class="info-box-text">  KEY BÁN RA</span>
+                    <span class="info-box-text">  KEY SOLD</span>
                     <span class="info-box-number">  {{number_format($numberSoldKey)}}
-                        <small>LƯỢT</small></span>
+                        <small>KEYS</small></span>
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -114,7 +114,7 @@
                 <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
 
                 <div class="info-box-content">
-                    <span class="info-box-text">Thành viên mới</span>
+                    <span class="info-box-text">NEW MEMBER</span>
                     <span class="info-box-number">{{number_format($newUser)}}</span>
                 </div>
                 <!-- /.info-box-content -->
@@ -127,7 +127,7 @@
                 <span class="info-box-icon bg-red"><i class="fa fa-calendar"></i></span>
 
                 <div class="info-box-content">
-                    <span class="info-box-text">TIỀN NẠP VÀO TRONG NGÀY</span>
+                    <span class="info-box-text">DAILY CHARGE</span>
                     <span class="info-box-number">{{number_format($napVaoTrongNgay)}}
                         <small>$</small></span>
                 </div>
@@ -140,8 +140,8 @@
                 <span class="info-box-icon bg-red"><i class="fa fa-calendar"></i></span>
 
                 <div class="info-box-content">
-                    <span class="info-box-text">TIỀN NẠP VÀO TRONG THÁNG</span>
-                    <span class="info-box-number">{{number_format($napVaoTrongThang)}}</span> Paypal: {{number_format($napQuaPaypal)}}, CoinPayment: {{number_format($napQuaCoinPayment)}}, Admin cộng: {{number_format($napquaAdmin)}}
+                    <span class="info-box-text">MONTHLY CHARGE</span>
+                    <span class="info-box-number">{{number_format($napVaoTrongThang)}}</span> Paypal: {{number_format($napQuaPaypal)}}, CoinPayment: {{number_format($napQuaCoinPayment)}}, Admin bonus: {{number_format($napquaAdmin)}}
                 </div>
                 <!-- /.info-box-content -->
             </div>
@@ -153,7 +153,7 @@
             <!-- USERS LIST -->
             <div id="remain-key" class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Số key còn lại</h3>
+                    <h3 class="box-title">Keys left</h3>
 
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
@@ -237,7 +237,7 @@
             <!-- USERS LIST -->
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Số key bán ra</h3>
+                    <h3 class="box-title">Key sold</h3>
 
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
@@ -248,7 +248,7 @@
                     </div>
                 </div>
                 <!-- /.box-header -->
-                
+
                 @if(count($keySoled) > 0)
                     <div class="box-body">
                         <div class="table-responsive">
@@ -256,9 +256,9 @@
                                 <thead>
                                 <tr>
                                     <th>Tool</th>
-                                    <th>Gói</th>
-                                    <th>Số lượng</th>
-                                    <th>Tổng tiền</th>
+                                    <th>Group</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -284,7 +284,7 @@
                 @else
                     <div class="box-body">
                         <div class="table-responsive">
-                            <h3>Không có key nào được bán</h3>
+                            <h3>No key sold</h3>
                         </div>
                     </div>
                 @endif
@@ -298,7 +298,7 @@
             <!-- USERS LIST -->
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">GIAO DỊCH MỚI NHẤT</h3>
+                    <h3 class="box-title">LATEST TRANSACTION</h3>
 
                     <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
@@ -320,11 +320,11 @@
                                     <th>ID</th>
                                     <th>UserID</th>
                                     <th>Username</th>
-                                    <th style="text-align: center">Hành động</th>
-                                    <th style="text-align: center">Số tiền</th>
+                                    <th style="text-align: center">Action</th>
+                                    <th style="text-align: center">Amount</th>
 
-                                    <th>Nội dung</th>
-                                    <th style="text-align: center">Thời gian</th>
+                                    <th>Content</th>
+                                    <th style="text-align: center">Date</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -351,7 +351,7 @@
                 @else
                     <div class="box-body">
                         <div class="table-responsive">
-                            <h3>Không có giao dịch nào</h3>
+                            <h3>No transaction</h3>
                         </div>
                     </div>
                 @endif

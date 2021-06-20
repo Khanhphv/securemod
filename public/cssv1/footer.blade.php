@@ -13,7 +13,7 @@
                 For administrative questions: support@battlelog.co</div>
         </div>
         <div>
-            <div>Copyright © 2019 SecureCheats. All rights reserved. Verified member of Elitepvper </div>
+            <div>Copyright © 2019 {{config('const.site_name')}}. All rights reserved. Verified member of Elitepvper </div>
         </div>
     </div>
 

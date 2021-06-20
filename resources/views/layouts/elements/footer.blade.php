@@ -18,7 +18,7 @@
                 <div class="col-md-10 text-center t">
                     <p class="text-justify">pubg mobile hack | hack pubg pc steam | hack hack game online | tool pubg | tool pubg mobile | apex legends | undetected pc hacks | aimbot esp radar cheats | pubg mobile hack | hack pubg mb | pubg hack tool pubg | thue hackpubg | thue tool pubg | pubg mobile | pubg mobile simulator | hack ring of eysium | ring of eysium esp | hire hack roe
                     </p>
-                    Copyright ©2019 SECURECHEAT.COM. All rights reserved.<br>
+                    Copyright ©2019 {{config('const.site_url')}}. All rights reserved.<br>
                 </div>
             </div>
         </div>

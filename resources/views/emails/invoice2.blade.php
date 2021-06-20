@@ -50,7 +50,7 @@
                     </div>
                     <div style="color: white">
                         <h2 style="font-size: 2em;">Hi, {{ $userName }}!</h2>
-                        <h2 style="font-size: 1.3em;margin-top: 0">Your order on SecureCheats is</h2>
+                        <h2 style="font-size: 1.3em;margin-top: 0">Your order on {{config('const.site_name')}} is</h2>
                         <h1 style="font-size: 2.5em; margin-top: 0">Complete</h1>
                     </div>
                 </section>
@@ -83,7 +83,7 @@
                     </tr>
                     <tr>
                         <td colspan="3">
-                            Your order on SecureCheats is complete and you will find key and package information below.
+                            Your order on {{config('const.site_name')}} is complete and you will find key and package information below.
                         </td>
                     </tr>
                     <tr>
@@ -120,8 +120,8 @@
                 </table>
                 <h3>Terms of Services General</h3>
                 <div>
-                    Securecheats, at its sole discretion, reserves any rights to deny or grant a refund
-                    for a fee paid to Securecheats for a service or product offered by Securecheats,
+                    {{config('const.site_name')}}, at its sole discretion, reserves any rights to deny or grant a refund
+                    for a fee paid to {{config('const.site_name')}} for a service or product offered by {{config('const.site_name')}},
                     A refund is typically granted when an incompatibility is identified that can not be solved.
                     However, it is the user's responsibility to read and review any requirements that our software
                     requires to run smoothly and verify that their system is compatible with our software.
