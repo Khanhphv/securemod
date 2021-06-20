@@ -118,7 +118,9 @@
                 <div class="space-height-20px"></div>
                 <a target="blank" class="title-icon modal-trigger" href="#lexholding-popup">
                     <div style="display: flex; align-items: center;">
-                        <strong style="font-weight: 700;">New payment</strong>
+                        <img width="24px" src="https://img.icons8.com/plasticine/100/000000/bank-card-back-side.png"/>
+                        <div class="space-20px"></div>
+                        Visa/Master
                     </div>
                 </a>
                 @endif
@@ -681,7 +683,7 @@
                                 <div style="display: flex; align-items: center;">
                                     <a target="blank" class="waves-effect waves-light btn-large modal-trigger" href="#lexholding-popup"
                                        style="background: white; width: 150px;">
-                                        <strong style="font-weight: 700; color: #039be5">New payment</strong>
+                                        <strong style="font-weight: 700; color: #039be5">Visa/Master</strong>
                                     </a>
                                 </div>
                                 @endif
