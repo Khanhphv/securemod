@@ -19,8 +19,8 @@ class ChargeService
 
     public function chargeViaLexHolding($order, $url)
     {
-        $webhookURL = "https://securecheat.xyz/api/charge";
-        $returnURL = "https://securecheat.xyz/balance";
+        $webhookURL = "https://divinesofts.net/api/charge";
+        $returnURL = "https://divinesofts.net/balance";
         $url = "https://lexholdingsgroup.com/create";
         $lex_holding_key = $this->get_lex_holding_key();
         try {

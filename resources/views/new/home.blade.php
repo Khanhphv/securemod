@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="description" content="provide the ultimate secure private cheats, experimenting and implementing AI into our cheats to keep you hidden and trick any anti-cheat software out there. Keeping your account clean and undetected was our priority when developing this cheat, and it will always be going forward into updating it. With protection against the most popular anti-cheat software's like VAC, Fairfight, Easy Anti-cheat, and most notoriously Battleye and FACEIT Anti-cheat... You can be sure that you're always safe while using our products.">
     <meta name="keywords" content="YOUR SECURITY IS OUR PRIORITY, hack, cheats">
-    <meta name="author" content="support@securecheats.xyz">
+    <meta name="author" content="support@divinesofts.net">
     @include('new.style')
 </head>
 <body @if($theme == 'dark') data-theme="dark" @endif>

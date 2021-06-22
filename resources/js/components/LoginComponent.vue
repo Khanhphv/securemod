@@ -37,12 +37,12 @@
                                             class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
                                         LOGIN
                                     </button>
-									
+
                                 </div>
 								<div class="my-3">
-                                    <a class="btn btn-block btn-default btn-lg font-weight-medium auth-form-btn" href="https://securecheat.xyz/register">REGISTER</a>
+                                    <a class="btn btn-block btn-default btn-lg font-weight-medium auth-form-btn" href="https://divinesofts.net/register">REGISTER</a>
                                 </div>
-								
+
                                 <p class="text-center">OR</p>
                                 <div class="mb-2 d-block">
                                     <button type="button" class="btn btn-facebook auth-form-btn flex-grow col-12 mb-2"
@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="text-center mt-4 font-weight-light">
                                     If you do not have an account, the system will automatically create new for you<br>
-									<a href="https://securecheat.xyz/blog/6">Terms of Service and Refund Policy.</a>
+									<a href="https://divinesofts.net/terms-of-services">Terms of Service and Refund Policy.</a>
                                 </div>
                             </form>
                         </div>
@@ -69,7 +69,7 @@
                         <p class="text-white font-weight-medium text-center flex-grow align-self-end">Copyright &copy;
                             2019
                             All rights reserved.</p>
-							
+
                     </div>
                 </div>
             </div>

@@ -5,7 +5,7 @@
     @section('headerTitle', 'Balance')
     <meta name="description" content="Transaction information">
     <meta name="keywords" content="history, balance, invoice, keys, transaction">
-    <meta name="author" content="support@securecheats.xyz">
+    <meta name="author" content="support@divinesofts.net">
     @include('new.style')
     <style>
         @media screen and (max-width: 600px) {

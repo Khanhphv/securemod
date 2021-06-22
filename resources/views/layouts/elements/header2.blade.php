@@ -12,7 +12,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="{{url('')}}">
-                    <img src="{{url('/images/logo.svg')}}" height="50px" title="{{config('const.site_url')}}" alt="Logo SECURECHEAT.com"
+                    <img src="{{url('/images/logo.svg')}}" height="50px" title="{{config('const.site_url')}}" alt="Logo divinesofts.net"
                     class="logo">
                     <h2 class="site-title">{{config('const.site_url')}}<span>{{trans('header.slogan')}}</span></h2>
                 </a>

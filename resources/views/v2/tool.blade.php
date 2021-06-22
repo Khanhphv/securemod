@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="description" content="{{ $game->description }}">
     <meta name="keywords" content="{{ $game->keyword }}">
-    <meta name="author" content="support@securecheats.xyz">
+    <meta name="author" content="support@divinesofts.net">
     @include('new.style')
     <style>
         .carousel-slider{

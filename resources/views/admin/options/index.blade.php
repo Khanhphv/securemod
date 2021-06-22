@@ -126,23 +126,23 @@
         </div>
         <div class="form-group">
             <label for="header_notice">Homepage notice</label>
-            <textarea id="header_notice" name="header_notice" class="form-control my-editor"
+            <textarea id="header_notice" name="header_notice" class="form-control"
                       rows="10">{{old('header_notice', isset($siteSettings['header_notice'])? $siteSettings['header_notice']: null)}}</textarea>
         </div>
 
         <div class="form-group">
             <label for="popup">Homepage popup</label>
-            <textarea id="popup" name="popup" class="form-control my-editor"
+            <textarea id="popup" name="popup" class="form-control"
                       rows="10">{{old('popup', isset($siteSettings['popup'])? $siteSettings['popup']: null)}}</textarea>
         </div>
         <div class="form-group">
             <label for="float_content_left">Right slide menu</label>
-            <textarea id="float_content_left" name="float_content_left" class="form-control my-editor"
+            <textarea id="float_content_left" name="float_content_left" class="form-control"
                       rows="3">{{old('float_content_left', isset($siteSettings['float_content_left'])? $siteSettings['float_content_left']: null)}}</textarea>
         </div>
         <div class="form-group">
             <label for="float_content_right">Left slide menu</label>
-            <textarea id="float_content_right" name="float_content_right" class="form-control my-editor"
+            <textarea id="float_content_right" name="float_content_right" class="form-control"
                       rows="3">{{old('float_content_right', isset($siteSettings['float_content_right'])? $siteSettings['float_content_right']: null)}}</textarea>
         </div>
 

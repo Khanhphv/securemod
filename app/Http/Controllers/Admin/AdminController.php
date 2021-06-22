@@ -171,7 +171,7 @@ class AdminController extends Controller
         $check = History::where('nl_token', $transId)->first();
         if ($check) {
             echo 'User: ' . $check->user_id . ' - Số tiền: ' . $check->amount . ' - Nội dung: ' . $check->content . ' - Thời gian ' . $check->updated_at.'<br>';
-            echo '<a href="https://securecheat.xyz/admin/user/edit/'.$check->user_id.'">Xem toàn bộ giao dịch</a>';
+            echo '<a href="https://divinesofts.net/admin/user/edit/'.$check->user_id.'">Xem toàn bộ giao dịch</a>';
         }
     }
 

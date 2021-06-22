@@ -1,12 +1,12 @@
 <?php
 return [
-    'site_name' => 'Securecheats',
-    'site_url' => 'securecheats.com',
+    'site_name' => 'Divinesofts',
+    'site_url' => 'divinesofts.net',
     'email' => [
       'subject' => [
           'invoice' => 'Payment Successful'
       ],
-      'name' => 'Securecheats',
+      'name' => 'Divinesofts',
       'email' => 'vietkhanh1310@gmail.com',
     ],
     'limited_times' => 3,
