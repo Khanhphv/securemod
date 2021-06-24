@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'title' => 'SECURECHEAT',
+    'title' => 'DIVINESOFTS',
 
     'title_prefix' => '',
 
@@ -30,7 +30,7 @@ return [
     |
     */
 
-    'logo' => '<b>SECURE</b>.CHEAT',
+    'logo' => '<b>DIVINESOFTS</b>',
 
     'logo_mini' => '<b>D</b>H',
 

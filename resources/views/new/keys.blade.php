@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="description" content="keys history">
     <meta name="keywords" content="history, balance, invoice">
-    <meta name="author" content="support@securecheats.xyz">
+    <meta name="author" content="support@divinesofts.net">
     @include('new.style')
 </head>
 <body @if($theme == 'dark') data-theme="dark" @endif>

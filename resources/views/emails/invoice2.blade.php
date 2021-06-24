@@ -44,8 +44,8 @@
             <div style="padding: 20px 0 20px; background: black; text-align: center">
                 <section>
                     <div>
-                        <a href="https://securecheat.xyz/">
-                            <img style="margin: 0 auto; display: block; width: 50%; min-width: 320px;" src="https://securecheat.xyz/images/logo_landing.png" alt="">
+                        <a href="https://divinesofts.net/">
+                            <img style="margin: 0 auto; display: block; width: 50%; min-width: 320px;" src="https://divinesofts.net/images/logo_landing.png" alt="">
                         </a>
                     </div>
                     <div style="color: white">
@@ -126,7 +126,7 @@
                     However, it is the user's responsibility to read and review any requirements that our software
                     requires to run smoothly and verify that their system is compatible with our software.
                 </div>
-                <a href="https://securecheat.xyz/terms-of-services">More about our TOS and Policie</a>
+                <a href="https://divinesofts.net/terms-of-services">More about our TOS and Policie</a>
             </div>
         </td>
     </tr>
