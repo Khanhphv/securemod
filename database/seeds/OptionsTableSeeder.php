@@ -13,31 +13,44 @@ class OptionsTableSeeder extends Seeder
     {
         DB::table('options')->insert([
             'option' => 'payment_gate',
-            'value' => 'thuthe'
+            'value' => 'thuthe',
+            'locate' => 'vi'
 		]);
 		DB::table('options')->insert([
             'option' => 'header_sub_title',
-            'value' => 'ĐÃ UPDATE BẢN MỚI NHẤT 0.12'
+            'value' => 'ĐÃ UPDATE BẢN MỚI NHẤT 0.12',
+            'locate' => 'vi'
 		]);
 		DB::table('options')->insert([
             'option' => 'header_notice',
-            'value' => 'File tải về đã có đủ bản 0.11 (cũ) và 0.12 (mới nhất). Một số máy không tải được tool do Windows Defender nhận nhầm Virus. Bạn hãy update lên Windows 10 bản mới nhất, hoặc tắt tạm WD.<br><br>Cách triệt để nhất là xóa Windows Defender theo <a href="https://vhieu.com/tin-tuc/huong-dan-xoa-vinh-vien-windows-defender-mien-phi-voi-windows-10-tweaker-871.html" target="_blank" rel="nofollow">hướng dẫn này</a>'
+            'value' => 'File tải về đã có đủ bản 0.11 (cũ) và 0.12 (mới nhất). Một số máy không tải được tool do Windows Defender nhận nhầm Virus. Bạn hãy update lên Windows 10 bản mới nhất, hoặc tắt tạm WD.<br><br>Cách triệt để nhất là xóa Windows Defender theo <a href="https://vhieu.com/tin-tuc/huong-dan-xoa-vinh-vien-windows-defender-mien-phi-voi-windows-10-tweaker-871.html" target="_blank" rel="nofollow">hướng dẫn này</a>',
+            'locate' => 'vi'
 		]);
         DB::table('options')->insert([
             'option' => 'commission',
-            'value' => 3
+            'value' => 3,
+            'locate' => 'en'
         ]);
         DB::table('options')->insert([
             'option' => 'popup',
-            'value' => 'Nội dung thông báo'
+            'value' => 'Nội dung thông báo',
+            'locate' => 'vi'
         ]);
         DB::table('options')->insert([
             'option' => 'float_content_left',
-            'value' => 'Nội dung thông báo chạy ở bên trái web'
+            'value' => 'Nội dung thông báo chạy ở bên trái web',
+            'locate' => 'vi'
         ]);
         DB::table('options')->insert([
             'option' => 'float_content_right',
-            'value' => 'Nội dung thông báo chạy ở bên phải web'
+            'value' => 'Nội dung thông báo chạy ở bên phải web',
+            'locate' => 'vi'
+        ]);
+
+        DB::table('options')->insert([
+            'option' => 'discord_channel',
+            'value' => 'Nội dung thông báo chạy ở bên phải web',
+            'locate' => 'vi'
         ]);
     }
 }
