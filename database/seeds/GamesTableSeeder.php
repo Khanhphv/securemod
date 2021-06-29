@@ -36,5 +36,14 @@ class GamesTableSeeder extends Seeder
             'notice' => 'Loa loa loa thông báo ở đầu trang',
             'order' => 30
         ]);
+
+        DB::table('games')->insert([
+            'name' => 'Apex Legend123',
+            'slug' => 'apex-legend-123',
+            'thumb_image' => 'https://static.digit.in/default/thumb_129666_default_td_480x480.jpeg',
+            'description' => 'Đã cập nhật bản mới nhất cho game 0.13',
+            'notice' => 'Loa loa loa thông báo ở đầu trang',
+            'order' => 30
+        ]);
     }
 }
