@@ -25,7 +25,8 @@ class ToolsTableSeeder extends Seeder
             'content' => 'Hướng dẫn cài đặt',
             'order' => 10,
             'game_id' => 1,
-            'showcase' => 'PzDMtE9n6pA'
+            'showcase' => 'PzDMtE9n6pA',
+            'discount' => 0
         ]);
 
         DB::table('tools')->insert([
@@ -42,7 +43,8 @@ class ToolsTableSeeder extends Seeder
             'content' => 'Tiếng Anh, chỉ chơi bản Quốc tế. Có ESP, AIM và các chức năng nâng cao. An toàn 70%',
             'order' => 20,
             'game_id' => 2,
-            'showcase' => 'PzDMtE9n6pA'
+            'showcase' => 'PzDMtE9n6pA',
+            'discount' => 0
         ]);
 
         DB::table('tools')->insert([
@@ -59,7 +61,8 @@ class ToolsTableSeeder extends Seeder
             'content' => 'Tiếng Anh, chỉ chơi bản Quốc tế. Có ESP, AIM và các chức năng nâng cao. An toàn 70%',
             'order' => 30,
             'game_id'=>3,
-            'showcase' => 'PzDMtE9n6pA'
+            'showcase' => 'PzDMtE9n6pA',
+            'discount' => 10
         ]);
     }
 }

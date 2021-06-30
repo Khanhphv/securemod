@@ -39,6 +39,7 @@ class CreateToolsTable extends Migration
             $table->integer('order');
             $table->string('author', 191)->nullable();
             $table->text('api_get_key')->nullable();
+            $table->integer('discount')->nullable(false);
             $table->timestamps();
         });
     }

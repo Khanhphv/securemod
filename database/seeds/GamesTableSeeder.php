@@ -53,5 +53,16 @@ class GamesTableSeeder extends Seeder
             'views' => 1,
             'created_at' => '2021-06-17 12:08:30'
         ]);
+
+        DB::table('games')->insert([
+            'name' => 'Apex Legend12345',
+            'slug' => 'apex-legend-12345',
+            'thumb_image' => 'https://static.digit.in/default/thumb_129666_default_td_480x480.jpeg',
+            'description' => 'Đã cập nhật bản mới nhất cho game 0.13',
+            'notice' => 'Loa loa loa thông báo ở đầu trang',
+            'order' => 30,
+            'views' => 1,
+            'created_at' => '2021-06-17 12:08:30'
+        ]);
     }
 }

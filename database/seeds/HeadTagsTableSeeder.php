@@ -60,5 +60,12 @@ class HeadTagsTableSeeder extends Seeder
             'head_title' => 'Game 1 Title',
             'head_description' => 'Game 1 Description'
         ]);
+
+        DB::table('head_tags')->insert([
+            'type' => 'game',
+            'type_id' => 5,
+            'head_title' => 'Game 5 Title',
+            'head_description' => 'Game 5 Description'
+        ]);
     }
 }

@@ -18,6 +18,7 @@ class CreateHistoriesTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('action', 191);
 			$table->string('nl_token', 191)->default('');
+            $table->string('paypal_transaction_status', 255)->default('');
             $table->float('amount');
             $table->float('revenue')->nullable();
             $table->text('content');

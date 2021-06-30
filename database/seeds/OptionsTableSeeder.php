@@ -32,6 +32,11 @@ class OptionsTableSeeder extends Seeder
             'locate' => 'en'
         ]);
         DB::table('options')->insert([
+            'option' => 'header_title',
+            'value' => 3,
+            'locate' => 'en'
+        ]);
+        DB::table('options')->insert([
             'option' => 'popup',
             'value' => 'Nội dung thông báo',
             'locate' => 'vi'
@@ -46,11 +51,76 @@ class OptionsTableSeeder extends Seeder
             'value' => 'Nội dung thông báo chạy ở bên phải web',
             'locate' => 'vi'
         ]);
+        DB::table('options')->insert([
+            'option' => 'header_code',
+            'value' => null,
+            'locate' => 'en'
+        ]);
+        DB::table('options')->insert([
+            'option' => 'gate_gamebank',
+            'value' => '1234656',
+            'locate' => 'en'
+        ]);
+        DB::table('options')->insert([
+            'option' => 'payment_gate',
+            'value' => '...',
+            'locate' => 'vi'
+        ]);
+        DB::table('options')->insert([
+            'option' => 'ptram_chap_nhan_thanh_toan',
+            'value' => '100',
+            'locate' => 'vi'
+        ]);
+        DB::table('options')->insert([
+            'option' => 'coinpayment_bonus',
+            'value' => '10',
+            'locate' => 'vi'
+        ]);
+        DB::table('options')->insert([
+            'option' => 'paypal_client_id',
+            'value' => 'AZD3imApo6RAnkSsuIHn6YRBQdCPFaVSsUYQ3O6J-LKSEEvvgKYYMCv2dUY_RrZMW56uZ7o8DuDwMftf',
+            'locate' => 'en'
+        ]);
+        DB::table('options')->insert([
+            'option' => 'paypal_client_secret',
+            'value' => 'EBqrX5N9n1fNppd1D1wVCkFJ0PyvV8FpD6xoev3xForef2WSrsKGz_EngfpLsrh8SmH-WqXVhZYLJfhc',
+            'locate' => 'vi'
+        ]);
+        DB::table('options')->insert([
+            'option' => 'paypal_id',
+            'value' => '5',
+            'locate' => 'en'
+        ]);
+        DB::table('options')->insert([
+            'option' => 'auto-accept',
+            'value' => '0',
+            'locate' => 'en'
+        ]);
+        DB::table('options')->insert([
+            'option' => 'coin_payment',
+            'value' => '1',
+            'locate' => 'vi'
+        ]);
 
         DB::table('options')->insert([
             'option' => 'discord_channel',
             'value' => 'Nội dung thông báo chạy ở bên phải web',
             'locate' => 'vi'
+        ]);
+        DB::table('options')->insert([
+            'option' => 'stripe_payment',
+            'value' => '1',
+            'locate' => 'en'
+        ]);
+        DB::table('options')->insert([
+            'option' => 'seller_payment',
+            'value' => '1',
+            'locate' => 'en'
+        ]);
+        DB::table('options')->insert([
+            'option' => 'paypal_payment',
+            'value' => '1',
+            'locate' => 'en'
         ]);
     }
 }
