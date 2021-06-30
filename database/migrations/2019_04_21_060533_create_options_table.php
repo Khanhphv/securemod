@@ -17,7 +17,7 @@ class CreateOptionsTable extends Migration
             $table->increments('id');
 			$table->string('option');
 			$table->text('value')->nullable()->default(null);
-			$table->string('locale',50)->nullable();
+			$table->string('locate',50)->nullable();
             $table->timestamps();
         });
     }

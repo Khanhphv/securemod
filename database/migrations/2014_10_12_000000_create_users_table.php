@@ -19,6 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('phone')->unique()->default('');
             $table->string('provider')->nullable();
+            $table->string('provider_id')->nullable();
             $table->float('credit');
             $table->float('total_paypal_credit');
             $table->text('wallet_code');

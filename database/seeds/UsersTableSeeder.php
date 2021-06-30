@@ -12,13 +12,17 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => 'Trần Trùng Trục',
+            'name' => 'Admin Admin',
             'email' => 'admin@admin.com',
             'user_ref_count' => 3,
             'user_ref_commission' => 1,
             'phone' => '0912345678',
+            'credit' => 0,
+            'total_paypal_credit' => 0,
             'password' => bcrypt('matkhau'),
-            'type' => 'admin'
+            'user_debt' => 0,
+            'type' => 'admin',
+            'role_member' => 0
         ]);
     }
 }

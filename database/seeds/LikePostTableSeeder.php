@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class PostTagTableSeeder extends Seeder
+class LikePostTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,9 +11,9 @@ class PostTagTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('post_tag')->insert([
+        DB::table('like_post')->insert([
             'post_id' => 1,
-            'tag_id' => 1
-        ]);
+            'like_count' => 0,
+		]);
     }
 }

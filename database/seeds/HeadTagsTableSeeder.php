@@ -12,19 +12,13 @@ class HeadTagsTableSeeder extends Seeder
     public function run()
     {
         DB::table('head_tags')->insert([
-            'type' => 'welcome',
-            'type_id' => null,
-            'head_title' => 'Best PUBG Cheat',
-            'head_description' => 'Best PUBG Cheat'
-        ]);
-        DB::table('head_tags')->insert([
             'type' => 'home',
             'type_id' => null,
             'head_title' => 'Home',
             'head_description' => 'Best PUBG Cheat'
         ]);
         DB::table('head_tags')->insert([
-            'type' => 'post',
+            'type' => 'list_post',
             'type_id' => null,
             'head_title' => 'Latest News',
             'head_description' => 'Latest News Best PUBG Cheat'
@@ -34,6 +28,44 @@ class HeadTagsTableSeeder extends Seeder
             'type_id' => null,
             'head_title' => 'Terms of Service',
             'head_description' => 'Terms of Service Best PUBG Cheat'
+        ]);
+
+        DB::table('head_tags')->insert([
+            'type' => 'post',
+            'type_id' => 1,
+            'head_title' => 'Post 1 Title',
+            'head_description' => 'Post 1 Description'
+        ]);
+        DB::table('head_tags')->insert([
+            'type' => 'game',
+            'type_id' => 1,
+            'head_title' => 'Game 1 Title',
+            'head_description' => 'Game 1 Description'
+        ]);
+        DB::table('head_tags')->insert([
+            'type' => 'game',
+            'type_id' => 2,
+            'head_title' => 'Game 1 Title',
+            'head_description' => 'Game 1 Description'
+        ]);
+        DB::table('head_tags')->insert([
+            'type' => 'game',
+            'type_id' => 3,
+            'head_title' => 'Game 1 Title',
+            'head_description' => 'Game 1 Description'
+        ]);
+        DB::table('head_tags')->insert([
+            'type' => 'game',
+            'type_id' => 4,
+            'head_title' => 'Game 1 Title',
+            'head_description' => 'Game 1 Description'
+        ]);
+
+        DB::table('head_tags')->insert([
+            'type' => 'game',
+            'type_id' => 5,
+            'head_title' => 'Game 5 Title',
+            'head_description' => 'Game 5 Description'
         ]);
     }
 }
