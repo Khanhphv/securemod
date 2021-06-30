@@ -24,7 +24,7 @@ use App\Option;
 use DB;
 use Exception;
 use Illuminate\View\View;
-
+use Log;
 
 class HomeController extends Controller
 {
@@ -112,11 +112,12 @@ class HomeController extends Controller
             $role = array_search($role_member, config('const.role_member.member_status'), true );
             $discount = config('const.role_member.discount')[$role];
         }
-
+        Log::info("[BuyKey] packages: " . json_encode($package));
         if (isset($packages[$package])) {
             $price = (float)$packages[$package] - (float)$packages[$package]* $discount;
             $price = round($price,2);
         } else {
+
             return json_encode(array(
                 'code' => 404,
                 'status' => 'fail',
@@ -167,6 +168,7 @@ class HomeController extends Controller
                     $attributes = ['key']; // use your actual fields here
                     $validator = Validator::make($data, $rules, $messages, $attributes);
                     if ($validator->fails()) {
+                        Log::error('[BuyKey] validator: ' .json_encode($validator->messages()));
                         return json_encode(array(
                             'status' => 'fail',
                             'message' => "Something wrong, please try again later.",
@@ -185,9 +187,10 @@ class HomeController extends Controller
                     // Cập nhật số tiền của khách sau khi thuê
                     $user->credit = $lastCredit;
                     $user->save();
-                    MailService::invoiceMail($user->email, $key, $price, $toolDetail);
+//                    MailService::invoiceMail($user->email, $key, $price, $toolDetail);
                     DB::commit();
                 } catch (Exception $e) {
+                    Log::error('[BuyKey] error: ' . $e->getMessage());
                     DB::rollBack();
                     return json_encode(array(
                         'status' => 'fail',
@@ -253,9 +256,10 @@ class HomeController extends Controller
 
                         $user->credit = $user->credit - $price;
                         $user->save();
-                        MailService::invoiceMail($user->email, $key, $price, $toolDetail);
+//                        MailService::invoiceMail($user->email, $key, $price, $toolDetail);
                         DB::commit();
                     } catch (Exception $e) {
+                        Log::error("[BuyKey] Error" . $e->getMessage());
                         DB::rollBack();
                         return json_encode(array(
                             'status' => 'fail',

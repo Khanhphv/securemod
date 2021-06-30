@@ -8,16 +8,17 @@
         <div class="modal-content">
             <h3 class="no-margin-bottom">RECHARGING VIA SELLER:<h3>
             <div class="row">
-                Please contact to sellers in list, they will support you!
+                Please contact to sellers in list, they will support you! <br>
+                <i>(Middle man might charge you extra fees for Paypal Payment)</i>
             </div>
             <div>
             <div class="row">
                 <div class="col s12 m6">
                     <div class="card blue-grey darken-1">
                         <div class="card-content white-text">
-                        <span class="card-title" style="font-style: italic">BOT</span>
-                        <p>Discord: B ⨶ T#3983</p>
-                        <p>Payment options such as: Paypal</p>
+                        <span class="card-title" style="font-style: italic">Noir middle man </span>
+                        <p>Discord: Noir#9999</p>
+                        <p>Payment options such as: Paypal, Gift Cards, Amazon Gift Cards </p>
                         <a href="https://discord.com/channels/762418378924359700/805535604015890452/805559942039863346">More Information</a>
                         </div>
                     </div>
@@ -39,6 +40,6 @@
         </div>
     </div>
     <script !src="">
-        
+
     </script>
 @endauth

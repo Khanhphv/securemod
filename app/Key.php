@@ -24,16 +24,19 @@ class Key extends Model
 
     public function getSoldKey(string $startDate, string $endDate)
     {
+        DB::connection()->enableQueryLog();
         $result = Key::from('keys as ke')
             ->selectRaw('tl.id, tl.name as name , ke.package, COUNT(ke.id) AS soLuong, sum(hi.amount) AS sum')
-            ->leftJoin('history', 'hi.id', 'ke.history_id')
-            ->leftJoin('tools as tl', 'tl.id' , 'ke.tool_id')
-            ->where('ke.sold',1)
+            ->join('histories as hi', 'hi.id', 'ke.history_id')
+            ->join('tools as tl', 'tl.id' , 'ke.tool_id')
+            ->where('ke.sold', '1')
             ->where('ke.updated_at', '>=', $startDate)
-            ->where('ke.updated_at', '<=', $endDate)
+            ->where('ke.updated_at', '<', $endDate)
             ->groupBy('ke.tool_id', 'ke.package')
-            ->orderByRaw("ke.tool_id ASC, soLuong DESC")
             ->get();
+            $queries = DB::getQueryLog();
+
+            \Log::info($queries);
         return $result;
     }
 }

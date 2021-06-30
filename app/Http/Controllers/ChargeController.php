@@ -11,14 +11,9 @@ use Log;
 
 class ChargeController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
-
     public function chargeViaLexHolding(Request $rq)
     {
-        $urlPayment = "https://lexholdingsgroup.com/create";
+        $urlPayment = "https://paydash.co.uk/api/merchant/create";
         $chargeService = new ChargeService();
         $response = $chargeService->chargeViaLexHolding($rq, $urlPayment);
         return ($response);
@@ -26,9 +21,10 @@ class ChargeController extends Controller
 
     public function insertTransaction(Request $rq)
     {
-        Log::info("begin controller ->insert transaction " . $rq);
+        Log::info("[insertTransaction] begin controller ->insert transaction " . $rq);
         $chargeService = new ChargeService();
         $response = $chargeService->insertTransaction($rq->all());
+        Log::info("[insertTransaction] end controller " . json_encode($response));
         return $response ."";
     }
 }
