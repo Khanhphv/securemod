@@ -130,18 +130,20 @@
                                                 )
                                             ) !!}
                                         </div>
-                                        <div class="col-md-10 col-xs-12">
-                                            {!! Form::textarea(
-                                                'about_us',
-                                                $settings['about_us'],
-                                                [
-                                                    'class' => 'form-control',
-                                                    'rows' => 3,
-                                                    'placeholder' => 'About Us',
-                                                    'required' => 'required',
-                                                ]
-                                            ) !!}
-                                        </div>
+                                        @if (isset($settings['about_us']))
+                                            <div class="col-md-10 col-xs-12">
+                                                {!! Form::textarea(
+                                                    'about_us',
+                                                    $settings['about_us'],
+                                                    [
+                                                        'class' => 'form-control',
+                                                        'rows' => 3,
+                                                        'placeholder' => 'About Us',
+                                                        'required' => 'required',
+                                                    ]
+                                                ) !!}
+                                            </div>
+                                        @endif
                                     </div>
                                 </li>
                                 <li class="list-group-item">
@@ -155,17 +157,20 @@
                                                 )
                                             ) !!}
                                         </div>
-                                        <div class="col-md-10 col-xs-12">
-                                            {!! Form::email(
-                                                'for_support',
-                                                $settings['for_support'],
-                                                [
-                                                    'class' => 'form-control',
-                                                    'placeholder' => 'For Support',
-                                                    'required' => 'required',
-                                                ]
-                                            ) !!}
-                                        </div>
+                                        @if(isset($settings['for_support']))
+                                            <div class="col-md-10 col-xs-12">
+                                                {!! Form::email(
+                                                    'for_support',
+                                                    $settings['for_support'],
+                                                    [
+                                                        'class' => 'form-control',
+                                                        'placeholder' => 'For Support',
+                                                        'required' => 'required',
+                                                    ]
+                                                ) !!}
+                                            </div>
+                                        @endif
+
                                     </div>
                                 </li>
                                 <li class="list-group-item">
@@ -179,17 +184,19 @@
                                                 )
                                             ) !!}
                                         </div>
-                                        <div class="col-md-10 col-xs-12">
-                                            {!! Form::text(
-                                                'verified_seller_url',
-                                                $settings['verified_seller_url'],
-                                                [
-                                                    'class' => 'form-control',
-                                                    'placeholder' => 'Verified Seller URl',
-                                                    'required' => 'required',
-                                                ]
-                                            ) !!}
-                                        </div>
+                                        @if (isset($settings['verified_seller_url']))
+                                            <div class="col-md-10 col-xs-12">
+                                                {!! Form::text(
+                                                    'verified_seller_url',
+                                                    $settings['verified_seller_url'],
+                                                    [
+                                                        'class' => 'form-control',
+                                                        'placeholder' => 'Verified Seller URl',
+                                                        'required' => 'required',
+                                                    ]
+                                                ) !!}
+                                            </div>
+                                        @endif
                                     </div>
                                 </li>
                                 <li class="list-group-item">

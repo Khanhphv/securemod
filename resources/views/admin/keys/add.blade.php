@@ -79,7 +79,7 @@
         });
 
         function addOption(toolType) {
-            let packagesList = JSON.parse('@php echo json_encode($packagesList); @endphp');
+            let packagesList = JSON.parse('{{ isset($packagesList) ? json_encode($packagesList) : '' }}');
             $('#package').html('');
             $.each(packagesList["t" + toolType], function (i, e) {
                 let selected = "";

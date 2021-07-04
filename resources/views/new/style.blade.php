@@ -9,7 +9,7 @@
 <link rel="stylesheet" type="text/css" href="/css/responsive2.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-{{ Html::favicon( $master_site_settings['favicon'] ) }}
+{{ isset($master_site_settings['favicon']) ? Html::favicon( $master_site_settings['favicon'] ) : '' }}
 <style>
     #selectbox-games{
         width: 200px;

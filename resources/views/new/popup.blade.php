@@ -1,4 +1,7 @@
-@if(\App\Option::where('option', 'header_notice')->get()->first()->value)
+@php
+    $notice = \App\Option::where('option', 'header_notice')->get()->first();
+@endphp
+@if(isset($notice->value))
     <style>
         .swal2-popup.swal2-modal.swal2-show {
             min-height: auto;

@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     @extends('new.header')
-    @section('headerTitle', $head_tags ?  $head_tags->head_title : $content->title)
-    @section('description', $head_tags ?  $head_tags->head_description : '')
+    @section('headerTitle', isset($head_tags) ?  $head_tags->head_title : $content->title ?? '')
+    @section('description', isset($head_tags) ?  $head_tags->head_description : '')
     @include('new.style')
 </head>
 <body @if($theme == 'dark') data-theme="dark" @endif>
@@ -13,7 +13,8 @@
         <div class="row bg-white blog-content">
             @if (Auth::check() && Auth::user()->type == "admin")
                 <div class="content">
-                    {!! html_entity_decode(
+                    @if (isset($content))
+                        {!! html_entity_decode(
                         Html::linkRoute(
                             'post.edit',
                             '<i class="material-icons e3c9">edit</i>  Edit Terms of Service',
@@ -27,6 +28,7 @@
                         )
                     )
                     !!}
+                    @endif
                 </div>
             @endif
 
@@ -34,18 +36,18 @@
                 <a href="/post"><label>Hacking News</label></a>
                 <i class="material-icons dp48">chevron_right</i>
                 <a href="">
-                    <label for="">{{ $content->title }}</label>
+                    <label for="">{{ $content->title ?? '' }}</label>
                 </a>
             </div>
             <div class="col s12 m12 blog-title">
-                <h1>{{ $content->title }}</h1>
+                <h1>{{ $content->title ?? '' }}</h1>
                 <label>
                     <i style="font-size: inherit" class="material-icons dp48">access_time</i>
-                    {{ $content->created_at }}
+                    {{ $content->created_at ?? '' }}
                 </label>
             </div>
             <div class="col s12 m12">
-                {!! $content->content !!}
+                {!! $content->content ?? '' !!}
             </div>
         </div>
     </div>

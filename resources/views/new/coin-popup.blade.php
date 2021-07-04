@@ -2,8 +2,13 @@
     <div id="coin-popup" class="modal bottom-sheet">
         <div class="modal-content">
             <h3 class="no-margin-bottom">RECHARGING VIA COINPAYMENTS (BTC)
-                <?php echo (\App\Option::where('option', 'coinpayment_bonus')->first() && \App\Option::where('option', 'coinpayment_bonus')->first()->value === '0') ?
-                    '' : (' - Get ' . \App\Option::where('option', 'coinpayment_bonus')->first()->value . '% more') ?></h3>
+                <?php
+                $coinPayment = \App\Option::where('option', 'coinpayment_bonus')->first();
+                ?>
+                @if(isset($coinPayment) && ($coinPayment->value !== '0'))
+                    (' - Get '  {{ $coinPayment->value }} '% more')
+                @endif
+            </h3>
             <form action="#">
                 <div class="row">
                     <div class="col s12 m4">
@@ -25,7 +30,7 @@
                             Recharge now
                         </button>
                         </div>
-                        
+
                     </div>
                     <div class="input-field col s12 m8">
                         <h4>Tutorial</h4>
@@ -39,7 +44,7 @@
                         <p>5，You need to make sure the actual arrival amount is equal to or greater
                             than
                             the order amount.</p>
-                    </div>    
+                    </div>
                 </div>
             </form>
 

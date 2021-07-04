@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/vendor/font-awesome/css/font-awesome.min.css') }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/vendor/Ionicons/css/ionicons.min.css') }}">
-    {{ Html::favicon( $master_site_settings['favicon'] ) }}
+    {{ isset($master_site_settings['favicon']) ? Html::favicon( $master_site_settings['favicon'] ) : ''  }}
     {{ Html::script('../ckeditor/ckeditor.js') }}
 
 

@@ -70,6 +70,7 @@ class HomeController extends Controller
 
         # get head tags
         $head_tags = HeadTag::where('type', 'home')->first();
+        //dd(($games[0]->slug));
         return view('new.home', compact('games', 'head_tags'));
     }
 

@@ -98,6 +98,9 @@
             </div>
         </div>
     </div>
+    @php
+    $discord = \App\Option::where('option', 'discord_channel')->get()->first();
+    @endphp
     <script !src="">
         function guideVefify() {
             Swal.fire({
@@ -105,7 +108,7 @@
                 html:
                     "Make Support Ticket on our Discord to resolve VERIFY PAYMENT. Supporters will guide you step by step." +
                     "<br><br>" +
-                    "<a target='_blank' " + "href='{{ \App\Option::where('option', 'discord_channel')->get()->first()->value }}'>" +
+                    "<a target='_blank' " + "href='{{ isset($discord) ? $discord->value : '#' }}'>" +
                     "<h3 class='blue-text'>Community</h3></a>" +
                     "<p>OR<br><h4>Contact us on Tawk.to in  to resolve VERIFY PAYMENT</h4>" +
                     "<img style=\"max-width: 100% \" " +

@@ -78,7 +78,13 @@
                 </div>
                 <div class="space-height-20px"></div>
                 @auth()
-                @if(\App\Option::where('option', 'paypal_payment')->get()->first()->value != 0)
+                    @php
+                    $paypal = \App\Option::where('option', 'paypal_payment')->get()->first();
+                    $coin = \App\Option::where('option', 'coin_payment')->get()->first();
+                    $seller = \App\Option::where('option', 'seller_payment')->get()->first();
+                    $stripe = \App\Option::where('option', 'stripe_payment')->get()->first();
+                    @endphp
+                @if(isset($paypal) && $paypal->value != 0)
                 <a onclick="createPayment()" class="title-icon">
                     <div style="display: flex; align-items: center;">
                         <img width="24px" src="https://img.icons8.com/pastel-glyph/64/000000/money--v3.png"/>
@@ -89,7 +95,7 @@
                 <div class="space-height-20px"></div>
                 @endif
                 <div class="border-bottom-2px"></div>
-                @if(\App\Option::where('option', 'coin_payment')->get()->first()->value != 0)
+                @if(isset($coin) && $coin->value != 0)
                 <div class="space-height-20px"></div>
                 <a href="#coin-popup" class="title-icon modal-trigger">
                     <div style="display: flex; align-items: center;">
@@ -101,7 +107,7 @@
                 @endif
 
                 <div class="space-height-20px"></div>
-                @if(\App\Option::where('option', 'seller_payment')->get()->first()->value != 0)
+                @if(isset($seller) && $seller->value != 0)
                 <div class="border-bottom-2px"></div>
                 <div class="space-height-20px"></div>
                 <a href="#seller-payment" class="title-icon modal-trigger">
@@ -113,7 +119,7 @@
                 </a>
                 @endif
                 <div class="space-height-20px"></div>
-                @if(\App\Option::where('option', 'stripe_payment')->get()->first()->value != 0)
+                @if(isset($stripe) && $stripe->value != 0)
                 <div class="border-bottom-2px"></div>
                 <div class="space-height-20px"></div>
                 <a target="blank" class="title-icon modal-trigger" href="#lexholding-popup">
@@ -570,40 +576,46 @@
             </div>
             <div class="menu">
                 <div>
-                    <div class="icon-menu" width="24px" height="24px">
-                        {!! html_entity_decode(
-                            Html::linkRoute(
-                                'home',
-                                Html::image(
-                                    '/images/logo/'. $master_site_settings['logo_mini'],
-                                    'Home Page',
-                                    [
-                                        'class' => 'img-fluid',
-                                        'width' => 24,
-                                        'height' => 24
-                                    ]
+                    @if (isset($master_site_settings['logo_mini']))
+                        <div class="icon-menu" width="24px" height="24px">
+                            {!! html_entity_decode(
+                                Html::linkRoute(
+                                    'home',
+                                    Html::image(
+                                        '/images/logo/'. $master_site_settings['logo_mini'],
+                                        'Home Page',
+                                        [
+                                            'class' => 'img-fluid',
+                                            'width' => 24,
+                                            'height' => 24
+                                        ]
+                                    )
                                 )
-                            )
-                        ) !!}
-                    </div>
+                            ) !!}
+                        </div>
+                    @endif
+
                     <div class="space-20px desktop"></div>
                     <div class="space-20px"></div>
-                    <div style="color: var(--text-primary-color); padding-right: 1em" class="text-logo">
-                        {!! html_entity_decode(
-                            Html::linkRoute(
-                                'home',
-                                Html::image(
-                                    '/images/logo/' . $master_site_settings['text_logo'],
-                                    'Home Page',
-                                    [
-                                        'class' => 'img-fluid',
-                                        'width' => 230,
-                                        'height' => 30
-                                    ]
-                                )
-                            )
-                        ) !!}
-                    </div>
+                    @if(isset($master_site_settings['text_logo']))
+                            <div style="color: var(--text-primary-color); padding-right: 1em" class="text-logo">
+                                {!! html_entity_decode(
+                                    Html::linkRoute(
+                                        'home',
+                                        Html::image(
+                                            '/images/logo/' . $master_site_settings['text_logo'],
+                                            'Home Page',
+                                            [
+                                                'class' => 'img-fluid',
+                                                'width' => 230,
+                                                'height' => 30
+                                            ]
+                                        )
+                                    )
+                                ) !!}
+                            </div>
+                    @endif
+
                     <div class="space-20px desktop"></div>
                     <div class="space-20px desktop"></div>
                     <select id="selectbox-games" class="browser-default"  onchange="handleSelectGame(event)">
@@ -639,7 +651,7 @@
                             <span>Payment</span>
                             <div class="space-height-20px"></div>
                             @auth
-                                @if(\App\Option::where('option', 'paypal_payment')->get()->first()->value != 0)
+                                @if(isset($paypal) && $paypal->value != 0)
                                 <div class="space-height-20px"></div>
                                 <div style="display: flex; align-items: center;">
                                     <a onclick="createPayment()" class="waves-effect waves-light btn-large"
@@ -650,7 +662,7 @@
                                     </a>
                                 </div>
                                 @endif
-                                @if(\App\Option::where('option', 'coin_payment')->get()->first()->value != 0)
+                                @if(isset($coin) && $coin->value != 0)
                                 <div class="space-height-20px"></div>
                                 <div style="display: flex; align-items: center;">
                                     <a class="waves-effect waves-light btn-large modal-trigger" href="#coin-popup"
@@ -659,7 +671,7 @@
                                     </a>
                                 </div>
                                 @endif
-                                @if(\App\Option::where('option', 'seller_payment')->get()->first()->value != 0)
+                                @if(isset($seller) && $seller->value != 0)
                                 <div class="space-height-20px"></div>
                                 <div style="display: flex; align-items: center;">
                                     <a target="blank" class="waves-effect waves-light btn-large modal-trigger" href="#seller-payment"
@@ -678,7 +690,7 @@
                                 </div>
 
                                 @endif --}}
-                                @if(\App\Option::where('option', 'stripe_payment')->get()->first()->value != 0)
+                                @if(isset($stripe) && $stripe->value != 0)
                                 <div class="space-height-20px"></div>
                                 <div style="display: flex; align-items: center;">
                                     <a target="blank" class="waves-effect waves-light btn-large modal-trigger" href="#lexholding-popup"
@@ -979,9 +991,10 @@
                 </div>
                 <div class="content-view">
                     <?php
-                    $discord = \App\Option::where('option', 'discord_channel')->get()->first()->value;
+                    //$discord = \App\Option::where('option', 'discord_channel')->get()->first()->value;
+                    $header = \App\Option::where('option', 'discord_channel')->get()->first();
                     ?>
-                    @if(\App\Option::where('option', 'header_notice')->get()->first()->value)
+                    @if(isset($header->value))
                         <style>
                             #notice {
                                 background: #3d7fff;
@@ -1013,16 +1026,17 @@
                         <div>
                             <h5>About us</h5>
                             <div>
-                                {{$master_site_settings['about_us']}}
+                                {{$master_site_settings['about_us'] ?? ''}}
                             </div>
                         </div>
                         <div class="space-20px"></div>
                         <div>
                             <h5>For support: </h5>
-                            Email : {{$master_site_settings['for_support']}}<br>
+                            Email : {{$master_site_settings['for_support'] ?? ''}}<br>
                             <br>
                             <h5>Verified Seller By</h5>
-                            {!! html_entity_decode(
+                            @if(isset($master_site_settings['verified_seller_url']))
+                                {!! html_entity_decode(
                                 Html::link(
                                     $master_site_settings['verified_seller_url'],
                                     Html::image(
@@ -1036,6 +1050,8 @@
                                     )
                                 )
                             ) !!}
+                            @endif
+
                         </div>
                         <div class="space-20px"></div>
                         <div>

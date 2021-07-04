@@ -33,12 +33,12 @@
                     </label>
                     <label style="float:right;  font-size: 16px">
                         <i class="material-icons e417">remove_red_eye</i>
-                        {{ $post->view }}
+                        {{ $post->view ?? '' }}
                     </label>
                     <div  class="like-icon" style="font-size: 16px; float:right; color: #9e9e9e">
-                        <label for="like-post" class="like-post" data-id="{{$post->id}}">
+                        <label for="like-post" class="like-post" data-id="{{$post->id ?? ''}}">
                             <i id="like-icon" class="material-icons e8dc">thumb_up</i>
-                            <span class="like-count">{{$post->like_post->like_count}}</span>
+                            <span class="like-count">{{$post->like_post->like_count ?? 0}}</span>
                         </label>
                     </div>
                 </div>
