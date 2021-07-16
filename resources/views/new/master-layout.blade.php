@@ -15,6 +15,16 @@
                         overflow: auto;
                     }
                 }
+                .notification-badge {
+                    position: relative;
+                    right: 5px;
+                    top: -20px;
+                    color: #b71c1c;
+                    background-color: #f5f1f2;
+                    margin: 0 -.8em;
+                    border-radius: 50%;
+                    padding: 5px 10px;
+                }
             </style>
         <div class="container">
             <div class="menu-mobile-container" style="display: none!important;">
@@ -626,6 +636,12 @@
                     </select>
                 </div>
                 <div class="desktop">
+                    <div class="cart shopping-cart">
+                        <a class="modal-trigger" href="#cart" data-activates="notification">
+                            <i class="small material-icons icon-blue">shopping_cart</i>
+                            <small class="notification-badge"></small>
+                        </a>
+                    </div>
                     @auth()
                     <div class="space-20px"></div>
                     <div class="btn-rechange">
@@ -1087,7 +1103,31 @@
         @endauth
 
         @include('new.scrip')
-
+<!-- Modal Structure -->
+<div id="cart" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <table id="shopping_cart">
+        <thead>
+          <tr>
+              <th>#</th>
+              <th>Game Name</th>
+              <th>Tool Name</th>
+              <th>Package Name</th>
+              <th>Count</th>
+              <th>Amount</th>
+              <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+    <div class="modal-footer">
+      <a class="waves-effect waves-red left" style="padding-top:15px"><b>Total Amount:</b> <span id="total-amount"></span></a>
+      <a class="modal-close waves-effect waves-light red btn-small" style="margin-right: 25px">Cancel</a>
+      <a class="modal-close waves-effect waves-light btn-small teal darken-4" id="checkout">Payment<i class="small material-icons right">payment</i></a>
+    </div>
+</div>
 
 @auth
 <!--Start of Tawk.to Script-->
@@ -1135,5 +1175,184 @@
     });
 </script>
 @endauth
+
+<script>
+    $(function () {
+        function formatCurency(n) {
+            return  n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+        }
+        function getListItemCart(carts, flag) {
+            if(carts) {
+                $('.notification-badge').text(carts.length)
+                $('#shopping_cart tbody').empty()
+
+                $.each(carts, function (key, value)
+                {
+
+                    $('#shopping_cart tbody').append('<tr> <td><label><input class="check-item" type="checkbox" '+value.status+' value="'+value.id+'"><span class="slider round"></span></label></td>  <td>'
+                        + value.game_name + '</td>  <td>' + value.name_tool + '</td> <td>'
+                            + value.package_name + '</td>  <td>' + value.count + '</td>  <td>' + value.amount + '</td> <td>'
+                                + `<a class="btn-floating act-delete btn-small waves-effect waves-light red" data-index="${value.id}"><i class="material-icons">delete</i></a>`
+                                + '</td></tr>');
+                })
+
+            } else {
+                if(flag) {
+                    Swal.fire({
+                        title: 'Warning',
+                        text: 'Shopping cart empty!',
+                        icon: 'warning'
+                    })
+                    return
+                }
+            }
+        }
+        // check count item cart
+        let carts = JSON.parse(localStorage.getItem('cartItem'))
+        let total_amount = 0
+        $('#total-amount').text(total_amount)
+        getTotalAmount()
+        if(carts) {
+            $('.notification-badge').text(carts.length)
+        } else {
+            $('.notification-badge').text(0)
+        }
+
+        // click icon shopping cart
+        $(".shopping-cart").click(function (e) {
+            let carts = JSON.parse(localStorage.getItem('cartItem'))
+            if(carts && carts.length) {
+                getListItemCart(carts, true)
+                getTotalAmount()
+            } else {
+                Swal.fire({
+                    title: 'Warning',
+                    text: 'Shopping cart empty!',
+                    icon: 'warning'
+                })
+                return
+            }
+
+        });
+
+        // click check out cart
+        $("#checkout").click(function (e) {
+            @auth()
+                let balance = '{{ round(Auth::user()->credit, 2) }}'
+                if(balance < total_amount) {
+                    Swal.fire({
+                        title: 'Warning',
+                        text: 'Your balance is not enough!',
+                        icon: 'warning'
+                    })
+                    return
+                }
+                // route này chưa xử lý ở controller
+                let url = ""
+                let params = JSON.parse(localStorage.getItem('cartItem'))
+                Swal.fire({
+                    title: 'Now loading',
+                    allowEscapeKey: false,
+                    allowOutsideClick: false,
+                    onOpen: () => {
+                        Swal.showLoading();
+                    }
+                })
+                $.ajax({
+                    url: url,
+                    method: "POST",
+                    data: params,
+                    success: function (response) {
+                        Swal.close();
+                        if (response.status === "success") {
+                            Swal.fire({
+                                title: 'Success',
+                                text: "Checkout success",
+                                icon: 'success'
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error',
+                                text: response.message,
+                                icon: 'error'
+                            }).then(function () {
+                                if (response.code === 2) {
+                                    $("#recharge").show();
+                                }
+                                if (response.code === 190) {
+                                    window.location = "{{url('login')}}";
+                                }
+                            });
+                        }
+                    }, error: function (jqXHR, textStatus, errorThrown) {
+                        console.log(jqXHR);
+                        console.log(textStatus);
+                        console.log(errorThrown);
+                    }
+                })
+            @endauth
+            @guest()
+                Swal.fire({
+                    title: 'Warning',
+                    text: 'Please login',
+                    icon: 'error'
+                })
+                window.location = "{{url('login')}}";
+            @endguest
+        });
+
+        function getTotalAmount() {
+            let carts = JSON.parse(localStorage.getItem('cartItem'))
+            let total_amount2 = 0
+            $.each(carts, function (key, value) {
+                if(value.status == 'checked'){
+                    total_amount2 = total_amount2 + value.price*value.count;
+                }
+            })
+            $('#total-amount').text(total_amount2)
+            total_amount = total_amount2
+        }
+
+        // check checkbox item
+        $("#shopping_cart").on('click','.check-item',function(){
+            let index = $(this).val()
+
+            let carts = JSON.parse(localStorage.getItem('cartItem'))
+            carts.map(function(value){
+                if(value.id == index){
+                    if(value.status == 'uncheck') {
+                        value.status = 'checked'
+                    } else {
+                        value.status = 'uncheck'
+                    }
+                }
+                return value
+            })
+            localStorage.setItem('cartItem', JSON.stringify(carts))
+            getTotalAmount()
+        })
+
+        // click delete item
+        $("#shopping_cart").on('click','.act-delete',function(){
+            let index = $(this).data("index")
+            if(index !== -1) {
+                let carts = JSON.parse(localStorage.getItem('cartItem'))
+                // remote item delete
+                carts = carts.filter(ele => ele.id != index)
+                // set cart to local storage
+                localStorage.setItem('cartItem', JSON.stringify(carts))
+                // update count item
+                if(carts && carts.length) {
+                    $('.notification-badge').html(carts.length)
+                } else {
+                    $('.notification-badge').html(0)
+                }
+                // load data table
+                getListItemCart(carts, false)
+                getTotalAmount()
+            }
+        });
+    });
+</script>
 
 @yield('script')

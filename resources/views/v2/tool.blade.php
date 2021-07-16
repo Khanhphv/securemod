@@ -212,18 +212,11 @@
                         </div>
                     @endif
 
-                    <div class="row card-content card-header" style="position: relative">
-                        <h2 class="card-title" style="">{{ $tool->name }}</h2>
+                    <div class="row card-content card-header" style="position: relative; height: auto">
+                        <h2 class="card-title package-name" id="tool_name_{{$tool->id}}">{{ $tool->name }}</h2>
                         <label for="">Status</label>:
                         @if($tool->updated == 1)
                             <label class="green-text"> Working</label>
-                            <!-- <div class="discount" style="position:absolute">-15%</div> -->
-                            <div style="position: relative">
-                                <button type="button" style="position: absolute; top: 0px; right: 0" class="btn-floating"
-                                        onclick="buyTool({{$tool->id}})">
-                                    <i class="material-icons">shopping_cart</i>
-                                </button>
-                            </div>
                             <div class="input-field" style="max-width: fit-content">
                                 <select class="game-package" style="padding-left: 0.5em">
                                     <option value="" disabled selected>Choose package</option>
@@ -249,6 +242,19 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <!-- <div class="discount" style="position:absolute">-15%</div> -->
+                            <div>
+                                <button type="button" class="waves-effect waves-light btn-small amber accent-4"
+                                    onclick="addToCart({{$tool->id}})"
+                                    style="margin-right: 15px">
+                                    <i class="small material-icons right">add_shopping_cart</i>Add to cart
+                                </button>
+                                <button type="button" class="waves-effect waves-light btn-small teal darken-4"
+                                    onclick="buyTool({{$tool->id}})">
+                                    <i class="small material-icons right">payment</i>Payment
+                                </button>
+                            </div>
+
                         @else
                             <label class="red-text">Updating</label>
                         @endif
@@ -321,14 +327,12 @@
                 Swal.close();
                 if (response.status === "success") {
                     Swal.fire({
-                        title: '{{ trans('page.rent_successful') }}',
+                        title: 'Success',
                         text: "Please check your email",
                         icon: 'success'
                     });
                 } else {
                     Swal.fire({
-
-
                         title: '{{ trans('page.rent_failed') }}',
                         text: response.message,
                         icon: 'error'
@@ -352,10 +356,91 @@
         })
         @endguest
     }
+    // function add to cart
+    function addToCart(tool_id) {
+        // get value game package
+        let name_tool = $(`#tool_name_${tool_id}`).text();
+        let name_game = $(`#selectbox-games option:selected`).text();
+        let package_name = $(`#tool_${tool_id} .game-package option:selected`).text();
+        let package_tool = $(`#tool_${tool_id} .game-package`).val();
+        let price = 0
+        if(package_name) {
+            packages = package_name.split(' ')
+            price = packages[2]
+        }
+        // check if not choose package
+        if (!package_tool) {
+            Swal.fire({
+                title: 'Warning',
+                text: 'Please choose package',
+                icon: 'error'
+            })
+            return
+        }
+        // const param
+        const tool = {
+            game_name : name_game,
+            name_tool : name_tool,
+            package_name : package_name,
+            package : package_tool,
+            tool_id : tool_id,
+            price : price,
+            amount : price,
+            count : 1,
+            status : 'uncheck',
+        }
+        // get item cart in local storage
+        let carts = JSON.parse(localStorage.getItem('cartItem'));
+        if(!carts){
+            carts = []
+            carts.unshift(tool)
+            Swal.fire({
+                title: 'Success',
+                text: "Add to cart successfully",
+                icon: 'success'
+            });
+        } else {
+            let flagExist = false
+            carts.map(ele => {
+                if(tool.package === ele.package && tool.tool_id === ele.tool_id) {
+                    ele.count = ele.count + 1
+                    ele.amount = ele.count * ele.price
+                    flagExist = true
+                }
+                return ele;
+            })
+            if(!flagExist) {
+                carts.unshift(tool)
+                Swal.fire({
+                    title: 'Success',
+                    text: "Add to cart successfully",
+                    icon: 'success'
+                });
+            }
+        }
+        // set number item in cart
+        if(carts && carts.length) {
+            $('.notification-badge').html(carts.length)
+        } else {
+            $('.notification-badge').html(0)
+        }
+        $.each(carts, function (key, value){
+            value.id = key + 1;
+        })
+        // set cart to local storage
+        localStorage.setItem('cartItem', JSON.stringify(carts));
+    }
+    function CartInit() {
+        // get item cart in local storage
+        let carts = JSON.parse(localStorage.getItem('cartItem'));
+        // set number item in cart
+        if(carts) {
+            $('.notification-badge').html(carts.length)
+        } else {
+            $('.notification-badge').html(0)
+        }
+        CartInit()
+    }
 </script>
 </body>
 </html>
-
-
-
-
