@@ -5,6 +5,8 @@
     @section('headerTitle', $head_tags ?  $head_tags->head_title : $game->name)
     @section('description', $head_tags ?  $head_tags->head_description : '')
     <meta charset="UTF-8">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="{{ $game->description }}">
     <meta name="keywords" content="{{ $game->keyword }}">
     <meta name="author" content="support@divinesofts.net">
