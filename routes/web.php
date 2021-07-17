@@ -51,6 +51,7 @@ Route::group(['middleware' => ['locale', 'web']], function () {
 
     Route::get('game/{slug}', 'Admin\GameController@show');
     Route::get('buy-tool/{toolId}/{package}', 'HomeController@buyTool')->name('tool.buy-tool');
+    Route::post('buy-tool-from-cart/', 'HomeController@buyToolFromCart')->name('tool.buy-tool-cart');
 
     //-------------------API-------------------------
     Route::get('/getCountry', 'CountryStateController@getCountry');

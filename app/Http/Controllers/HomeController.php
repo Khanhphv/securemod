@@ -74,6 +74,210 @@ class HomeController extends Controller
         return view('new.home', compact('games', 'head_tags'));
     }
 
+    public function buyToolFromCart(Request $request)
+    {
+        //check ip address client
+        $ip_address = "";
+        if (!empty($_SERVER['HTTP_CLIENT_IP']))
+        {
+            $ip_address = $_SERVER['HTTP_CLIENT_IP'];
+        }
+        //whether ip is from proxy
+        elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR']))
+        {
+            $ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        }
+        //whether ip is from remote address
+        else
+        {
+            $ip_address = $_SERVER['REMOTE_ADDR'];
+        }
+        // check user login
+        if (!Auth::check()) {
+            return json_encode([
+                'code' => 190,
+                'status' => 'fail',
+                'message' => "Please login before buy!",
+                'key' => "",
+                'time' => ""
+            ]);
+        }
+        //user login
+        $user = Auth::user();
+        //param request
+        $params = $request->all();
+        //total amount
+        $totalAmount = collect($params)->sum('amount');
+
+        if ($user->credit < $totalAmount) {
+            return json_encode([
+                'code' => 2,
+                'status' => 'fail',
+                'message' => "Not enough money, please recharge...",
+                'key' => "",
+                'time' => ""
+            ]);
+        }
+
+        foreach($params as $key=>$prod)
+        {
+            $toolDetail = Tool::find($prod['tool_id']);
+            $packages = json_decode($toolDetail->package, true);
+            if($toolDetail->discount && $toolDetail->discount > 0) {
+                $discount = $toolDetail->discount /100;
+            } else {
+                // xác định role của member để discount
+                $role_member = CommonService::roleMember()['role'];
+                $role = array_search($role_member, config('const.role_member.member_status'), true );
+                $discount = config('const.role_member.discount')[$role];
+            }
+
+            if (isset($packages[$prod['package']])) {
+                $price = (float)$packages[$prod['package']] - (float)$packages[$prod['package']]* $discount;
+                $price = round($price,2);
+            } else {
+                return json_encode([
+                    'code' => 404,
+                    'status' => 'fail',
+                    'message' => "Something wrong, please ask for Admin about this case. Thank you!",
+                    'key' => "",
+                    'time' => ""
+                ]);
+            }
+
+            // Tool của mình sản xuất được
+            if ($toolDetail->author == "me") {
+                DB::beginTransaction();
+                try {
+                    $costs = json_decode($toolDetail->cost, true);
+                    if (isset($costs[$prod['package']])) {
+                        $cost = $costs[$prod['package']];
+                    } else {
+                        $cost = 0;
+                    }
+
+                    $history = new History();
+                    $history->action = 'BUY_KEY';
+                    $history->user_id = $user->id;
+                    $history->amount = $price;
+                    $lastCredit = $user->credit - $price;
+                    $history->content = "Buy tool " . $toolDetail->name . " package " . $prod['package'] . ". Your balance from " . number_format($user->credit) . " to " . number_format($lastCredit);
+                    $history->revenue = $price - (int)$cost;
+                    $history->ip = $ip_address;
+                    $history->save();
+
+                    $newKey = generateRandomString(20);
+
+                    $data = [$newKey];
+                    $rules = array(
+                        'required|unique:keys,key'
+                    );
+                    $messages = [];
+                    $attributes = ['key']; // use your actual fields here
+                    $validator = Validator::make($data, $rules, $messages, $attributes);
+                    if ($validator->fails()) {
+                        return json_encode([
+                            'status' => 'fail',
+                            'message' => "Something wrong, please try again later.",
+                            'time' => ""
+                        ]);
+                    }
+                    $key = new Key();
+                    $key->tool_id = $prod['tool_id'];
+                    $key->key = generateRandomString(20);;
+                    $key->package = $prod['package'];
+                    $key->user_id = $user->id;
+                    $key->sold = 1;
+                    $key->history_id = $history->id;
+                    $key->save();
+
+                    // Cập nhật số tiền của khách sau khi thuê
+                    $user->credit = $lastCredit;
+                    $user->save();
+                    MailService::invoiceMail($user->email, $key, $price, $toolDetail);
+                    DB::commit();
+                } catch (Exception $e) {
+                    DB::rollBack();
+                    return json_encode([
+                        'status' => 'fail',
+                        'message' => "Something wrong, please try again later.",
+                        'time' => ""
+                    ]);
+                }
+            } else {
+                $key = Key::where([['tool_id', $prod['tool_id']], ['user_id', 0], ['package', '=', $prod['package']]])->first();
+
+                // Nếu trong kho hết key mà có API để lấy thì gọi lên lấy thêm
+                if($key == null && $toolDetail->api_get_key != null) {
+                    $content = @file_get_contents($toolDetail->api_get_key.$prod['package'].'/1/GD/user_'.$user->id);
+                    if($content) {
+                        $data = json_decode($content);
+                        if($data->status == "success") {
+                            $key = new Key();
+                            $key->tool_id = $prod['tool_id'];
+                            $key->package = $prod['package'];
+                            $key->key = $data->keys[0];
+                            $key->user_id = $user->id;
+                            $key->save();
+                        }
+                    }
+                }
+                // Hết đoạn gọi lên API lấy key
+                if ($key != null) {
+                    $costs = json_decode($toolDetail->cost, true);
+                    if (isset($costs[$prod['package']])) {
+                        $cost = $costs[$prod['package']];
+                    } else {
+                        $cost = 0;
+                    }
+                    $lastCredit = $user->credit - $price;
+
+                    DB::beginTransaction();
+                    // ghi lại lịch sử
+                    try {
+                        $history = new History();
+                        $history->action = 'BUY_KEY';
+                        $history->user_id = $user->id;
+                        $history->amount = $price;
+                        $history->content = "Buy " . $toolDetail->name . " package " . $prod['package'] . ". Your balance from " . number_format($user->credit) . " to " . number_format($lastCredit);
+                        $history->ip = $ip_address;
+                        $history->revenue = $price - (int)$cost;
+                        $history->save();
+
+                        $key->user_id = $user->id;
+                        $key->history_id = $history->id;
+                        $key->sold = 1;
+                        $key->save();
+
+                        $user->credit = $user->credit - $price;
+                        $user->save();
+                        MailService::invoiceMail($user->email, $key, $price, $toolDetail);
+                        DB::commit();
+                    } catch (Exception $e) {
+                        DB::rollBack();
+                        return json_encode([
+                            'status' => 'fail',
+                            'message' => "Something wrong, please try again later.",
+                            'time' => ""
+                        ]);
+                    }
+
+                } else {
+                    return json_encode([
+                        'status' => 'fail',
+                        'message' => "Sorry, this product ".$prod['package_name']." is out of stock",
+                        'time' => ""
+                    ]);
+                }
+            }
+        }
+        return json_encode([
+            'status' => 'success',
+            'message' => "Buy successfully",
+            'time' => date("d/m/Y H:i", time())
+        ]);
+    }
+
 
     public function buyTool($toolId, $package)
     {
