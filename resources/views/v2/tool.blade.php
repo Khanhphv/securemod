@@ -300,7 +300,7 @@
         firstClickTime = new Date().getTime();
     }
     function buyTool(tool_id) {
-            @auth()
+        @auth()
         let package_tool = $(`#tool_${tool_id} .game-package`).val();
         if (!package_tool) {
             Swal.fire({
@@ -428,6 +428,10 @@
         }
         $.each(carts, function (key, value){
             value.id = key + 1;
+        })
+        carts.map(function(value){
+            value.amount = value.price*value.count
+            return value
         })
         // set cart to local storage
         localStorage.setItem('cartItem', JSON.stringify(carts));

@@ -1196,7 +1196,7 @@
 
                     $('#shopping_cart tbody').append('<tr> <td><label><input class="check-item" type="checkbox" '+value.status+' value="'+value.id+'"><span class="slider round"></span></label></td>  <td>'
                         + value.game_name + '</td>  <td>' + value.name_tool + '</td> <td>'
-                            + value.package_name + '</td>  <td>' + value.count + '</td>  <td>' + value.amount + '</td> <td>'
+                            + value.package_name + '</td>  <td width="80"><input type="number" class="package-count" min="1" data-id="'+value.id+'" value="' + value.count + '"></td>  <td>' + value.amount + '</td> <td>'
                                 + `<a class="btn-floating act-delete btn-small waves-effect waves-light red" data-index="${value.id}"><i class="material-icons">delete</i></a>`
                                 + '</td></tr>');
                 })
@@ -1384,6 +1384,33 @@
                 getTotalAmount()
             }
         });
+
+        // check checkbox item
+        $("#shopping_cart").on('keyup keypress change','.package-count',function(){
+            let count = $(this).val()
+            let index = $(this).data('id')
+            let carts = JSON.parse(localStorage.getItem('cartItem'))
+            carts.map(function(value){
+                if(value.id == index){
+                    value.count = count
+                    value.amount = value.price*value.count
+                }
+                return value
+            })
+            localStorage.setItem('cartItem', JSON.stringify(carts))
+            console.log("index>>>",index)
+            console.log("count>>>",count)
+            // update count item
+            if(carts && carts.length) {
+                $('.notification-badge').html(carts.length)
+            } else {
+                $('.notification-badge').html(0)
+            }
+            // load data table
+            getListItemCart(carts, false)
+            getTotalAmount()
+        })
+
     });
 </script>
 

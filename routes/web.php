@@ -69,6 +69,7 @@ Route::group(['middleware' => ['locale', 'web']], function () {
 Route::group(['middleware' => ['locale', 'auth']], function () {
     Route::get('balance', 'HomeController@getBalance')->name('balance');
     Route::get('keys', 'HomeController@getKeys')->name('keys');
+    Route::get('tools', 'ToolController@index')->name('tools');
 });
 
 Route::get('check_order_paypal/{order_id_paypal}', 'PayPalController@CheckOrder');
