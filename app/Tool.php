@@ -4,12 +4,23 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Model\Game;
 
 class Tool extends Model
 {
     protected $fillable = [
         'name', 'order', 'logo', 'youtube', 'package', 'link', 'updated', 'active', 'updated_at', 'created_at', 'reseller', 'cost', 'link_backup', 'game_id','description_eng','content_eng'
     ];
+
+    public function key()
+    {
+        return $this->hasMany(Key::class, 'tool_id');
+    }
+
+    public function game()
+    {
+        return $this->hasOne(Game::class, 'id', 'game_id');
+    }
 
     public function getAllTool() {
         $selectData = [
