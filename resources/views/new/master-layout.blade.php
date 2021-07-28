@@ -913,9 +913,9 @@
                         </a>
                     </svg>
                 </a>
-                <a href="/keys">
+                <a href="/tools">
                     <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <a xlink:href="/keys">
+                        <a xlink:href="/tools">
                             <path
                                 d="M12,14 C13.3807119,14 14.5,15.1192881 14.5,16.5 C14.5,17.8807119 13.3807119,19 12,19 C10.6192881,19 9.5,17.8807119 9.5,16.5 C9.5,15.1192881 10.6192881,14 12,14 Z"
                                 id="Path" fill="#FFFFFF" fill-rule="nonzero" />
