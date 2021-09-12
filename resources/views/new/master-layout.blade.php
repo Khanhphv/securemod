@@ -1038,6 +1038,7 @@
                 </div>
             @endif
             @yield('content')
+            @if(\App\Option::where("option", "footer")->get("value")->first()["value"] == "1")
             <div class="footer">
                 <div>
                     <h5>About us</h5>
@@ -1084,6 +1085,7 @@
                     </div>
                 </div>
             </div>
+            @endif
 
         </div>
     </div>

@@ -38,18 +38,6 @@
                 @endforeach
             </ol>
         @endif
-{{--        <div class="form-group">--}}
-{{--            <label class="no-margin">Paypal Client_ID</label>--}}
-{{--            @foreach($listPayment as $payment)--}}
-{{--                <div class="radio">--}}
-{{--                    <label>--}}
-{{--                        <input type="radio" name="paypal_id" id="" value="{{$payment['id'] }}"--}}
-{{--                               {{ (isset($siteSettings['paypal_id']) && ($payment['id'] === (int)$siteSettings['paypal_id'])) ? 'checked': '' }}>--}}
-{{--                        {{ $payment['name'] }}--}}
-{{--                    </label>--}}
-{{--                </div>--}}
-{{--                @endforeach--}}
-{{--        </div>--}}
         <div class="form-group">
             <label class="no-margin">Auto accept payment</label>
             <div class="radio">
@@ -60,6 +48,19 @@
                 <label>
                     <input type="radio" name="auto-accept" id="" value="0"
                         {{ (isset($siteSettings['auto-accept']) && ((int)$siteSettings['auto-accept'] === 0)) ? 'checked': '' }}> Off
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="no-margin">Footer</label>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="footer" id="" value="1"
+                        {{ (isset($siteSettings['footer']) && ((int)$siteSettings['footer'] === 1)) ? 'checked': '' }}> On
+                </label>
+                <label>
+                    <input type="radio" name="footer" id="" value="0"
+                        {{ (isset($siteSettings['footer']) && ((int)$siteSettings['footer'] === 0)) ? 'checked': '' }}> Off
                 </label>
             </div>
         </div>

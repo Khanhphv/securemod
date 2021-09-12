@@ -122,5 +122,10 @@ class OptionsTableSeeder extends Seeder
             'value' => '1',
             'locate' => 'en'
         ]);
+        DB::table('options')->insert([
+            'option' => 'footer',
+            'value' => '1',
+            'locate' => 'en'
+        ]);
     }
 }
