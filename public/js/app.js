@@ -1781,8 +1781,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -40269,12 +40267,12 @@ var render = function() {
                     "div",
                     { staticClass: "auth-form-transparent text-left p-3" },
                     [
-                      _vm._m(0),
+                      _c("div", { staticClass: "brand-logo text-center" }),
                       _vm._v(" "),
                       _c("form", { staticClass: "pt-1" }, [
                         _c("div", { staticClass: "form-group" }, [
                           _c("div", { staticClass: "input-group" }, [
-                            _vm._m(1),
+                            _vm._m(0),
                             _vm._v(" "),
                             _c("input", {
                               directives: [
@@ -40307,7 +40305,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("div", { staticClass: "form-group" }, [
                           _c("div", { staticClass: "input-group" }, [
-                            _vm._m(2),
+                            _vm._m(1),
                             _vm._v(" "),
                             _c("input", {
                               directives: [
@@ -40355,27 +40353,9 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(3),
-                        _vm._v(" "),
                         _c("p", { staticClass: "text-center" }, [_vm._v("OR")]),
                         _vm._v(" "),
                         _c("div", { staticClass: "mb-2 d-block" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass:
-                                "btn btn-facebook auth-form-btn flex-grow col-12 mb-2",
-                              attrs: { type: "button" },
-                              on: { click: _vm.LoginWithFB }
-                            },
-                            [
-                              _c("i", { staticClass: "mdi mdi-facebook mr-2" }),
-                              _vm._v(
-                                "Login via Facebook\n                                    "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
                           _c(
                             "button",
                             {
@@ -40393,14 +40373,14 @@ var render = function() {
                           )
                         ]),
                         _vm._v(" "),
-                        _vm._m(4)
+                        _vm._m(2)
                       ])
                     ]
                   )
                 ]
               ),
               _vm._v(" "),
-              _vm._m(5)
+              _vm._m(3)
             ])
           ]
         )
@@ -40409,16 +40389,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "brand-logo text-center" }, [
-      _c("a", { attrs: { href: "/" } }, [
-        _c("img", { attrs: { src: "/images/logo.png", alt: "logo" } })
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -40447,33 +40417,15 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "my-3" }, [
-      _c(
-        "a",
-        {
-          staticClass:
-            "btn btn-block btn-default btn-lg font-weight-medium auth-form-btn",
-          attrs: { href: "https://divinesofts.net/register" }
-        },
-        [_vm._v("REGISTER")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "text-center mt-4 font-weight-light" }, [
       _vm._v(
         "\n                                    If you do not have an account, the system will automatically create new for you"
       ),
       _c("br"),
       _vm._v(" "),
-      _c(
-        "a",
-        { attrs: { href: "https://divinesofts.net/terms-of-services" } },
-        [_vm._v("Terms of Service and Refund Policy.")]
-      )
+      _c("a", { attrs: { href: "/terms-of-services" } }, [
+        _vm._v("Terms of Service and Refund Policy.")
+      ])
     ])
   },
   function() {
@@ -52848,8 +52800,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\xampp\htdocs\securemod\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\xampp\htdocs\securemod\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/khanh/Desktop/laravel/securemod/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/khanh/Desktop/laravel/securemod/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

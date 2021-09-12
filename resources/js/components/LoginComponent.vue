@@ -39,16 +39,14 @@
                                     </button>
 
                                 </div>
-								<div class="my-3">
-                                    <a class="btn btn-block btn-default btn-lg font-weight-medium auth-form-btn" href="https://divinesofts.net/register">REGISTER</a>
-                                </div>
+
 
                                 <p class="text-center">OR</p>
                                 <div class="mb-2 d-block">
-                                    <button type="button" class="btn btn-facebook auth-form-btn flex-grow col-12 mb-2"
-                                            v-on:click="LoginWithFB">
-                                        <i class="mdi mdi-facebook mr-2"></i>Login via Facebook
-                                    </button>
+<!--                                    <button type="button" class="btn btn-facebook auth-form-btn flex-grow col-12 mb-2"-->
+<!--                                            v-on:click="LoginWithFB">-->
+<!--                                        <i class="mdi mdi-facebook mr-2"></i>Login via Facebook-->
+<!--                                    </button>-->
                                     <button type="button" class="btn btn-google auth-form-btn flex-grow col-12 mb-2"
                                             v-on:click="LoginWithGoogle">
                                         <i class="mdi mdi-google mr-2"></i>Login via Google
@@ -60,7 +58,7 @@
                                 </div>
                                 <div class="text-center mt-4 font-weight-light">
                                     If you do not have an account, the system will automatically create new for you<br>
-									<a href="https://divinesofts.net/terms-of-services">Terms of Service and Refund Policy.</a>
+									<a href="/terms-of-services">Terms of Service and Refund Policy.</a>
                                 </div>
                             </form>
                         </div>
