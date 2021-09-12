@@ -1,124 +1,136 @@
 <?php return array (
-  'barryvdh/laravel-ide-helper' =>
+  'barryvdh/laravel-ide-helper' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider',
     ),
   ),
-  'beyondcode/laravel-dump-server' =>
+  'beyondcode/laravel-dump-server' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'BeyondCode\\DumpServer\\DumpServerServiceProvider',
     ),
   ),
-  'fideloper/proxy' =>
+  'fideloper/proxy' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Fideloper\\Proxy\\TrustedProxyServiceProvider',
     ),
   ),
-  'intervention/image' =>
+  'intervention/image' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Intervention\\Image\\ImageServiceProvider',
     ),
-    'aliases' =>
+    'aliases' => 
     array (
       'Image' => 'Intervention\\Image\\Facades\\Image',
     ),
   ),
-  'jeroennoten/laravel-adminlte' =>
+  'jeroennoten/laravel-adminlte' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'JeroenNoten\\LaravelAdminLte\\AdminLteServiceProvider',
     ),
   ),
-  'kitloong/laravel-migrations-generator' =>
+  'kitloong/laravel-migrations-generator' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'KitLoong\\MigrationsGenerator\\MigrationsGeneratorServiceProvider',
     ),
   ),
-  'laravel/socialite' =>
+  'laravel/socialite' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Laravel\\Socialite\\SocialiteServiceProvider',
     ),
-    'aliases' =>
+    'aliases' => 
     array (
       'Socialite' => 'Laravel\\Socialite\\Facades\\Socialite',
     ),
   ),
-  'laravel/tinker' =>
+  'laravel/tinker' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Laravel\\Tinker\\TinkerServiceProvider',
     ),
   ),
-  'laravel/ui' =>
+  'laravel/ui' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Laravel\\Ui\\UiServiceProvider',
     ),
   ),
-  'mews/captcha' =>
+  'laravelcollective/html' => 
   array (
-    'providers' =>
+    'providers' => 
+    array (
+      0 => 'Collective\\Html\\HtmlServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Form' => 'Collective\\Html\\FormFacade',
+      'Html' => 'Collective\\Html\\HtmlFacade',
+    ),
+  ),
+  'mews/captcha' => 
+  array (
+    'providers' => 
     array (
       0 => 'Mews\\Captcha\\CaptchaServiceProvider',
     ),
-    'aliases' =>
+    'aliases' => 
     array (
       'Captcha' => 'Mews\\Captcha\\Facades\\Captcha',
     ),
   ),
-  'nesbot/carbon' =>
+  'nesbot/carbon' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Carbon\\Laravel\\ServiceProvider',
     ),
   ),
-  'nunomaduro/collision' =>
+  'nunomaduro/collision' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
-  'socialiteproviders/manager' =>
+  'socialiteproviders/manager' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'SocialiteProviders\\Manager\\ServiceProvider',
     ),
   ),
-  'unisharp/laravel-filemanager' =>
+  'unisharp/laravel-filemanager' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'UniSharp\\LaravelFilemanager\\LaravelFilemanagerServiceProvider',
     ),
-    'aliases' =>
+    'aliases' => 
     array (
     ),
   ),
-  'webklex/laravel-imap' =>
+  'webklex/laravel-imap' => 
   array (
-    'providers' =>
+    'providers' => 
     array (
       0 => 'Webklex\\IMAP\\Providers\\LaravelServiceProvider',
     ),
-    'aliases' =>
+    'aliases' => 
     array (
       'Client' => 'Webklex\\IMAP\\Facades\\Client',
     ),
