@@ -66,7 +66,7 @@
             ) !!}
             {!! Form::text(
                 'head_title',
-                old('head_title'),
+                $game->head_title,
                 [
                     'id' => 'head_title',
                     'class' => 'form-control',
@@ -85,7 +85,7 @@
             ) !!}
             {!! Form::text(
                 'head_description',
-                old('head_description'),
+                 $game->head_description,
                 [
                     'id' => 'head_description',
                     'class' => 'form-control',

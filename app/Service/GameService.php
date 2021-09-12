@@ -4,6 +4,7 @@ namespace App\Service;
 use App\Model\Game;
 use App\Tool;
 use App\HeadTag;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 
 class GameService
@@ -43,11 +44,20 @@ class GameService
     }
 
     public function getGame($id) {
-        return Game::findOrFail($id);
+        return DB::table('games as gm')
+            ->select('gm.*', 'ht.head_title', 'ht.head_description')
+            ->join('head_tags as ht', 'ht.type_id', '=','gm.id')
+            ->where('ht.type', '=','game')
+            ->where('gm.id', '=', $id)
+            ->get();
+    }
+
+    public function getGameById($id) {
+       return Game::findOrFail($id);
     }
 
     public function updateGame($id, $request) {
-        $game = $this->getGame($id);
+        $game = $this->getGameById($id);
         $game->name = $request->name;
         $game->slug = $request->slug;
         $game->description_eng = $request->description_eng;
@@ -57,6 +67,7 @@ class GameService
         $game->thumb_image = $request->thumb_image;
         $game->order = $request->order;
         $game->save();
+
 
         # update head tags for game
         $head_tags = HeadTag::where('type', 'game')->where('type_id', $id)->first();
@@ -76,7 +87,7 @@ class GameService
     }
 
     public function deleteGame($id) {
-        $game = $this->getGame($id);
+        $game = $this->getGameById($id);
 
         return $game->delete();
     }

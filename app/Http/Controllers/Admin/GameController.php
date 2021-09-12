@@ -86,6 +86,11 @@ class GameController extends Controller
     public function edit($id)
     {
         $game = $this->gameService->getGame($id);
+        if(sizeof($game) > 0) {
+            $game = $game->first();
+        } else {
+            abort(400);
+        }
         return view('admin.game.edit', compact('game'));
     }
 
