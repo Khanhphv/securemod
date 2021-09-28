@@ -60,6 +60,7 @@ class GameService
         $game = $this->getGameById($id);
         $game->name = $request->name;
         $game->slug = $request->slug;
+        $game->description = $request->description;
         $game->description_eng = $request->description_eng;
         $game->notice = $request->notice;
         $game->notice_eng = $request->notice_eng;

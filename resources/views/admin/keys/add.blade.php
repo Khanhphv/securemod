@@ -39,7 +39,7 @@
                        <option value="null">-- Select tool --</option>
                     @foreach($tools as $tool)
                         @php
-                            $packagesList["t".$tool->id] = $tool->package;
+                            $packagesList["t".$tool->id] = (array) $tool->package;
                         @endphp
 
                         <option value="{{$tool->id}}" @if (old('tool_id') == $tool->id) {{ 'selected' }} @endif>{{str_pad($tool->game_name, 50, '.')}}: {{$tool->name}}</option>
@@ -79,7 +79,7 @@
         });
 
         function addOption(toolType) {
-            let packagesList = JSON.parse('{{ isset($packagesList) ? json_encode($packagesList) : '' }}');
+            let packagesList = JSON.parse('{!! isset($packagesList) ? json_encode($packagesList) : "" !!}');
             $('#package').html('');
             $.each(packagesList["t" + toolType], function (i, e) {
                 let selected = "";

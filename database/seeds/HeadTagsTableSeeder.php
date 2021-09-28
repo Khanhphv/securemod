@@ -18,6 +18,12 @@ class HeadTagsTableSeeder extends Seeder
             'head_description' => 'Best PUBG Cheat'
         ]);
         DB::table('head_tags')->insert([
+            'type' => 'welcome',
+            'type_id' => null,
+            'head_title' => 'Welcome',
+            'head_description' => 'Best PUBG Cheat'
+        ]);
+        DB::table('head_tags')->insert([
             'type' => 'list_post',
             'type_id' => null,
             'head_title' => 'Latest News',
