@@ -52,8 +52,8 @@ return [
         'redirect' => 'https://divinesofts.net/login_via_discord/callback',
     ],
     'google' => [
-        'client_id' => '177962097889-3kvfud4798up8cbm89hjl35i63ict3h1.apps.googleusercontent.com',
-        'client_secret' => 'wKKRU2VELpUeyrMlMfqd4WlD',
-        'redirect' => 'https://divinesofts.net/login_via_google/callback',
+        'client_id' => '177962097889-vkm2nblpgra459r668p760agqt0p38v5.apps.googleusercontent.com',
+        'client_secret' => 'eyr4snKj6jhdqKjGqOCgKIws',
+        'redirect' => '/login_via_google/callback',
     ],
 ];
