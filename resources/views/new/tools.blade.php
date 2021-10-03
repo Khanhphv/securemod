@@ -37,7 +37,7 @@
                                     <td><span onclick="copyMessage('{{$tool->link}}')">{{$tool->link}}</span></td>
                                     <td>{{$tool->description}}</td>
                                     <td><span onclick="copyMessage('{{$tool->youtube}}')">{{$tool->youtube}}</span></td>
-                                    <td>{{$tool->game->name}}</td>
+                                    <td>{{$tool->game ? $tool->game->name : ''}}</td>
                                 </tr>
                             @endforeach
                         @endif
