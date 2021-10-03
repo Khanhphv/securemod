@@ -118,7 +118,7 @@ class HomeController extends Controller
                 'time' => ""
             ]);
         }
-
+       
         foreach($params as $key=>$prod)
         {
             $toolDetail = Tool::find($prod['tool_id']);
@@ -194,14 +194,15 @@ class HomeController extends Controller
                     // Cập nhật số tiền của khách sau khi thuê
                     $user->credit = $lastCredit;
                     $user->save();
-                    MailService::invoiceMail($user->email, $key, $price, $toolDetail);
+                    //turn off
+                    // MailService::invoiceMail($user->email, $key, $price, $toolDetail);
                     DB::commit();
                 } catch (Exception $e) {
                     DB::rollBack();
                     return json_encode([
                         'status' => 'fail',
                         'message' => "Something wrong, please try again later.",
-                        'time' => ""
+                        'time' => $e->getMessage()
                     ]);
                 }
             } else {
@@ -251,14 +252,15 @@ class HomeController extends Controller
 
                         $user->credit = $user->credit - $price;
                         $user->save();
-                        MailService::invoiceMail($user->email, $key, $price, $toolDetail);
+                        //turn off
+                        // MailService::invoiceMail($user->email, $key, $price, $toolDetail);
                         DB::commit();
                     } catch (Exception $e) {
                         DB::rollBack();
                         return json_encode([
                             'status' => 'fail',
                             'message' => "Something wrong, please try again later.",
-                            'time' => ""
+                            'time' => $e->getMessage()
                         ]);
                     }
 
