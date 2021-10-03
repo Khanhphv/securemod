@@ -1027,16 +1027,24 @@
                         align-items: self-start;
                     }
                 </style>
+                @php
+                    $notice =\App\Option::where('option', 'header_notice')->get()->first();
+                    if($notice) {
+                        $notice = trim($notive->value);
+                    }
+                @endphp
+
+                @if ($notice)
                 <div id="notice">
                     <div style="width: 100%; text-align: center" class="blink">
-                        {!! \App\Option::where('option', 'header_notice')->get()->first()->value !!}
+                        {!! $notice !!}
                     </div>
-
                     <span style="font-size: 25px; " onclick="hideNotice()">
-                <i class="material-icons dp48">highlight_off</i>
-            </span>
+                        <i class="material-icons dp48">highlight_off</i>
+                    </span>
                 </div>
             @endif
+
             @yield('content')
             @if(\App\Option::where("option", "footer")->get("value")->first()["value"] == "1")
             <div class="footer">
