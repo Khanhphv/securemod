@@ -22,9 +22,9 @@
                         <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Link</th>
-                            <th>Description</th>
-                            <th>Youtube</th>
+                            {{-- <th>Link</th> --}}
+                            {{-- <th>Description</th> --}}
+                            {{-- <th>Youtube</th> --}}
                             <th>Game Name</th>
                         </tr>
                         </thead>
@@ -34,9 +34,9 @@
                             @foreach($tools as $index => $tool)
                                 <tr class="modal-trigger" href="#key{{$index}}" data-activates="notification">
                                     <td>{{$tool->name}}</td>
-                                    <td><span onclick="copyMessage('{{$tool->link}}')">{{$tool->link}}</span></td>
-                                    <td>{{$tool->description}}</td>
-                                    <td><span onclick="copyMessage('{{$tool->youtube}}')">{{$tool->youtube}}</span></td>
+                                    {{-- <td><span onclick="copyMessage('{{$tool->link}}')">{{$tool->link}}</span></td> --}}
+                                    {{-- <td>{{$tool->description}}</td>
+                                    <td><span onclick="copyMessage('{{$tool->youtube}}')">{{$tool->youtube}}</span></td> --}}
                                     <td>{{$tool->game ? $tool->game->name : ''}}</td>
                                 </tr>
                             @endforeach
