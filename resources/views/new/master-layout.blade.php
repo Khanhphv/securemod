@@ -1030,7 +1030,7 @@
                 @php
                     $notice =\App\Option::where('option', 'header_notice')->get()->first();
                     if($notice) {
-                        $notice = trim($notive->value);
+                        $notice = trim($notice->value);
                     }
                 @endphp
 
@@ -1043,6 +1043,8 @@
                         <i class="material-icons dp48">highlight_off</i>
                     </span>
                 </div>
+                @endif
+
             @endif
 
             @yield('content')
