@@ -1,6 +1,6 @@
 <a href="/game/{{$game->slug}}">
     <div class="item-discription">
-        <div class="background" style="background-image: url({{ $game->thumb_image }}); background-position: inherit" >
+        <div class="background" style="background-image: url({{ $game->thumb_image }})" >
             <div>{{ ($game->name) }}</div>
             <span>Game</span>
         </div>
