@@ -9,6 +9,7 @@
     <meta name="keywords" content="YOUR SECURITY IS OUR PRIORITY, hack, cheats">
     <meta name="author" content="support@divinesofts.net">
     @include('new.style')
+    <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/cd9d9d634b0434b043fd644ef/0cff08fc814719677ff41187b.js");</script>
 </head>
 <body @if($theme == 'dark') data-theme="dark" @endif>
     @extends('new.master-layout')
