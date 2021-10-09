@@ -107,7 +107,9 @@ class HomeController extends Controller
         //param request
         $params = $request->all();
         //total amount
-        $totalAmount = collect($params)->sum('amount');
+        $totalAmount = collect($params)->map(function ($product, $key) {
+            return $product['price'] * $product['count'];
+        })->sum();
 
         if ($user->credit < $totalAmount) {
             return json_encode([
@@ -118,7 +120,7 @@ class HomeController extends Controller
                 'time' => ""
             ]);
         }
-       
+
         foreach($params as $key=>$prod)
         {
             $toolDetail = Tool::find($prod['tool_id']);

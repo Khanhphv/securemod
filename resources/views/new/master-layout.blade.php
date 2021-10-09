@@ -1299,6 +1299,15 @@
                         Swal.showLoading();
                     }
                 })
+
+                if(!params.length) {
+                    Swal.fire({
+                        title: 'Error',
+                        text: "Please choose package!",
+                        icon: 'error'
+                    });
+                }
+
                 $.ajax({
                     url: url,
                     data: JSON.stringify(params),
@@ -1306,6 +1315,7 @@
                     contentType: 'application/json',
                     success: function (response) {
                         Swal.close();
+                        response = JSON.parse(response)
                         if (response.status === "success") {
                             Swal.fire({
                                 title: 'Success',
