@@ -67,10 +67,10 @@
                                     @if(count($tool->key) > 0)
                                         @foreach($tool->key as $key)
                                             <tr>
-                                                <td>{{$key->tool_name}} / {{$key->game_name}}</td>
+                                                <td>{{$key->tool_name}} / {{$tool->name}}</td>
                                                 <td><span onclick="copyMessage('{{$key->key}}')">{{$key->key}}</span></td>
                                                 <td>{{$key->package}} hours</td>
-                                                <td>{{date("H:i d/m", strtotime($key->history_created_at))}}</td>
+                                                <td>{{date("H:i:s d/m", strtotime($key->updated_at))}}</td>
                                             </tr>
                                         @endforeach
                                     @endif
