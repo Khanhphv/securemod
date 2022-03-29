@@ -1,0 +1,56 @@
+.container-scroller {
+    min-height: 100vh;
+}
+
+.login {
+    min-height: 100vh;
+    margin-top: 10%;
+    display: flex;
+    justify-content: center;
+}
+
+.login-form {
+    width: 100%;
+    max-width: 350px;
+    max-height: 200px;
+}
+
+.form-control {
+    border: 2px solid #E6E8EC;
+    border-radius: 12px;
+    line-height: 1.5rem;
+    padding: 0 14px;
+    color: #23262F;
+    height: 48px;
+}
+
+.entry__info {
+    margin-bottom: 12px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.66667;
+    color: #777E90;
+}
+
+.entry__top {
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #E6E8EC;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: rgb(83, 83, 83);
+}
+
+.btn-full-width {
+    width: 100%;
+}
+
+.text-xs {
+    font-size: 12px;
+}
+
+.button-border-radius {
+    border-radius: 14px;
+}
