@@ -4,7 +4,7 @@
     }
 
     .mobile {
-        padding: 20px;
+        
         width  : 100%;
         margin : 0;
     }
@@ -23,7 +23,6 @@
     }
 
     .tab-name {
-        padding: 0 25px;
     }
 
     .menu {

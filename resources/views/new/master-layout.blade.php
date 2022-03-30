@@ -607,7 +607,7 @@
 
             <div class="space-20px desktop"></div>
             <div class="space-20px"></div>
-            @if(isset($master_site_settings['text_logo']))
+            <!-- @if(isset($master_site_settings['text_logo']))
                     <div style="color: var(--text-primary-color); padding-right: 1em" class="text-logo">
                         {!! html_entity_decode(
                             Html::linkRoute(
@@ -624,7 +624,7 @@
                             )
                         ) !!}
                     </div>
-            @endif
+            @endif -->
 
             <div class="space-20px desktop"></div>
             <div class="space-20px desktop"></div>
@@ -1046,8 +1046,10 @@
                 @endif
 
             @endif
+            <div class="card-container content">
+                @yield('content')
+            </div>
 
-            @yield('content')
             @if(\App\Option::where("option", "footer")->get("value")->first()["value"] == "1")
             <div class="footer">
                 <div>
