@@ -1,4 +1,4 @@
 - cp .env.example .env
 - docker-compose up -d
-- docker-compose exec compose install
-- docker-compose 
+- docker-compose exec app compose install
+- docker-compose  exec app php artisan migrate:fresh --seed
