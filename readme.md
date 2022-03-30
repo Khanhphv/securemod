@@ -1,3 +1,4 @@
-- docker-compose up
+- cp .env.example .env
+- docker-compose up -d
 - docker-compose exec compose install
 - docker-compose 
