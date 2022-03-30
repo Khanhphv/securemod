@@ -27,305 +27,135 @@
     }
 </style>
 <div class="container">
-    <div class="menu-mobile-container" style="display: none!important;">
-        <div class="title-icon">
-            Menu
-            <span class="close-icon">
-                <svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1">
-                    <path
-                        d="M2,7 L14,7 C14.5522847,7 15,7.44771525 15,8 C15,8.55228475 14.5522847,9 14,9 L2,9 C1.44771525,9 1,8.55228475 1,8 C1,7.44771525 1.44771525,7 2,7 Z M8,8 L14,8 L8,8 Z"
-                        id="Rectangle" fill-rule="nonzero"
-                        transform="translate(8.000000, 8.000000) rotate(-135.000000) translate(-8.000000, -8.000000) " />
-                    <path
-                        d="M2,7 L14,7 C14.5522847,7 15,7.44771525 15,8 C15,8.55228475 14.5522847,9 14,9 L2,9 C1.44771525,9 1,8.55228475 1,8 C1,7.44771525 1.44771525,7 2,7 Z M8,8 L14,8 L8,8 Z"
-                        id="Rectangle" fill-rule="nonzero"
-                        transform="translate(8.000000, 8.000000) rotate(-45.000000) translate(-8.000000, -8.000000) " />
-                </svg>
-            </span>
-        </div>
-        <div class="space-height-20px"></div>
-        <div class="space-height-20px"></div>
-        <div class="user-mobile">
+ <div class="toolbar desktop">
             <div>
-                <p>Welcome back,</p>
-                @auth()
-                <span>{{ Auth::user()->name }}</span>
-                @endauth
-            </div>
-            <div style="display: flex; align-items: center; justify-content: space-between;">
-                <div style="display: flex; align-items: center;">
-                    <svg width="16px" height="16px" viewBox="0 0 16 16">
-                        <path
-                            d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z"
-                            id="Path" fill-rule="nonzero"></path>
+                <a href="/home">
+                    <svg class="active" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <a xlink:href="/home">
+                            <path
+                                d="M2,0 L22,0 C23.1045695,-2.02906125e-16 24,0.8954305 24,2 L24,9 C24,10.1045695 23.1045695,11 22,11 L2,11 C0.8954305,11 1.3527075e-16,10.1045695 0,9 L0,2 C-1.3527075e-16,0.8954305 0.8954305,2.02906125e-16 2,0 Z"
+                                id="Path" fill-rule="nonzero" />
+                            <path
+                                d="M2,13 L12,13 C13.1045695,13 14,13.8954305 14,15 L14,22 C14,23.1045695 13.1045695,24 12,24 L2,24 C0.8954305,24 1.3527075e-16,23.1045695 0,22 L0,15 C-1.3527075e-16,13.8954305 0.8954305,13 2,13 Z"
+                                id="Path" fill-rule="nonzero" />
+                            <path
+                                d="M18,13 L22,13 C23.1045695,13 24,13.8954305 24,15 L24,22 C24,23.1045695 23.1045695,24 22,24 L18,24 C16.8954305,24 16,23.1045695 16,22 L16,15 C16,13.8954305 16.8954305,13 18,13 Z"
+                                id="Path" fill-rule="nonzero" />
+                        </a>
                     </svg>
-                    <div class="space-20px"></div>
-                    @auth()
-                    {{ round(Auth::user()->credit, 2) }} USD
-                    @endauth
-                </div>
-                {{-- <div class="btn-rechange-mobile modal-trigger" href="#paypal-popup">
+                </a>
+                <a href="/balance">
                     <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <path
-                            d="M12,21.5 C17.2467051,21.5 21.5,17.2467051 21.5,12 C21.5,6.75329488 17.2467051,2.5 12,2.5 C6.75329488,2.5 2.5,6.75329488 2.5,12 L3.5,12 C3.5,7.30557963 7.30557963,3.5 12,3.5 C16.6944204,3.5 20.5,7.30557963 20.5,12 C20.5,16.6944204 16.6944204,20.5 12,20.5 L12,21.5 Z"
-                            id="Path" fill-rule="nonzero"></path>
-                        <path
-                            d="M12,21.5 C17.2467051,21.5 21.5,17.2467051 21.5,12 C21.5,6.75329488 17.2467051,2.5 12,2.5 C6.75329488,2.5 2.5,6.75329488 2.5,12 L3.5,12 C3.5,7.30557963 7.30557963,3.5 12,3.5 C16.6944204,3.5 20.5,7.30557963 20.5,12 C20.5,16.6944204 16.6944204,20.5 12,20.5 L12,21.5 Z"
-                            id="Path" fill-rule="nonzero"
-                            transform="translate(12.000000, 12.000000) rotate(-195.000000) translate(-12.000000, -12.000000) ">
-                        </path>
-                        <path
-                            d="M8,11 L16,11 C16.5522847,11 17,11.4477153 17,12 C17,12.5522847 16.5522847,13 16,13 L8,13 C7.44771525,13 7,12.5522847 7,12 C7,11.4477153 7.44771525,11 8,11 Z"
-                            id="Path" fill-rule="nonzero"></path>
-                        <path
-                            d="M8,11 L16,11 C16.5522847,11 17,11.4477153 17,12 C17,12.5522847 16.5522847,13 16,13 L8,13 C7.44771525,13 7,12.5522847 7,12 C7,11.4477153 7.44771525,11 8,11 Z"
-                            id="Path" fill-rule="nonzero"
-                            transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) ">
-                        </path>
+                        <a xlink:href="/balance">
+                            <path
+                                d="M5,6 L8,6 C8.55228475,6 9,6.44771525 9,7 L9,20 C9,20.5522847 8.55228475,21 8,21 L5,21 C4.44771525,21 4,20.5522847 4,20 L4,7 C4,6.44771525 4.44771525,6 5,6 Z"
+                                id="Path" fill-rule="nonzero" />
+                            <path
+                                d="M16,3 L19,3 C19.5522847,3 20,3.44771525 20,4 L20,17 C20,17.5522847 19.5522847,18 19,18 L16,18 C15.4477153,18 15,17.5522847 15,17 L15,4 C15,3.44771525 15.4477153,3 16,3 Z"
+                                id="Path" fill-rule="nonzero"
+                                transform="translate(17.500000, 10.500000) rotate(-180.000000) translate(-17.500000, -10.500000) " />
+                            <path
+                                d="M6.07335908,0.739274995 C6.26832389,0.420241668 6.73167611,0.420241668 6.92664092,0.739274995 L12.4266409,9.739275 C12.6302488,10.0724516 12.3904649,10.5 12,10.5 L1,10.5 C0.609535124,10.5 0.36975117,10.0724516 0.573359083,9.739275 L6.07335908,0.739274995 Z"
+                                id="Path" fill-rule="nonzero" />
+                            <path
+                                d="M17.0733591,13.739275 C17.2683239,13.4202417 17.7316761,13.4202417 17.9266409,13.739275 L23.4266409,22.739275 C23.6302488,23.0724516 23.3904649,23.5 23,23.5 L12,23.5 C11.6095351,23.5 11.3697512,23.0724516 11.5733591,22.739275 L17.0733591,13.739275 Z"
+                                id="Path" fill-rule="nonzero"
+                                transform="translate(17.500000, 18.500000) rotate(-180.000000) translate(-17.500000, -18.500000) " />
+                        </a>
                     </svg>
-                </div> --}}
+                </a>
+                <a href="/keys">
+                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <a xlink:href="/keys">
+                            <path
+                                d="M12,3 C15.0375661,3 17.5,5.46243388 17.5,8.5 L17.5,17.5 C17.5,20.5375661 15.0375661,23 12,23 C8.96243388,23 6.5,20.5375661 6.5,17.5 L6.5,8.5 L4.5,8.5 L4.5,17.5 C4.5,21.6421356 7.85786438,25 12,25 C16.1421356,25 19.5,21.6421356 19.5,17.5 L19.5,8.5 C19.5,4.35786438 16.1421356,1 12,1 L12,3 Z"
+                                id="Rectangle" fill-rule="nonzero"
+                                transform="translate(12.000000, 13.000000) rotate(-180.000000) translate(-12.000000, -13.000000) ">
+                            </path>
+                            <path
+                                d="M5,9 L19,9 C20.6568542,9 22,10.3431458 22,12 L22,21 C22,22.6568542 20.6568542,24 19,24 L5,24 C3.34314575,24 2,22.6568542 2,21 L2,12 C2,10.3431458 3.34314575,9 5,9 Z"
+                                id="Path" fill-rule="nonzero"></path>
+                            <path
+                                d="M12,14 C13.3807119,14 14.5,15.1192881 14.5,16.5 C14.5,17.8807119 13.3807119,19 12,19 C10.6192881,19 9.5,17.8807119 9.5,16.5 C9.5,15.1192881 10.6192881,14 12,14 Z"
+                                id="Path" fill="#FFFFFF" fill-rule="nonzero"></path>
+                        </a>
+                    </svg>
+                </a>
+                <a href="/tools">
+                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <a xlink:href="/tools">
+                            <path
+                                d="M12,14 C13.3807119,14 14.5,15.1192881 14.5,16.5 C14.5,17.8807119 13.3807119,19 12,19 C10.6192881,19 9.5,17.8807119 9.5,16.5 C9.5,15.1192881 10.6192881,14 12,14 Z"
+                                id="Path" fill="#FFFFFF" fill-rule="nonzero" />
+                            <path
+                                d="M9.5,24 C14.7467051,24 19,19.7467051 19,14.5 C19,9.25329488 14.7467051,5 9.5,5 C4.25329488,5 0,9.25329488 0,14.5 C0,19.7467051 4.25329488,24 9.5,24 Z"
+                                id="Path" fill-rule="nonzero" opacity="0.394647507" />
+                            <path
+                                d="M13.5,21 C19.2989899,21 24,16.2989899 24,10.5 C24,4.70101013 19.2989899,0 13.5,0 C7.70101013,0 3,4.70101013 3,10.5 C3,16.2989899 7.70101013,21 13.5,21 Z"
+                                id="Path" fill-rule="nonzero"
+                                transform="translate(13.500000, 10.500000) rotate(-315.000000) translate(-13.500000, -10.500000) " />
+                            <path
+                                d="M10.6322892,9.71085659 C11.7368587,9.71085659 12.6322892,8.81542608 12.6322892,7.71085659 C12.6322892,6.60628709 11.7368587,5.71085659 10.6322892,5.71085659 C9.52771967,5.71085659 8.63228917,6.60628709 8.63228917,7.71085659 C8.63228917,8.81542608 9.52771967,9.71085659 10.6322892,9.71085659 Z"
+                                id="Path" fill="#FFFFFF" fill-rule="nonzero"
+                                transform="translate(10.632289, 7.710857) rotate(-315.000000) translate(-10.632289, -7.710857) " />
+                            <path
+                                d="M10.6322892,8.71085659 C10.0800044,8.71085659 9.63228917,8.26314134 9.63228917,7.71085659 C9.63228917,7.15857184 10.0800044,6.71085659 10.6322892,6.71085659 C11.1845739,6.71085659 11.6322892,7.15857184 11.6322892,7.71085659 C11.6322892,8.26314134 11.1845739,8.71085659 10.6322892,8.71085659 Z"
+                                id="Path" fill-rule="nonzero"
+                                transform="translate(10.632289, 7.710857) rotate(-315.000000) translate(-10.632289, -7.710857) " />
+                            <path
+                                d="M16.2891434,15.3677108 C17.3937129,15.3677108 18.2891434,14.4722803 18.2891434,13.3677108 C18.2891434,12.2631413 17.3937129,11.3677108 16.2891434,11.3677108 C15.1845739,11.3677108 14.2891434,12.2631413 14.2891434,13.3677108 C14.2891434,14.4722803 15.1845739,15.3677108 16.2891434,15.3677108 Z"
+                                id="Path" fill="#FFFFFF" fill-rule="nonzero"
+                                transform="translate(16.289143, 13.367711) rotate(-315.000000) translate(-16.289143, -13.367711) " />
+                            <path
+                            d="M16.2891434,14.3677108 C15.7368587,14.3677108 15.2891434,13.9199956 15.2891434,13.3677108 C15.2891434,12.8154261 15.7368587,12.3677108 16.2891434,12.3677108 C16.8414282,12.3677108 17.2891434,12.8154261 17.2891434,13.3677108 C17.2891434,13.9199956 16.8414282,14.3677108 16.2891434,14.3677108 Z"
+                                id="Path" fill="#979797" fill-rule="nonzero"
+                                transform="translate(16.289143, 13.367711) rotate(-315.000000) translate(-16.289143, -13.367711) " />
+                            <path
+                                d="M13,6.05555556 L13,14.9444444 C13,15.2205868 13.2238576,15.4444444 13.5,15.4444444 C13.7761424,15.4444444 14,15.2205868 14,14.9444444 L14,6.05555556 C14,5.77941318 13.7761424,5.55555556 13.5,5.55555556 C13.2238576,5.55555556 13,5.77941318 13,6.05555556 Z"
+                                id="Path" fill="#FFFFFF" fill-rule="nonzero"
+                                transform="translate(13.500000, 10.500000) rotate(-315.000000) translate(-13.500000, -10.500000) " />
+                        </a>
+                    </svg>
+                </a>
+                <a href="/terms-of-services">
+                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <a xlink:href="/terms-of-services">
+                            <path
+                                d="M6,0 L13,0 L18,0 C19.6568542,-3.04359188e-16 21,1.34314575 21,3 L21,7.9934309 L21,21 C21,22.6568542 19.6568542,24 18,24 L6,24 C4.34314575,24 3,22.6568542 3,21 L3,3 C3,1.34314575 4.34314575,3.04359188e-16 6,0 Z"
+                                id="Path" fill-rule="nonzero" />
+                            <path
+                                d="M7.51158831,5 L13.5,5 C13.7761424,5 14,4.77614237 14,4.5 C14,4.22385763 13.7761424,4 13.5,4 L7.51158831,4 C7.23544593,4 7.01158831,4.22385763 7.01158831,4.5 C7.01158831,4.77614237 7.23544593,5 7.51158831,5 Z"
+                                id="Path" fill="#FFFFFF" fill-rule="nonzero" />
+                            <path
+                                d="M7.51158831,9 L16.5,9 C16.7761424,9 17,8.77614237 17,8.5 C17,8.22385763 16.7761424,8 16.5,8 L7.51158831,8 C7.23544593,8 7.01158831,8.22385763 7.01158831,8.5 C7.01158831,8.77614237 7.23544593,9 7.51158831,9 Z"
+                                id="Path" fill="#FFFFFF" fill-rule="nonzero" />
+                            <path
+                                d="M7.51158831,13 L16.5,13 C16.7761424,13 17,12.7761424 17,12.5 C17,12.2238576 16.7761424,12 16.5,12 L7.51158831,12 C7.23544593,12 7.01158831,12.2238576 7.01158831,12.5 C7.01158831,12.7761424 7.23544593,13 7.51158831,13 Z"
+                                id="Path" fill="#FFFFFF" fill-rule="nonzero" />
+                            <path
+                                d="M13.5,20 L16.5,20 C16.7761424,20 17,19.7761424 17,19.5 C17,19.2238576 16.7761424,19 16.5,19 L13.5,19 C13.2238576,19 13,19.2238576 13,19.5 C13,19.7761424 13.2238576,20 13.5,20 Z"
+                                id="Path" fill="#FFFFFF" fill-rule="nonzero" />
+                        </a>
+                    </svg>
+                </a>
+                <a href="/post">
+                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <a xlink:href="/post">
+                            <path
+                                d="M6,0 L13,0 L18,0 C19.6568542,-3.04359188e-16 21,1.34314575 21,3 L21,7.9934309 L21,21 C21,22.6568542 19.6568542,24 18,24 L6,24 C4.34314575,24 3,22.6568542 3,21 L3,3 C3,1.34314575 4.34314575,3.04359188e-16 6,0 Z"
+                                id="Path" fill-rule="nonzero" />
+                            <path
+                                d="M7.51158831,9 L16.5,9 C16.7761424,9 17,8.77614237 17,8.5 C17,8.22385763 16.7761424,8 16.5,8 L7.51158831,8 C7.23544593,8 7.01158831,8.22385763 7.01158831,8.5 C7.01158831,8.77614237 7.23544593,9 7.51158831,9 Z"
+                                id="Path" fill="#FFFFFF" fill-rule="nonzero" />
+                            <path
+                                d="M7.51158831,13 L16.5,13 C16.7761424,13 17,12.7761424 17,12.5 C17,12.2238576 16.7761424,12 16.5,12 L7.51158831,12 C7.23544593,12 7.01158831,12.2238576 7.01158831,12.5 C7.01158831,12.7761424 7.23544593,13 7.51158831,13 Z"
+                                id="Path" fill="#FFFFFF" fill-rule="nonzero" />
+                        </a>
+                    </svg>
+                </a>
             </div>
-        </div>
-        <div class="space-height-20px"></div>
-        @auth()
-            @php
-            $paypal = \App\Option::where('option', 'paypal_payment')->get()->first();
-            $coin = \App\Option::where('option', 'coin_payment')->get()->first();
-            $seller = \App\Option::where('option', 'seller_payment')->get()->first();
-            $stripe = \App\Option::where('option', 'stripe_payment')->get()->first();
-            @endphp
-        @if(isset($paypal) && $paypal->value != 0)
-        <a onclick="createPayment()" class="title-icon">
-            <div style="display: flex; align-items: center;">
-                <img width="24px" src="https://img.icons8.com/pastel-glyph/64/000000/money--v3.png"/>
-                <div class="space-20px"></div>
-                Paypal Recharge
-            </div>
-        </a>
-        <div class="space-height-20px"></div>
-        @endif
-        <div class="border-bottom-2px"></div>
-        @if(isset($coin) && $coin->value != 0)
-        <div class="space-height-20px"></div>
-        <a href="#coin-popup" class="title-icon modal-trigger">
-            <div style="display: flex; align-items: center;">
-                <img width="24px" src="https://img.icons8.com/cotton/64/000000/money-circulation--v1.png"/>
-                <div class="space-20px"></div>
-                Coin Recharge
-            </div>
-        </a>
-        @endif
-
-        <div class="space-height-20px"></div>
-        @if(isset($seller) && $seller->value != 0)
-        <div class="border-bottom-2px"></div>
-        <div class="space-height-20px"></div>
-        <a href="#seller-payment" class="title-icon modal-trigger">
-            <div style="display: flex; align-items: center;">
-                <img width="50px" src="{{ asset('img/SellerPaypal.svg') }}"/>
-                <div class="space-20px"></div>
-                Recharge via seller
-            </div>
-        </a>
-        @endif
-        <div class="space-height-20px"></div>
-        @if(isset($stripe) && $stripe->value != 0)
-        <div class="border-bottom-2px"></div>
-        <div class="space-height-20px"></div>
-        <a target="blank" class="title-icon modal-trigger" href="#lexholding-popup">
-            <div style="display: flex; align-items: center;">
-                <img width="24px" src="https://img.icons8.com/plasticine/100/000000/bank-card-back-side.png"/>
-                <div class="space-20px"></div>
-                Visa/Master
-            </div>
-        </a>
-        @endif
-        <div class="space-height-20px"></div>
-        <div class="border-bottom-2px"></div>
-        <div class="space-height-20px"></div>
-        @endauth
-        <a href="/home" class="title-icon">
-            <div style="display: flex; align-items: center;">
-                <svg class="active" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                    <path
-                        d="M2,0 L22,0 C23.1045695,-2.02906125e-16 24,0.8954305 24,2 L24,9 C24,10.1045695 23.1045695,11 22,11 L2,11 C0.8954305,11 1.3527075e-16,10.1045695 0,9 L0,2 C-1.3527075e-16,0.8954305 0.8954305,2.02906125e-16 2,0 Z"
-                        id="Path" fill-rule="nonzero" />
-                    <path
-                        d="M2,13 L12,13 C13.1045695,13 14,13.8954305 14,15 L14,22 C14,23.1045695 13.1045695,24 12,24 L2,24 C0.8954305,24 1.3527075e-16,23.1045695 0,22 L0,15 C-1.3527075e-16,13.8954305 0.8954305,13 2,13 Z"
-                        id="Path" fill-rule="nonzero" />
-                    <path
-                        d="M18,13 L22,13 C23.1045695,13 24,13.8954305 24,15 L24,22 C24,23.1045695 23.1045695,24 22,24 L18,24 C16.8954305,24 16,23.1045695 16,22 L16,15 C16,13.8954305 16.8954305,13 18,13 Z"
-                        id="Path" fill-rule="nonzero" />
-                </svg>
-                <div class="space-20px"></div>
-                Home
-            </div>
-        </a>
-        <div class="space-height-20px"></div>
-        <div class="border-bottom-2px"></div>
-        <div class="space-height-20px"></div>
-        <a href="/balance" class="title-icon">
-            <div style="display: flex; align-items: center;">
-                <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-
-                    <path
-                        d="M5,6 L8,6 C8.55228475,6 9,6.44771525 9,7 L9,20 C9,20.5522847 8.55228475,21 8,21 L5,21 C4.44771525,21 4,20.5522847 4,20 L4,7 C4,6.44771525 4.44771525,6 5,6 Z"
-                        id="Path" fill-rule="nonzero" />
-                    <path
-                        d="M16,3 L19,3 C19.5522847,3 20,3.44771525 20,4 L20,17 C20,17.5522847 19.5522847,18 19,18 L16,18 C15.4477153,18 15,17.5522847 15,17 L15,4 C15,3.44771525 15.4477153,3 16,3 Z"
-                        id="Path" fill-rule="nonzero"
-                        transform="translate(17.500000, 10.500000) rotate(-180.000000) translate(-17.500000, -10.500000) " />
-                    <path
-                        d="M6.07335908,0.739274995 C6.26832389,0.420241668 6.73167611,0.420241668 6.92664092,0.739274995 L12.4266409,9.739275 C12.6302488,10.0724516 12.3904649,10.5 12,10.5 L1,10.5 C0.609535124,10.5 0.36975117,10.0724516 0.573359083,9.739275 L6.07335908,0.739274995 Z"
-                        id="Path" fill-rule="nonzero" />
-                    <path
-                        d="M17.0733591,13.739275 C17.2683239,13.4202417 17.7316761,13.4202417 17.9266409,13.739275 L23.4266409,22.739275 C23.6302488,23.0724516 23.3904649,23.5 23,23.5 L12,23.5 C11.6095351,23.5 11.3697512,23.0724516 11.5733591,22.739275 L17.0733591,13.739275 Z"
-                        id="Path" fill-rule="nonzero"
-                        transform="translate(17.500000, 18.500000) rotate(-180.000000) translate(-17.500000, -18.500000) " />
-                </svg>
-                <div class="space-20px"></div>
-                Transaction History
-            </div>
-        </a>
-        <div class="space-height-20px"></div>
-        <div class="border-bottom-2px"></div>
-        <div class="space-height-20px"></div>
-        <a href="/keys" class="title-icon">
-            <div style="display: flex; align-items: center;">
-                <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                    <path
-                        d="M12,3 C15.0375661,3 17.5,5.46243388 17.5,8.5 L17.5,17.5 C17.5,20.5375661 15.0375661,23 12,23 C8.96243388,23 6.5,20.5375661 6.5,17.5 L6.5,8.5 L4.5,8.5 L4.5,17.5 C4.5,21.6421356 7.85786438,25 12,25 C16.1421356,25 19.5,21.6421356 19.5,17.5 L19.5,8.5 C19.5,4.35786438 16.1421356,1 12,1 L12,3 Z"
-                        id="Rectangle" fill-rule="nonzero"
-                        transform="translate(12.000000, 13.000000) rotate(-180.000000) translate(-12.000000, -13.000000) ">
-                    </path>
-                    <path
-                        d="M5,9 L19,9 C20.6568542,9 22,10.3431458 22,12 L22,21 C22,22.6568542 20.6568542,24 19,24 L5,24 C3.34314575,24 2,22.6568542 2,21 L2,12 C2,10.3431458 3.34314575,9 5,9 Z"
-                        id="Path" fill-rule="nonzero"></path>
-                    <path
-                        d="M12,14 C13.3807119,14 14.5,15.1192881 14.5,16.5 C14.5,17.8807119 13.3807119,19 12,19 C10.6192881,19 9.5,17.8807119 9.5,16.5 C9.5,15.1192881 10.6192881,14 12,14 Z"
-                        id="Path" fill="#FFFFFF" fill-rule="nonzero"></path>
-                </svg>
-                <div class="space-20px"></div>
-                Key Purchased
-            </div>
-        </a>
-        <div class="space-height-20px"></div>
-        <div class="border-bottom-2px"></div>
-        <div class="space-height-20px"></div>
-        <a href="/keys" class="title-icon">
-            <div style="display: flex; align-items: center;">
-                <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                    <path
-                        d="M12,14 C13.3807119,14 14.5,15.1192881 14.5,16.5 C14.5,17.8807119 13.3807119,19 12,19 C10.6192881,19 9.5,17.8807119 9.5,16.5 C9.5,15.1192881 10.6192881,14 12,14 Z"
-                        id="Path" fill="#FFFFFF" fill-rule="nonzero" />
-                    <path
-                        d="M9.5,24 C14.7467051,24 19,19.7467051 19,14.5 C19,9.25329488 14.7467051,5 9.5,5 C4.25329488,5 0,9.25329488 0,14.5 C0,19.7467051 4.25329488,24 9.5,24 Z"
-                        id="Path" fill-rule="nonzero" opacity="0.394647507" />
-                    <path
-                        d="M13.5,21 C19.2989899,21 24,16.2989899 24,10.5 C24,4.70101013 19.2989899,0 13.5,0 C7.70101013,0 3,4.70101013 3,10.5 C3,16.2989899 7.70101013,21 13.5,21 Z"
-                        id="Path" fill-rule="nonzero"
-                        transform="translate(13.500000, 10.500000) rotate(-315.000000) translate(-13.500000, -10.500000) " />
-                    <path
-                        d="M10.6322892,9.71085659 C11.7368587,9.71085659 12.6322892,8.81542608 12.6322892,7.71085659 C12.6322892,6.60628709 11.7368587,5.71085659 10.6322892,5.71085659 C9.52771967,5.71085659 8.63228917,6.60628709 8.63228917,7.71085659 C8.63228917,8.81542608 9.52771967,9.71085659 10.6322892,9.71085659 Z"
-                        id="Path" fill="#FFFFFF" fill-rule="nonzero"
-                        transform="translate(10.632289, 7.710857) rotate(-315.000000) translate(-10.632289, -7.710857) " />
-                    <path
-                        d="M10.6322892,8.71085659 C10.0800044,8.71085659 9.63228917,8.26314134 9.63228917,7.71085659 C9.63228917,7.15857184 10.0800044,6.71085659 10.6322892,6.71085659 C11.1845739,6.71085659 11.6322892,7.15857184 11.6322892,7.71085659 C11.6322892,8.26314134 11.1845739,8.71085659 10.6322892,8.71085659 Z"
-                        id="Path" fill-rule="nonzero"
-                        transform="translate(10.632289, 7.710857) rotate(-315.000000) translate(-10.632289, -7.710857) " />
-                    <path
-                        d="M16.2891434,15.3677108 C17.3937129,15.3677108 18.2891434,14.4722803 18.2891434,13.3677108 C18.2891434,12.2631413 17.3937129,11.3677108 16.2891434,11.3677108 C15.1845739,11.3677108 14.2891434,12.2631413 14.2891434,13.3677108 C14.2891434,14.4722803 15.1845739,15.3677108 16.2891434,15.3677108 Z"
-                        id="Path" fill="#FFFFFF" fill-rule="nonzero"
-                        transform="translate(16.289143, 13.367711) rotate(-315.000000) translate(-16.289143, -13.367711) " />
-                    <path
-                        d="M16.2891434,14.3677108 C15.7368587,14.3677108 15.2891434,13.9199956 15.2891434,13.3677108 C15.2891434,12.8154261 15.7368587,12.3677108 16.2891434,12.3677108 C16.8414282,12.3677108 17.2891434,12.8154261 17.2891434,13.3677108 C17.2891434,13.9199956 16.8414282,14.3677108 16.2891434,14.3677108 Z"
-                        id="Path" fill="#979797" fill-rule="nonzero"
-                        transform="translate(16.289143, 13.367711) rotate(-315.000000) translate(-16.289143, -13.367711) " />
-                    <path
-                        d="M13,6.05555556 L13,14.9444444 C13,15.2205868 13.2238576,15.4444444 13.5,15.4444444 C13.7761424,15.4444444 14,15.2205868 14,14.9444444 L14,6.05555556 C14,5.77941318 13.7761424,5.55555556 13.5,5.55555556 C13.2238576,5.55555556 13,5.77941318 13,6.05555556 Z"
-                        id="Path" fill="#FFFFFF" fill-rule="nonzero"
-                        transform="translate(13.500000, 10.500000) rotate(-315.000000) translate(-13.500000, -10.500000) " />
-                </svg>
-                <div class="space-20px"></div>
-                Commisstion 5%
-            </div>
-        </a>
-        <div class="space-height-20px"></div>
-        <div class="border-bottom-2px"></div>
-        <div class="space-height-20px"></div>
-        <a href="/terms-of-services" class="title-icon">
-            <div style="display: flex; align-items: center;">
-                <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                    <path
-                        d="M6,0 L13,0 L18,0 C19.6568542,-3.04359188e-16 21,1.34314575 21,3 L21,7.9934309 L21,21 C21,22.6568542 19.6568542,24 18,24 L6,24 C4.34314575,24 3,22.6568542 3,21 L3,3 C3,1.34314575 4.34314575,3.04359188e-16 6,0 Z"
-                        id="Path" fill-rule="nonzero" />
-                    <path
-                        d="M7.51158831,5 L13.5,5 C13.7761424,5 14,4.77614237 14,4.5 C14,4.22385763 13.7761424,4 13.5,4 L7.51158831,4 C7.23544593,4 7.01158831,4.22385763 7.01158831,4.5 C7.01158831,4.77614237 7.23544593,5 7.51158831,5 Z"
-                        id="Path" fill="#FFFFFF" fill-rule="nonzero" />
-                    <path
-                        d="M7.51158831,9 L16.5,9 C16.7761424,9 17,8.77614237 17,8.5 C17,8.22385763 16.7761424,8 16.5,8 L7.51158831,8 C7.23544593,8 7.01158831,8.22385763 7.01158831,8.5 C7.01158831,8.77614237 7.23544593,9 7.51158831,9 Z"
-                        id="Path" fill="#FFFFFF" fill-rule="nonzero" />
-                    <path
-                        d="M7.51158831,13 L16.5,13 C16.7761424,13 17,12.7761424 17,12.5 C17,12.2238576 16.7761424,12 16.5,12 L7.51158831,12 C7.23544593,12 7.01158831,12.2238576 7.01158831,12.5 C7.01158831,12.7761424 7.23544593,13 7.51158831,13 Z"
-                        id="Path" fill="#FFFFFF" fill-rule="nonzero" />
-                    <path
-                        d="M13.5,20 L16.5,20 C16.7761424,20 17,19.7761424 17,19.5 C17,19.2238576 16.7761424,19 16.5,19 L13.5,19 C13.2238576,19 13,19.2238576 13,19.5 C13,19.7761424 13.2238576,20 13.5,20 Z"
-                        id="Path" fill="#FFFFFF" fill-rule="nonzero" />
-                </svg>
-                <div class="space-20px"></div>
-                Terms of services
-            </div>
-        </a>
-        <div class="space-height-20px"></div>
-        <div class="border-bottom-2px"></div>
-        <div class="space-height-20px"></div>
-        <a href="/post" class="title-icon">
-            <div style="display: flex; align-items: center;">
-                <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                    <a xlink:href="/post">
-                        <path
-                            d="M6,0 L13,0 L18,0 C19.6568542,-3.04359188e-16 21,1.34314575 21,3 L21,7.9934309 L21,21 C21,22.6568542 19.6568542,24 18,24 L6,24 C4.34314575,24 3,22.6568542 3,21 L3,3 C3,1.34314575 4.34314575,3.04359188e-16 6,0 Z"
-                            id="Path" fill-rule="nonzero" />
-                        <path
-                            d="M7.51158831,9 L16.5,9 C16.7761424,9 17,8.77614237 17,8.5 C17,8.22385763 16.7761424,8 16.5,8 L7.51158831,8 C7.23544593,8 7.01158831,8.22385763 7.01158831,8.5 C7.01158831,8.77614237 7.23544593,9 7.51158831,9 Z"
-                            id="Path" fill="#FFFFFF" fill-rule="nonzero" />
-                        <path
-                            d="M7.51158831,13 L16.5,13 C16.7761424,13 17,12.7761424 17,12.5 C17,12.2238576 16.7761424,12 16.5,12 L7.51158831,12 C7.23544593,12 7.01158831,12.2238576 7.01158831,12.5 C7.01158831,12.7761424 7.23544593,13 7.51158831,13 Z"
-                            id="Path" fill="#FFFFFF" fill-rule="nonzero" />
-                    </a>
-                </svg>
-                <div class="space-20px"></div>
-                Latest News
-            </div>
-        </a>
-        <div class="space-height-20px"></div>
-        <div class="border-bottom-2px"></div>
-        <div class="space-height-20px"></div>
-        @auth()
-        <a href="/logout" class="title-icon">
-            <div style="display: flex; align-items: center;">
-                <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-
-                    <path
-                        d="M12,23.5 C18.3512746,23.5 23.5,18.3512746 23.5,12 C23.5,5.64872538 18.3512746,0.5 12,0.5 C5.64872538,0.5 0.5,5.64872538 0.5,12 C0.5,18.3512746 5.64872538,23.5 12,23.5 Z"
-                        id="Path" fill-rule="nonzero" opacity="0.768391927" />
-                    <path
-                        d="M12,19.5 C16.1421356,19.5 19.5,16.1421356 19.5,12 C19.5,7.85786438 16.1421356,4.5 12,4.5 C7.85786438,4.5 4.5,7.85786438 4.5,12 C4.5,12.2761424 4.72385763,12.5 5,12.5 C5.27614237,12.5 5.5,12.2761424 5.5,12 C5.5,8.41014913 8.41014913,5.5 12,5.5 C15.5898509,5.5 18.5,8.41014913 18.5,12 C18.5,15.5898509 15.5898509,18.5 12,18.5 C11.7238576,18.5 11.5,18.7238576 11.5,19 C11.5,19.2761424 11.7238576,19.5 12,19.5 Z"
-                        id="Path" fill="#FFFFFF" fill-rule="nonzero"
-                        transform="translate(12.000000, 12.000000) rotate(-225.000000) translate(-12.000000, -12.000000) " />
-                    <path
-                        d="M8.5,7 L15.5,7 C15.7761424,7 16,7.22385763 16,7.5 C16,7.77614237 15.7761424,8 15.5,8 L8.5,8 C8.22385763,8 8,7.77614237 8,7.5 C8,7.22385763 8.22385763,7 8.5,7 Z"
-                        id="Path" fill="#FFFFFF" fill-rule="nonzero"
-                        transform="translate(12.000000, 7.500000) rotate(-270.000000) translate(-12.000000, -7.500000) " />
-                </svg>
-                <div class="space-20px"></div>
-                Logout
-            </div>
-        </a>
-        @endauth
-        @guest()
-            <a href="/login" class="title-icon">
-                <div style="display: flex; align-items: center;">
+            <div>
+                <a href="/logout">
                     <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
 
                         <path
@@ -340,251 +170,12 @@
                             id="Path" fill="#FFFFFF" fill-rule="nonzero"
                             transform="translate(12.000000, 7.500000) rotate(-270.000000) translate(-12.000000, -7.500000) " />
                     </svg>
-                    <div class="space-20px"></div>
-                    Login
-                </div>
-            </a>
-        @endguest
-    </div>
-    <div class="slide-container" style="display: none!important;">
-        <div class="slide-bar">
-            <div>
-                <div class="title-icon">
-                    Detail game
-                    <svg width="16px" height="16px" viewBox="0 0 16 16">
-                        <path
-                            d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z"
-                            id="Path" fill-rule="nonzero" />
-                    </svg>
-                </div>
-                <div class="space-height-20px"></div>
-                <div class="img-detail" style="background-image: url(./img/Contract-Wars.jpg);">
-                    <div>
-                    <span>America's Army:
-                        Proving Grounds PREMIUM</span>
-                        <p>INCEPTION</p>
-                    </div>
-                    <div class="btn-white">
-                        Buy now
-                    </div>
-                </div>
-                <div class="space-height-20px"></div>
-                <div class="title-icon">
-                    <div style="display: flex; align-items: center;">
-                        <svg width="16px" height="16px" viewBox="0 0 16 16">
-                            <path
-                                d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z"
-                                id="Path" fill-rule="nonzero" />
-                        </svg>
-                        <div class="space-20px"></div>
-
-                        Status
-                    </div>
-                    <svg width="16px" height="16px" viewBox="0 0 16 16">
-                        <path
-                            d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z"
-                            id="Path" fill-rule="nonzero" />
-                    </svg>
-                </div>
-                <div class="space-height-20px"></div>
-                <div class="border-bottom-2px"></div>
-                <div class="space-height-20px"></div>
-                <div class="title-icon">
-                    <div style="display: flex; align-items: center;">
-                        <svg width="16px" height="16px" viewBox="0 0 16 16">
-                            <path
-                                d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z"
-                                id="Path" fill-rule="nonzero" />
-                        </svg>
-                        <div class="space-20px"></div>
-
-                        Status
-                    </div>
-                    <svg width="16px" height="16px" viewBox="0 0 16 16">
-                        <path
-                            d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z"
-                            id="Path" fill-rule="nonzero" />
-                    </svg>
-                </div>
-                <div class="space-height-20px"></div>
-                <div class="border-bottom-2px"></div>
-                <div class="space-height-20px"></div>
-                <div class="title-icon">
-                    <div style="display: flex; align-items: center;">
-                        <svg width="16px" height="16px" viewBox="0 0 16 16">
-                            <path
-                                d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z"
-                                id="Path" fill-rule="nonzero" />
-                        </svg>
-                        <div class="space-20px"></div>
-
-                        Status
-                    </div>
-                    <svg width="16px" height="16px" viewBox="0 0 16 16">
-                        <path
-                            d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z"
-                            id="Path" fill-rule="nonzero" />
-                    </svg>
-                </div>
-                <div class="space-height-20px"></div>
-                <div class="border-bottom-2px"></div>
-                <div class="space-height-20px"></div>
-                <div class="title-icon">
-                    <div style="display: flex; align-items: center;">
-                        <svg width="16px" height="16px" viewBox="0 0 16 16">
-                            <path
-                                d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z"
-                                id="Path" fill-rule="nonzero" />
-                        </svg>
-                        <div class="space-20px"></div>
-
-                        Status
-                    </div>
-                    <svg width="16px" height="16px" viewBox="0 0 16 16">
-                        <path
-                            d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z"
-                            id="Path" fill-rule="nonzero" />
-                    </svg>
-                </div>
-                <div class="space-height-20px"></div>
-                <div class="border-bottom-2px"></div>
-                <div class="space-height-20px"></div>
-                <div class="title-icon">
-                    <div style="display: flex; align-items: center;">
-                        <svg width="16px" height="16px" viewBox="0 0 16 16">
-                            <path
-                                d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z"
-                                id="Path" fill-rule="nonzero" />
-                        </svg>
-                        <div class="space-20px"></div>
-
-                        Status
-                    </div>
-                    <svg width="16px" height="16px" viewBox="0 0 16 16">
-                        <path
-                            d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z"
-                            id="Path" fill-rule="nonzero" />
-                    </svg>
-                </div>
-                <div class="space-height-20px"></div>
-                <div class="border-bottom-2px"></div>
-                <div class="space-height-20px"></div>
-                <div class="img-detail" style="background-image: url(./img/Contract-Wars.jpg);">
-                    <div>
-                    <span>America's Army:
-                        Proving Grounds PREMIUM</span>
-                        <p>INCEPTION</p>
-                    </div>
-                    <div class="btn-white">
-                        Buy now
-                    </div>
-                </div>
-                <div class="space-height-20px"></div>
-                <div class="title-icon">
-                    <div style="display: flex; align-items: center;">
-                        <svg width="16px" height="16px" viewBox="0 0 16 16">
-                            <path
-                                d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z"
-                                id="Path" fill-rule="nonzero" />
-                        </svg>
-                        <div class="space-20px"></div>
-
-                        Status
-                    </div>
-                    <svg width="16px" height="16px" viewBox="0 0 16 16">
-                        <path
-                            d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z"
-                            id="Path" fill-rule="nonzero" />
-                    </svg>
-                </div>
-                <div class="space-height-20px"></div>
-                <div class="border-bottom-2px"></div>
-                <div class="space-height-20px"></div>
-                <div class="title-icon">
-                    <div style="display: flex; align-items: center;">
-                        <svg width="16px" height="16px" viewBox="0 0 16 16">
-                            <path
-                                d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z"
-                                id="Path" fill-rule="nonzero" />
-                        </svg>
-                        <div class="space-20px"></div>
-
-                        Status
-                    </div>
-                    <svg width="16px" height="16px" viewBox="0 0 16 16">
-                        <path
-                            d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z"
-                            id="Path" fill-rule="nonzero" />
-                    </svg>
-                </div>
-                <div class="space-height-20px"></div>
-                <div class="border-bottom-2px"></div>
-                <div class="space-height-20px"></div>
-                <div class="title-icon">
-                    <div style="display: flex; align-items: center;">
-                        <svg width="16px" height="16px" viewBox="0 0 16 16">
-                            <path
-                                d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z"
-                                id="Path" fill-rule="nonzero" />
-                        </svg>
-                        <div class="space-20px"></div>
-
-                        Status
-                    </div>
-                    <svg width="16px" height="16px" viewBox="0 0 16 16">
-                        <path
-                            d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z"
-                            id="Path" fill-rule="nonzero" />
-                    </svg>
-                </div>
-                <div class="space-height-20px"></div>
-                <div class="border-bottom-2px"></div>
-                <div class="space-height-20px"></div>
-                <div class="title-icon">
-                    <div style="display: flex; align-items: center;">
-                        <svg width="16px" height="16px" viewBox="0 0 16 16">
-                            <path
-                                d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z"
-                                id="Path" fill-rule="nonzero" />
-                        </svg>++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                        <div class="space-20px"></div>
-
-                        Status
-                    </div>
-                    <svg width="16px" height="16px" viewBox="0 0 16 16">
-                        <path
-                            d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z"
-                            id="Path" fill-rule="nonzero" />
-                    </svg>
-                </div>
-                <div class="space-height-20px"></div>
-                <div class="border-bottom-2px"></div>
-                <div class="space-height-20px"></div>
-                <div class="title-icon">
-                    <div style="display: flex; align-items: center;">
-                        <svg width="16px" height="16px" viewBox="0 0 16 16">
-                            <path
-                                d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z"
-                                id="Path" fill-rule="nonzero" />
-                        </svg>
-                        <div class="space-20px"></div>
-
-                        Status
-                    </div>
-                    <svg width="16px" height="16px" viewBox="0 0 16 16">
-                        <path
-                            d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z"
-                            id="Path" fill-rule="nonzero" />
-                    </svg>
-                </div>
-                <div class="space-height-20px"></div>
-                <div class="border-bottom-2px"></div>
-                <div class="space-height-20px"></div>
-
+                </a>
             </div>
         </div>
-    </div>
-    <div class="menu">
+   
+    <div class="main">
+         <div class="menu">
         <div>
             @if (isset($master_site_settings['logo_mini']))
                 <div class="icon-menu" width="24px" height="24px">
@@ -858,153 +449,7 @@
             </svg>
         </span>
     </div>
-    <div class="main">
-        <div class="toolbar desktop">
-            <div>
-                <a href="/home">
-                    <svg class="active" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <a xlink:href="/home">
-                            <path
-                                d="M2,0 L22,0 C23.1045695,-2.02906125e-16 24,0.8954305 24,2 L24,9 C24,10.1045695 23.1045695,11 22,11 L2,11 C0.8954305,11 1.3527075e-16,10.1045695 0,9 L0,2 C-1.3527075e-16,0.8954305 0.8954305,2.02906125e-16 2,0 Z"
-                                id="Path" fill-rule="nonzero" />
-                            <path
-                                d="M2,13 L12,13 C13.1045695,13 14,13.8954305 14,15 L14,22 C14,23.1045695 13.1045695,24 12,24 L2,24 C0.8954305,24 1.3527075e-16,23.1045695 0,22 L0,15 C-1.3527075e-16,13.8954305 0.8954305,13 2,13 Z"
-                                id="Path" fill-rule="nonzero" />
-                            <path
-                                d="M18,13 L22,13 C23.1045695,13 24,13.8954305 24,15 L24,22 C24,23.1045695 23.1045695,24 22,24 L18,24 C16.8954305,24 16,23.1045695 16,22 L16,15 C16,13.8954305 16.8954305,13 18,13 Z"
-                                id="Path" fill-rule="nonzero" />
-                        </a>
-                    </svg>
-                </a>
-                <a href="/balance">
-                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <a xlink:href="/balance">
-                            <path
-                                d="M5,6 L8,6 C8.55228475,6 9,6.44771525 9,7 L9,20 C9,20.5522847 8.55228475,21 8,21 L5,21 C4.44771525,21 4,20.5522847 4,20 L4,7 C4,6.44771525 4.44771525,6 5,6 Z"
-                                id="Path" fill-rule="nonzero" />
-                            <path
-                                d="M16,3 L19,3 C19.5522847,3 20,3.44771525 20,4 L20,17 C20,17.5522847 19.5522847,18 19,18 L16,18 C15.4477153,18 15,17.5522847 15,17 L15,4 C15,3.44771525 15.4477153,3 16,3 Z"
-                                id="Path" fill-rule="nonzero"
-                                transform="translate(17.500000, 10.500000) rotate(-180.000000) translate(-17.500000, -10.500000) " />
-                            <path
-                                d="M6.07335908,0.739274995 C6.26832389,0.420241668 6.73167611,0.420241668 6.92664092,0.739274995 L12.4266409,9.739275 C12.6302488,10.0724516 12.3904649,10.5 12,10.5 L1,10.5 C0.609535124,10.5 0.36975117,10.0724516 0.573359083,9.739275 L6.07335908,0.739274995 Z"
-                                id="Path" fill-rule="nonzero" />
-                            <path
-                                d="M17.0733591,13.739275 C17.2683239,13.4202417 17.7316761,13.4202417 17.9266409,13.739275 L23.4266409,22.739275 C23.6302488,23.0724516 23.3904649,23.5 23,23.5 L12,23.5 C11.6095351,23.5 11.3697512,23.0724516 11.5733591,22.739275 L17.0733591,13.739275 Z"
-                                id="Path" fill-rule="nonzero"
-                                transform="translate(17.500000, 18.500000) rotate(-180.000000) translate(-17.500000, -18.500000) " />
-                        </a>
-                    </svg>
-                </a>
-                <a href="/keys">
-                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <a xlink:href="/keys">
-                            <path
-                                d="M12,3 C15.0375661,3 17.5,5.46243388 17.5,8.5 L17.5,17.5 C17.5,20.5375661 15.0375661,23 12,23 C8.96243388,23 6.5,20.5375661 6.5,17.5 L6.5,8.5 L4.5,8.5 L4.5,17.5 C4.5,21.6421356 7.85786438,25 12,25 C16.1421356,25 19.5,21.6421356 19.5,17.5 L19.5,8.5 C19.5,4.35786438 16.1421356,1 12,1 L12,3 Z"
-                                id="Rectangle" fill-rule="nonzero"
-                                transform="translate(12.000000, 13.000000) rotate(-180.000000) translate(-12.000000, -13.000000) ">
-                            </path>
-                            <path
-                                d="M5,9 L19,9 C20.6568542,9 22,10.3431458 22,12 L22,21 C22,22.6568542 20.6568542,24 19,24 L5,24 C3.34314575,24 2,22.6568542 2,21 L2,12 C2,10.3431458 3.34314575,9 5,9 Z"
-                                id="Path" fill-rule="nonzero"></path>
-                            <path
-                                d="M12,14 C13.3807119,14 14.5,15.1192881 14.5,16.5 C14.5,17.8807119 13.3807119,19 12,19 C10.6192881,19 9.5,17.8807119 9.5,16.5 C9.5,15.1192881 10.6192881,14 12,14 Z"
-                                id="Path" fill="#FFFFFF" fill-rule="nonzero"></path>
-                        </a>
-                    </svg>
-                </a>
-                <a href="/tools">
-                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <a xlink:href="/tools">
-                            <path
-                                d="M12,14 C13.3807119,14 14.5,15.1192881 14.5,16.5 C14.5,17.8807119 13.3807119,19 12,19 C10.6192881,19 9.5,17.8807119 9.5,16.5 C9.5,15.1192881 10.6192881,14 12,14 Z"
-                                id="Path" fill="#FFFFFF" fill-rule="nonzero" />
-                            <path
-                                d="M9.5,24 C14.7467051,24 19,19.7467051 19,14.5 C19,9.25329488 14.7467051,5 9.5,5 C4.25329488,5 0,9.25329488 0,14.5 C0,19.7467051 4.25329488,24 9.5,24 Z"
-                                id="Path" fill-rule="nonzero" opacity="0.394647507" />
-                            <path
-                                d="M13.5,21 C19.2989899,21 24,16.2989899 24,10.5 C24,4.70101013 19.2989899,0 13.5,0 C7.70101013,0 3,4.70101013 3,10.5 C3,16.2989899 7.70101013,21 13.5,21 Z"
-                                id="Path" fill-rule="nonzero"
-                                transform="translate(13.500000, 10.500000) rotate(-315.000000) translate(-13.500000, -10.500000) " />
-                            <path
-                                d="M10.6322892,9.71085659 C11.7368587,9.71085659 12.6322892,8.81542608 12.6322892,7.71085659 C12.6322892,6.60628709 11.7368587,5.71085659 10.6322892,5.71085659 C9.52771967,5.71085659 8.63228917,6.60628709 8.63228917,7.71085659 C8.63228917,8.81542608 9.52771967,9.71085659 10.6322892,9.71085659 Z"
-                                id="Path" fill="#FFFFFF" fill-rule="nonzero"
-                                transform="translate(10.632289, 7.710857) rotate(-315.000000) translate(-10.632289, -7.710857) " />
-                            <path
-                                d="M10.6322892,8.71085659 C10.0800044,8.71085659 9.63228917,8.26314134 9.63228917,7.71085659 C9.63228917,7.15857184 10.0800044,6.71085659 10.6322892,6.71085659 C11.1845739,6.71085659 11.6322892,7.15857184 11.6322892,7.71085659 C11.6322892,8.26314134 11.1845739,8.71085659 10.6322892,8.71085659 Z"
-                                id="Path" fill-rule="nonzero"
-                                transform="translate(10.632289, 7.710857) rotate(-315.000000) translate(-10.632289, -7.710857) " />
-                            <path
-                                d="M16.2891434,15.3677108 C17.3937129,15.3677108 18.2891434,14.4722803 18.2891434,13.3677108 C18.2891434,12.2631413 17.3937129,11.3677108 16.2891434,11.3677108 C15.1845739,11.3677108 14.2891434,12.2631413 14.2891434,13.3677108 C14.2891434,14.4722803 15.1845739,15.3677108 16.2891434,15.3677108 Z"
-                                id="Path" fill="#FFFFFF" fill-rule="nonzero"
-                                transform="translate(16.289143, 13.367711) rotate(-315.000000) translate(-16.289143, -13.367711) " />
-                            <path
-                            d="M16.2891434,14.3677108 C15.7368587,14.3677108 15.2891434,13.9199956 15.2891434,13.3677108 C15.2891434,12.8154261 15.7368587,12.3677108 16.2891434,12.3677108 C16.8414282,12.3677108 17.2891434,12.8154261 17.2891434,13.3677108 C17.2891434,13.9199956 16.8414282,14.3677108 16.2891434,14.3677108 Z"
-                                id="Path" fill="#979797" fill-rule="nonzero"
-                                transform="translate(16.289143, 13.367711) rotate(-315.000000) translate(-16.289143, -13.367711) " />
-                            <path
-                                d="M13,6.05555556 L13,14.9444444 C13,15.2205868 13.2238576,15.4444444 13.5,15.4444444 C13.7761424,15.4444444 14,15.2205868 14,14.9444444 L14,6.05555556 C14,5.77941318 13.7761424,5.55555556 13.5,5.55555556 C13.2238576,5.55555556 13,5.77941318 13,6.05555556 Z"
-                                id="Path" fill="#FFFFFF" fill-rule="nonzero"
-                                transform="translate(13.500000, 10.500000) rotate(-315.000000) translate(-13.500000, -10.500000) " />
-                        </a>
-                    </svg>
-                </a>
-                <a href="/terms-of-services">
-                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <a xlink:href="/terms-of-services">
-                            <path
-                                d="M6,0 L13,0 L18,0 C19.6568542,-3.04359188e-16 21,1.34314575 21,3 L21,7.9934309 L21,21 C21,22.6568542 19.6568542,24 18,24 L6,24 C4.34314575,24 3,22.6568542 3,21 L3,3 C3,1.34314575 4.34314575,3.04359188e-16 6,0 Z"
-                                id="Path" fill-rule="nonzero" />
-                            <path
-                                d="M7.51158831,5 L13.5,5 C13.7761424,5 14,4.77614237 14,4.5 C14,4.22385763 13.7761424,4 13.5,4 L7.51158831,4 C7.23544593,4 7.01158831,4.22385763 7.01158831,4.5 C7.01158831,4.77614237 7.23544593,5 7.51158831,5 Z"
-                                id="Path" fill="#FFFFFF" fill-rule="nonzero" />
-                            <path
-                                d="M7.51158831,9 L16.5,9 C16.7761424,9 17,8.77614237 17,8.5 C17,8.22385763 16.7761424,8 16.5,8 L7.51158831,8 C7.23544593,8 7.01158831,8.22385763 7.01158831,8.5 C7.01158831,8.77614237 7.23544593,9 7.51158831,9 Z"
-                                id="Path" fill="#FFFFFF" fill-rule="nonzero" />
-                            <path
-                                d="M7.51158831,13 L16.5,13 C16.7761424,13 17,12.7761424 17,12.5 C17,12.2238576 16.7761424,12 16.5,12 L7.51158831,12 C7.23544593,12 7.01158831,12.2238576 7.01158831,12.5 C7.01158831,12.7761424 7.23544593,13 7.51158831,13 Z"
-                                id="Path" fill="#FFFFFF" fill-rule="nonzero" />
-                            <path
-                                d="M13.5,20 L16.5,20 C16.7761424,20 17,19.7761424 17,19.5 C17,19.2238576 16.7761424,19 16.5,19 L13.5,19 C13.2238576,19 13,19.2238576 13,19.5 C13,19.7761424 13.2238576,20 13.5,20 Z"
-                                id="Path" fill="#FFFFFF" fill-rule="nonzero" />
-                        </a>
-                    </svg>
-                </a>
-                <a href="/post">
-                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <a xlink:href="/post">
-                            <path
-                                d="M6,0 L13,0 L18,0 C19.6568542,-3.04359188e-16 21,1.34314575 21,3 L21,7.9934309 L21,21 C21,22.6568542 19.6568542,24 18,24 L6,24 C4.34314575,24 3,22.6568542 3,21 L3,3 C3,1.34314575 4.34314575,3.04359188e-16 6,0 Z"
-                                id="Path" fill-rule="nonzero" />
-                            <path
-                                d="M7.51158831,9 L16.5,9 C16.7761424,9 17,8.77614237 17,8.5 C17,8.22385763 16.7761424,8 16.5,8 L7.51158831,8 C7.23544593,8 7.01158831,8.22385763 7.01158831,8.5 C7.01158831,8.77614237 7.23544593,9 7.51158831,9 Z"
-                                id="Path" fill="#FFFFFF" fill-rule="nonzero" />
-                            <path
-                                d="M7.51158831,13 L16.5,13 C16.7761424,13 17,12.7761424 17,12.5 C17,12.2238576 16.7761424,12 16.5,12 L7.51158831,12 C7.23544593,12 7.01158831,12.2238576 7.01158831,12.5 C7.01158831,12.7761424 7.23544593,13 7.51158831,13 Z"
-                                id="Path" fill="#FFFFFF" fill-rule="nonzero" />
-                        </a>
-                    </svg>
-                </a>
-            </div>
-            <div>
-                <a href="/logout">
-                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-
-                        <path
-                            d="M12,23.5 C18.3512746,23.5 23.5,18.3512746 23.5,12 C23.5,5.64872538 18.3512746,0.5 12,0.5 C5.64872538,0.5 0.5,5.64872538 0.5,12 C0.5,18.3512746 5.64872538,23.5 12,23.5 Z"
-                            id="Path" fill-rule="nonzero" opacity="0.768391927" />
-                        <path
-                            d="M12,19.5 C16.1421356,19.5 19.5,16.1421356 19.5,12 C19.5,7.85786438 16.1421356,4.5 12,4.5 C7.85786438,4.5 4.5,7.85786438 4.5,12 C4.5,12.2761424 4.72385763,12.5 5,12.5 C5.27614237,12.5 5.5,12.2761424 5.5,12 C5.5,8.41014913 8.41014913,5.5 12,5.5 C15.5898509,5.5 18.5,8.41014913 18.5,12 C18.5,15.5898509 15.5898509,18.5 12,18.5 C11.7238576,18.5 11.5,18.7238576 11.5,19 C11.5,19.2761424 11.7238576,19.5 12,19.5 Z"
-                            id="Path" fill="#FFFFFF" fill-rule="nonzero"
-                            transform="translate(12.000000, 12.000000) rotate(-225.000000) translate(-12.000000, -12.000000) " />
-                        <path
-                            d="M8.5,7 L15.5,7 C15.7761424,7 16,7.22385763 16,7.5 C16,7.77614237 15.7761424,8 15.5,8 L8.5,8 C8.22385763,8 8,7.77614237 8,7.5 C8,7.22385763 8.22385763,7 8.5,7 Z"
-                            id="Path" fill="#FFFFFF" fill-rule="nonzero"
-                            transform="translate(12.000000, 7.500000) rotate(-270.000000) translate(-12.000000, -7.500000) " />
-                    </svg>
-                </a>
-            </div>
-        </div>
+       
         <div class="content-view">
             <?php
             //$discord = \App\Option::where('option', 'discord_channel')->get()->first()->value;
