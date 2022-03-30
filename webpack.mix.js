@@ -11,11 +11,6 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css')
-    .styles([
-        '/public/vendors/iconfonts/mdi/font/css/materialdesignicons.min.css',
-        '/public/vendors/css/vendor.bundle.base.css',
-        '/vendors/css/vendor.bundle.addons.css',
-        '/css/vertical-layout-light/style.css',
-    ], 'public/css/all.css');
+mix.js("resources/js/app.js", "public/js")
+    .sass("resources/sass/app.scss", "public/css")
+    .styles([""], "public/css/all.css");
