@@ -71,9 +71,6 @@
         .tool-game {
             grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
         }
-        .card:hover {
-            box-shadow: 5px 5px 15px #9a9a9a;
-        }
         .card-title {
             max-width : 100%;
             font-size: 1.2em!important;
@@ -178,12 +175,12 @@
 <body @if($theme == 'dark') data-theme="dark" @endif>
 @extends('new.master-layout')
 @section('content')
-    <h1 style="display:none">{{ $game->name }}</h1>
+    <h1 class="text-danger" >{{ $game->name }}</h1>
     <div class="tab-content mobile tool-game">
         @if(isset($tools) && count($tools) > 0)
             @foreach($tools as $tool)
-                <div id="tool_{{$tool->id}}" class="card" style="margin: 1em">
-                    @if($tool->note !== '')
+                <div id="tool_{{$tool->id}}" class="card card-custom" style="margin: 1em">
+                    @if(trim($tool->note) !== '')
                         <div class="product__price-tag">
                             <p class="product__price-tag-price">{{$tool->note}}</p>
                         </div>
@@ -194,33 +191,47 @@
                         </div>
                     @endif
                     @if($tool->video_intro)
-                        <div style="height: 40vh">
+                        <div class="card-img-top" >
                             <iframe width="100%" height="100%" loading="lazy" src="{{ $tool->video_intro}}" frameborder="0"
                                     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
                             </iframe>
                         </div>
                     @else
-                        <div>
-                            <div class="carousel carousel-slider center" style="max-height: 100%!important;height: 40vh!important">
-                                <?php
-                                $listImg = explode(PHP_EOL, $tool->images);
-                                ?>
-                                @foreach($listImg as $image)
-                                    <div class="carousel-item white-text" href="#one!">
-                                        <img onclick="showImage(event)" loading="lazy" src="{{ $image }}" alt="{{ $tool->name }}">
-                                    </div>
-                                @endforeach
+                        <div class="card-img-top" >
+                            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner h-100">
+                                    <?php
+                                    $listImg = explode(PHP_EOL, $tool->images);
+                                    ?>
+                                    @foreach($listImg as $image)
+                                        <div class="carousel-item {{ $loop->index == 0 ? 'active' : '' }}" href="#one!">
+                                            <img class="d-block w-100" onclick="showImage(event)" loading="lazy" src="{{ $image }}" alt="{{ $tool->name }}">
+                                        </div>
+                                    @endforeach
+                                </div>
+                               
                             </div>
                         </div>
                     @endif
 
-                    <div class="row card-content card-header" style="position: relative; height: auto">
-                        <h2 class="card-title package-name" id="tool_name_{{$tool->id}}">{{ $tool->name }}</h2>
-                        <label for="">Status</label>:
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                 <h2 class="card-title package-name" id="tool_name_{{$tool->id}}">{{ $tool->name }}</h2>
+                            </div>
+                            <div class="col">
+                                @if($tool->updated == 1)
+                                    <label class="text-success"> Working</label>
+                                @else
+                                    <label class="text-alert">Updating</label>
+                                @endif
+                            </div>
+                        </div>
+                       
+                       
                         @if($tool->updated == 1)
-                            <label class="green-text"> Working</label>
-                            <div class="input-field" style="max-width: fit-content">
-                                <select class="game-package" style="padding-left: 0.5em">
+                            <div class="input-field mb-3" style="max-width: fit-content">
+                                <select class="form-select game-package" aria-label="Choose package">
                                     <option value="" disabled selected>Choose package</option>
                                     @foreach(json_decode($tool->package, true) as $package => $price)
                                         @auth()
@@ -242,40 +253,43 @@
                                             @endif
                                         @endguest
                                     @endforeach
-                                </select>
+                                </select>                               
                             </div>
-                            <!-- <div class="discount" style="position:absolute">-15%</div> -->
-                            <div>
-                                <button type="button" class="waves-effect waves-light btn-small amber accent-4"
+                            
+                            <div class="mb-2">
+                                <button type="button" class="btn btn-outline-primary"
                                     onclick="addToCart({{$tool->id}})"
                                     style="margin-right: 15px">
-                                    <i class="small material-icons right">add_shopping_cart</i>Add to cart
+                                    <i class="small material-icons right">add_shopping_cart</i>
                                 </button>
-                                <button type="button" class="waves-effect waves-light btn-small teal darken-4"
+                                <button type="button" class="btn btn-outline-secondary""
                                     onclick="buyTool({{$tool->id}})">
-                                    <i class="small material-icons right">payment</i>Payment
+                                    <i class="small material-icons right">payment</i>
                                 </button>
                             </div>
 
                         @else
-                            <label class="red-text">Updating</label>
+                            
                         @endif
-                    </div>
-                    <div class="card-action">
-                        <p>
-                            <a href="{{ $tool->link  }}" target="_blank">
-                                <i style="position: relative; top: 7px" class="material-icons">file_download</i>
-                                Download
-                            </a>
-                        </p>
-                        <p>
-                            <a href="{{ $tool->youtube }}" target="_blank">
-                                <i style="position: relative; top: 7px" class="material-icons">book</i>
-                                Tutorial
-                            </a>
-                        </p>
-
-                    </div>
+                        <div class="row">
+                            <div class="col">
+                                 <p>
+                                    <a style="text-decoration: auto" href="{{ $tool->link  }}" target="_blank">
+                                        <i style="position: relative; top: 7px" class="material-icons">file_download</i>
+                                        Download
+                                    </a>
+                                </p>
+                            </div>
+                            <div class="col">
+                                <p>
+                                    <a style="text-decoration: auto" href="{{ $tool->youtube }}" target="_blank">
+                                        <i style="position: relative; top: 7px" class="material-icons">book</i>
+                                        Tutorial
+                                    </a>
+                                </p>
+                            </div>
+                        </div>         
+                    </div>                  
                 </div>
             @endforeach
         @endif

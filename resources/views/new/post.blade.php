@@ -9,8 +9,8 @@
 <body @if($theme == 'dark') data-theme="dark" @endif>
 @extends('new.master-layout')
 @section('content')
-    <div class="tab-content mobile" style="display: flex">
-        <div class="row bg-white blog-content">
+    <div class="tab-content mobile" style="display: block">
+        <div class="row blog-content">
             <div class="blog-title" style="text-align: center">
                 <h3>
                     LATEST NEWS

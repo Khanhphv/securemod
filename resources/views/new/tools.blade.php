@@ -12,13 +12,13 @@
 <body @if($theme == 'dark') data-theme="dark" @endif>
     @extends('new.master-layout')
     @section('content')
-        <div class="tab-content mobile" style="display: flex">
-            <div class="row bg-white">
+        <div class="tab-content mobile" style="display: block">
+            <div class="row">
                 <div class="col s12 m12">
-                    <h5 class="row">
+                    <h2 class="row mb-3">
                         LIST ORDER
                     </h5>
-                    <table class="striped display compact" id="order-listing">
+                    <table class="table table-striped table-hover table-bordered" id="order-listing">
                         <thead>
                         <tr>
                             <th>Name</th>
@@ -32,7 +32,7 @@
                         @auth()
                         @if(count($tools) > 0)
                             @foreach($tools as $index => $tool)
-                                <tr class="modal-trigger" href="#key{{$index}}" data-activates="notification">
+                                <tr data-bs-toggle="modal" data-bs-target="#key{{$index}}" >
                                     <td>{{$tool->name}}</td>
                                     {{-- <td><span onclick="copyMessage('{{$tool->link}}')">{{$tool->link}}</span></td> --}}
                                     {{-- <td>{{$tool->description}}</td>
@@ -52,30 +52,40 @@
                     @if(count($tools) > 0)
                         @foreach($tools as $index => $tool)
                         <!-- Modal Structure -->
-                        <div id="key{{$index}}" class="modal modal-fixed-footer">
-                            <div class="modal-content">
-                                <table id="list-key">
-                                    <thead>
-                                    <tr>
-                                        <th>Name tool</th>
-                                        <th>Key</th>
-                                        <th>Type key</th>
-                                        <th>Time of purchase</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @if(count($tool->key) > 0)
-                                        @foreach($tool->key as $key)
-                                            <tr>
-                                                <td>{{$key->tool_name}} / {{$tool->name}}</td>
-                                                <td><span onclick="copyMessage('{{$key->key}}')">{{$key->key}}</span></td>
-                                                <td>{{$key->package}} hours</td>
-                                                <td>{{date("H:i:s d/m", strtotime($key->updated_at))}}</td>
-                                            </tr>
-                                        @endforeach
-                                    @endif
-                                    </tbody>
-                                </table>
+                        <div id="key{{$index}}" class="modal fade modal-fixed-footer">
+                             <div class="modal-dialog">
+                                <div class="modal-content">
+                                {{-- <div class="modal-header">
+                                    <h5 class="modal-title">Modal title</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div> --}}
+                                <div class="modal-body">
+                                   <table class="table table-bordered" id="list-key">
+                                        <thead>
+                                        <tr>
+                                            <th>Name tool</th>
+                                            <th>Key</th>
+                                            <th>Type key</th>
+                                            <th>Time of purchase</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @if(count($tool->key) > 0)
+                                            @foreach($tool->key as $key)
+                                                <tr>
+                                                    <td>{{$key->tool_name}} / {{$tool->name}}</td>
+                                                    <td><span onclick="copyMessage('{{$key->key}}')">{{$key->key}}</span></td>
+                                                    <td>{{$key->package}} hours</td>
+                                                    <td>{{date("H:i:s d/m", strtotime($key->updated_at))}}</td>
+                                                </tr>
+                                            @endforeach
+                                        @else
+                                            <tr><td colspan="4">No data to display</td></tr>
+                                        @endif
+                                        </tbody>
+                                    </table>
+                                </div>                               
+                                </div>
                             </div>
                         </div>
                         @endforeach

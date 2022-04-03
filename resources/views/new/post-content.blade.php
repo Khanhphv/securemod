@@ -15,8 +15,8 @@
 <body>
 @extends('new.master-layout')
 @section('content')
-    <div class="tab-content mobile" style="display: flex">
-        <div class="row bg-white post-content">
+    <div class="tab-content mobile" style="display: block">
+        <div class="row post-content">
 {{--            Post content--}}
             <div class="post-title">
 {{--                Title--}}

@@ -12,13 +12,13 @@
 <body @if($theme == 'dark') data-theme="dark" @endif>
     @extends('new.master-layout')
     @section('content')
-        <div class="tab-content mobile" style="display: flex">
-            <div class="row bg-white">
+        <div class="tab-content mobile" style="display: block">
+            <div class="row ">
                 <div class="col s12 m12">
-                    <h5 class="row">
+                    <h2 class="row mb-3">
                         KEYS HISTORY
                     </h5>
-                    <table class="striped display compact" id="order-listing">
+                    <table class="table table-striped table-hover table-bordered" id="order-listing">
                             <thead>
                             <tr>
                                 <th>Name tool</th>

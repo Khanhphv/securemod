@@ -44,6 +44,11 @@ class HomeController extends Controller
         return redirect()->route('home');
     }
 
+    public function recharge():View 
+    {
+        return view('new.recharge');
+    }
+
     /**
      * Home page screen
      * @return View

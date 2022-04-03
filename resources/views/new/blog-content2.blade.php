@@ -9,8 +9,8 @@
 <body @if($theme == 'dark') data-theme="dark" @endif>
 @extends('new.master-layout')
 @section('content')
-    <div class="tab-content mobile" style="display: flex">
-        <div class="row bg-white blog-content">
+    <div class="tab-content mobile" style="display: block">
+        <div class="row blog-content">
             @if (Auth::check() && Auth::user()->type == "admin")
                 <div class="content">
                     @if (isset($content))

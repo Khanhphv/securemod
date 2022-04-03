@@ -12,13 +12,7 @@
 */
 
 //---------------------CLIENT-----------------------
-use App\Key;
-use App\Model\Game;
-use App\Tool;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use App\Model\History;
-use App\User;
 
 // Guest router
 Route::group(['middleware' => ['locale', 'web']], function () {
@@ -30,6 +24,7 @@ Route::group(['middleware' => ['locale', 'web']], function () {
 //    Route::put('/user/{user_id}/post/{id}', 'PostController@like_post')->name('like');
     Route::post('like','PostController@like_post');
     Route::get('/blog_game/{game_id}', 'BlogController@blogOfGame')->name('blog_game');
+    Route::get('/recharge', 'HomeController@recharge');
     Route::get('/terms-of-services', 'PostController@terms_of_services')->name('terms_of_services');
 //    Route::get('/membership-plan', 'BlogController@blog');
     Route::post('customer_login', 'Auth\LoginController@customerLogin')->name('custom_auth');

@@ -13,14 +13,14 @@
 <body @if($theme == 'dark') data-theme="dark" @endif>
     @extends('new.master-layout')
     @section('content')
-        <div class="tab-name mobile">
-            <div onclick="getAllGames(event)" class="active">
+        <div class="tab-name mb-3">
+            <div onclick="getAllGames(event)" class="cursor-pointer active">
                 All Game
             </div>
-            <div onclick="getRattingGames(event)">
+            <div onclick="getRattingGames(event)" class="cursor-pointer">
                 Rating
             </div>
-            <div onclick="getTrendGames(event)">
+            <div onclick="getTrendGames(event)" class="cursor-pointer">
                 Trending
             </div>
            

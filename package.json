@@ -25,6 +25,7 @@
     "webpack": "^4.41.2"
   },
   "dependencies": {
+    "@prettier/plugin-php": "^0.18.4",
     "sweetalert": "^2.1.2",
     "sweetalert2": "^9.5.3"
   }

@@ -1,20 +1,24 @@
 <style>
-    .text-logo *{
+    .text-logo * {
         font-size: 25px
     }
+
     @media only screen and (max-width: 600px) {
         .text-logo {
             display: none;
         }
+
         .item-discription {
             height: 250px;
         }
-        .container .menu-mobile-container{
+
+        .container .menu-mobile-container {
             height: 100%;
             position: relative;
             overflow: auto;
         }
     }
+
     .notification-badge {
         position: relative;
         right: 5px;
@@ -26,181 +30,55 @@
         padding: 5px 10px;
     }
 </style>
-<div class="container">
- <div class="toolbar desktop">
-            <div>
-                <a href="/home">
-                    <svg class="active" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <a xlink:href="/home">
-                            <path
-                                d="M2,0 L22,0 C23.1045695,-2.02906125e-16 24,0.8954305 24,2 L24,9 C24,10.1045695 23.1045695,11 22,11 L2,11 C0.8954305,11 1.3527075e-16,10.1045695 0,9 L0,2 C-1.3527075e-16,0.8954305 0.8954305,2.02906125e-16 2,0 Z"
-                                id="Path" fill-rule="nonzero" />
-                            <path
-                                d="M2,13 L12,13 C13.1045695,13 14,13.8954305 14,15 L14,22 C14,23.1045695 13.1045695,24 12,24 L2,24 C0.8954305,24 1.3527075e-16,23.1045695 0,22 L0,15 C-1.3527075e-16,13.8954305 0.8954305,13 2,13 Z"
-                                id="Path" fill-rule="nonzero" />
-                            <path
-                                d="M18,13 L22,13 C23.1045695,13 24,13.8954305 24,15 L24,22 C24,23.1045695 23.1045695,24 22,24 L18,24 C16.8954305,24 16,23.1045695 16,22 L16,15 C16,13.8954305 16.8954305,13 18,13 Z"
-                                id="Path" fill-rule="nonzero" />
-                        </a>
-                    </svg>
-                </a>
-                <a href="/balance">
-                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <a xlink:href="/balance">
-                            <path
-                                d="M5,6 L8,6 C8.55228475,6 9,6.44771525 9,7 L9,20 C9,20.5522847 8.55228475,21 8,21 L5,21 C4.44771525,21 4,20.5522847 4,20 L4,7 C4,6.44771525 4.44771525,6 5,6 Z"
-                                id="Path" fill-rule="nonzero" />
-                            <path
-                                d="M16,3 L19,3 C19.5522847,3 20,3.44771525 20,4 L20,17 C20,17.5522847 19.5522847,18 19,18 L16,18 C15.4477153,18 15,17.5522847 15,17 L15,4 C15,3.44771525 15.4477153,3 16,3 Z"
-                                id="Path" fill-rule="nonzero"
-                                transform="translate(17.500000, 10.500000) rotate(-180.000000) translate(-17.500000, -10.500000) " />
-                            <path
-                                d="M6.07335908,0.739274995 C6.26832389,0.420241668 6.73167611,0.420241668 6.92664092,0.739274995 L12.4266409,9.739275 C12.6302488,10.0724516 12.3904649,10.5 12,10.5 L1,10.5 C0.609535124,10.5 0.36975117,10.0724516 0.573359083,9.739275 L6.07335908,0.739274995 Z"
-                                id="Path" fill-rule="nonzero" />
-                            <path
-                                d="M17.0733591,13.739275 C17.2683239,13.4202417 17.7316761,13.4202417 17.9266409,13.739275 L23.4266409,22.739275 C23.6302488,23.0724516 23.3904649,23.5 23,23.5 L12,23.5 C11.6095351,23.5 11.3697512,23.0724516 11.5733591,22.739275 L17.0733591,13.739275 Z"
-                                id="Path" fill-rule="nonzero"
-                                transform="translate(17.500000, 18.500000) rotate(-180.000000) translate(-17.500000, -18.500000) " />
-                        </a>
-                    </svg>
-                </a>
-                <a href="/keys">
-                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <a xlink:href="/keys">
-                            <path
-                                d="M12,3 C15.0375661,3 17.5,5.46243388 17.5,8.5 L17.5,17.5 C17.5,20.5375661 15.0375661,23 12,23 C8.96243388,23 6.5,20.5375661 6.5,17.5 L6.5,8.5 L4.5,8.5 L4.5,17.5 C4.5,21.6421356 7.85786438,25 12,25 C16.1421356,25 19.5,21.6421356 19.5,17.5 L19.5,8.5 C19.5,4.35786438 16.1421356,1 12,1 L12,3 Z"
-                                id="Rectangle" fill-rule="nonzero"
-                                transform="translate(12.000000, 13.000000) rotate(-180.000000) translate(-12.000000, -13.000000) ">
-                            </path>
-                            <path
-                                d="M5,9 L19,9 C20.6568542,9 22,10.3431458 22,12 L22,21 C22,22.6568542 20.6568542,24 19,24 L5,24 C3.34314575,24 2,22.6568542 2,21 L2,12 C2,10.3431458 3.34314575,9 5,9 Z"
-                                id="Path" fill-rule="nonzero"></path>
-                            <path
-                                d="M12,14 C13.3807119,14 14.5,15.1192881 14.5,16.5 C14.5,17.8807119 13.3807119,19 12,19 C10.6192881,19 9.5,17.8807119 9.5,16.5 C9.5,15.1192881 10.6192881,14 12,14 Z"
-                                id="Path" fill="#FFFFFF" fill-rule="nonzero"></path>
-                        </a>
-                    </svg>
-                </a>
-                <a href="/tools">
-                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <a xlink:href="/tools">
-                            <path
-                                d="M12,14 C13.3807119,14 14.5,15.1192881 14.5,16.5 C14.5,17.8807119 13.3807119,19 12,19 C10.6192881,19 9.5,17.8807119 9.5,16.5 C9.5,15.1192881 10.6192881,14 12,14 Z"
-                                id="Path" fill="#FFFFFF" fill-rule="nonzero" />
-                            <path
-                                d="M9.5,24 C14.7467051,24 19,19.7467051 19,14.5 C19,9.25329488 14.7467051,5 9.5,5 C4.25329488,5 0,9.25329488 0,14.5 C0,19.7467051 4.25329488,24 9.5,24 Z"
-                                id="Path" fill-rule="nonzero" opacity="0.394647507" />
-                            <path
-                                d="M13.5,21 C19.2989899,21 24,16.2989899 24,10.5 C24,4.70101013 19.2989899,0 13.5,0 C7.70101013,0 3,4.70101013 3,10.5 C3,16.2989899 7.70101013,21 13.5,21 Z"
-                                id="Path" fill-rule="nonzero"
-                                transform="translate(13.500000, 10.500000) rotate(-315.000000) translate(-13.500000, -10.500000) " />
-                            <path
-                                d="M10.6322892,9.71085659 C11.7368587,9.71085659 12.6322892,8.81542608 12.6322892,7.71085659 C12.6322892,6.60628709 11.7368587,5.71085659 10.6322892,5.71085659 C9.52771967,5.71085659 8.63228917,6.60628709 8.63228917,7.71085659 C8.63228917,8.81542608 9.52771967,9.71085659 10.6322892,9.71085659 Z"
-                                id="Path" fill="#FFFFFF" fill-rule="nonzero"
-                                transform="translate(10.632289, 7.710857) rotate(-315.000000) translate(-10.632289, -7.710857) " />
-                            <path
-                                d="M10.6322892,8.71085659 C10.0800044,8.71085659 9.63228917,8.26314134 9.63228917,7.71085659 C9.63228917,7.15857184 10.0800044,6.71085659 10.6322892,6.71085659 C11.1845739,6.71085659 11.6322892,7.15857184 11.6322892,7.71085659 C11.6322892,8.26314134 11.1845739,8.71085659 10.6322892,8.71085659 Z"
-                                id="Path" fill-rule="nonzero"
-                                transform="translate(10.632289, 7.710857) rotate(-315.000000) translate(-10.632289, -7.710857) " />
-                            <path
-                                d="M16.2891434,15.3677108 C17.3937129,15.3677108 18.2891434,14.4722803 18.2891434,13.3677108 C18.2891434,12.2631413 17.3937129,11.3677108 16.2891434,11.3677108 C15.1845739,11.3677108 14.2891434,12.2631413 14.2891434,13.3677108 C14.2891434,14.4722803 15.1845739,15.3677108 16.2891434,15.3677108 Z"
-                                id="Path" fill="#FFFFFF" fill-rule="nonzero"
-                                transform="translate(16.289143, 13.367711) rotate(-315.000000) translate(-16.289143, -13.367711) " />
-                            <path
-                            d="M16.2891434,14.3677108 C15.7368587,14.3677108 15.2891434,13.9199956 15.2891434,13.3677108 C15.2891434,12.8154261 15.7368587,12.3677108 16.2891434,12.3677108 C16.8414282,12.3677108 17.2891434,12.8154261 17.2891434,13.3677108 C17.2891434,13.9199956 16.8414282,14.3677108 16.2891434,14.3677108 Z"
-                                id="Path" fill="#979797" fill-rule="nonzero"
-                                transform="translate(16.289143, 13.367711) rotate(-315.000000) translate(-16.289143, -13.367711) " />
-                            <path
-                                d="M13,6.05555556 L13,14.9444444 C13,15.2205868 13.2238576,15.4444444 13.5,15.4444444 C13.7761424,15.4444444 14,15.2205868 14,14.9444444 L14,6.05555556 C14,5.77941318 13.7761424,5.55555556 13.5,5.55555556 C13.2238576,5.55555556 13,5.77941318 13,6.05555556 Z"
-                                id="Path" fill="#FFFFFF" fill-rule="nonzero"
-                                transform="translate(13.500000, 10.500000) rotate(-315.000000) translate(-13.500000, -10.500000) " />
-                        </a>
-                    </svg>
-                </a>
-                <a href="/terms-of-services">
-                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <a xlink:href="/terms-of-services">
-                            <path
-                                d="M6,0 L13,0 L18,0 C19.6568542,-3.04359188e-16 21,1.34314575 21,3 L21,7.9934309 L21,21 C21,22.6568542 19.6568542,24 18,24 L6,24 C4.34314575,24 3,22.6568542 3,21 L3,3 C3,1.34314575 4.34314575,3.04359188e-16 6,0 Z"
-                                id="Path" fill-rule="nonzero" />
-                            <path
-                                d="M7.51158831,5 L13.5,5 C13.7761424,5 14,4.77614237 14,4.5 C14,4.22385763 13.7761424,4 13.5,4 L7.51158831,4 C7.23544593,4 7.01158831,4.22385763 7.01158831,4.5 C7.01158831,4.77614237 7.23544593,5 7.51158831,5 Z"
-                                id="Path" fill="#FFFFFF" fill-rule="nonzero" />
-                            <path
-                                d="M7.51158831,9 L16.5,9 C16.7761424,9 17,8.77614237 17,8.5 C17,8.22385763 16.7761424,8 16.5,8 L7.51158831,8 C7.23544593,8 7.01158831,8.22385763 7.01158831,8.5 C7.01158831,8.77614237 7.23544593,9 7.51158831,9 Z"
-                                id="Path" fill="#FFFFFF" fill-rule="nonzero" />
-                            <path
-                                d="M7.51158831,13 L16.5,13 C16.7761424,13 17,12.7761424 17,12.5 C17,12.2238576 16.7761424,12 16.5,12 L7.51158831,12 C7.23544593,12 7.01158831,12.2238576 7.01158831,12.5 C7.01158831,12.7761424 7.23544593,13 7.51158831,13 Z"
-                                id="Path" fill="#FFFFFF" fill-rule="nonzero" />
-                            <path
-                                d="M13.5,20 L16.5,20 C16.7761424,20 17,19.7761424 17,19.5 C17,19.2238576 16.7761424,19 16.5,19 L13.5,19 C13.2238576,19 13,19.2238576 13,19.5 C13,19.7761424 13.2238576,20 13.5,20 Z"
-                                id="Path" fill="#FFFFFF" fill-rule="nonzero" />
-                        </a>
-                    </svg>
-                </a>
-                <a href="/post">
-                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <a xlink:href="/post">
-                            <path
-                                d="M6,0 L13,0 L18,0 C19.6568542,-3.04359188e-16 21,1.34314575 21,3 L21,7.9934309 L21,21 C21,22.6568542 19.6568542,24 18,24 L6,24 C4.34314575,24 3,22.6568542 3,21 L3,3 C3,1.34314575 4.34314575,3.04359188e-16 6,0 Z"
-                                id="Path" fill-rule="nonzero" />
-                            <path
-                                d="M7.51158831,9 L16.5,9 C16.7761424,9 17,8.77614237 17,8.5 C17,8.22385763 16.7761424,8 16.5,8 L7.51158831,8 C7.23544593,8 7.01158831,8.22385763 7.01158831,8.5 C7.01158831,8.77614237 7.23544593,9 7.51158831,9 Z"
-                                id="Path" fill="#FFFFFF" fill-rule="nonzero" />
-                            <path
-                                d="M7.51158831,13 L16.5,13 C16.7761424,13 17,12.7761424 17,12.5 C17,12.2238576 16.7761424,12 16.5,12 L7.51158831,12 C7.23544593,12 7.01158831,12.2238576 7.01158831,12.5 C7.01158831,12.7761424 7.23544593,13 7.51158831,13 Z"
-                                id="Path" fill="#FFFFFF" fill-rule="nonzero" />
-                        </a>
-                    </svg>
-                </a>
-            </div>
-            <div>
-                <a href="/logout">
-                    <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-
-                        <path
-                            d="M12,23.5 C18.3512746,23.5 23.5,18.3512746 23.5,12 C23.5,5.64872538 18.3512746,0.5 12,0.5 C5.64872538,0.5 0.5,5.64872538 0.5,12 C0.5,18.3512746 5.64872538,23.5 12,23.5 Z"
-                            id="Path" fill-rule="nonzero" opacity="0.768391927" />
-                        <path
-                            d="M12,19.5 C16.1421356,19.5 19.5,16.1421356 19.5,12 C19.5,7.85786438 16.1421356,4.5 12,4.5 C7.85786438,4.5 4.5,7.85786438 4.5,12 C4.5,12.2761424 4.72385763,12.5 5,12.5 C5.27614237,12.5 5.5,12.2761424 5.5,12 C5.5,8.41014913 8.41014913,5.5 12,5.5 C15.5898509,5.5 18.5,8.41014913 18.5,12 C18.5,15.5898509 15.5898509,18.5 12,18.5 C11.7238576,18.5 11.5,18.7238576 11.5,19 C11.5,19.2761424 11.7238576,19.5 12,19.5 Z"
-                            id="Path" fill="#FFFFFF" fill-rule="nonzero"
-                            transform="translate(12.000000, 12.000000) rotate(-225.000000) translate(-12.000000, -12.000000) " />
-                        <path
-                            d="M8.5,7 L15.5,7 C15.7761424,7 16,7.22385763 16,7.5 C16,7.77614237 15.7761424,8 15.5,8 L8.5,8 C8.22385763,8 8,7.77614237 8,7.5 C8,7.22385763 8.22385763,7 8.5,7 Z"
-                            id="Path" fill="#FFFFFF" fill-rule="nonzero"
-                            transform="translate(12.000000, 7.500000) rotate(-270.000000) translate(-12.000000, -7.500000) " />
-                    </svg>
-                </a>
-            </div>
-        </div>
-   
-    <div class="main">
-         <div class="menu">
-        <div>
+<div class="container-content">
+    <div class="toolbar sidebar">
+        <div class="sidebar__content">
             @if (isset($master_site_settings['logo_mini']))
-                <div class="icon-menu" width="24px" height="24px">
-                    {!! html_entity_decode(
+                <div class="icon-menu mb-4">
+                    {{-- {!! html_entity_decode(
                         Html::linkRoute(
                             'home',
                             Html::image(
-                                '/images/logo/'. $master_site_settings['logo_mini'],
+                                "https://giphy.com/clips/fire-shooter-sniper-dx2mQm8Ul5Hl0DWmn9",
                                 'Home Page',
                                 [
                                     'class' => 'img-fluid',
-                                    'width' => 24,
-                                    'height' => 24
+                                    'width' => 100,
                                 ]
                             )
                         )
-                    ) !!}
+                    ) !!} --}}
+                   <img src="https://media0.giphy.com/media/12GphGoFazeoso/200w.webp?cid=ecf05e471n44ygnpqwhafcnk1in6zxfam74ioi1he5kyovvd&rid=200w.webp&ct=g" alt="this slowpoke moves"  width="250" alt="404 image"/>
                 </div>
+                <ul class="nav flex-column mt-3">
+                  @foreach(config('menu.MENUS') as $menu)
+                    <li class=" align-items-center nav-item mb-3">
+                        <a class="nav-link align-items-center flex-row d-flex" aria-current="page" href={{$menu['href']}}>
+													<i class="{{$menu['icon']}} fs-4  fw-bold"></i>
+													<span class="fs-5">{{$menu['title']}}</span>
+												</a>
+                    </li>
+                  @endforeach
+                </ul>
             @endif
+        </div>
+				<div class="sidebar__foot">
+					<div class="align-items-center nav-item mb-3 mt-3">
+						<a class="nav-link align-items-center flex-row d-flex" aria-current="page" href={{$menu['href']}}>
+							<i class="{{$menu['icon']}} fs-4  fw-bold"></i>
+							<span class="fs-5">Help & getting started</span>
+						</a>
+					</div>
+				</div>
 
-            <div class="space-20px desktop"></div>
-            <div class="space-20px"></div>
+    </div>
+
+    <div class="main">
+        <div class="menu">
+            <div>
             <!-- @if(isset($master_site_settings['text_logo']))
-                    <div style="color: var(--text-primary-color); padding-right: 1em" class="text-logo">
-                        {!! html_entity_decode(
+                <div style="color: var(--text-primary-color); padding-right: 1em" class="text-logo">
+													{!! html_entity_decode(
                             Html::linkRoute(
                                 'home',
                                 Html::image(
@@ -216,245 +94,120 @@
                         ) !!}
                     </div>
             @endif -->
-
-            <div class="space-20px desktop"></div>
-            <div class="space-20px desktop"></div>
-            <select id="selectbox-games" class="browser-default"  onchange="handleSelectGame(event)">
-                <option value="">Choose game</option>
-                @foreach($allGames as $game)
-                    <option value="{{ $game->slug }}" >{{ $game->name }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="desktop">
-            <div class="cart shopping-cart">
-                <a class="modal-trigger" href="#cart" data-activates="notification">
-                    <i class="small material-icons icon-blue">shopping_cart</i>
-                    <small class="notification-badge"></small>
-                </a>
+                
             </div>
-            @auth()
-            <div class="space-20px"></div>
-            <div class="btn-rechange">
-                <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                    <path
-                        d="M12,21.5 C17.2467051,21.5 21.5,17.2467051 21.5,12 C21.5,6.75329488 17.2467051,2.5 12,2.5 C6.75329488,2.5 2.5,6.75329488 2.5,12 L3.5,12 C3.5,7.30557963 7.30557963,3.5 12,3.5 C16.6944204,3.5 20.5,7.30557963 20.5,12 C20.5,16.6944204 16.6944204,20.5 12,20.5 L12,21.5 Z"
-                        id="Path" fill-rule="nonzero" />
-                    <path
-                        d="M12,21.5 C17.2467051,21.5 21.5,17.2467051 21.5,12 C21.5,6.75329488 17.2467051,2.5 12,2.5 C6.75329488,2.5 2.5,6.75329488 2.5,12 L3.5,12 C3.5,7.30557963 7.30557963,3.5 12,3.5 C16.6944204,3.5 20.5,7.30557963 20.5,12 C20.5,16.6944204 16.6944204,20.5 12,20.5 L12,21.5 Z"
-                        id="Path" fill-rule="nonzero"
-                        transform="translate(12.000000, 12.000000) rotate(-195.000000) translate(-12.000000, -12.000000) " />
-                    <path
-                        d="M8,11 L16,11 C16.5522847,11 17,11.4477153 17,12 C17,12.5522847 16.5522847,13 16,13 L8,13 C7.44771525,13 7,12.5522847 7,12 C7,11.4477153 7.44771525,11 8,11 Z"
-                        id="Path" fill-rule="nonzero" />
-                    <path
-                        d="M8,11 L16,11 C16.5522847,11 17,11.4477153 17,12 C17,12.5522847 16.5522847,13 16,13 L8,13 C7.44771525,13 7,12.5522847 7,12 C7,11.4477153 7.44771525,11 8,11 Z"
-                        id="Path" fill-rule="nonzero"
-                        transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) " />
-                </svg>
-                <div class="space-20px"></div>
-                Recharge
-                <div class="user-dropdown">
-                    <span>Payment</span>
-                    <div class="space-height-20px"></div>
-                    @auth
-                        @if(isset($paypal) && $paypal->value != 0)
-                        <div class="space-height-20px"></div>
-                        <div style="display: flex; align-items: center;">
-                            <a onclick="createPayment()" class="waves-effect waves-light btn-large"
-                                style="background: white; width: 150px;">
-                                <img   style="width: 120%;height: 100%; left: -8px"
-                                        src="https://www.paypalobjects.com/checkoutweb/release/hermione/media/logo.7e5b43e3.svg"
-                                        alt="paypal-payment">
-                            </a>
-                        </div>
-                        @endif
-                        @if(isset($coin) && $coin->value != 0)
-                        <div class="space-height-20px"></div>
-                        <div style="display: flex; align-items: center;">
-                            <a class="waves-effect waves-light btn-large modal-trigger" href="#coin-popup"
-                                style="background: white; width: 150px;">
-                                <img style="width: 135%; left: -14px; top: 3px" src="{{ asset('img/coinpayment.png') }}" alt="coin-payment">
-                            </a>
-                        </div>
-                        @endif
-                        @if(isset($seller) && $seller->value != 0)
-                        <div class="space-height-20px"></div>
-                        <div style="display: flex; align-items: center;">
-                            <a target="blank" class="waves-effect waves-light btn-large modal-trigger" href="#seller-payment"
-                                style="background: white; width: 150px;">
-                                <img style="height: -webkit-fill-available; width: 100%" src="{{ asset('img/SellerPaypal.svg')}}" alt="seller-payment">
-                            </a>
-                        </div>
-                        @endif
-                        {{-- @if(\App\Option::where('option', 'stripe_payment')->get()->first()->value != 0)
-                        <div class="space-height-20px"></div>
-                        <div style="display: flex; align-items: center;">
-                            <a target="blank" class="waves-effect waves-light btn-large modal-trigger" href="#stripe-popup"
-                                style="background: white; width: 150px;">
-                                <img style="height: -webkit-fill-available" src="{{ asset('img/stripe.png')}}" alt="stripe-popup">
-                            </a>
-                        </div>
-
-                        @endif --}}
-                        @if(isset($stripe) && $stripe->value != 0)
-                        <div class="space-height-20px"></div>
-                        <div style="display: flex; align-items: center;">
-                            <a target="blank" class="waves-effect waves-light btn-large modal-trigger" href="#lexholding-popup"
-                                style="background: white; width: 150px;">
-                                <strong style="font-weight: 700; color: #039be5">Visa/Master</strong>
-                            </a>
-                        </div>
-                        @endif
-
-
-                    @endauth
-
+            <div class="desktop">
+                <div class="cart shopping-cart cursor-pointer">
+                    <a class="modal-trigger" data-bs-toggle="modal" data-bs-target="#cart">
+                        <i class="small material-icons icon-blue">shopping_cart</i>
+                        <small class="notification-badge"></small>
+                    </a>
                 </div>
-            </div>
-            @endauth
-            @guest()
-                <a id="" href="/login" style="display: none">Login</a>
-                <label for="login-button">
-                    <div onclick="login()" class="btn-rechange">
-                        <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                            <path
-                                d="M12,21.5 C17.2467051,21.5 21.5,17.2467051 21.5,12 C21.5,6.75329488 17.2467051,2.5 12,2.5 C6.75329488,2.5 2.5,6.75329488 2.5,12 L3.5,12 C3.5,7.30557963 7.30557963,3.5 12,3.5 C16.6944204,3.5 20.5,7.30557963 20.5,12 C20.5,16.6944204 16.6944204,20.5 12,20.5 L12,21.5 Z"
-                                id="Path" fill-rule="nonzero" />
-                            <path
-                                d="M12,21.5 C17.2467051,21.5 21.5,17.2467051 21.5,12 C21.5,6.75329488 17.2467051,2.5 12,2.5 C6.75329488,2.5 2.5,6.75329488 2.5,12 L3.5,12 C3.5,7.30557963 7.30557963,3.5 12,3.5 C16.6944204,3.5 20.5,7.30557963 20.5,12 C20.5,16.6944204 16.6944204,20.5 12,20.5 L12,21.5 Z"
-                                id="Path" fill-rule="nonzero"
-                                transform="translate(12.000000, 12.000000) rotate(-195.000000) translate(-12.000000, -12.000000) " />
-                            <path
-                                d="M8,11 L16,11 C16.5522847,11 17,11.4477153 17,12 C17,12.5522847 16.5522847,13 16,13 L8,13 C7.44771525,13 7,12.5522847 7,12 C7,11.4477153 7.44771525,11 8,11 Z"
-                                id="Path" fill-rule="nonzero" />
-                            <path
-                                d="M8,11 L16,11 C16.5522847,11 17,11.4477153 17,12 C17,12.5522847 16.5522847,13 16,13 L8,13 C7.44771525,13 7,12.5522847 7,12 C7,11.4477153 7.44771525,11 8,11 Z"
-                                id="Path" fill-rule="nonzero"
-                                transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) " />
-                        </svg>
-                        <div class="space-20px"></div>
-                        <a id="login-button" href="/login">Login</a>
-                    </div>
-                </label>
+
+                @guest()
+                    <a id="" href="/login" style="display: none">Login</a>
+                    <label for="login-button">
+                        <div onclick="login()" class="btn-rechange">
+                            <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                <path
+                                    d="M12,21.5 C17.2467051,21.5 21.5,17.2467051 21.5,12 C21.5,6.75329488 17.2467051,2.5 12,2.5 C6.75329488,2.5 2.5,6.75329488 2.5,12 L3.5,12 C3.5,7.30557963 7.30557963,3.5 12,3.5 C16.6944204,3.5 20.5,7.30557963 20.5,12 C20.5,16.6944204 16.6944204,20.5 12,20.5 L12,21.5 Z"
+                                    id="Path" fill-rule="nonzero"/>
+                                <path
+                                    d="M12,21.5 C17.2467051,21.5 21.5,17.2467051 21.5,12 C21.5,6.75329488 17.2467051,2.5 12,2.5 C6.75329488,2.5 2.5,6.75329488 2.5,12 L3.5,12 C3.5,7.30557963 7.30557963,3.5 12,3.5 C16.6944204,3.5 20.5,7.30557963 20.5,12 C20.5,16.6944204 16.6944204,20.5 12,20.5 L12,21.5 Z"
+                                    id="Path" fill-rule="nonzero"
+                                    transform="translate(12.000000, 12.000000) rotate(-195.000000) translate(-12.000000, -12.000000) "/>
+                                <path
+                                    d="M8,11 L16,11 C16.5522847,11 17,11.4477153 17,12 C17,12.5522847 16.5522847,13 16,13 L8,13 C7.44771525,13 7,12.5522847 7,12 C7,11.4477153 7.44771525,11 8,11 Z"
+                                    id="Path" fill-rule="nonzero"/>
+                                <path
+                                    d="M8,11 L16,11 C16.5522847,11 17,11.4477153 17,12 C17,12.5522847 16.5522847,13 16,13 L8,13 C7.44771525,13 7,12.5522847 7,12 C7,11.4477153 7.44771525,11 8,11 Z"
+                                    id="Path" fill-rule="nonzero"
+                                    transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) "/>
+                            </svg>
+                            <div class="space-20px"></div>
+                            <a id="login-button" href="/login">Login</a>
+                        </div>
+                    </label>
                 @endguest
-            <div class="space-20px"></div>
-            @auth()
                 <div class="space-20px"></div>
-                <div class="space-20px"></div>
-                <svg width="50px" height="24px" viewBox="0 0 24 24" version="1.1">
-                    <text x="-13" y="18" fill="green" font-weight="500">${{ round(Auth::user()->credit, 2) }} </text>
-                </svg>
-            @endauth
-            <div class="space-20px"></div>
-            <div class="space-20px"></div>
-            <div class="user">
-            @auth
-                <img style="border-radius: 50%;" width="24px" height="24px" src="{{ Auth::user()->avatar }}" alt="user-avtar">
-            @endauth
-            @guest
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-                        height="24px" viewBox="0 0 24 24" version="1.1">
-                    <path
-                        d="M12,24 C18.627417,24 24,18.627417 24,12 C24,5.372583 18.627417,0 12,0 C5.372583,0 0,5.372583 0,12 C0,18.627417 5.372583,24 12,24 Z"
-                        id="Path" fill="#979797" fill-rule="nonzero" opacity="0.469866071" />
-                    <path
-                        d="M0.521006905,15.5084303 L2.22182541,13.8076118 L5.75735931,10.2720779 C6.92893219,9.10050506 8.82842712,9.10050506 10,10.2720779 L13.5308888,13.8029668 L20.3481586,20.6202366 C18.1882767,22.712365 15.24451,24 12,24 C6.59320039,24 2.02157722,20.4241846 0.521006905,15.5084303 Z"
-                        id="Combined-Shape" fill="#979797" fill-rule="nonzero" />
-                    <path
-                        d="M8.85600124,23.5839233 L5.27207794,20 C4.10050506,18.8284271 4.10050506,16.9289322 5.27207794,15.7573593 L10.2218254,10.8076118 L13.7573593,7.27207794 C14.9289322,6.10050506 16.8284271,6.10050506 18,7.27207794 L21.5308888,10.8029668 L23.9395859,13.2116639 C23.3321184,19.2700592 18.2184276,24 12,24 C10.9121183,24 9.85804786,23.8552369 8.85600124,23.5839233 Z"
-                        id="Combined-Shape" fill="#979797" fill-rule="nonzero" opacity="0.532133557" />
-                </svg>
-            @endguest
-            @auth()
-                <div class="user-dropdown">
-                    <p>Welcome back,</p>
-                    <span>{{ Auth::user()->name }}</span>
-                    <div class="space-height-20px"></div>
-                    <div class="space-height-20px"></div>
-                    <div style="display: flex; align-items: center;" onclick="copyMessage('{{ Auth::user()->id }}')">
-                        <svg width="16px" height="16px" viewBox="0 0 16 16">
+                {{-- @auth()
+                    <div class="space-20px"></div>
+                    <div class="space-20px"></div>
+                    <svg width="50px" height="24px" viewBox="0 0 24 24" version="1.1">
+                        <text x="-13" y="18" fill="green" font-weight="500">
+                            ${{ round(Auth::user()->credit, 2) }} </text>
+                    </svg>
+                @endauth --}}
+                <div class="user">
+                    @auth
+										@if(filter_var(Auth::user()->avatar, FILTER_VALIDATE_URL))
+											<img style="border-radius: 50%;" width="24px" height="24px" src="{{ 
+											Auth::user()->avatar }}" alt="user-avtar">
+										@else 
+											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                             height="24px" viewBox="0 0 24 24" version="1.1">
                             <path
-                                d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z"
-                                id="Path" fill-rule="nonzero" />
-                        </svg>
-                        <div class="space-20px"></div>
-                        Your ID: {{ Auth::user()->id }}
-                    </div>
-                    <div class="space-height-20px"></div>
-                    <div style="display: flex; align-items: center;">
-                        <svg width="16px" height="16px" viewBox="0 0 16 16">
+                                d="M12,24 C18.627417,24 24,18.627417 24,12 C24,5.372583 18.627417,0 12,0 C5.372583,0 0,5.372583 0,12 C0,18.627417 5.372583,24 12,24 Z"
+                                id="Path" fill="#979797" fill-rule="nonzero" opacity="0.469866071"/>
                             <path
-                                d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z"
-                                id="Path" fill-rule="nonzero" />
-                        </svg>
-                        <div class="space-20px"></div>
-                        Role : {{ config('const.role_member.icon')[array_search($role['role'], config('const.role_member.member_status'), true)] }}
-                    </div>
-                    <div class="space-height-20px"></div>
-                    <div style="display: flex; align-items: center;">
-                        <svg width="16px" height="16px" viewBox="0 0 16 16">
+                                d="M0.521006905,15.5084303 L2.22182541,13.8076118 L5.75735931,10.2720779 C6.92893219,9.10050506 8.82842712,9.10050506 10,10.2720779 L13.5308888,13.8029668 L20.3481586,20.6202366 C18.1882767,22.712365 15.24451,24 12,24 C6.59320039,24 2.02157722,20.4241846 0.521006905,15.5084303 Z"
+                                id="Combined-Shape" fill="#979797" fill-rule="nonzero"/>
                             <path
-                                d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z"
-                                id="Path" fill-rule="nonzero" />
+                                d="M8.85600124,23.5839233 L5.27207794,20 C4.10050506,18.8284271 4.10050506,16.9289322 5.27207794,15.7573593 L10.2218254,10.8076118 L13.7573593,7.27207794 C14.9289322,6.10050506 16.8284271,6.10050506 18,7.27207794 L21.5308888,10.8029668 L23.9395859,13.2116639 C23.3321184,19.2700592 18.2184276,24 12,24 C10.9121183,24 9.85804786,23.8552369 8.85600124,23.5839233 Z"
+                                id="Combined-Shape" fill="#979797" fill-rule="nonzero" opacity="0.532133557"/>
                         </svg>
-                        <div class="space-20px"></div>
-                        Consumption : ${{ round($role['totalMoney'], 2) }}
-                    </div>
-                    <div class="space-height-20px"></div>
-                    <div onclick="copyMessage('Your referral link: {{request()->getHost() }}/?ref={{ Auth::user()->id }}')"  style="display: flex; align-items: center;">
-                        <svg width="16px" height="16px" viewBox="0 0 16 16">
+										@endif
+                    @endauth
+                    @guest
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                             height="24px" viewBox="0 0 24 24" version="1.1">
                             <path
-                                d="M8,16 C12.418278,16 16,12.418278 16,8 C16,3.581722 12.418278,0 8,0 C3.581722,0 0,3.581722 0,8 C0,12.418278 3.581722,16 8,16 Z"
-                                id="Path" fill-rule="nonzero" />
+                                d="M12,24 C18.627417,24 24,18.627417 24,12 C24,5.372583 18.627417,0 12,0 C5.372583,0 0,5.372583 0,12 C0,18.627417 5.372583,24 12,24 Z"
+                                id="Path" fill="#979797" fill-rule="nonzero" opacity="0.469866071"/>
+                            <path
+                                d="M0.521006905,15.5084303 L2.22182541,13.8076118 L5.75735931,10.2720779 C6.92893219,9.10050506 8.82842712,9.10050506 10,10.2720779 L13.5308888,13.8029668 L20.3481586,20.6202366 C18.1882767,22.712365 15.24451,24 12,24 C6.59320039,24 2.02157722,20.4241846 0.521006905,15.5084303 Z"
+                                id="Combined-Shape" fill="#979797" fill-rule="nonzero"/>
+                            <path
+                                d="M8.85600124,23.5839233 L5.27207794,20 C4.10050506,18.8284271 4.10050506,16.9289322 5.27207794,15.7573593 L10.2218254,10.8076118 L13.7573593,7.27207794 C14.9289322,6.10050506 16.8284271,6.10050506 18,7.27207794 L21.5308888,10.8029668 L23.9395859,13.2116639 C23.3321184,19.2700592 18.2184276,24 12,24 C10.9121183,24 9.85804786,23.8552369 8.85600124,23.5839233 Z"
+                                id="Combined-Shape" fill="#979797" fill-rule="nonzero" opacity="0.532133557"/>
                         </svg>
-                        <div class="space-20px"></div>
-                            Link invite
-                    </div>
-                    <div class="space-height-20px"></div>
-                    <div style="display: flex; align-items: center;">
-                        Dark mode
-                        <div class="space-20px"></div>
-                        <div class="switch">
-                            <label>
-                                <input type="checkbox" id="themeSwitch">
-                                <span class="lever"></span>
-                            </label>
+                    @endguest
+                    @auth()
+                        <div class="user-dropdown">
+                            <p class="text-success">Welcome back,</p>
+                            <span class="mb-3">{{ Auth::user()->name }}</span>
+                            <div class="mb-3">
+                                Balance:<span class="text-danger"> ${{ round(Auth::user()->credit, 2) }} </span>
+                            </div>
+                            <div class="mb-3"
+                                 onclick="copyMessage('{{ Auth::user()->id }}')">
+                                Your ID: {{ Auth::user()->id }}
+                            </div>
+                            {{-- <div  class="mb-3">
+                                Role
+                                : {{ config('const.role_member.icon')[array_search($role['role'], config('const.role_member.member_status'), true)] }}
+                            </div> --}}
+                            {{-- <div  class="mb-3">
+                                Consumption : ${{ round($role['totalMoney'], 2) }}
+                            </div> --}}
+                            <div
+                                onclick="copyMessage('Your referral link: {{request()->getHost() }}/?ref={{ Auth::user()->id }}')"
+                                 class="mb-3">
+                                Link invite
+                            </div>
+                            <div>
+                                <button type="button" class="btn btn-outline-primary">Logout</button>
+                            </div>                         
                         </div>
-                    </div>
+                    @endauth
                 </div>
-            @endauth
             </div>
         </div>
-        <span class="menu-mobile">
-            <svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1">
-                <path
-                    d="M6,2 L15,2 C15.5522847,2 16,2.44771525 16,3 C16,3.55228475 15.5522847,4 15,4 L6,4 C5.44771525,4 5,3.55228475 5,3 C5,2.44771525 5.44771525,2 6,2 Z"
-                    id="Path" fill-rule="nonzero" />
-                <path
-                    d="M6,7 L15,7 C15.5522847,7 16,7.44771525 16,8 C16,8.55228475 15.5522847,9 15,9 L6,9 C5.44771525,9 5,8.55228475 5,8 C5,7.44771525 5.44771525,7 6,7 Z"
-                    id="Path" fill-rule="nonzero" />
-                <path
-                    d="M6,12 L15,12 C15.5522847,12 16,12.4477153 16,13 C16,13.5522847 15.5522847,14 15,14 L6,14 C5.44771525,14 5,13.5522847 5,13 C5,12.4477153 5.44771525,12 6,12 Z"
-                    id="Path" fill-rule="nonzero" />
-                <path
-                    d="M1.5,11.5 C2.32842712,11.5 3,12.1715729 3,13 C3,13.8284271 2.32842712,14.5 1.5,14.5 C0.671572875,14.5 1.01453063e-16,13.8284271 0,13 C-1.01453063e-16,12.1715729 0.671572875,11.5 1.5,11.5 Z"
-                    id="Path" fill-rule="nonzero" />
-                <path
-                    d="M1.5,6.5 C2.32842712,6.5 3,7.17157288 3,8 C3,8.82842712 2.32842712,9.5 1.5,9.5 C0.671572875,9.5 1.01453063e-16,8.82842712 0,8 C-1.01453063e-16,7.17157288 0.671572875,6.5 1.5,6.5 Z"
-                    id="Path" fill-rule="nonzero" />
-                <path
-                    d="M1.5,1.5 C2.32842712,1.5 3,2.17157288 3,3 C3,3.82842712 2.32842712,4.5 1.5,4.5 C0.671572875,4.5 1.01453063e-16,3.82842712 0,3 C-1.01453063e-16,2.17157288 0.671572875,1.5 1.5,1.5 Z"
-                    id="Path" fill-rule="nonzero" />
-            </svg>
-        </span>
-    </div>
-       
+
         <div class="content-view">
-            <?php
-            //$discord = \App\Option::where('option', 'discord_channel')->get()->first()->value;
-            $header = \App\Option::where('option', 'discord_channel')->get()->first();
-            ?>
+            <?php $header = \App\Option::where("option", "discord_channel")
+              ->get()
+              ->first(); ?>
             @if(isset($header->value))
                 <style>
                     #notice {
@@ -463,11 +216,13 @@
                         font-weight: 700;
                         align-items: flex-start;
                     }
-                    #notice p{
+
+                    #notice p {
                         margin: 10px;
                         font-size: unset;
                     }
-                    #notice .material-icons{
+
+                    #notice .material-icons {
                         margin: 10px;
                         align-items: self-start;
                     }
@@ -479,15 +234,15 @@
                     }
                 @endphp
 
-                @if ($notice)
-                <div id="notice">
-                    <div style="width: 100%; text-align: center" class="blink">
-                        {!! $notice !!}
-                    </div>
-                    <span style="font-size: 25px; " onclick="hideNotice()">
+                @if ($notice) 
+                    <div id="notice" style="display: none">
+                        <div style="width: 100%; text-align: center" class="blink">
+                            {!! $notice !!}
+                        </div>
+                        <span style="font-size: 25px; " onclick="hideNotice()">
                         <i class="material-icons dp48">highlight_off</i>
                     </span>
-                </div>
+                    </div>
                 @endif
 
             @endif
@@ -496,52 +251,52 @@
             </div>
 
             @if(\App\Option::where("option", "footer")->get("value")->first()["value"] == "1")
-            <div class="footer">
-                <div>
-                    <h5>About us</h5>
+                <div class="footer">
                     <div>
-                        {{$master_site_settings['about_us'] ?? ''}}
+                        <h5>About us</h5>
+                        <div>
+                            {{$master_site_settings['about_us'] ?? ''}}
+                        </div>
                     </div>
-                </div>
-                <div class="space-20px"></div>
-                <div>
-                    <h5>For support: </h5>
-                    Email : {{$master_site_settings['for_support'] ?? ''}}<br>
-                    <br>
-                    <h5>Verified Seller By</h5>
-                    @if(isset($master_site_settings['verified_seller_url']))
-                        {!! html_entity_decode(
-                        Html::link(
-                            $master_site_settings['verified_seller_url'],
-                            Html::image(
-                                '/images/logo/' . $master_site_settings['verified_seller_logo'],
-                                'Home Page',
-                                [
-                                    'class' => 'img-fluid',
-                                    'alt' => 'seller',
-                                    'width' => 100
-                                ]
+                    <div class="space-20px"></div>
+                    <div>
+                        <h5>For support: </h5>
+                        Email : {{$master_site_settings['for_support'] ?? ''}}<br>
+                        <br>
+                        <h5>Verified Seller By</h5>
+                        @if(isset($master_site_settings['verified_seller_url']))
+                            {!! html_entity_decode(
+                            Html::link(
+                                $master_site_settings['verified_seller_url'],
+                                Html::image(
+                                    '/images/logo/' . $master_site_settings['verified_seller_logo'],
+                                    'Home Page',
+                                    [
+                                        'class' => 'img-fluid',
+                                        'alt' => 'seller',
+                                        'width' => 100
+                                    ]
+                                )
                             )
-                        )
-                    ) !!}
-                    @endif
+                        ) !!}
+                        @endif
 
-                </div>
-                <div class="space-20px"></div>
-                <div>
+                    </div>
+                    <div class="space-20px"></div>
                     <div>
-                        <p>
-                            <img alt="Visa.png"
-                                    style="height: auto;" width="64"
-                                    src="{{ asset('img/visa.png') }}">
-                            &nbsp;&nbsp;
-                            <img alt="Mastercard.png" style="height: auto;" width="50"
-                                    src="{{ asset('img/master-card.png') }}">
-                            &nbsp;&nbsp;
-                        </p>
+                        <div>
+                            <p>
+                                <img alt="Visa.png"
+                                     style="height: auto;" width="64"
+                                     src="{{ asset('img/visa.png') }}">
+                                &nbsp;&nbsp;
+                                <img alt="Mastercard.png" style="height: auto;" width="50"
+                                     src="{{ asset('img/master-card.png') }}">
+                                &nbsp;&nbsp;
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
             @endif
 
         </div>
@@ -555,84 +310,99 @@
         @include('new.lexholding-popup')
         <script !src="">
             function createPayment() {
-                window.open('https://securemods.com/payment?id=' + '{{Auth::user()->id}}' , 'Dynamic Popup', 'height=50%', 'width="50%')
+                window.open('https://securemods.com/payment?id=' + '{{Auth::user()->id}}', 'Dynamic Popup', 'height=50%', 'width="50%')
             }
         </script>
     @endif
 @endauth
 
 @include('new.scrip')
-<!-- Modal Structure -->
-<div id="cart" class="modal modal-fixed-footer">
-    <div class="modal-content">
-      <table id="shopping_cart">
-        <thead>
-          <tr>
-              <th>#</th>
-              <th>Game Name</th>
-              <th>Tool Name</th>
-              <th>Package Name</th>
-              <th>Count</th>
-              <th>Amount</th>
-              <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-    </div>
-    <div class="modal-footer">
-      <a class="waves-effect waves-red left" style="padding-top:15px"><b>Total Amount:</b> <span id="total-amount"></span></a>
-      <a class="modal-close waves-effect waves-light red btn-small" style="margin-right: 25px">Cancel</a>
-      <a class="modal-close waves-effect waves-light btn-small teal darken-4" id="checkout">Payment<i class="small material-icons right">payment</i></a>
+<div id="cart" class="modal fade">
+    <div class="modal-dialog modal-lg ">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <table class="table table-striped table-hover table-bordered" id="shopping_cart">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    {{-- <th>Game Name</th> --}}
+                    <th>Tool Name</th>
+                    <th>Package Name</th>
+                    <th>Count</th>
+                    <th>Amount</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            <div class="d-flex" style="align-items: center; justify-content: space-between">
+                <a class="" >
+                    <b>Total Amount:</b> 
+                    <span id="total-amount"></span></a>
+                            
+                <a class="cursor-pointer" id="checkout">
+                    <i style="font-size: 30px"  class="small material-icons right">payment</i>
+                </a>
+            </div>
+            
+        </div>
+            
+        </div>
+    
     </div>
 </div>
 
 @auth
-<!--Start of Tawk.to Script-->
-<script type="text/javascript">
-    var Tawk_API = Tawk_API || {};
-    Tawk_API.visitor = {
-        name: '{{ Auth::user()->name.' - ID '.Auth::user()->id }}',
-        email: '{{ Auth::user()->email }}'
-    }, Tawk_LoadStart = new Date();
-    (function () {
-        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-        s1.async = true;
-        s1.src='https://embed.tawk.to/5de0f78ad96992700fc9e348/default';
-        s1.charset = 'UTF-8';
-        s1.setAttribute('crossorigin', '*');
-        s0.parentNode.insertBefore(s1, s0);
-    })();
-</script>
-<!--End of Tawk.to Script-->
-<script !src="">
-    $(".btn-quick-recharge").click(function (e) {
-        M.Modal.getInstance($('#paypal-popup')).open()
-        let value = $(e.currentTarget).find('label').text();
-        $('#paypal_amount').val(Number(value));
-        M.updateTextFields();Ns
-        let event = new Event('change')
-        $('#paypal_amount')[0].dispatchEvent(event)
-    })
-    $(document).ready(function () {
-        if ($('body').data('theme') == 'dark') {
-            $('#themeSwitch').prop('checked', true);
-        }
-    });
-    $('#themeSwitch').on('change', function(event){
-        if (event.target.checked) {
-            document.body.setAttribute('data-theme', 'dark');
-            let d = new Date();
-            d.setTime(d.getTime() + (365*24*60*60*1000));
-            let expires = "expires=" + d.toUTCString();
-            document.cookie = "theme=dark" + ";" + expires + ";path=/";
-        } else {
-            document.body.removeAttribute('data-theme');
-            document.cookie = 'theme=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-        }
-    });
-</script>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {};
+        Tawk_API.visitor = {
+            name: '{{ Auth::user()->name.' - ID '.Auth::user()->id }}',
+            email: '{{ Auth::user()->email }}'
+        }, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/5de0f78ad96992700fc9e348/default';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+    <script !src="">
+        $(".btn-quick-recharge").click(function (e) {
+            M.Modal.getInstance($('#paypal-popup')).open()
+            let value = $(e.currentTarget).find('label').text();
+            $('#paypal_amount').val(Number(value));
+            M.updateTextFields();
+            Ns
+            let event = new Event('change')
+            $('#paypal_amount')[0].dispatchEvent(event)
+        })
+        $(document).ready(function () {
+            if ($('body').data('theme') == 'dark') {
+                $('#themeSwitch').prop('checked', true);
+            }
+        });
+        $('#themeSwitch').on('change', function (event) {
+            if (event.target.checked) {
+                document.body.setAttribute('data-theme', 'dark');
+                let d = new Date();
+                d.setTime(d.getTime() + (365 * 24 * 60 * 60 * 1000));
+                let expires = "expires=" + d.toUTCString();
+                document.cookie = "theme=dark" + ";" + expires + ";path=/";
+            } else {
+                document.body.removeAttribute('data-theme');
+                document.cookie = 'theme=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            }
+        });
+    </script>
 @endauth
 
 <script>
@@ -643,40 +413,41 @@
     });
     $(function () {
         function formatCurency(n) {
-            return  n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
+            return n.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,');
         }
+
         function getListItemCart(carts, flag) {
-            if(carts) {
+            if (carts) {
                 $('.notification-badge').text(carts.length)
                 $('#shopping_cart tbody').empty()
 
-                $.each(carts, function (key, value)
-                {
+                $.each(carts, function (key, value) {
 
-                    $('#shopping_cart tbody').append('<tr> <td><label><input class="check-item" type="checkbox" '+value.status+' value="'+value.id+'"><span class="slider round"></span></label></td>  <td>'
-                        + value.game_name + '</td>  <td>' + value.name_tool + '</td> <td>'
-                            + value.package_name + '</td>  <td width="80"><input type="number" class="package-count" min="1" data-id="'+value.id+'" value="' + value.count + '"></td>  <td>' + value.amount + '</td> <td>'
-                                + `<a class="btn-floating act-delete btn-small waves-effect waves-light red" data-index="${value.id}"><i class="material-icons">delete</i></a>`
-                                + '</td></tr>');
+                    $('#shopping_cart tbody').append(
+                        '<tr> <td><label><input class="check-item" type="checkbox" ' + value.status + ' value="' + value.id + '"><span class="slider round"></span></label></td>  <td>' + value.name_tool + '</td> <td>'
+                        + value.package_name + '</td>  <td width="80"><input type="number" class="package-count" min="1" data-id="' + value.id + '" value="' + value.count + '"></td>  <td>' + value.amount + '</td> <td>'
+                        + `<a class="btn-floating " data-index="${value.id}"><i class="text-danger material-icons cursor-pointer">delete</i></a>`
+                        + '</td></tr>');
                 })
 
             } else {
-                if(flag) {
+                if (flag) {
                     Swal.fire({
                         title: 'Warning',
                         text: 'Shopping cart empty!',
                         icon: 'warning'
                     })
-                    return
+
                 }
             }
         }
+
         // check count item cart
         let carts = JSON.parse(localStorage.getItem('cartItem'))
         let total_amount = 0
         $('#total-amount').text(total_amount)
         getTotalAmount()
-        if(carts) {
+        if (carts) {
             $('.notification-badge').text(carts.length)
         } else {
             $('.notification-badge').text(0)
@@ -685,7 +456,7 @@
         // click icon shopping cart
         $(".shopping-cart").click(function (e) {
             let carts = JSON.parse(localStorage.getItem('cartItem'))
-            if(carts && carts.length) {
+            if (carts && carts.length) {
                 getListItemCart(carts, true)
                 getTotalAmount()
             } else {
@@ -694,24 +465,23 @@
                     text: 'Shopping cart empty!',
                     icon: 'warning'
                 })
-                return
+
             }
 
         });
 
-        function removeItemFromCart(params)
-        {
+        function removeItemFromCart(params) {
             let carts = JSON.parse(localStorage.getItem('cartItem'))
-            console.log("carts>>>",carts)
-            params.map(function(item) {
+            console.log("carts>>>", carts)
+            params.map(function (item) {
                 carts = carts.filter(ele => ele.id != item.id)
-                console.log("item>>>",item.id)
-                console.log("carts>>>",carts)
+                console.log("item>>>", item.id)
+                console.log("carts>>>", carts)
             })
             // set cart to local storage
             localStorage.setItem('cartItem', JSON.stringify(carts))
             // update count item
-            if(carts && carts.length) {
+            if (carts && carts.length) {
                 $('.notification-badge').html(carts.length)
             } else {
                 $('.notification-badge').html(0)
@@ -724,81 +494,81 @@
         // click check out cart
         $("#checkout").click(function (e) {
             @auth()
-                let balance = '{{ round(Auth::user()->credit, 2) }}'
-                if(balance < total_amount) {
-                    Swal.fire({
-                        title: 'Warning',
-                        text: 'Your balance is not enough!',
-                        icon: 'warning'
-                    })
-                    return
-                }
-                // call ajax method post
-                let url = "{{route('tool.buy-tool-cart')}}";
-                let params = JSON.parse(localStorage.getItem('cartItem'))
-                params = params.filter(ele => ele.status == 'checked')
-
-                Swal.fire({
-                    title: 'Now loading',
-                    allowEscapeKey: false,
-                    allowOutsideClick: false,
-                    onOpen: () => {
-                        Swal.showLoading();
-                    }
-                })
-
-                if(!params.length) {
-                    Swal.fire({
-                        title: 'Error',
-                        text: "Please choose package!",
-                        icon: 'error'
-                    });
-                }
-
-                $.ajax({
-                    url: url,
-                    data: JSON.stringify(params),
-                    method: "POST",
-                    contentType: 'application/json',
-                    success: function (response) {
-                        Swal.close();
-                        response = JSON.parse(response)
-                        if (response.status === "success") {
-                            Swal.fire({
-                                title: 'Success',
-                                text: "Checkout success",
-                                icon: 'success'
-                            });
-                            //update item in cart
-                            removeItemFromCart(params)
-                        } else {
-                            Swal.fire({
-                                title: 'Error',
-                                text: response.message,
-                                icon: 'error'
-                            }).then(function () {
-                                if (response.code === 2) {
-                                    $("#recharge").show();
-                                }
-                                if (response.code === 190) {
-                                    window.location = "{{url('login')}}";
-                                }
-                            });
-                        }
-                    }, error: function (jqXHR, textStatus, errorThrown) {
-                        console.log(jqXHR);
-                        console.log(textStatus);
-                        console.log(errorThrown);
-                    }
-                })
-            @endauth
-            @guest()
+            let balance = '{{ round(Auth::user()->credit, 2) }}'
+            if (balance < total_amount) {
                 Swal.fire({
                     title: 'Warning',
-                    text: 'Please login',
-                    icon: 'error'
+                    text: 'Your balance is not enough!',
+                    icon: 'warning'
                 })
-                window.location = "{{url('login')}}";
+                return
+            }
+            // call ajax method post
+            let url = "{{route('tool.buy-tool-cart')}}";
+            let params = JSON.parse(localStorage.getItem('cartItem'))
+            params = params.filter(ele => ele.status == 'checked')
+
+            Swal.fire({
+                title: 'Now loading',
+                allowEscapeKey: false,
+                allowOutsideClick: false,
+                onOpen: () => {
+                    Swal.showLoading();
+                }
+            })
+
+            if (!params.length) {
+                Swal.fire({
+                    title: 'Error',
+                    text: "Please choose package!",
+                    icon: 'error'
+                });
+            }
+
+            $.ajax({
+                url: url,
+                data: JSON.stringify(params),
+                method: "POST",
+                contentType: 'application/json',
+                success: function (response) {
+                    Swal.close();
+                    response = JSON.parse(response)
+                    if (response.status === "success") {
+                        Swal.fire({
+                            title: 'Success',
+                            text: "Checkout success",
+                            icon: 'success'
+                        });
+                        //update item in cart
+                        removeItemFromCart(params)
+                    } else {
+                        Swal.fire({
+                            title: 'Error',
+                            text: response.message,
+                            icon: 'error'
+                        }).then(function () {
+                            if (response.code === 2) {
+                                $("#recharge").show();
+                            }
+                            if (response.code === 190) {
+                                window.location = "{{url('login')}}";
+                            }
+                        });
+                    }
+                }, error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(jqXHR);
+                    console.log(textStatus);
+                    console.log(errorThrown);
+                }
+            })
+            @endauth
+            @guest()
+            Swal.fire({
+                title: 'Warning',
+                text: 'Please login',
+                icon: 'error'
+            })
+            window.location = "{{url('login')}}";
             @endguest
         });
 
@@ -806,8 +576,8 @@
             let carts = JSON.parse(localStorage.getItem('cartItem'))
             let total_amount2 = 0
             $.each(carts, function (key, value) {
-                if(value.status == 'checked'){
-                    total_amount2 = total_amount2 + value.price*value.count;
+                if (value.status == 'checked') {
+                    total_amount2 = total_amount2 + value.price * value.count;
                 }
             })
             $('#total-amount').text(total_amount2)
@@ -815,13 +585,13 @@
         }
 
         // check checkbox item
-        $("#shopping_cart").on('click','.check-item',function(){
+        $("#shopping_cart").on('click', '.check-item', function () {
             let index = $(this).val()
 
             let carts = JSON.parse(localStorage.getItem('cartItem'))
-            carts.map(function(value){
-                if(value.id == index){
-                    if(value.status == 'uncheck') {
+            carts.map(function (value) {
+                if (value.id == index) {
+                    if (value.status == 'uncheck') {
                         value.status = 'checked'
                     } else {
                         value.status = 'uncheck'
@@ -834,16 +604,16 @@
         })
 
         // click delete item
-        $("#shopping_cart").on('click','.act-delete',function(){
+        $("#shopping_cart").on('click', '.act-delete', function () {
             let index = $(this).data("index")
-            if(index !== -1) {
+            if (index !== -1) {
                 let carts = JSON.parse(localStorage.getItem('cartItem'))
                 // remote item delete
                 carts = carts.filter(ele => ele.id != index)
                 // set cart to local storage
                 localStorage.setItem('cartItem', JSON.stringify(carts))
                 // update count item
-                if(carts && carts.length) {
+                if (carts && carts.length) {
                     $('.notification-badge').html(carts.length)
                 } else {
                     $('.notification-badge').html(0)
@@ -855,28 +625,29 @@
         });
 
         // check checkbox item
-        $("#shopping_cart").on('keyup keypress change','.package-count',function(){
-            let count = $(this).val()
+        $("#shopping_cart").on('keyup change', '.package-count', function () {
+            let count = $(this).val() || 0
             let index = $(this).data('id')
             let carts = JSON.parse(localStorage.getItem('cartItem'))
-            carts.map(function(value){
-                if(value.id == index){
+            let itemChanged = carts.find(e => e.id == index)
+            let priceChanged = count * itemChanged.price
+            $(this).parent().next().text(priceChanged)
+            carts.map(function (value) {
+                if (value.id == index) {
                     value.count = count
-                    value.amount = value.price*value.count
+                    value.amount = value.price * value.count
                 }
                 return value
             })
             localStorage.setItem('cartItem', JSON.stringify(carts))
-            console.log("index>>>",index)
-            console.log("count>>>",count)
+            console.log("index>>>", index)
+            console.log("count>>>", count)
             // update count item
-            if(carts && carts.length) {
+            if (carts && carts.length) {
                 $('.notification-badge').html(carts.length)
             } else {
                 $('.notification-badge').html(0)
             }
-            // load data table
-            getListItemCart(carts, false)
             getTotalAmount()
         })
 

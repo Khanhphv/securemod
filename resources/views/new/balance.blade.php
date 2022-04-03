@@ -28,7 +28,6 @@
             td:nth-child(4) {
                 white-space: nowrap;
                 max-width: 250px;
-                display: block;
                 overflow: hidden;
                 text-overflow: ellipsis; }
         }
@@ -36,7 +35,6 @@
             td:nth-child(4) {
                 white-space: nowrap;
                 max-width: 25vw;
-                display: block;
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
@@ -56,11 +54,11 @@
 <body @if($theme == 'dark') data-theme="dark" @endif>
 @extends('new.master-layout')
 @section('content')
-    <div class="tab-content mobile" style="display: flex">
-        <div class="row bg-white">
+    <div class="tab-content mobile" style="display: block">
+        <div class="row">
             <div class="col s12 m12">
-                <h5 class="row">TRANSACTION HISTORY</h5>
-                <table class="striped display compact" id="order-listing">
+                <h2 class="row mb-3">TRANSACTION HISTORY</h2>
+                <table class="table table-striped table-hover table-bordered table-bordered" id="order-listing">
                     <thead>
                     <tr>
                         <th>Order ID</th>
@@ -80,7 +78,7 @@
                                     <td>{{$history->action}}</td>
                                     <td>{{number_format($history->amount)}}</td>
                                     <td>{!! $history->content !!}</td>
-                                    <td>{!! $history->need_to_verify == 1 ? '<button class="btn btn-small" onclick="guideVefify()" >Verify</button>' : '' !!}</td>
+                                    <td>{!! $history->need_to_verify == 1 ? '<button class="btn btn-warning" onclick="guideVefify()" >Verify</button>' : '<button class="btn btn-dark" >None</button>' !!}</td>
                                     <td>{{$history->updated_at->format('H:i:s d/m')}}</td>
 
                                 </tr>
