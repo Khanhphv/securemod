@@ -75,12 +75,23 @@
             $(event.target).toggleClass('active')
         }
         function showContent(newGames) {
-            $('.tab-content').empty();
+            setTimeout(() => {
+                Swal.close();
+                $('.tab-content').show("slow")
+            }, 500);
+            Swal.fire({
+            title: 'Now loading',
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            onOpen: () => {
+                    Swal.showLoading();
+                }
+            })
+            $('.tab-content').empty();          
             newGames.forEach(e =>{
                 $('.tab-content').append(e.outerHTML);
             })
-            $('.tab-content').show(300)
-
+            
 
         }
         function redirectToSpecificGame(id) {

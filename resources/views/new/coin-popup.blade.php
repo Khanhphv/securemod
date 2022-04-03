@@ -1,37 +1,42 @@
 @auth()
-    <div id="coin-popup" class="modal bottom-sheet">
-        <div class="modal-content">
-            <h3 class="no-margin-bottom">RECHARGING VIA COINPAYMENTS (BTC)
+    <div id="coin-popup" class="offcanvas offcanvas-start" tabindex="-1" aria-labelledby="coin-popup">
+        <div class="offcanvas-body">
+            <h3 class="no-margin-bottom">RECHARGING VIA COINPAYMENTS (BTC)</h3>
+            <span>
                 <?php
                 $coinPayment = \App\Option::where('option', 'coinpayment_bonus')->first();
                 ?>
                 @if(isset($coinPayment) && ($coinPayment->value !== '0'))
-                    (' - Get '  {{ $coinPayment->value }} '% more')
+                    (Get '  {{ $coinPayment->value }} '% more)
                 @endif
-            </h3>
+            </span>
             <form action="#">
-                <div class="row">
-                    <div class="col s12 m4">
-                        <div class="input-field">
-                            <input type="number" class="validate" type="number" name="amount" id="amount">
-                            <label for="amount">Amount</label>
+                <div class="row mt-3">
+                    <div class="input-field">
+                        <div for="amount">Amount
                             <span class="helper-text" id="required_message" style="display: none; color: red" data-error="wrong" data-success="right">Please enter amount</span>
                         </div>
-                        <label>Currency</label>
-                        <select class="browser-default" id="currency">
+                        <input type="number" class="validate w-50" type="number" name="amount" id="amount">
+                        
+                    </div>
+                    <label>Currency</label>
+                    <div class="col-12">
+                        <select class="browser-default w-100" id="currency">
                             @foreach (config('const.coin_currencies') as $currency)
                                 <option value="{{$currency}}">{{$currency}}</option>
                             @endforeach
-                            </select>
-                        <br>
-                        <div class="input-field">
-                            <button type="button" class="waves-effect waves-light btn"
-                                onclick="rechargeCoinPayments()">
-                            Recharge now
-                        </button>
-                        </div>
-
+                        </select>
                     </div>
+                    
+                    <br>
+                    <div class="input-field mt-3 mb-3">
+                        <button type="button" class="btn btn-primary"
+                            onclick="rechargeCoinPayments()">
+                        Recharge now
+                    </button>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="input-field col s12 m8">
                         <h4>Tutorial</h4>
                         <p>1，Input the values and select coin you want recharge</p>
@@ -45,7 +50,7 @@
                             than
                             the order amount.</p>
                     </div>
-                </div>
+                </div>    
             </form>
 
 

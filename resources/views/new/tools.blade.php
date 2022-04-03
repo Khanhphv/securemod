@@ -18,7 +18,7 @@
                     <h2 class="row mb-3">
                         LIST ORDER
                     </h5>
-                    <table class="table table-striped table-hover table-bordered" id="order-listing">
+                    <table class="table table-bordered" id="order-listing">
                         <thead>
                         <tr>
                             <th>Name</th>

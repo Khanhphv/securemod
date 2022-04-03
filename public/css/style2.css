@@ -7,6 +7,12 @@ h2 {
     animation: Color 4s linear infinite;
     -webkit-animation: Color 4s ease-in-out infinite;
 }
+.swal2-container .swal2-popup {
+    opacity: 0.9;
+}
+.swal2-container .swal2-popup * {
+    color: #000;
+}
 @keyframes Color{
   0%{
     color:#A0D468;
@@ -40,8 +46,12 @@ h2 {
 }
 
 
-input {
+input, select {
     color: #000000;
+}
+
+input[type='search'] {
+    color: #fff!important;
 }
 .sidebar .nav-link {
     height: 48px;
@@ -121,6 +131,10 @@ input {
 
 .cursor-pointer {
     cursor: pointer;
+}
+
+.offcanvas-body {
+    background-color: #212121;
 }
 
 .main {

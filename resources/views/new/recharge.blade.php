@@ -8,66 +8,75 @@
     <meta name="keywords" content="history, balance, invoice">
     <meta name="author" content="support@divinesofts.net">
     @include('new.style')
+    <style>
+        .card-credit {
+            display: flex;
+            height: 100px;
+            align-items: center;
+            padding: 20px;
+            margin-top: 20px
+        }
+        .card-credit:hover {
+          box-shadow: 0 10px 100px #00000021;
+          border: 1px solid
+        }
+        .card-credit img {
+            height: 70px;
+        }
+    </style>
 </head>
 <body @if($theme == 'dark') data-theme="dark" @endif>
     @extends('new.master-layout')
     @section('content')
         <div class="tab-content mobile" style="display: block">
             <div class="row">
+                <h2>Payment</h2>
                 <div class="col s12 m12">
-                    <div >
-                    <h2>Payment</h2>
-                    {{dd($paypal)}}
+                    <div>
                     @auth
+                    @php
+                        $paypal = \App\Option::where('option', 'paypal_payment')->get()->first();
+                        $coin = \App\Option::where('option', 'coin_payment')->get()->first();
+                        $seller = \App\Option::where('option', 'seller_payment')->get()->first();
+                        $stripe = \App\Option::where('option', 'stripe_payment')->get()->first();
+                    @endphp
                         @if(isset($paypal) && $paypal->value != 0)
-                        <div class="space-height-20px"></div>
-                        <div style="display: flex; align-items: center;">
-                            <a onclick="createPayment()" class="waves-effect waves-light btn-large"
-                                style="background: white; width: 150px;">
-                                <img   style="width: 120%;height: 100%; left: -8px"
-                                        src="https://www.paypalobjects.com/checkoutweb/release/hermione/media/logo.7e5b43e3.svg"
+                        <div class="card-credit">
+                            <a onclick="createPayment()">
+                                <img src="https://www.paypalobjects.com/checkoutweb/release/hermione/media/logo.7e5b43e3.svg"
                                         alt="paypal-payment">
                             </a>
                         </div>
                         @endif
                         @if(isset($coin) && $coin->value != 0)
-                        <div class="space-height-20px"></div>
-                        <div style="display: flex; align-items: center;">
-                            <a class="waves-effect waves-light btn-large modal-trigger" href="#coin-popup"
-                                style="background: white; width: 150px;">
-                                <img style="width: 135%; left: -14px; top: 3px" src="{{ asset('img/coinpayment.png') }}" alt="coin-payment">
+                        <div class="card-credit">
+                            <a data-bs-toggle="offcanvas" role="button" aria-controls="coin-popup" href="#coin-popup">
+                                <img src="{{ asset('img/coinpayment.png') }}" alt="coin-payment">
                             </a>
                         </div>
                         @endif
                         @if(isset($seller) && $seller->value != 0)
-                        <div class="space-height-20px"></div>
-                        <div style="display: flex; align-items: center;">
-                            <a target="blank" class="waves-effect waves-light btn-large modal-trigger" href="#seller-payment"
-                                style="background: white; width: 150px;">
-                                <img style="height: -webkit-fill-available; width: 100%" src="{{ asset('img/SellerPaypal.svg')}}" alt="seller-payment">
+                        <div class="card-credit">
+                            <a data-bs-toggle="offcanvas" href="#seller-payment" role="button" aria-controls="seller-payment" >
+                                <img src="{{ asset('img/SellerPaypal.svg')}}" alt="seller-payment">
                             </a>
                         </div>
                         @endif
-                        @if(\App\Option::where('option', 'stripe_payment')->get()->first()->value != 0)
-                        <div class="space-height-20px"></div>
-                        <div style="display: flex; align-items: center;">
-                            <a target="blank" class="waves-effect waves-light btn-large modal-trigger" href="#stripe-popup"
-                                style="background: white; width: 150px;">
-                                <img style="height: -webkit-fill-available" src="{{ asset('img/stripe.png')}}" alt="stripe-popup">
+                        {{-- @if(\App\Option::where('option', 'stripe_payment')->get()->first()->value != 0)
+                        <div class="card-credit">
+                            <a target="blank">
+                                <img  src="{{ asset('img/stripe.png')}}" alt="stripe-popup">
                             </a>
                         </div>
 
-                        @endif
+                        @endif --}}
                         @if(isset($stripe) && $stripe->value != 0)
-                        <div class="space-height-20px"></div>
-                        <div style="display: flex; align-items: center;">
-                            <a target="blank" class="waves-effect waves-light btn-large modal-trigger" href="#lexholding-popup"
-                                style="background: white; width: 150px;">
-                                <strong style="font-weight: 700; color: #039be5">Visa/Master</strong>
+                        <div class="card-credit">
+                            <a target="blank" href="#lexholding-popup">
+                                <h1 style="font-weight: 700; color: #039be5">Visa/Master</h1>
                             </a>
                         </div>
                         @endif
-
 
                     @endauth
 

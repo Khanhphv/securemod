@@ -27,7 +27,7 @@
         border-color: #ee6e73 ;
     }
     .bg-white{
-        background: var(--content-box-bg);
+        /* background: var(--content-box-bg); */
         padding: 0 15px;
         padding-bottom: 2em;
         border-radius: 10px;
@@ -43,11 +43,14 @@
         color: var(--content-color);
     }
     .dataTable tbody tr.odd , .dataTable tbody tr.even {
-        background: var(--content-box-bg) !important;
+        background: inherit !important;
+    }
+    table.dataTable.no-footer {
+        border-bottom-color: white
     }
 
     .dataTable tbody tr td.sorting_1 {
-        background: var(--content-box-bg) !important;
+        background: inherit;
     }
 
     .menu .dropdown-content.select-dropdown {

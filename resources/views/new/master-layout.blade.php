@@ -34,7 +34,7 @@
     <div class="toolbar sidebar">
         <div class="sidebar__content">
             @if (isset($master_site_settings['logo_mini']))
-                <div class="icon-menu mb-4">
+                <div class="icon-menu ms-5 mb-4">
                     {{-- {!! html_entity_decode(
                         Html::linkRoute(
                             'home',
@@ -48,7 +48,7 @@
                             )
                         )
                     ) !!} --}}
-                   <img src="https://media0.giphy.com/media/12GphGoFazeoso/200w.webp?cid=ecf05e471n44ygnpqwhafcnk1in6zxfam74ioi1he5kyovvd&rid=200w.webp&ct=g" alt="this slowpoke moves"  width="250" alt="404 image"/>
+                   <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_hjwwj5ns.json"  background="transparent"  speed="1"  style="width: 100px"  loop  autoplay></lottie-player>
                 </div>
                 <ul class="nav flex-column mt-3">
                   @foreach(config('menu.MENUS') as $menu)
@@ -62,16 +62,15 @@
                 </ul>
             @endif
         </div>
-				<div class="sidebar__foot">
-					<div class="align-items-center nav-item mb-3 mt-3">
-						<a class="nav-link align-items-center flex-row d-flex" aria-current="page" href={{$menu['href']}}>
-							<i class="{{$menu['icon']}} fs-4  fw-bold"></i>
-							<span class="fs-5">Help & getting started</span>
-						</a>
-					</div>
-				</div>
-
-    </div>
+            <div class="sidebar__foot">
+                <div class="align-items-center nav-item mb-3 mt-3">
+                    <a class="nav-link align-items-center flex-row d-flex" aria-current="page" href="" target="_blank">
+                        <i class="{{$menu['icon']}} fs-4  fw-bold"></i>
+                        <span class="fs-5">Help & getting started</span>
+                    </a>
+                </div>
+            </div>
+        </div>
 
     <div class="main">
         <div class="menu">
@@ -103,48 +102,22 @@
                         <small class="notification-badge"></small>
                     </a>
                 </div>
-
-                @guest()
-                    <a id="" href="/login" style="display: none">Login</a>
-                    <label for="login-button">
-                        <div onclick="login()" class="btn-rechange">
-                            <svg width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                <path
-                                    d="M12,21.5 C17.2467051,21.5 21.5,17.2467051 21.5,12 C21.5,6.75329488 17.2467051,2.5 12,2.5 C6.75329488,2.5 2.5,6.75329488 2.5,12 L3.5,12 C3.5,7.30557963 7.30557963,3.5 12,3.5 C16.6944204,3.5 20.5,7.30557963 20.5,12 C20.5,16.6944204 16.6944204,20.5 12,20.5 L12,21.5 Z"
-                                    id="Path" fill-rule="nonzero"/>
-                                <path
-                                    d="M12,21.5 C17.2467051,21.5 21.5,17.2467051 21.5,12 C21.5,6.75329488 17.2467051,2.5 12,2.5 C6.75329488,2.5 2.5,6.75329488 2.5,12 L3.5,12 C3.5,7.30557963 7.30557963,3.5 12,3.5 C16.6944204,3.5 20.5,7.30557963 20.5,12 C20.5,16.6944204 16.6944204,20.5 12,20.5 L12,21.5 Z"
-                                    id="Path" fill-rule="nonzero"
-                                    transform="translate(12.000000, 12.000000) rotate(-195.000000) translate(-12.000000, -12.000000) "/>
-                                <path
-                                    d="M8,11 L16,11 C16.5522847,11 17,11.4477153 17,12 C17,12.5522847 16.5522847,13 16,13 L8,13 C7.44771525,13 7,12.5522847 7,12 C7,11.4477153 7.44771525,11 8,11 Z"
-                                    id="Path" fill-rule="nonzero"/>
-                                <path
-                                    d="M8,11 L16,11 C16.5522847,11 17,11.4477153 17,12 C17,12.5522847 16.5522847,13 16,13 L8,13 C7.44771525,13 7,12.5522847 7,12 C7,11.4477153 7.44771525,11 8,11 Z"
-                                    id="Path" fill-rule="nonzero"
-                                    transform="translate(12.000000, 12.000000) rotate(-270.000000) translate(-12.000000, -12.000000) "/>
-                            </svg>
-                            <div class="space-20px"></div>
-                            <a id="login-button" href="/login">Login</a>
-                        </div>
-                    </label>
-                @endguest
-                <div class="space-20px"></div>
-                {{-- @auth()
-                    <div class="space-20px"></div>
-                    <div class="space-20px"></div>
-                    <svg width="50px" height="24px" viewBox="0 0 24 24" version="1.1">
-                        <text x="-13" y="18" fill="green" font-weight="500">
-                            ${{ round(Auth::user()->credit, 2) }} </text>
-                    </svg>
-                @endauth --}}
-                <div class="user">
+               
+                <div class="user ms-3">
+                    @guest()
+                        <a id="" href="/login" style="display: none">Login</a>
+                        <label for="login-button">
+                            <div onclick="login()" class="btn-rechange">
+                                <a id="login-button" href="/login">Login</a>
+                            </div>
+                        </label>
+                    @endguest
                     @auth
-										@if(filter_var(Auth::user()->avatar, FILTER_VALIDATE_URL))
-											<img style="border-radius: 50%;" width="24px" height="24px" src="{{ 
-											Auth::user()->avatar }}" alt="user-avtar">
-										@else 
-											<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                        @if(filter_var(Auth::user()->avatar, FILTER_VALIDATE_URL))
+                            <img style="border-radius: 50%;" width="24px" height="24px" src="{{ 
+                            Auth::user()->avatar }}" alt="user-avtar">
+                        @else 
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                              height="24px" viewBox="0 0 24 24" version="1.1">
                             <path
                                 d="M12,24 C18.627417,24 24,18.627417 24,12 C24,5.372583 18.627417,0 12,0 C5.372583,0 0,5.372583 0,12 C0,18.627417 5.372583,24 12,24 Z"
@@ -158,20 +131,7 @@
                         </svg>
 										@endif
                     @endauth
-                    @guest
-                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
-                             height="24px" viewBox="0 0 24 24" version="1.1">
-                            <path
-                                d="M12,24 C18.627417,24 24,18.627417 24,12 C24,5.372583 18.627417,0 12,0 C5.372583,0 0,5.372583 0,12 C0,18.627417 5.372583,24 12,24 Z"
-                                id="Path" fill="#979797" fill-rule="nonzero" opacity="0.469866071"/>
-                            <path
-                                d="M0.521006905,15.5084303 L2.22182541,13.8076118 L5.75735931,10.2720779 C6.92893219,9.10050506 8.82842712,9.10050506 10,10.2720779 L13.5308888,13.8029668 L20.3481586,20.6202366 C18.1882767,22.712365 15.24451,24 12,24 C6.59320039,24 2.02157722,20.4241846 0.521006905,15.5084303 Z"
-                                id="Combined-Shape" fill="#979797" fill-rule="nonzero"/>
-                            <path
-                                d="M8.85600124,23.5839233 L5.27207794,20 C4.10050506,18.8284271 4.10050506,16.9289322 5.27207794,15.7573593 L10.2218254,10.8076118 L13.7573593,7.27207794 C14.9289322,6.10050506 16.8284271,6.10050506 18,7.27207794 L21.5308888,10.8029668 L23.9395859,13.2116639 C23.3321184,19.2700592 18.2184276,24 12,24 C10.9121183,24 9.85804786,23.8552369 8.85600124,23.5839233 Z"
-                                id="Combined-Shape" fill="#979797" fill-rule="nonzero" opacity="0.532133557"/>
-                        </svg>
-                    @endguest
+                   
                     @auth()
                         <div class="user-dropdown">
                             <p class="text-success">Welcome back,</p>
@@ -196,7 +156,7 @@
                                 Link invite
                             </div>
                             <div>
-                                <button type="button" class="btn btn-outline-primary">Logout</button>
+                                <button onclick="window.location.href='/logout'" type="button" class="btn btn-outline-primary">Logout</button>
                             </div>                         
                         </div>
                     @endauth
@@ -211,10 +171,11 @@
             @if(isset($header->value))
                 <style>
                     #notice {
-                        background: #3d7fff;
+                        background: #e87070;
                         color: white;
                         font-weight: 700;
                         align-items: flex-start;
+                        padding: 5px
                     }
 
                     #notice p {
@@ -325,7 +286,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <table class="table table-striped table-hover table-bordered" id="shopping_cart">
+            <table class="tabletable-bordered" id="shopping_cart">
                 <thead>
                 <tr>
                     <th>#</th>

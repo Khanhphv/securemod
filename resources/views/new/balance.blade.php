@@ -58,7 +58,7 @@
         <div class="row">
             <div class="col s12 m12">
                 <h2 class="row mb-3">TRANSACTION HISTORY</h2>
-                <table class="table table-striped table-hover table-bordered table-bordered" id="order-listing">
+                <table class="tabletable-bordered table-bordered" id="order-listing">
                     <thead>
                     <tr>
                         <th>Order ID</th>
