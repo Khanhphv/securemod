@@ -36,4 +36,6 @@ RUN mkdir -p /home/$user/.composer && \
 # Set working directory
 WORKDIR /var/www
 
+RUN chmod -R 777 /var/www
+
 USER $user
