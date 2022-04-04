@@ -1,10 +1,12 @@
 <template>
   <div class="container-scroller">
-    <div class="container login">
+    <div class="login">
       <div class="login-form">
         <h1 class="text-center">Sign in</h1>
         <div class="entry__info">
           Please ensure you are visiting the correct url.
+          <br/>
+          <b class="text-success">{{ this.url.origin }}</b>
         </div>
         <div class="entry__top"></div>
         <form @submit="NormalLogin">
@@ -33,7 +35,7 @@
               type="password"
               class="form-control"
               id="exampleFormControlInput1"
-              placeholder="name@example.com"
+              placeholder="password"
             />
           </div>
           <p class="text-end text-xs text-primary"><a href="">Forgot password?</a></p>
@@ -66,6 +68,7 @@ import Swal from "sweetalert2";
 export default {
   mounted() {
     console.log("Component loaded.");
+    console.log("url", this.url);
   },
   components: {
     // Loading
@@ -83,6 +86,7 @@ export default {
       isLoading: false,
       fullPage: true,
       color: "#4540f7",
+      url: window.location
     };
   },
   methods: {
@@ -92,7 +96,7 @@ export default {
     LoginWithDiscord: function () {
       window.location.href = this.login_via_discord;
     },
-    LoginWithGoogle: function () {
+    LoginWithGoogle: function () { 
       window.location.href = this.login_via_google;
     },
     NormalLogin: function () {
