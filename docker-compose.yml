@@ -2,9 +2,6 @@ version: "3.7"
 services:
   app:
     build:
-      args:
-        user: sammy
-        uid: 1000
       context: ./
       dockerfile: Dockerfile
     image: travellist
@@ -24,8 +21,8 @@ services:
       MYSQL_ROOT_PASSWORD: 13101996
       SERVICE_TAGS: dev
       SERVICE_NAME: mysql
-    # volumes:
-    #   - ./docker-compose/mysql:/var/lib/mysql
+    volumes:
+      - ./docker-compose/mysql:/var/lib/mysql
     networks:
       - travellist
 
