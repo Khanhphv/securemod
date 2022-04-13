@@ -13,8 +13,6 @@
 
 <body>
 <div id="app">
-    <login-component :login_via_google="'{{ route('login_via_gg') }}'"></login-component>
-
 </div>
 <script src="/js/app.js"></script>
 </body>

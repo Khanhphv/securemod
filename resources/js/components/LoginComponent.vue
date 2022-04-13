@@ -25,34 +25,36 @@
             />
           </div>
           <div class="mb-3">
-            <label
-              for="exampleFormControlInput1"
-              class="form-label text-xs fw-bold text-secondary"
+              <label
+                  for="exampleFormControlInput1"
+                  class="form-label text-xs fw-bold text-secondary"
               >Password</label
-            >
-            <input
-              v-model="password"
-              type="password"
-              class="form-control"
-              id="exampleFormControlInput1"
-              placeholder="password"
-            />
+              >
+              <input
+                  id="exampleFormControlInput1"
+                  v-model="password"
+                  class="form-control"
+                  placeholder="password"
+                  type="password"
+              />
           </div>
-          <p class="text-end text-xs text-primary"><a href="">Forgot password?</a></p>
-          <button
-            @click="NormalLogin"
-            type="button"
-            class="mb-3 btn btn-outline-primary btn-full-width button-border-radius"
-          >
-            Login
-          </button>
-          <button
-            @click="LoginWithGoogle"
-            type="button"
-            class="btn btn-primary btn-full-width button-border-radius"
-          >
-            Sign in with Google
-          </button>
+            <p class="text-end text-xs text-primary">
+                <router-link to="/register">Register</router-link>
+            </p>
+            <button
+                class="mb-3 btn btn-outline-primary btn-full-width button-border-radius"
+                type="button"
+                @click="NormalLogin"
+            >
+                Login
+            </button>
+            <button
+                type="button"
+                @click="LoginWithGoogle"
+                class="btn btn-primary btn-full-width button-border-radius"
+            >
+                Sign in with Google
+            </button>
         </form>
       </div>
     </div>
@@ -90,25 +92,25 @@ export default {
     };
   },
   methods: {
-    LoginWithFB: function () {
-      window.location.href = this.login_via_facebook;
-    },
-    LoginWithDiscord: function () {
-      window.location.href = this.login_via_discord;
-    },
-    LoginWithGoogle: function () { 
-      window.location.href = this.login_via_google;
-    },
-    NormalLogin: function () {
-      axios
-        .post(
-          "/customer_login",
-          {
-            email: this.email,
-            password: this.password,
-            remember: "on",
-          },
-          { responseType: "json" }
+      LoginWithFB: function () {
+          window.location.href = this.login_via_facebook;
+      },
+      LoginWithDiscord: function () {
+          window.location.href = this.login_via_discord;
+      },
+      LoginWithGoogle: function () {
+          window.location.href = this.login_via_google;
+      },
+      NormalLogin: function () {
+          axios
+              .post(
+                  "/customer_login",
+                  {
+                      email: this.email,
+                      password: this.password,
+                      remember: "on",
+                  },
+                  {responseType: "json"}
         )
         .then(function (response) {
           window.location.href = "/";
