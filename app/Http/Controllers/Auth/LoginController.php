@@ -141,7 +141,7 @@ class LoginController extends Controller
         if ($check_exist) {
             return app()->call('App\Http\Controllers\Auth\LoginController@login');
         } else {
-            return app()->call('App\Http\Controllers\Auth\RegisterController@register');
+            return redirect()->to('/register');
         }
     }
 }

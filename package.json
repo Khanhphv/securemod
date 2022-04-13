@@ -25,9 +25,11 @@
     "webpack": "^4.41.2"
   },
   "dependencies": {
-      "@prettier/plugin-php": "^0.18.4",
-      "sweetalert": "^2.1.2",
-      "sweetalert2": "^9.5.3",
-      "vue-router": "^3.5.3"
+    "@prettier/plugin-php": "^0.18.4",
+    "@vue/composition-api": "^1.4.9",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^9.5.3",
+    "vue-recaptcha": "^2.0.1",
+    "vue-router": "^3.5.3"
   }
 }

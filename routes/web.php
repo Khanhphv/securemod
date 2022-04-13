@@ -27,9 +27,11 @@ Route::group(['middleware' => ['locale', 'web']], function () {
     Route::get('/recharge', 'HomeController@recharge');
     Route::get('/terms-of-services', 'PostController@terms_of_services')->name('terms_of_services');
 //    Route::get('/membership-plan', 'BlogController@blog');
+    Route::post('customer_register', 'Auth\RegisterController@checkexist')->name('custom_reg');
     Route::post('customer_login', 'Auth\LoginController@customerLogin')->name('custom_auth');
     Route::get('logout', 'Auth\LoginController@logout');
     Route::get('home', 'HomeController@homePage')->name('home');
+
 
     Route::put('account/subscribe','HomeController@updateSubscribe')->name('subscribe');
     Route::get('account/unsubscribe', 'HomeController@unsubscribe');

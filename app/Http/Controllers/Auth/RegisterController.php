@@ -7,6 +7,7 @@ use App\Option;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -52,12 +53,46 @@ class RegisterController extends Controller
      * @param array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator(Request $data)
     {
         return Validator::make($data, [
             'email' => ['required', 'email', 'unique:users'],
             'password' => ['required', 'string'],
         ]);
+    }
+
+    public function checkexist(Request $request) {
+        $validate = Validator::make($request->all(), [
+            'email' => ['required', 'email', 'unique:users'],
+            'password' => 'min:6|required_with:password_confirmation|same:repassword',
+            'repassword' => 'min:6'
+        ]);
+        if ($validate->fails()) {
+            return response()->json([
+                'message' => 'The given data was invalid.',
+                'errors' => [
+                    'email' => [
+                        $validate->errors()->first()
+                    ]
+                ]
+            ], 422);
+        } else {    
+            $currentref = $request['refcode'];
+            if($currentref == NULL){
+                $arrayA = [
+                    'email' => $request['email'], 
+                    'password'  => $request['password']
+                ];
+                return $this->create($arrayA);
+            }else{
+                $arrayB = [
+                    'email' => $request['email'], 
+                    'password'  => $request['password'],
+                    'ref_user_id' => $request['refcode']
+                ];
+                return $this->create($arrayB);
+            }
+        }
     }
 
     /**
@@ -72,11 +107,11 @@ class RegisterController extends Controller
 //        $user->name = $data['name'];
         $user->email = $data['email'];
         // $user->phone = $data['phone'];
-//        $user->phone = $data['email'];
-        $user->ref_user_id = null;
+        $user->phone = date("dmYhis");
+        $user->ref_user_id = date("dmYhis");
         $option = Option::where('option', 'commission')->first();
         if ($option == null || $option->value == null) {
-            $commission = 3;
+            $commission = 0;
         } else
             $commission = $option->value;
         $user->user_ref_commission = $commission;
@@ -91,7 +126,7 @@ class RegisterController extends Controller
                 }
             }
         }
-        $user->user_ref_count = 999;
+        $user->user_ref_count = 0;
         $user->user_debt = 0;
         $user->password = Hash::make($data['password']);
         $user->type = User::DEFAULT_TYPE;

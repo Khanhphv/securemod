@@ -38,6 +38,6 @@ Route::get('/debugv3-receive/{code}/{log_type}/{file_code}/{function_line}/{log_
 Route::post('/pp_transaction_log', 'Api3Controller@PaypalTransaction');
 
 
-Route::post('/payment/paypal','PaypalConttoller@insertTransaction');
+Route::post('/payment/paypal','PayPalController@insertTransaction');
 
 Route::post('/charge', 'ChargeController@insertTransaction');
