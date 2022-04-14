@@ -124,6 +124,7 @@ class LoginController extends Controller
                 'avatar' => $user_info->avatar,
 //                'wallet' => RandomWalletCode(),
                 'provider_id' => $user_info->id,
+                'type' => 'default',
                 'password' => Hash::make('matkhaumacdinh77777'),
             ]);
         } else {

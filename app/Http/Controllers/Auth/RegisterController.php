@@ -111,7 +111,7 @@ class RegisterController extends Controller
         $user->email = $data['email'];
         // $user->phone = $data['phone'];
         $user->phone = date("dmYhis");
-        $user->ref_user_id = date("dmYhis");
+        $user->ref_user_id = 0;
         $option = Option::where('option', 'commission')->first();
         if ($option == null || $option->value == null) {
             $commission = 0;
