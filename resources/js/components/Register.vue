@@ -138,7 +138,7 @@ export default {
         Swal.fire({
           icon: "error",
           title: "Error",
-          text: "Please comeplete the captcha",
+          text: "Please complete the captcha",
         });
         return true;
       }
