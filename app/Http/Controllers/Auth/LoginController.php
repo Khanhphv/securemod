@@ -81,7 +81,7 @@ class LoginController extends Controller
     public function handleProviderCallbackDiscord()
     {
         $provider = 'discord';
-        $user_info = Socialite::driver($provider)->user();
+        $user_info = Socialite::driver($provider)->stateless()->user();
         $user = $this->createUser($user_info, $provider);
         auth()->login($user, true);
         return redirect()->to('/home');
@@ -95,7 +95,7 @@ class LoginController extends Controller
     public function handleProviderCallbackGG()
     {
         $provider = 'google';
-        $user_info = Socialite::driver($provider)->user();
+        $user_info = Socialite::driver($provider)->stateless()->user();
         $user = $this->createUser($user_info, $provider);
         auth()->login($user, true);
         return redirect()->to('/home');
@@ -105,7 +105,7 @@ class LoginController extends Controller
     {
 //        Chỉnh phone và email khác null để tránh lúc query bị dính vào row có giá trị null lại thành bắt sai row
         $user_mail = isset($user_info->email) ? $user_info->email : 'not_have_email';
-        $user_phone = isset($user_info->phone) ? $user_info->phone : 'not_have_phone';
+        $user_phone = isset($user_info->phone) ? $user_info->phone : date("dmYhis");
         $user = User::where('provider_id', $user_info->id)->orWhere('email', $user_mail)->orWhere('phone', $user_phone)->first();
         $user = User::where('provider_id', $user_info->id)->orWhere('email', $user_mail)->first();
         if ($user_mail == 'not_have_email') {
@@ -141,7 +141,7 @@ class LoginController extends Controller
         if ($check_exist) {
             return app()->call('App\Http\Controllers\Auth\LoginController@login');
         } else {
-            return app()->call('App\Http\Controllers\Auth\RegisterController@register');
+            return redirect()->to('/register');
         }
     }
 }
