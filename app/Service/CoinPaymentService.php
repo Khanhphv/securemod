@@ -70,6 +70,8 @@ class CoinPaymentService
                 $status = isset($TransactionInfo['status']) ? $TransactionInfo['status'] : 0;
                 if ($status == 100) {
                     Log::info('[Coinpayment]TransactionID: ' . $TransactionID);
+                    $is_exist_transaction = Transaction::where("transaction_id", $TransactionID);
+                    if($is_exist_transaction->count() > 0) continue;
                     $checkTransaction = $this->apiCall('get_tx_info', ['txid' => $TransactionID, 'full' => 1])['result'];
                     if (isset($checkTransaction['checkout']['custom']) && preg_match("/@/", $checkTransaction['checkout']['custom'])) {
                         $received = $checkTransaction['checkout']['amountf'];
@@ -80,13 +82,13 @@ class CoinPaymentService
                             $user_id = $user_recharge->id;
                             try {
                                 $transaction = new Transaction();
-                                $transaction->action = 'CHARGE_VIA_COINPAYMENTS';
+                                $transaction->action = config('const.action.recharge_via_coinpayment');
                                 $transaction->user_id = $user_recharge->id;
                                 $transaction->transaction_id = $TransactionID;
                                 $transaction->amount = $checkTransaction['checkout']['amountf'];
                                 $transaction->save();
                                 $history = new History();
-                                $history->action = 'CHARGE_VIA_COINPAYMENTS';
+                                $history->action = config('const.action.recharge_via_coinpayment');
                                 $history->user_id = $user_recharge->id;
                                 $history->amount = $received;
                                 $tien = $user_recharge->credit;
@@ -103,7 +105,8 @@ class CoinPaymentService
                                 echo ('Loi . TransactionID ' . $TransactionID . ' đã tồn tại <br>');
                             }
 
-                            echo 'Thành viên ' . $user_id . ' vừa nạp ' . $received . ' qua CoinPayments. TransactionID : ' . $TransactionID. ' <br>';
+                            echo 'User: ' . $user_id . ' charged ' . $received . ' via CoinPayments. TransactionID : ' .
+                                $TransactionID. ' <br>';
                         }
                     }
                 }
