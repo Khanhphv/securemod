@@ -48,7 +48,7 @@
                             )
                         )
                     ) !!} --}}
-                   <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_hjwwj5ns.json"  background="transparent"  speed="1"  style="width: 100px"  loop  autoplay></lottie-player>
+                   <img src="https://i.imgur.com/n2qQitw.png" alt="logo" style="width: 80px">
                 </div>
                 <ul class="nav flex-column mt-3">
                   @foreach(config('menu.MENUS') as $menu)
