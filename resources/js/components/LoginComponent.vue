@@ -48,12 +48,20 @@
             >
                 Login
             </button>
+            <hr>
             <button
                 type="button"
                 @click="LoginWithGoogle"
-                class="btn btn-primary btn-full-width button-border-radius"
+                class="mb-3 btn btn-danger btn-full-width button-border-radius"
             >
                 Sign in with Google
+            </button>
+            <button
+                type="button"
+                @click="LoginWithDiscord"
+                class="mb-3 btn btn-info btn-full-width button-border-radius"
+            >
+                Sign in with Discord
             </button>
         </form>
       </div>
@@ -93,13 +101,13 @@ export default {
   },
   methods: {
       LoginWithFB: function () {
-          window.location.href = this.login_via_facebook;
+          window.location.href = '/login_via_facebook';
       },
       LoginWithDiscord: function () {
-          window.location.href = this.login_via_discord;
+          window.location.href = '/login_via_discord';
       },
       LoginWithGoogle: function () {
-          window.location.href = this.login_via_google;
+          window.location.href = "/login_via_google";
       },
       NormalLogin: function () {
           axios

@@ -51,7 +51,7 @@ class CoinPaymentsController extends Controller
         return redirect($checkout_url);
     }
 
-    public function GetListTransactions()
+    public function GetListTransactions(): array
     {
         $yesterday = Carbon::yesterday()->timestamp;
         $transactions_list = $this->coinPaymentService->apiCall('get_tx_ids', ['newer' => $yesterday, 'limit' => 100])['result'];
@@ -67,11 +67,13 @@ class CoinPaymentsController extends Controller
             }
             $response[$y] = $transaction . '|' . $response[$y];
         }
+        Log::debug("GetListTransactions_END", $response);
         return $response;
     }
 
     public function CheckListTransactions()
     {
+        Log::debug("CheckListTransactions_START");
         $bonus = 1 + ((Option::where('option', 'coinpayment_bonus')->first()->value + 0) / 100);
         $GetListTransactions = $this->GetListTransactions();
         $this->coinPaymentService->checkListTransaction($bonus, $GetListTransactions);

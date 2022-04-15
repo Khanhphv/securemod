@@ -27,6 +27,7 @@ Route::group(['middleware' => ['locale', 'web']], function () {
     Route::get('/recharge', 'HomeController@recharge');
     Route::get('/terms-of-services', 'PostController@terms_of_services')->name('terms_of_services');
 //    Route::get('/membership-plan', 'BlogController@blog');
+    Route::post('customer_register', 'Auth\RegisterController@checkexist')->name('custom_reg');
     Route::post('customer_login', 'Auth\LoginController@customerLogin')->name('custom_auth');
     Route::get('logout', 'Auth\LoginController@logout');
     Route::get('home', 'HomeController@homePage')->name('home');
@@ -37,7 +38,7 @@ Route::group(['middleware' => ['locale', 'web']], function () {
     Route::get('create-transaction-coinpayments', 'CoinPaymentsController@CreateTransaction');
     Route::get('get-transactions-coinpayments', 'CoinPaymentsController@GetListTransactions');
     Route::get('check-transactions-coinpayments', 'CoinPaymentsController@CheckListTransactions');
-    Route::get('cron2', 'CoinPaymentsController@CheckListTransactions');
+    Route::get('cron2', 'CoinPaymentsController@CheckListTransactions')->name('cronJob');
 
     Route::post('charge-via-lexholding', "ChargeController@chargeViaLexHolding");
     //Stripe

@@ -93,7 +93,7 @@
                         ) !!}
                     </div>
             @endif -->
-                
+
             </div>
             <div class="desktop">
                 <div class="cart shopping-cart cursor-pointer">
@@ -102,7 +102,7 @@
                         <small class="notification-badge"></small>
                     </a>
                 </div>
-               
+
                 <div class="user ms-3">
                     @guest()
                         <a id="" href="/login" style="display: none">Login</a>
@@ -114,9 +114,9 @@
                     @endguest
                     @auth
                         @if(filter_var(Auth::user()->avatar, FILTER_VALIDATE_URL))
-                            <img style="border-radius: 50%;" width="24px" height="24px" src="{{ 
+                            <img style="border-radius: 50%;" width="24px" height="24px" src="{{
                             Auth::user()->avatar }}" alt="user-avtar">
-                        @else 
+                        @else
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
                              height="24px" viewBox="0 0 24 24" version="1.1">
                             <path
@@ -131,7 +131,7 @@
                         </svg>
 										@endif
                     @endauth
-                   
+
                     @auth()
                         <div class="user-dropdown">
                             <p class="text-success">Welcome back,</p>
@@ -157,7 +157,7 @@
                             </div>
                             <div>
                                 <button onclick="window.location.href='/logout'" type="button" class="btn btn-outline-primary">Logout</button>
-                            </div>                         
+                            </div>
                         </div>
                     @endauth
                 </div>
@@ -195,7 +195,7 @@
                     }
                 @endphp
 
-                @if ($notice) 
+                @if ($notice)
                     <div id="notice" style="display: none">
                         <div style="width: 100%; text-align: center" class="blink">
                             {!! $notice !!}
@@ -286,7 +286,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <table class="tabletable-bordered" id="shopping_cart">
+            <table class="tabletable-bordered w-100" id="shopping_cart">
                 <thead>
                 <tr>
                     <th>#</th>
@@ -303,18 +303,18 @@
             </table>
             <div class="d-flex" style="align-items: center; justify-content: space-between">
                 <a class="" >
-                    <b>Total Amount:</b> 
+                    <b>Total Amount:</b>
                     <span id="total-amount"></span></a>
-                            
+
                 <a class="cursor-pointer" id="checkout">
                     <i style="font-size: 30px"  class="small material-icons right">payment</i>
                 </a>
             </div>
-            
+
         </div>
-            
+
         </div>
-    
+
     </div>
 </div>
 

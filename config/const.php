@@ -52,7 +52,8 @@ return [
             'BTC',
             'ETH',
             'USDT',
-            'BCH',
+            'BNB',
+            'LTC'
         ]
 
 ];

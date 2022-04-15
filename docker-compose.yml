@@ -16,6 +16,8 @@ services:
     image: mysql:5.7
     container_name: travellist-db
     restart: unless-stopped
+    ports:
+      - 3306:3306
     environment:
       MYSQL_DATABASE: secure
       MYSQL_ROOT_PASSWORD: 13101996

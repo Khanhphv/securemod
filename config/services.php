@@ -44,16 +44,16 @@ return [
 //        'client_secret' => '082780df3abc8b2b34b43befb0fdba0c',
         'client_id' => '777115459460312',
         'client_secret' => 'c2c703bacc1c3c3dee0c247b326b3b5a',
-        'redirect' => 'https://divinesofts.net/login_via_facebook/callback',
+        'redirect' => '/login_via_facebook/callback',
     ],
     'discord' => [
-        'client_id' => '655358716677193748',
-        'client_secret' => 'J0i9tQ5oGEhVLZs1ZkCfHJQNnRf7d795',
-        'redirect' => 'https://divinesofts.net/login_via_discord/callback',
+        'client_id' => '957250800730669067',
+        'client_secret' => 'fvP4J5JG8B2R8jvsh9WsKy0_gUib2f1x',
+        'redirect' => '/login_via_discord/callback',
     ],
     'google' => [
-        'client_id' => '177962097889-vkm2nblpgra459r668p760agqt0p38v5.apps.googleusercontent.com',
-        'client_secret' => 'eyr4snKj6jhdqKjGqOCgKIws',
+        'client_id' => '572013016697-aq9rlo0uf3ogdrv0ip2s1ed3871evjiv.apps.googleusercontent.com',
+        'client_secret' => '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',
         'redirect' => '/login_via_google/callback',
     ],
 ];
