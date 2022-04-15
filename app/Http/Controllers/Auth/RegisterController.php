@@ -80,20 +80,18 @@ class RegisterController extends Controller
         } else {    
             $currentref = $request['refcode'];
             if($currentref == NULL){
-                $arrayA = [
+                return $this->create([
                     'name' => $request['name'],
                     'email' => $request['email'], 
                     'password'  => $request['password']
-                ];
-                return $this->create($arrayA);
+                ]);
             }else{
-                $arrayB = [
+                return $this->create([
                     'name' => $request['name'],
                     'email' => $request['email'], 
                     'password'  => $request['password'],
                     'ref_user_id' => $request['refcode']
-                ];
-                return $this->create($arrayB);
+                ]);
             }
         }
     }
