@@ -10,7 +10,7 @@ return [
     [
       "title" => "Balance",
       "href" => "/balance",
-      "icon" => "bi bi-house",
+      "icon" => "bi bi-wallet2",
     ],
     [
       "title" => "Keys",
@@ -20,12 +20,12 @@ return [
     [
       "title" => "Tools",
       "href" => "/tools",
-      "icon" => "bi bi-house",
+      "icon" => "bi bi-gear-fill",
     ],
     [
       "title" => "Recharge",
       "href" => "/recharge",
-      "icon" => "bi bi-house",
+      "icon" => "bi bi-lightning-charge-fill",
     ],
   ],
 ];
