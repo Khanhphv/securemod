@@ -103,6 +103,12 @@ class OptionsTableSeeder extends Seeder
         ]);
 
         DB::table('options')->insert([
+            'option' => 'btcpay_payment',
+            'value' => '1',
+            'locate' => 'en'
+        ]);
+
+        DB::table('options')->insert([
             'option' => 'discord_channel',
             'value' => 'Nội dung thông báo chạy ở bên phải web',
             'locate' => 'en'

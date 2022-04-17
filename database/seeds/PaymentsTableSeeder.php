@@ -26,5 +26,10 @@ class PaymentsTableSeeder extends Seeder
             'client_id' => 'coin_payments_client_id_1234567',
             'client_secret' => 'coin_payments_client_secret_1234567'
         ]);
+        DB::table('payments')->insert([
+            'payment_type' => 'btcpay',
+            'client_id' => 'token goes here',
+            'client_secret' => 'storeid goes here'
+        ]);
     }
 }

@@ -91,6 +91,15 @@
             </div>
 
             <div class="col-sm-4">
+                <label for="">Coin (BTCPay)</label>
+                <div class="btn-group">
+                    <input {{ (isset($siteSettings['btcpay_payment'])
+                    && ($siteSettings['btcpay_payment'] == '1')) ? 'checked': '' }} type="checkbox"
+                           name="btcpay_payment" value="1">
+                </div>
+            </div>
+
+            <div class="col-sm-4">
                 <label for="">Paypal</label>
                 <div class="btn-group">
                     <input {{ (isset($siteSettings['paypal_payment'])
