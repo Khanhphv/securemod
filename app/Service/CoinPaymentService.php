@@ -15,8 +15,8 @@ class CoinPaymentService
         $coin_payment_key = Payment::where('payment_type', 'Coin Payments')->get()->first();
         $public_key = $coin_payment_key->client_id;
         $private_key = $coin_payment_key->client_secret;
-        $public_key = '033cc8325b2bba4282214f2629081e37e53b20a66b77c001673152768a09a710';
-        $private_key = '00a5Eaf1fC670E820BD3f20bef96a255bb016f21bf244F7903f51297b6Bb13C1';
+        // $public_key = '033cc8325b2bba4282214f2629081e37e53b20a66b77c001673152768a09a710';
+        // $private_key = '00a5Eaf1fC670E820BD3f20bef96a255bb016f21bf244F7903f51297b6Bb13C1';
 
         // Set the API command and required fields
         $req['version'] = 1;

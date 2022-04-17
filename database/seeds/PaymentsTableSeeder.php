@@ -28,8 +28,8 @@ class PaymentsTableSeeder extends Seeder
         ]);
         DB::table('payments')->insert([
             'payment_type' => 'btcpay',
-            'client_id' => 'btcpay_token_1234567',
-            'client_secret' => 'only token needed'
+            'client_id' => 'token in here',
+            'client_secret' => 'storeid in here'
         ]);
     }
 }
