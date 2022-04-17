@@ -40,6 +40,11 @@ Route::group(['middleware' => ['locale', 'web']], function () {
     Route::get('check-transactions-coinpayments', 'CoinPaymentsController@CheckListTransactions');
     Route::get('cron2', 'CoinPaymentsController@CheckListTransactions')->name('cronJob');
 
+    Route::get('create-transaction-btcpay', 'BTCPayController@CreateTransaction');
+    Route::get('get-transactions-btcpay', 'BTCPayController@GetListTransactions');
+    Route::get('check-transactions-btcpay', 'BTCPayController@CheckListTransactions');
+    Route::get('cron3', 'BTCPayController@CheckListTransactions')->name('cronJob2');
+
     Route::post('charge-via-lexholding', "ChargeController@chargeViaLexHolding");
     //Stripe
     Route::get('stripe-payment', 'CheckoutController@index');
