@@ -95,6 +95,7 @@ class BTCPayService
         $out = new \Symfony\Component\Console\Output\ConsoleOutput();
         foreach ($GetListTransactions as $ListTransaction) {
             //$out->writeln($ListTransaction);//@!debug
+            //NOTE FOR YUKO: make request into a function in future please!
             $body = '{"a":"b"}';
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, "https://pay.gura.bar/api/v1/stores/".$storeid."/invoices/".$ListTransaction);
