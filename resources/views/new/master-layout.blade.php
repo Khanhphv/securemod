@@ -266,6 +266,7 @@
 @auth()
     @if(\App\Blacklist::where('email', Auth::user()->email)->get()->first() == null)
         @include('new.coin-popup')
+        @include('new.btcpay-popup')
         @include('new.seller-payment')
         @include("new.stripe-popup")
         @include('new.lexholding-popup')

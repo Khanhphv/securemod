@@ -39,6 +39,7 @@
                         $coin = \App\Option::where('option', 'coin_payment')->get()->first();
                         $seller = \App\Option::where('option', 'seller_payment')->get()->first();
                         $stripe = \App\Option::where('option', 'stripe_payment')->get()->first();
+                        $btcpay = \App\Option::where('option', 'btcpay_payment')->get()->first();
                     @endphp
                         @if(isset($paypal) && $paypal->value != 0)
                         <div class="card-credit">
@@ -70,6 +71,15 @@
                         </div>
 
                         @endif --}}
+
+                        @if(\App\Option::where('option', 'btcpay_payment')->get()->first()->value != 0)
+                        <div class="card-credit">
+                            <a data-bs-toggle="offcanvas" role="button" aria-controls="btcpay-popup" href="#btcpay-popup">
+                                <h1 style="font-weight: 700; color: #039be5">BTCPay</h1>
+                            </a>
+                        </div>
+                        @endif
+                        
                         @if(isset($stripe) && $stripe->value != 0)
                         <div class="card-credit">
                             <a target="blank" href="#lexholding-popup">
