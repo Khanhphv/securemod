@@ -65,7 +65,7 @@
             <div class="sidebar__foot">
                 <div class="align-items-center nav-item mb-3 mt-3">
                     <a class="nav-link align-items-center flex-row d-flex" aria-current="page" href="" target="_blank">
-                        <i class="{{$menu['icon']}} fs-4  fw-bold"></i>
+                        <i class="bi bi-question-circle-fill fs-4  fw-bold"></i>
                         <span class="fs-5">Help & getting started</span>
                     </a>
                 </div>
