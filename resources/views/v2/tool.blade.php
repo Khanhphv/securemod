@@ -19,6 +19,16 @@
             display: flex;
         }
 
+        .carousel.carousel-fade .carousel-item {
+            display: block;
+            opacity: 0;
+            transition: opacity ease-out .7s;
+        }
+
+        .carousel.carousel-fade .carousel-item.active {
+            opacity: 1 !important;
+        }
+
         .discount {
             text-rendering: optimizeLegibility;
             -webkit-font-smoothing: antialiased;
@@ -198,14 +208,14 @@
                         </div>
                     @else
                         <div class="card-img-top" >
-                            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-inner h-100">
+                            <div id="carousel-fade" class="carousel carousel-fade" data-bs-ride="carousel">
+                                <div class="carousel-inner" style=" width:100%; height: 250px !important;">
                                     <?php
                                     $listImg = explode(PHP_EOL, $tool->images);
                                     ?>
                                     @foreach($listImg as $image)
-                                        <div class="carousel-item {{ $loop->index == 0 ? 'active' : '' }}" href="#one!">
-                                            <img class="d-block w-100" onclick="showImage(event)" loading="lazy" src="{{ $image }}" alt="{{ $tool->name }}">
+                                        <div class="carousel-item {{ $loop->index == 0 ? 'active' : '' }}">
+                                            <img class="d-block w-100" onclick="showImage(event)" src="{{ $image }}" alt="{{ $tool->name }}">
                                         </div>
                                     @endforeach
                                 </div>
@@ -231,7 +241,7 @@
                        
                         @if($tool->updated == 1)
                             <div class="input-field mb-3" style="max-width: fit-content">
-                                <select class="form-select game-package" aria-label="Choose package">
+                                <select class="form-select game-package bg-dark text-white" aria-label="Choose package">
                                     <option value="" disabled selected>Choose package</option>
                                     @foreach(json_decode($tool->package, true) as $package => $price)
                                         @auth()
