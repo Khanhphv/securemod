@@ -407,7 +407,7 @@ class HomeController extends Controller
                     // Cập nhật số tiền của khách sau khi thuê
                     $user->credit = $lastCredit;
                     $user->save();
-                    MailService::invoiceMail($user->email, $key, $price, $toolDetail);
+//                    MailService::invoiceMail($user->email, $key, $price, $toolDetail);
                     DB::commit();
                 } catch (Exception $e) {
                     DB::rollBack();
