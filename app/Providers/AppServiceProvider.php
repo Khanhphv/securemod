@@ -26,6 +26,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(Dispatcher $events)
     {
+        if($this->app->environment('production')) {
+            \URL::forceScheme('https');
+        }
         Schema::defaultStringLength(191);
         if (request()->get('ref') !== null) {
             session(['ref' => request()->get('ref')]);
