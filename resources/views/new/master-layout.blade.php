@@ -48,7 +48,8 @@
                             )
                         )
                     ) !!} --}}
-                   <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_hjwwj5ns.json"  background="transparent"  speed="1"  style="width: 100px"  loop  autoplay></lottie-player>
+                   <!-- <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_hjwwj5ns.json"  background="transparent"  speed="1"  style="width: 100px"  loop  autoplay></lottie-player> -->
+                   <img src="{{asset('img/transparent-logo.png')}}" alt="Logo" style="width: 80px">
                 </div>
                 <ul class="nav flex-column mt-3">
                   @foreach(config('menu.MENUS') as $menu)
@@ -65,7 +66,7 @@
             <div class="sidebar__foot">
                 <div class="align-items-center nav-item mb-3 mt-3">
                     <a class="nav-link align-items-center flex-row d-flex" aria-current="page" href="" target="_blank">
-                        <i class="{{$menu['icon']}} fs-4  fw-bold"></i>
+                        <i class="bi bi-question-circle-fill fs-4  fw-bold"></i>
                         <span class="fs-5">Help & getting started</span>
                     </a>
                 </div>
