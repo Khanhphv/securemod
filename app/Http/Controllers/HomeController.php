@@ -44,7 +44,7 @@ class HomeController extends Controller
         return redirect()->route('home');
     }
 
-    public function recharge():View 
+    public function recharge():View
     {
         return view('new.recharge');
     }
@@ -475,7 +475,7 @@ class HomeController extends Controller
 
                         $user->credit = $user->credit - $price;
                         $user->save();
-                        MailService::invoiceMail($user->email, $key, $price, $toolDetail);
+//                        MailService::invoiceMail($user->email, $key, $price, $toolDetail);
                         DB::commit();
                     } catch (Exception $e) {
                         DB::rollBack();
