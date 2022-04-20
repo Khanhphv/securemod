@@ -31,8 +31,25 @@
     }
 </style>
 <div class="container-content">
-    <div class="toolbar sidebar">
+    <script>
+        function openNav() {
+        document.getElementById("mySidebar").style.width = "340px";
+        document.getElementById("mySidebar").style.padding = "10px 10px"
+        document.getElementById("navtoggle").style.visibility = "hidden"
+        document.getElementById("navoff").style.visibility = "visible"
+        }
+
+        /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+        function closeNav() {
+        document.getElementById("mySidebar").style.width = "0px";
+        document.getElementById("mySidebar").style.padding = "0px 0px"
+        document.getElementById("navtoggle").style.visibility = "visible"
+        document.getElementById("navoff").style.visibility = "hidden"
+        }
+    </script>
+    <div class="toolbar sidebar" id="mySidebar">
         <div class="sidebar__content">
+        
             @if (isset($master_site_settings['logo_mini']))
                 <div class="icon-menu ms-5 mb-4">
                     {{-- {!! html_entity_decode(
@@ -69,13 +86,21 @@
                         <i class="bi bi-question-circle-fill fs-4  fw-bold"></i>
                         <span class="fs-5">Help & getting started</span>
                     </a>
+                    <a class="nav-link align-items-center flex-row d-flex" onclick="closeNav()">
+                        <i class="bi bi-x-circle-fill fs-4  fw-bold"></i>
+                        <span class="fs-5">Close</span>
+                    </a>
                 </div>
             </div>
         </div>
 
-    <div class="main">
+    <div class="main">  
         <div class="menu">
             <div>
+            <button id="navtoggle"  type="button" onclick="openNav()" class="btn">
+            <img src="{{asset('img/transparent-logo.png')}}" alt="Logo" style="width: 40px;">
+            <i class="bi bi-list fw-bold"></i>
+            </button>
             <!-- @if(isset($master_site_settings['text_logo']))
                 <div style="color: var(--text-primary-color); padding-right: 1em" class="text-logo">
 													{!! html_entity_decode(
