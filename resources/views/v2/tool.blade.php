@@ -188,12 +188,12 @@
 @section('content')
     <h1 class="text-danger" >{{ $game->name }}</h1>
     <div class="tab-content mobile tool-game">
-         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 mx-auto">
+         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
             
             @if(isset($tools) && count($tools) > 0)
                 @foreach($tools as $tool)
                 <div class="col-md-3 mb-2">
-                        <div class="card" style="width: 30 rem;">
+                        <div class="card" style="width: 30 rem; ">
                         @if(trim($tool->note) !== '')
                             <div class="product__price-tag">
                                 <p class="product__price-tag-price">{{$tool->note}}</p>
