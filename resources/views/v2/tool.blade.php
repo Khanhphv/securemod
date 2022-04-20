@@ -180,6 +180,7 @@
         .select-wrapper input.select-dropdown {
             color: #000;
         }
+
     </style>
 </head>
 <body @if($theme == 'dark') data-theme="dark" @endif>
@@ -187,11 +188,11 @@
 @section('content')
     <h1 class="text-danger" >{{ $game->name }}</h1>
     <div class="tab-content mobile tool-game">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 mx-auto">
+            
             @if(isset($tools) && count($tools) > 0)
                 @foreach($tools as $tool)
-                <div class="col-md-3">
-                    <div class="col mb-3">
+                <div class="col-md-3 mb-2">
                         <div class="card" style="width: 30 rem;">
                         @if(trim($tool->note) !== '')
                             <div class="product__price-tag">
@@ -226,18 +227,17 @@
                             </div>
                         @endif
                             <div class="card-body bg-dark text-white">
-                            <h2 class="card-title package-name" id="tool_name_{{$tool->id}}">{{ $tool->name }} 
-                                @if($tool->updated == 1)
+                            <h2 class="card-title package-name" id="tool_name_{{$tool->id}}">{{ $tool->name }}</h2>
+                            <h6>Status: @if($tool->updated == 1)
                                     <small class="text-success fw-bold">Working</small>
                                 @else
                                     <small class="text-danger fw-bold">Updating..</small>
-                                @endif
-                                
-                            </h2>
+                                @endif</h6>
+                            
                             <div class="d-flex justify-content-between align-items-center">
                             @if($tool->updated == 1)
                                 <div class="input-field mb-2" style="max-width: fit-content">
-                                    <select class="form-select game-package bg-dark text-white" aria-label="Choose package" style="margin:5px">
+                                    <select class="form-select game-package" aria-label="Choose package" style="margin:5px">
                                         <option value="" disabled selected>Choose package</option>
                                         @foreach(json_decode($tool->package, true) as $package => $price)
                                             @auth()
@@ -278,7 +278,7 @@
                             </div>
                         </div>
                         </div>
-                    </div>
+                    
                 </div>
                 @endforeach
             @endif
@@ -305,7 +305,7 @@
     }
     function buyTool(tool_id) {
         @auth()
-        let package_tool = $(`#tool_${tool_id} .game-package`).val();
+        let package_tool = $(`.game-package`).val();
         if (!package_tool) {
             Swal.fire({
                 title: 'Warning',
@@ -365,11 +365,16 @@
     // function add to cart
     function addToCart(tool_id) {
         // get value game package
+          
         let name_tool = $(`#tool_name_${tool_id}`).text();
         let name_game = $(`#selectbox-games option:selected`).text();
-        let package_name = $(`#tool_${tool_id} .game-package option:selected`).text();
-        let package_tool = $(`#tool_${tool_id} .game-package`).val();
+        let package_name = $(`.game-package option:selected`).text();
+        let package_tool = $(`.game-package`).val();
         let price = 0
+        console.log(package_name); 
+        console.log(package_tool); 
+        console.log(name_tool); 
+        console.log(name_game); 
         if(package_name) {
             packages = package_name.split(' ')
             price = packages[2]
