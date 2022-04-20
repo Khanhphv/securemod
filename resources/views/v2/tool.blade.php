@@ -187,122 +187,102 @@
 @section('content')
     <h1 class="text-danger" >{{ $game->name }}</h1>
     <div class="tab-content mobile tool-game">
-        @if(isset($tools) && count($tools) > 0)
-            @foreach($tools as $tool)
-                <div id="tool_{{$tool->id}}" class="card card-custom" style="margin: 1em">
-                    @if(trim($tool->note) !== '')
-                        <div class="product__price-tag">
-                            <p class="product__price-tag-price">{{$tool->note}}</p>
-                        </div>
-                    @endif
-                    @if($tool->discount && $tool->discount > 0)
-                        <div style="position: absolute; right: 0">
-                            <div class="ribbon  ribbon--red">SAVE {{ $tool->discount }}%</div>
-                        </div>
-                    @endif
-                    @if($tool->video_intro)
-                        <div class="card-img-top" >
-                            <iframe width="100%" height="100%" loading="lazy" src="{{ $tool->video_intro}}" frameborder="0"
-                                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
-                            </iframe>
-                        </div>
-                    @else
-                        <div class="card-img-top" >
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+            @if(isset($tools) && count($tools) > 0)
+                @foreach($tools as $tool)
+                <div class="col-md-3">
+                    <div class="col mb-3">
+                        <div class="card" style="width: 30 rem;">
+                        @if(trim($tool->note) !== '')
+                            <div class="product__price-tag">
+                                <p class="product__price-tag-price">{{$tool->note}}</p>
+                            </div>
+                        @endif
+                        @if($tool->discount && $tool->discount > 0)
+                            <div style="position: absolute; right: 0">
+                                <div class="ribbon  ribbon--red">SAVE {{ $tool->discount }}%</div>
+                            </div>
+                        @endif
+                        @if($tool->video_intro)
+                            <div class="card-img-top" >
+                                <iframe width="100%" height="100%" loading="lazy" src="{{ $tool->video_intro}}" frameborder="0"
+                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="">
+                                </iframe>
+                            </div>
+                        @else    
+                        <div class="card-img-top">
                             <div id="carousel-fade" class="carousel carousel-fade" data-bs-ride="carousel">
-                                <div class="carousel-inner" style=" width:100%; height: 250px !important;">
-                                    <?php
-                                    $listImg = explode(PHP_EOL, $tool->images);
-                                    ?>
-                                    @foreach($listImg as $image)
-                                        <div class="carousel-item {{ $loop->index == 0 ? 'active' : '' }}">
-                                            <img class="d-block w-100" onclick="showImage(event)" src="{{ $image }}" alt="{{ $tool->name }}">
-                                        </div>
-                                    @endforeach
+                                    <div class="carousel-inner h-100" style=" width:100%; height: 250px !important;">
+                                        <?php
+                                        $listImg = explode(PHP_EOL, $tool->images);
+                                        ?>
+                                        @foreach($listImg as $image)
+                                            <div class="carousel-item {{ $loop->index == 0 ? 'active' : '' }}">
+                                                <img class="d-block w-100" onclick="showImage(event)" src="{{ $image }}" alt="{{ $tool->name }}">
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
-                               
                             </div>
-                        </div>
-                    @endif
-
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col">
-                                 <h2 class="card-title package-name" id="tool_name_{{$tool->id}}">{{ $tool->name }}</h2>
-                            </div>
-                            <div class="col">
+                        @endif
+                            <div class="card-body bg-dark text-white">
+                            <h2 class="card-title package-name" id="tool_name_{{$tool->id}}">{{ $tool->name }} 
                                 @if($tool->updated == 1)
-                                    <label class="text-success"> Working</label>
+                                    <small class="text-success fw-bold">Working</small>
                                 @else
-                                    <label class="text-alert">Updating</label>
+                                    <small class="text-danger fw-bold">Updating..</small>
                                 @endif
-                            </div>
-                        </div>
-                       
-                       
-                        @if($tool->updated == 1)
-                            <div class="input-field mb-3" style="max-width: fit-content">
-                                <select class="form-select game-package bg-dark text-white" aria-label="Choose package">
-                                    <option value="" disabled selected>Choose package</option>
-                                    @foreach(json_decode($tool->package, true) as $package => $price)
-                                        @auth()
-                                            @if($tool->discount && $tool->discount > 0)
-                                                <option value="{{ $package }}">{{ $package.'H = '. round($price, 2). ' -> ' . round($price - ($price * $tool->discount /100) , 2) .  ' USD' }} </option>
-                                            @else
-                                                @if(isset($role) && $role['role'] > 0)
-                                                    <option value="{{ $package }}">{{ $package.'H = '. round($price, 2). ' -> ' . round($price - ($price * $role['discount']) , 2) .  ' USD' }} </option>
+                                
+                            </h2>
+                            <div class="d-flex justify-content-between align-items-center">
+                            @if($tool->updated == 1)
+                                <div class="input-field mb-2" style="max-width: fit-content">
+                                    <select class="form-select game-package bg-dark text-white" aria-label="Choose package" style="margin:5px">
+                                        <option value="" disabled selected>Choose package</option>
+                                        @foreach(json_decode($tool->package, true) as $package => $price)
+                                            @auth()
+                                                @if($tool->discount && $tool->discount > 0)
+                                                    <option value="{{ $package }}">{{ $package.'H = '. round($price, 2). ' -> ' . round($price - ($price * $tool->discount /100) , 2) .  ' USD' }} </option>
+                                                @else
+                                                    @if(isset($role) && $role['role'] > 0)
+                                                        <option value="{{ $package }}">{{ $package.'H = '. round($price, 2). ' -> ' . round($price - ($price * $role['discount']) , 2) .  ' USD' }} </option>
+                                                    @else
+                                                        <option value="{{ $package }}">{{ $package.'H = '.$price.' USD' }}</option>
+                                                    @endif
+                                                @endif
+                                            @endauth
+                                            @guest()
+                                                @if($tool->discount && $tool->discount > 0)
+                                                    <option value="{{ $package }}">{{ $package.'H = '. round($price, 2). ' -> ' . round($price - ($price * $tool->discount /100) , 2) .  ' USD' }} </option>
                                                 @else
                                                     <option value="{{ $package }}">{{ $package.'H = '.$price.' USD' }}</option>
                                                 @endif
-                                            @endif
-                                        @endauth
-                                        @guest()
-                                            @if($tool->discount && $tool->discount > 0)
-                                                <option value="{{ $package }}">{{ $package.'H = '. round($price, 2). ' -> ' . round($price - ($price * $tool->discount /100) , 2) .  ' USD' }} </option>
-                                            @else
-                                                <option value="{{ $package }}">{{ $package.'H = '.$price.' USD' }}</option>
-                                            @endif
-                                        @endguest
-                                    @endforeach
-                                </select>                               
-                            </div>
-                            
-                            <div class="mb-2">
-                                <button type="button" class="btn btn-outline-primary"
-                                    onclick="addToCart({{$tool->id}})"
-                                    style="margin-right: 15px">
-                                    <i class="small material-icons right">add_shopping_cart</i>
-                                </button>
-                                <button type="button" class="btn btn-outline-secondary""
-                                    onclick="buyTool({{$tool->id}})">
-                                    <i class="small material-icons right">payment</i>
-                                </button>
-                            </div>
+                                            @endguest
+                                        @endforeach
+                                    </select>     
+                                <div class="btn-group">
+                                <a type="button" class="btn btn-lg btn-outline-light my-2" onclick="addToCart({{$tool->id}})" style="margin:5px"><i class="bi bi-cart-plus"></i><span>Add to cart</span></a>
+                                <a type="button" class="btn btn-lg btn-outline-light my-2 " onclick="buyTool({{$tool->id}})"><i class="bi bi-credit-card-2-front"></i> <span>Buy now</span></a>
+                                </div>   
+                                <div class="btn-group">
+                                <a type="button" class="btn btn-lg btn-outline-light my-2" href="{{ $tool->link  }}" style="margin:5px"><i class="bi bi-file-earmark-arrow-down-fill"></i>  <span>Download</span></a>
+                                <a type="button" class="btn btn-lg btn-outline-light my-2 " href="{{ $tool->youtube }}"><i class="bi bi-info-square-fill"></i> <span>Tutorial</span></a>
+                                </div>                         
+                                </div>
+                                
+                                
 
-                        @else
-                            
-                        @endif
-                        <div class="row">
-                            <div class="col">
-                                 <p>
-                                    <a style="text-decoration: auto" href="{{ $tool->link  }}" target="_blank">
-                                        <i style="position: relative; top: 7px" class="material-icons">file_download</i>
-                                        Download
-                                    </a>
-                                </p>
+                            @else
+                            @endif
+                                
                             </div>
-                            <div class="col">
-                                <p>
-                                    <a style="text-decoration: auto" href="{{ $tool->youtube }}" target="_blank">
-                                        <i style="position: relative; top: 7px" class="material-icons">book</i>
-                                        Tutorial
-                                    </a>
-                                </p>
-                            </div>
-                        </div>         
-                    </div>                  
+                        </div>
+                        </div>
+                    </div>
                 </div>
-            @endforeach
-        @endif
+                @endforeach
+            @endif
+        </div>
     </div>
 @endsection
 <script>

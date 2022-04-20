@@ -4318,7 +4318,7 @@ __webpack_require__.r(__webpack_exports__);
         sweetalert2__WEBPACK_IMPORTED_MODULE_3___default.a.fire({
           icon: "error",
           title: "Error",
-          text: "Please comeplete the captcha"
+          text: "Please complete the captcha"
         });
         return true;
       }

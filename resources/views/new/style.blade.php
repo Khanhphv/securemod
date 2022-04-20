@@ -132,4 +132,8 @@
             z-index: 1;
         }
     }
+    select{
+        background-color: var(--top-menu-bg) !important;
+        color: white !important;
+    }
 </style>
