@@ -223,7 +223,7 @@
                 @endif
 
             @endif
-            <div class="card-container content">
+            <div class="card-container content mx-auto">
                 @yield('content')
             </div>
 

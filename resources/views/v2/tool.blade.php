@@ -180,6 +180,7 @@
         .select-wrapper input.select-dropdown {
             color: #000;
         }
+
     </style>
 </head>
 <body @if($theme == 'dark') data-theme="dark" @endif>
@@ -187,11 +188,11 @@
 @section('content')
     <h1 class="text-danger" >{{ $game->name }}</h1>
     <div class="tab-content mobile tool-game">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 mx-auto">
+            
             @if(isset($tools) && count($tools) > 0)
                 @foreach($tools as $tool)
-                <div class="col-md-3">
-                    <div class="col mb-3">
+                <div class="col-md-3 mb-2">
                         <div class="card" style="width: 30 rem;">
                         @if(trim($tool->note) !== '')
                             <div class="product__price-tag">
@@ -278,7 +279,7 @@
                             </div>
                         </div>
                         </div>
-                    </div>
+                    
                 </div>
                 @endforeach
             @endif

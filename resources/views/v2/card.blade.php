@@ -11,8 +11,8 @@
         </div>
     </div>
 </div> -->
-<div class="col-md-6">
-    <div class="col mb-3">
+<div class="col-md-3 mb-2">
+
         <div class="card" onclick="location.href= `/game/{{$game->slug}}`" style="width: 30 rem;">
             <div class="background">
                 <img src="{{ $game->thumb_image }}" class="card-img-top" alt="...">
@@ -22,5 +22,5 @@
             <a href="#" class="card-link"><i class="bi bi-star-fill pe-2" style="color: #FFC554"></i>{{ $game->views }}</a>
             </div>
         </div>
-    </div>
+
 </div>
