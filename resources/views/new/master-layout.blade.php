@@ -301,8 +301,8 @@
             <h5 class="modal-title" id="exampleModalLabel">Cart</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-            <table class="tabletable-bordered w-100" id="shopping_cart">
+        <div class="modal-body table-responsive">
+            <table class="table table-bordered w-100" id="shopping_cart">
                 <thead>
                 <tr>
                     <th>#</th>
