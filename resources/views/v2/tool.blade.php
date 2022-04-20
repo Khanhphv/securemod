@@ -265,7 +265,7 @@
                                 <a type="button" class="btn btn-lg btn-outline-light my-2 " onclick="buyTool({{$tool->id}})"><i class="bi bi-credit-card-2-front"></i> <span>Buy now</span></a>
                                 </div>   
                                 <div class="btn-group">
-                                <a type="button" class="btn btn-lg btn-outline-light my-2" href="{{ $tool->link  }}" style="margin:5px"><i class="bi file-earmark-arrow-down-fil"></i><span>Download</span></a>
+                                <a type="button" class="btn btn-lg btn-outline-light my-2" href="{{ $tool->link  }}" style="margin:5px"><i class="bi bi-file-earmark-arrow-down-fill"></i>  <span>Download</span></a>
                                 <a type="button" class="btn btn-lg btn-outline-light my-2 " href="{{ $tool->youtube }}"><i class="bi bi-info-square-fill"></i> <span>Tutorial</span></a>
                                 </div>                         
                                 </div>

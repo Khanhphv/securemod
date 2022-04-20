@@ -29,6 +29,7 @@
         border-radius: 50%;
         padding: 5px 10px;
     }
+    
 </style>
 <div class="container-content">
     <script>
@@ -96,32 +97,21 @@
 
     <div class="main">  
         <div class="menu">
-            <div>
-            <button id="navtoggle"  type="button" onclick="openNav()" class="btn">
-            <img src="{{asset('img/transparent-logo.png')}}" alt="Logo" style="width: 40px;">
-            <i class="bi bi-list fw-bold"></i>
-            </button>
-            <!-- @if(isset($master_site_settings['text_logo']))
-                <div style="color: var(--text-primary-color); padding-right: 1em" class="text-logo">
-													{!! html_entity_decode(
-                            Html::linkRoute(
-                                'home',
-                                Html::image(
-                                    '/images/logo/' . $master_site_settings['text_logo'],
-                                    'Home Page',
-                                    [
-                                        'class' => 'img-fluid',
-                                        'width' => 230,
-                                        'height' => 30
-                                    ]
-                                )
-                            )
-                        ) !!}
-                    </div>
-            @endif -->
 
-            </div>
-            <div class="desktop">
+        <button id="navtoggle"  type="button" onclick="openNav()" class="btn">
+                <img src="{{asset('img/transparent-logo.png')}}" alt="Logo" style="width: 40px;">
+                <i class="bi bi-list fw-bold"></i>
+        </button>
+            <!-- <div class="user ms-3">
+            <a id="" href="/login" style="display: none">Login</a>
+            <label for="login-button">
+                <div onclick="login()" class="btn-rechange">
+                    <a id="login-button" href="/login">Login</a>
+                </div>
+            </label>
+            </div> -->
+            
+             <div class="">
                 <div class="cart shopping-cart cursor-pointer">
                     <a class="modal-trigger" data-bs-toggle="modal" data-bs-target="#cart">
                         <i class="small material-icons icon-blue">shopping_cart</i>
