@@ -16,7 +16,7 @@
                         <div for="amount">Amount
                             <span class="helper-text" id="required_message" style="display: none; color: red" data-error="wrong" data-success="right">Please enter amount</span>
                         </div>
-                        <input type="number" class="validate w-50" type="number" name="amount" id="amount">
+                        <input type="number" class="validate w-50 bg-dark text-white border" type="number" name="amount" id="amount"> <span class="fw-bold h4">$</span>
                         
                     </div>
                     <label>Currency</label>

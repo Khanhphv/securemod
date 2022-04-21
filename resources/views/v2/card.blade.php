@@ -11,7 +11,7 @@
         </div>
     </div>
 </div> -->
-<div class="col-md-3 mb-2">
+<div class="col-md-4 mb-2">
 
         <div class="card" onclick="location.href= `/game/{{$game->slug}}`" style="width: 30 rem;">
             <div class="background">

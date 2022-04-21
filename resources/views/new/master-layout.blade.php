@@ -51,10 +51,8 @@
         window.addEventListener('load', function () {
             if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
                 closeNav();
-            }else{
-                openNav()
             }
-        })
+        });
         
     </script>
     <div class="toolbar sidebar" id="mySidebar">
@@ -107,7 +105,7 @@
     <div class="main">  
         <div class="menu">
 
-        <button id="navtoggle"  type="button" onclick="openNav()" class="btn">
+        <button id="navtoggle"  type="button" onclick="openNav()" class="btn" style="visibility: hidden">
                 <img src="{{asset('img/transparent-logo.png')}}" alt="Logo" style="width: 40px;">
                 <i class="bi bi-list fw-bold"></i>
         </button>
