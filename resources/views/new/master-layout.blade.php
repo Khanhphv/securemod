@@ -34,19 +34,28 @@
 <div class="container-content">
     <script>
         function openNav() {
-        document.getElementById("mySidebar").style.width = "340px";
-        document.getElementById("mySidebar").style.padding = "10px 10px"
-        document.getElementById("navtoggle").style.visibility = "hidden"
-        document.getElementById("navoff").style.visibility = "visible"
+            document.getElementById("mySidebar").style.width = "340px";
+            document.getElementById("mySidebar").style.padding = "10px 10px"
+            document.getElementById("navtoggle").style.visibility = "hidden"
+            document.getElementById("navoff").style.visibility = "visible"
         }
 
         /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
         function closeNav() {
-        document.getElementById("mySidebar").style.width = "0px";
-        document.getElementById("mySidebar").style.padding = "0px 0px"
-        document.getElementById("navtoggle").style.visibility = "visible"
-        document.getElementById("navoff").style.visibility = "hidden"
+            document.getElementById("mySidebar").style.width = "0px";
+            document.getElementById("mySidebar").style.padding = "0px 0px"
+            document.getElementById("navtoggle").style.visibility = "visible"
+            document.getElementById("navoff").style.visibility = "hidden"
         }
+        /* Detect if user are mobile then execute closeNav */
+        window.addEventListener('load', function () {
+            if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+                closeNav();
+            }else{
+                openNav()
+            }
+        })
+        
     </script>
     <div class="toolbar sidebar" id="mySidebar">
         <div class="sidebar__content">
@@ -223,7 +232,7 @@
                 @endif
 
             @endif
-            <div class="card-container content mx-auto">
+            <div class="card-container content">
                 @yield('content')
             </div>
 
