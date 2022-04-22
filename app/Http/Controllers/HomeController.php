@@ -623,10 +623,11 @@ class HomeController extends Controller
                     ));
                     return view('new.balance', compact(['histories', 'res']));
                 }
-            }
-            $histories = History::where('user_id', $user->id)
+            }else{
+                $histories = History::where('user_id', $user->id)
                 ->orderBy('updated_at', 'desc')
                 ->get();
+            }
         }
         return view('new.balance', compact('histories'));
     }
