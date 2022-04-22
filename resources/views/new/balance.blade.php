@@ -6,6 +6,7 @@
     <meta name="description" content="Transaction information">
     <meta name="keywords" content="history, balance, invoice, keys, transaction">
     <meta name="author" content="support@divinesofts.net">
+    
     @include('new.style')
     <style>
         @media screen and (max-width: 600px) {
@@ -83,6 +84,26 @@
 
                                 </tr>
                             @endforeach
+                        @endif
+                        @if(isset($res))
+                            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                            <script>
+                                var response = JSON.parse({!! json_encode($res, JSON_HEX_TAG) !!});
+                                if(response['status']=='success'){
+                                    Swal.fire({
+                                        title: 'Success',
+                                        text: response['message'],
+                                        icon: 'success',
+                                    });
+                                }else{
+                                    console.log(response)
+                                    Swal.fire({
+                                        title: 'Error',
+                                        text: response['message'],
+                                        icon: 'error',
+                                    });
+                                }
+                            </script>
                         @endif
                     @endauth()
                     @guest()

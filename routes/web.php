@@ -43,7 +43,7 @@ Route::group(['middleware' => ['locale', 'web']], function () {
     Route::get('create-transaction-btcpay', 'BTCPayController@CreateTransaction');
     Route::get('get-transactions-btcpay', 'BTCPayController@GetListTransactions');
     Route::get('check-transactions-btcpay', 'BTCPayController@CheckListTransactions');
-    Route::get('cron3', 'BTCPayController@CheckListTransactions')->name('cronJob2');
+    Route::get('cron3', 'BTCPayController@CheckListTransactions')->name('btchecking');
 
     Route::post('charge-via-lexholding', "ChargeController@chargeViaLexHolding");
     //Stripe
@@ -68,7 +68,7 @@ Route::group(['middleware' => ['locale', 'web']], function () {
 
 // Auth router
 Route::group(['middleware' => ['locale', 'auth']], function () {
-    Route::get('balance', 'HomeController@getBalance')->name('balance');
+    Route::get('balance/{checking?}', 'HomeController@getBalance')->name('balance');
     Route::get('keys', 'HomeController@getKeys')->name('keys');
     Route::get('tools', 'ToolController@index')->name('tools');
 });

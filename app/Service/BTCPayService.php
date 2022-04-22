@@ -110,7 +110,9 @@ class BTCPayService
             {
                 Log::info('[BTCPay]TransactionID: ' . $ListTransaction);
                 $is_exist_transaction = Transaction::where("transaction_id", $ListTransaction);
-                if($is_exist_transaction->count() > 0) continue;
+                if($is_exist_transaction->count() > 0){
+                    return false;
+                }
                 if(isset($data['metadata']['buyerEmail']) && preg_match("/@/", $data['metadata']['buyerEmail']))
                 {
                     $received = $data['amount'];
@@ -137,18 +139,22 @@ class BTCPayService
                             $history->nl_token = $ListTransaction;
                             $history->save();
                             $user_recharge->save();
+                            
                         }
                         catch (Exception $e)
                         {
                             Log::error('[BTCPAY]' . $e->getMessage());
-                            echo ('Loi . TransactionID ' . $ListTransaction . ' đã tồn tại <br>');
+                            //echo ('Loi . TransactionID ' . $ListTransaction . ' đã tồn tại <br>');
+                            
                         }
                         //redirect(url('/balance'));
                         
-                        echo 'User: ' . $user_id . ' charged ' . $received . ' via BTCpay. TransactionID : ' .$ListTransaction. ' <br>';
+                        //echo 'User: ' . $user_id . ' charged ' . $received . ' via BTCpay. TransactionID : ' .$ListTransaction. ' <br>';
+                        return true;
                     }
                 }   
             }
         }
     }
+
 }

@@ -7,6 +7,7 @@ use App\Model\Game;
 use App\Model\History;
 use App\Service\CommonService;
 use App\Service\MailService;
+use App\Service\BTCPayService;
 use App\Tool;
 use App\Transaction;
 use App\User;
@@ -29,9 +30,12 @@ use Illuminate\View\View;
 
 class HomeController extends Controller
 {
-    public function __construct()
+    protected BTCPayService $btcpayService;
+
+    public function __construct(BTCPayService $btcpayService)
     {
         //$this->middleware('auth');
+        $this->btcpayService = $btcpayService;
     }
 
     public function landing()
@@ -569,9 +573,57 @@ class HomeController extends Controller
         }
     }
 
-    public function getBalance() {
+    // public function getBalance() {
+    //     if (Auth::user()) {
+    //         $user = Auth::user();
+    //         $histories = History::where('user_id', $user->id)
+    //             ->orderBy('updated_at', 'desc')
+    //             ->get();
+    //     }
+    //     return view('new.balance', compact('histories'));
+    // }
+
+    public function GetListTransactions()
+    {
+        $yesterday = Carbon::yesterday('Asia/Ho_Chi_Minh')->timestamp;
+        $today = Carbon::now('Asia/Ho_Chi_Minh')->timestamp;
+        $body = '{"a":"b"}'; //this get request does not required body so this is just for the function
+        $CheckListTransaction = $this->btcpayService->apiCallInvoicesGet($body);
+        $inrange = array();
+        foreach ($CheckListTransaction as $transaction) {
+            if($transaction['createdTime'] >= $yesterday && $transaction['createdTime'] <= $today){
+                $inrange[] = $transaction['id'];
+            }
+        }
+        return $inrange;
+    }
+
+    public function getBalance($checking = null) {
         if (Auth::user()) {
             $user = Auth::user();
+            if($checking == 'checking'){
+                $histories = History::where('user_id', $user->id)
+                ->orderBy('updated_at', 'desc')
+                ->get();
+                $bonus = 1 + ((Option::where('option', 'coinpayment_bonus')->first()->value + 0) / 100);
+                $GetListTransactions = $this->GetListTransactions();
+                $checking = $this->btcpayService->checkListTransaction($bonus, $GetListTransactions);
+                if($checking == true){
+                    $res = json_encode(array(
+                        'status' => 'success',
+                        'message' => "Recharge successfully, thank you!",
+                        'time' => ""
+                    ));
+                    return view('new.balance', compact(['histories', 'res']) );
+                }else{
+                    $res = json_encode(array(
+                        'status' => 'fail',
+                        'message' => "Something went wrong, please contact admin.",
+                        'time' => ""
+                    ));
+                    return view('new.balance', compact(['histories', 'res']));
+                }
+            }
             $histories = History::where('user_id', $user->id)
                 ->orderBy('updated_at', 'desc')
                 ->get();

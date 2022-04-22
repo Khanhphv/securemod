@@ -132,4 +132,14 @@
             z-index: 1;
         }
     }
+    select{
+        background-color: var(--top-menu-bg) !important;
+        color: white !important;
+    }
+    .swal2-container.swal2-center>.swal2-popup{
+        background-color: #121212 !important;
+    }
+    .swal2-html-container, .swal2-title{
+        color: white !important;
+    }
 </style>
