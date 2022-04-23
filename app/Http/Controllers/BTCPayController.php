@@ -42,7 +42,7 @@ class BTCPayController extends Controller
                 "itemDesc": "'.Auth::user()->email.'",
             },
             "checkout":{
-                "redirectURL": "'.url('/balance/checking').'",
+                "redirectURL": "'.url('/balance/checking').'/{InvoiceId}",
                 "redirectAutomatically": true
             }
         }';

@@ -88,7 +88,7 @@ class BTCPayService
         }
     }
 
-    public function checkListTransaction($bonus, $GetListTransactions) {
+    public function checkListTransaction($bonus, $GetListTransactions, $specificId = null) {
         $btcpay_key = Payment::where('payment_type', 'btcpay')->get()->first();
         $token = $btcpay_key->client_id;
         $storeid = $btcpay_key->client_secret;
@@ -109,10 +109,10 @@ class BTCPayService
             if($data['status']=='Settled')
             {
                 Log::info('[BTCPay]TransactionID: ' . $ListTransaction);
+                $is_exist_transaction_id = Transaction::where("transaction_id", $specificId);
+                if($is_exist_transaction_id->count() > 0) return false;
                 $is_exist_transaction = Transaction::where("transaction_id", $ListTransaction);
-                if($is_exist_transaction->count() > 0){
-                    return false;
-                }
+                if($is_exist_transaction->count() > 0) continue;
                 if(isset($data['metadata']['buyerEmail']) && preg_match("/@/", $data['metadata']['buyerEmail']))
                 {
                     $received = $data['amount'];

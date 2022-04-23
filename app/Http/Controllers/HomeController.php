@@ -598,13 +598,13 @@ class HomeController extends Controller
         return $inrange;
     }
 
-    public function getBalance($checking = null) {
+    public function getBalance($checking = null, $idtrans = null) {
         if (Auth::user()) {
             $user = Auth::user();
             if($checking == 'checking'){
                 $bonus = 1 + ((Option::where('option', 'coinpayment_bonus')->first()->value + 0) / 100);
                 $GetListTransactions = $this->GetListTransactions();
-                $checking = $this->btcpayService->checkListTransaction($bonus, $GetListTransactions);
+                $checking = $this->btcpayService->checkListTransaction($bonus, $GetListTransactions, $idtrans);
                 $histories = History::where('user_id', $user->id)
                 ->orderBy('updated_at', 'desc')
                 ->get();

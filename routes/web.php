@@ -68,7 +68,7 @@ Route::group(['middleware' => ['locale', 'web']], function () {
 
 // Auth router
 Route::group(['middleware' => ['locale', 'auth']], function () {
-    Route::get('balance/{checking?}', 'HomeController@getBalance')->name('balance');
+    Route::get('balance/{checking?}/{idtrans?}', 'HomeController@getBalance')->name('balance');
     Route::get('keys', 'HomeController@getKeys')->name('keys');
     Route::get('tools', 'ToolController@index')->name('tools');
 });
