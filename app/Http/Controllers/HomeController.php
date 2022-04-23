@@ -602,9 +602,6 @@ class HomeController extends Controller
         if (Auth::user()) {
             $user = Auth::user();
             if($checking == 'checking'){
-                $histories = History::where('user_id', $user->id)
-                ->orderBy('updated_at', 'desc')
-                ->get();
                 $bonus = 1 + ((Option::where('option', 'coinpayment_bonus')->first()->value + 0) / 100);
                 $GetListTransactions = $this->GetListTransactions();
                 $checking = $this->btcpayService->checkListTransaction($bonus, $GetListTransactions);
@@ -623,6 +620,9 @@ class HomeController extends Controller
                     ));
                     return view('new.balance', compact(['histories', 'res']));
                 }
+                $histories = History::where('user_id', $user->id)
+                ->orderBy('updated_at', 'desc')
+                ->get();
             }else{
                 $histories = History::where('user_id', $user->id)
                 ->orderBy('updated_at', 'desc')
