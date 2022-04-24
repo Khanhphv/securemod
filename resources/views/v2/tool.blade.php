@@ -181,6 +181,23 @@
             color: #000;
         }
 
+        .btn-responsive {
+            white-space: normal !important;
+            word-wrap: break-word;
+        }
+
+        @media screen and (max-width: 320px) {
+            .btn span {
+                font-size: 10px !important; 
+            }
+        }
+
+        @media screen and (max-width: 320px) {
+            .btn i {
+                font-size: 10px !important; 
+            }
+        }
+
     </style>
 </head>
 <body @if($theme == 'dark') data-theme="dark" @endif>
@@ -227,7 +244,7 @@
                             </div>
                         @endif
                             <div class="card-body bg-dark text-white">
-                            <h2 class="card-title package-name" id="tool_name_{{$tool->id}}">{{ $tool->name }}</h2>
+                            <h2 class="package-name" id="tool_name_{{$tool->id}}">{{ $tool->name }}</h2>
                             <h6>Status: @if($tool->updated == 1)
                                     <small class="text-success fw-bold">Working</small>
                                 @else
@@ -236,8 +253,8 @@
                             
                             <div class="d-flex justify-content-between align-items-center">
                             @if($tool->updated == 1)
-                                <div class="input-field mb-2" style="max-width: fit-content">
-                                    <select class="form-select game-package" aria-label="Choose package" style="margin:5px">
+                                <div class="input-field" style="max-width: fit-content">
+                                    <select class="form-select game-package" aria-label="Choose package">
                                         <option value="" disabled selected>Choose package</option>
                                         @foreach(json_decode($tool->package, true) as $package => $price)
                                             @auth()
@@ -260,14 +277,13 @@
                                             @endguest
                                         @endforeach
                                     </select>     
-                                <div class="btn-group">
-                                <a type="button" class="btn btn-lg btn-outline-light my-2" onclick="addToCart({{$tool->id}})" style="margin:5px"><i class="bi bi-cart-plus"></i><span>Add to cart</span></a>
-                                <a type="button" class="btn btn-lg btn-outline-light my-2 " onclick="buyTool({{$tool->id}})"><i class="bi bi-credit-card-2-front"></i> <span>Buy now</span></a>
-                                </div>   
-                                <div class="btn-group">
-                                <a type="button" class="btn btn-lg btn-outline-light my-2" href="{{ $tool->link  }}" style="margin:5px"><i class="bi bi-file-earmark-arrow-down-fill"></i>  <span>Download</span></a>
-                                <a type="button" class="btn btn-lg btn-outline-light my-2 " href="{{ $tool->youtube }}"><i class="bi bi-info-square-fill"></i> <span>Tutorial</span></a>
-                                </div>                         
+                                    <div class="btn-group flex-wrap justify-content-between">
+                                        <a type="button" id="funcbutton" class="btn btn-lg btn-outline-light my-2 btn-responsive" onclick="addToCart({{$tool->id}})"><i class="bi bi-cart-plus"></i> <span>Add to cart</span></a>
+                                        <a type="button" id="funcbutton" class="btn btn-lg btn-outline-light my-2 btn-responsive" onclick="buyTool({{$tool->id}})"><i class="bi bi-credit-card-2-front"></i> <span>Buy now</span></a>
+
+                                        <a type="button" id="funcbutton" class="btn btn-lg btn-outline-light my-2 btn-responsive" href="{{ $tool->link  }}"><i class="bi bi-file-earmark-arrow-down-fill"></i> <span>Download</span></a>
+                                        <a type="button" id="funcbutton" class="btn btn-lg btn-outline-light my-2 btn-responsive" href="{{ $tool->youtube }}"><i class="bi bi-info-square-fill"></i> <span>Tutorial</span></a>
+                                    </div>                         
                                 </div>
                                 
                                 
