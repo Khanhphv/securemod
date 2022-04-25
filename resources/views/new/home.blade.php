@@ -10,29 +10,6 @@
     @include('new.style')
     <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/cd9d9d634b0434b043fd644ef/0cff08fc814719677ff41187b.js");</script>
     <style>
-        @media (min-width: 576px) {
-            .card-columns {
-                column-count: 2;
-            }
-        }
-
-        @media (min-width: 768px) {
-            .card-columns {
-                column-count: 3;
-            }
-        }
-
-        @media (min-width: 992px) {
-            .card-columns {
-                column-count: 4;
-            }
-        }
-
-        @media (min-width: 1200px) {
-            .card-columns {
-                column-count: 5;
-            }
-        }
         /* Equal-height card images, cf. https://stackoverflow.com/a/47698201/1375163*/
         .card-img-top {
             /*height: 11vw;*/
@@ -79,8 +56,7 @@
             </div>
            
         </div>
-        <div class="tab-content mobile">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 mx-auto">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 p-0">
             
             @if(isset($games) && count($games) > 0)
                 @foreach($games as $game)
@@ -89,7 +65,7 @@
             @endif
 
         </div>
-        </div>
+
     @endsection
     @section('script')
     <script>

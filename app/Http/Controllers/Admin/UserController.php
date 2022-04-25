@@ -27,7 +27,7 @@ class UserController extends Controller
     public function update(Request $request, $userId)
     {
          if (!auth()->user()->isAdmin()) {
-             return redirect()->back()->with(['level' => 'warning', 'message' => 'Không có quyền sửa']);
+             return redirect()->back()->with(['level' => 'warning', 'message' => 'No permission']);
          }
         $user = User::findOrFail($userId);
         if ($request->has('password') && $request->password != null) {
@@ -47,9 +47,9 @@ class UserController extends Controller
         $history = new History();
         if ($request->credit != $moneyBeforeUpdate) {
             if ($request->note != null) {
-                $history->content = "Quản trị viên  số " . Auth::user()->id . " đã thay đổi số tiền từ " . number_format($moneyBeforeUpdate) . " ->  " . number_format($user->credit) . '. Ghi chú: ' . $request->note;
+                $history->content = "Administrator " . Auth::user()->id . " changed your credit from " . number_format($moneyBeforeUpdate) . " ->  " . number_format($user->credit) . '. Note: ' . $request->note;
             } else
-                $history->content = "Quản trị viên  số " . Auth::user()->id . " đã thay đổi số tiền từ " . number_format($moneyBeforeUpdate) . " ->  " . number_format($user->credit);
+                $history->content = "Administrator " . Auth::user()->id . " changed your credit from " . number_format($moneyBeforeUpdate) . " ->  " . number_format($user->credit);
 
             if ($moneyBeforeUpdate < $request->credit) {
                 $history->action = 'ADMIN_CONG';
@@ -66,14 +66,14 @@ class UserController extends Controller
             $history->amount = 0;
             $history->user_id = $user->id;
             if ($typeBeforeUpdate != $user->type) {
-                $history->content = "Quản trị viên  số " . Auth::user()->id . " đã cập nhật thành viên $user->id  từ $typeBeforeUpdate thành $user->type";
+                $history->content = "Administrator " . Auth::user()->id . " updated user $user->id  from $typeBeforeUpdate to $user->type";
             } else
-                $history->content = "Quản trị viên  số " . Auth::user()->id . " đã cập nhật thành viên $user->id";
+                $history->content = "Administrator " . Auth::user()->id . " updated user $user->id";
 
         }
         $history->save();
         $user->save();
-        return redirect()->route('user.edit', $userId)->with(['level' => 'success', 'message' => 'Cập nhật thành công!']);
+        return redirect()->route('user.edit', $userId)->with(['level' => 'success', 'message' => 'Updated susccessfully!']);
     }
 
     public function search(Request $request)
@@ -96,7 +96,7 @@ class UserController extends Controller
         }
 
         if (count($users) == 0) {
-            return redirect()->route('user')->with(['level' => 'warning', 'message' => 'Không tìm thấy người dùng nào', 'users' => $users]);
+            return redirect()->route('user')->with(['level' => 'warning', 'message' => 'User not found', 'users' => $users]);
         } else if (count($users) == 1) {
             return redirect()->route('user.edit', $users[0]->id);
         } else {
