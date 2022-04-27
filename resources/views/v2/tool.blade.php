@@ -317,7 +317,7 @@
     }
     function buyTool(tool_id) {
         @auth()
-        let package_tool = $(`.game-package`).val();
+        let package_tool = $(`#tool_${tool_id} .game-package`).val();
         if (!package_tool) {
             Swal.fire({
                 title: 'Warning',
@@ -377,16 +377,11 @@
     // function add to cart
     function addToCart(tool_id) {
         // get value game package
-          
         let name_tool = $(`#tool_name_${tool_id}`).text();
         let name_game = $(`#selectbox-games option:selected`).text();
-        let package_name = $(`.game-package option:selected`).text();
-        let package_tool = $(`.game-package`).val();
+        let package_name = $(`#tool_${tool_id} .game-package option:selected`).text();
+        let package_tool = $(`#tool_${tool_id} .game-package`).val();
         let price = 0
-        console.log(package_name); 
-        console.log(package_tool); 
-        console.log(name_tool); 
-        console.log(name_game); 
         if(package_name) {
             packages = package_name.split(' ')
             price = packages[2]
