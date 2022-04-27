@@ -49,11 +49,34 @@ return [
         ]
         ],
         'coin_currencies' => [
-            'BTC',
-            'ETH',
-            'USDT',
-            'BNB',
-            'LTC'
+            'btc' => [
+                'title' => 'BTC',
+                'value' => 'BTC'
+            ],
+            'bch' => [
+                'title' => 'BCH',
+                'value' => 'BCH'
+            ],
+            'ltc' => [
+                'title' => 'LTC',
+                'value' => 'LTC'
+            ],
+            'bnb' => [
+                'title' => 'BNB-BSC',
+                'value' => 'BNB.BSC'
+            ],
+            'busd' => [
+                'title' => 'BUSD-BEP20',
+                'value' => 'BUSD.BEP20'
+            ],
+            'eth' => [
+                'title' => 'ETH',
+                'value' => 'ETH'
+            ],
+            'usdt' => [
+                'title' => 'USDT-TRC20',
+                'value' => 'USDT.TRC20'
+            ],
         ]
 
 ];

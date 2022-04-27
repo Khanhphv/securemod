@@ -22,9 +22,9 @@
                     <label>Currency</label>
                     <div class="col-12">
                         <select class="browser-default w-100" id="currency">
-                            @foreach (config('const.coin_currencies') as $currency)
-                                <option value="{{$currency}}">{{$currency}}</option>
-                            @endforeach
+                        @foreach (config('const.coin_currencies') as $key => $currencies)
+                            <option value="{{$currencies['value']}}">{{$currencies['title']}}</option>
+                        @endforeach
                         </select>
                     </div>
                     
