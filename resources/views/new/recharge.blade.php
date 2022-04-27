@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
     @extends('new.header')
-    @section('headerTitle', 'Keys')
+    @section('headerTitle', 'Payment Method')
     <meta charset="UTF-8">
-    <meta name="description" content="keys history">
-    <meta name="keywords" content="history, balance, invoice">
-    <meta name="author" content="support@divinesofts.net">
+    <meta name="description" content="Browse the Zcheats, click “Buy Now” and make the payment using your favorite payment method.">
+    <meta name="keywords" content="payment, payment method">
     @include('new.style')
     <style>
         .card-credit {
