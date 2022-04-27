@@ -181,6 +181,23 @@
             color: #000;
         }
 
+        .btn-responsive {
+            white-space: normal !important;
+            word-wrap: break-word;
+        }
+
+        @media screen and (max-width: 320px) {
+            .btn span {
+                font-size: 10px !important; 
+            }
+        }
+
+        @media screen and (max-width: 320px) {
+            .btn i {
+                font-size: 10px !important; 
+            }
+        }
+
     </style>
 </head>
 <body @if($theme == 'dark') data-theme="dark" @endif>
@@ -192,7 +209,7 @@
             
             @if(isset($tools) && count($tools) > 0)
                 @foreach($tools as $tool)
-                <div class="col-md-3 mb-2">
+                <div id="tool_{{$tool->id}}" class="col-md-3 mb-2">
                         <div class="card" style="width: 30 rem; ">
                         @if(trim($tool->note) !== '')
                             <div class="product__price-tag">
@@ -213,7 +230,7 @@
                         @else    
                         <div class="card-img-top">
                             <div id="carousel-fade" class="carousel carousel-fade" data-bs-ride="carousel">
-                                    <div class="carousel-inner h-100" style=" width:100%; height: 250px !important;">
+                                    <div class="carousel-inner h-100" style=" width:100%; height: 150px !important;">
                                         <?php
                                         $listImg = explode(PHP_EOL, $tool->images);
                                         ?>
@@ -227,7 +244,7 @@
                             </div>
                         @endif
                             <div class="card-body bg-dark text-white">
-                            <h2 class="card-title package-name" id="tool_name_{{$tool->id}}">{{ $tool->name }}</h2>
+                            <h2 class="package-name" id="tool_name_{{$tool->id}}">{{ $tool->name }}</h2>
                             <h6>Status: @if($tool->updated == 1)
                                     <small class="text-success fw-bold">Working</small>
                                 @else
@@ -236,8 +253,8 @@
                             
                             <div class="d-flex justify-content-between align-items-center">
                             @if($tool->updated == 1)
-                                <div class="input-field mb-2" style="max-width: fit-content">
-                                    <select class="form-select game-package" aria-label="Choose package" style="margin:5px">
+                                <div class="input-field" style="max-width: fit-content">
+                                    <select class="form-select game-package" aria-label="Choose package">
                                         <option value="" disabled selected>Choose package</option>
                                         @foreach(json_decode($tool->package, true) as $package => $price)
                                             @auth()
@@ -260,18 +277,13 @@
                                             @endguest
                                         @endforeach
                                     </select>     
-                                <div class="btn-group">
-                                <a type="button" class="btn btn-lg btn-outline-light my-2" onclick="addToCart({{$tool->id}})" style="margin:5px"><i class="bi bi-cart-plus"></i><span>Add to cart</span></a>
-                                <a type="button" class="btn btn-lg btn-outline-light my-2 " onclick="buyTool({{$tool->id}})"><i class="bi bi-credit-card-2-front"></i> <span>Buy now</span></a>
-                                </div>   
-                                <div class="btn-group">
-                                <a type="button" class="btn btn-lg btn-outline-light my-2" href="{{ $tool->link  }}" style="margin:5px"><i class="bi bi-file-earmark-arrow-down-fill"></i>  <span>Download</span></a>
-                                <a type="button" class="btn btn-lg btn-outline-light my-2 " href="{{ $tool->youtube }}"><i class="bi bi-info-square-fill"></i> <span>Tutorial</span></a>
-                                </div>                         
+                                    <div class="btn-group flex-wrap justify-content-between">
+                                        <a type="button" id="funcbutton" class="btn btn-lg btn-outline-light my-2 btn-responsive" onclick="addToCart({{$tool->id}})"><i class="bi bi-cart-plus"></i> <span>Add to cart</span></a>
+                                        <a type="button" id="funcbutton" class="btn btn-lg btn-outline-light my-2 btn-responsive" onclick="buyTool({{$tool->id}})"><i class="bi bi-credit-card-2-front"></i> <span>Buy now</span></a>
+                                        <a type="button" id="funcbutton" class="btn btn-lg btn-outline-light my-2 btn-responsive" href="{{ $tool->link  }}"><i class="bi bi-file-earmark-arrow-down-fill"></i> <span>Download</span></a>
+                                        <a type="button" id="funcbutton" class="btn btn-lg btn-outline-light my-2 btn-responsive" href="{{ $tool->youtube }}"><i class="bi bi-info-square-fill"></i> <span>Tutorial</span></a>
+                                    </div>                         
                                 </div>
-                                
-                                
-
                             @else
                             @endif
                                 
@@ -305,7 +317,7 @@
     }
     function buyTool(tool_id) {
         @auth()
-        let package_tool = $(`.game-package`).val();
+        let package_tool = $(`#tool_${tool_id} .game-package`).val();
         if (!package_tool) {
             Swal.fire({
                 title: 'Warning',
@@ -365,16 +377,11 @@
     // function add to cart
     function addToCart(tool_id) {
         // get value game package
-          
         let name_tool = $(`#tool_name_${tool_id}`).text();
         let name_game = $(`#selectbox-games option:selected`).text();
-        let package_name = $(`.game-package option:selected`).text();
-        let package_tool = $(`.game-package`).val();
+        let package_name = $(`#tool_${tool_id} .game-package option:selected`).text();
+        let package_tool = $(`#tool_${tool_id} .game-package`).val();
         let price = 0
-        console.log(package_name); 
-        console.log(package_tool); 
-        console.log(name_tool); 
-        console.log(name_game); 
         if(package_name) {
             packages = package_name.split(' ')
             price = packages[2]
