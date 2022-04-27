@@ -14,26 +14,26 @@ class HeadTagsTableSeeder extends Seeder
         DB::table('head_tags')->insert([
             'type' => 'home',
             'type_id' => null,
-            'head_title' => 'Home',
-            'head_description' => 'Best PUBG Cheat'
+            'head_title' => 'ZCheat - Game Cheat and Game Hack Application',
+            'head_description' => 'Trusted source of game hacks application, game cheats, code for pc games as well as android and iOS mobile games.'
         ]);
         DB::table('head_tags')->insert([
             'type' => 'welcome',
             'type_id' => null,
-            'head_title' => 'Welcome',
-            'head_description' => 'Best PUBG Cheat'
+            'head_title' => 'ZCheat - Game Cheat and Game Hack Application',
+            'head_description' => 'Personalize your gaming experience by using ZCheat, the most effective game hacking tool for all your favorite pc games as well as mobile games.'
         ]);
         DB::table('head_tags')->insert([
             'type' => 'list_post',
             'type_id' => null,
-            'head_title' => 'Latest News',
-            'head_description' => 'Latest News Best PUBG Cheat'
+            'head_title' => 'ZCheat - Latest News',
+            'head_description' => 'Latest News'
         ]);
         DB::table('head_tags')->insert([
             'type' => 'term',
             'type_id' => null,
-            'head_title' => 'Terms of Service',
-            'head_description' => 'Terms of Service Best PUBG Cheat'
+            'head_title' => 'ZCheat - Terms of Service',
+            'head_description' => 'Terms of Service'
         ]);
 
         DB::table('head_tags')->insert([
