@@ -50,10 +50,12 @@ return [
         ],
         'coin_currencies' => [
             'BTC',
+            'BCH',
+            'LTC',
+            'BNB.BSC',
+            'BUSD.BEP20',
             'ETH',
-            'USDT',
-            'BNB',
-            'LTC'
+            'USDT.TRC20'
         ]
 
 ];
