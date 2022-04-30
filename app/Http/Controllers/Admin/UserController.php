@@ -38,8 +38,6 @@ class UserController extends Controller
         $typeBeforeUpdate = $user->type;
         $user->type = $request->type;
         $user->email = $request->email;
-        $user->phone = $request->phone;
-        $user->user_ref_count = $request->user_ref_count;
         $user->user_ref_commission = $request->user_ref_commission;
         if ($user->credit != $request->credit) {
             $user->credit = $request->credit;
