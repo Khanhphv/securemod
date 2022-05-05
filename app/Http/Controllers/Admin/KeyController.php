@@ -9,6 +9,7 @@ use App\HwidLogs;
 use App\Service\KeyService;
 use App\Tool;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Auth;
 
@@ -121,7 +122,12 @@ class KeyController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $res = DB::table('keys')->where('id',$id)->delete();
+        if ($res) {
+            return back()->with(['level' => 'danger', 'message' => 'Đã xoá key mang ID: '.$id]);
+        } else {
+            return back()->with(['level' => 'danger', 'message' => 'Đã có lỗi xảy ra: '.$res]);
+        }
     }
 
     public function ajax(Request $request)
