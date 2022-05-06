@@ -737,6 +737,7 @@ svg.icon-menu path {
 }
 
 .bubbles_container {
+    cursor: pointer;
     z-index: 1;
     background-color: var(--sidebar);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -746,5 +747,14 @@ svg.icon-menu path {
     position: fixed;
     bottom: 21px;
     right: 25px;
+    transition: background-color 0.3s;
 }
 
+.bubbles_container:hover{
+    background-color: #91d5ff;
+}
+
+.bubbles_container-child {
+    height: 60px !important;
+    width: 60px !important;
+}
