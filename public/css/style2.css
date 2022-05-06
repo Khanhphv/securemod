@@ -735,3 +735,16 @@ svg.icon-menu path {
     display: flex;
     flex-direction: column;
 }
+
+.bubbles_container {
+    z-index: 1;
+    background-color: var(--sidebar);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: 70px;
+    width: 70px;
+    border-radius: 100%;
+    position: fixed;
+    bottom: 21px;
+    right: 25px;
+}
+

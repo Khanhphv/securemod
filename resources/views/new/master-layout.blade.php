@@ -230,6 +230,11 @@
                 @endif
 
             @endif
+
+            <div class="bubbles_container text-center py-4" onclick="location.href = 'https://t.me/zcheats_official'">
+                <i class="bi bi-patch-question-fill h3 align-middle"></i>
+            </div>
+
             <div class="card-container content">
                 @yield('content')
             </div>

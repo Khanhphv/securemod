@@ -13,11 +13,17 @@
             <form action="#">
                 <div class="row mt-3">
                     <div class="input-field">
-                        <div for="amount">Amount
-                            <span class="helper-text" id="required_message" style="display: none; color: red" data-error="wrong" data-success="right">Please enter amount</span>
-                        </div>
-                        <input type="number" class="validate w-50 bg-dark text-white border" type="number" name="amount" id="amount"> <span class="fw-bold h4">$</span>
-                        
+                    <label>Choose the amount you want to deposit</label>
+                    <select class="browser-default w-100" name="amount" id="amount">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="200">200</option>
+                        <option value="500">500</option>
+                    </select>
+                    <span class="helper-text" id="required_message" style="display: none; color: red" data-error="wrong" data-success="right">Please enter amount</span>         
                     </div>
                     <label>Currency</label>
                     <div class="col-12">
@@ -39,7 +45,7 @@
                 <div class="row">
                     <div class="input-field col s12 m8">
                         <h4>Tutorial</h4>
-                        <p>1，Input the values and select coin you want recharge</p>
+                        <p>1，Choose the values and select coin you want recharge</p>
                         <p>2，Payment to order display address</p>
                         <p>3，Waiting for payment confirmation BTC will take time, depends on your
                             bitcoin wallet.</p>
