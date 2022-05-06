@@ -98,6 +98,7 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'is_a
     Route::get('/', 'AdminController@statics')->name('admin.index');
     Route::resource('tool', 'ToolController');
     Route::get('tool/delete/{id}', 'ToolController@destroy')->name('tool.delete');
+    Route::get('key/delete/{id}', 'KeyController@destroy')->name('key.delete');
     Route::resource('key', 'KeyController');
 //    Route::resource('blog', 'BlogController');
     Route::resource('post', 'PostController');
