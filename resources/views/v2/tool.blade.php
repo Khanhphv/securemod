@@ -280,8 +280,10 @@
                                     <div class="btn-group flex-wrap justify-content-between">
                                         <a type="button" id="funcbutton" class="btn btn-lg btn-outline-light my-2 btn-responsive" onclick="addToCart({{$tool->id}})"><i class="bi bi-cart-plus"></i> <span>Add to cart</span></a>
                                         <a type="button" id="funcbutton" class="btn btn-lg btn-outline-light my-2 btn-responsive" onclick="buyTool({{$tool->id}})"><i class="bi bi-credit-card-2-front"></i> <span>Buy now</span></a>
+                                        @auth()
                                         <a type="button" id="funcbutton" class="btn btn-lg btn-outline-light my-2 btn-responsive" href="{{ $tool->link  }}"><i class="bi bi-file-earmark-arrow-down-fill"></i> <span>Download</span></a>
-                                        <a type="button" id="funcbutton" class="btn btn-lg btn-outline-light my-2 btn-responsive" href="{{ $tool->youtube }}"><i class="bi bi-info-square-fill"></i> <span>Tutorial</span></a>
+                                        <a type="button" id="funcbutton" class="btn btn-lg btn-outline-light my-2 btn-responsive" href="{{ $tool->youtube }}"><i class="bi bi-info-square-fill"></i> <span>Showcase</span></a>
+                                        @endauth
                                     </div>                         
                                 </div>
                             @else
