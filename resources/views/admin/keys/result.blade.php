@@ -59,7 +59,10 @@
                 <th>ID User</th>
                 <th>Thao tác</th>
             </tr>
-            @foreach ($listKeys as $key)
+            @php
+            $sortedlist = $listKeys->sortByDesc('created_at');
+            @endphp
+            @foreach ($sortedlist as $key)
                 <tr>
                     <td>{{$loop->iteration}}</td>
                     <td>
