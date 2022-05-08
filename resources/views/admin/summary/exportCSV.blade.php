@@ -47,16 +47,16 @@
                     Submit
                 </button>
             </div>
-            <div class="row" id="statistic-day">
+            <div class="col-xs-12" id="statistic-day">
 
             </div>
-            <div class="row" id="statistic-week">
+            <div class="col-xs-12" id="statistic-week">
 
             </div>
-            <div class="row" id="statistic-month">
+            <div class="col-xs-12" id="statistic-month">
 
             </div>
-            <div class="row" id="statistic-year">
+            <div class="col-xs-12" id="statistic-year">
 
             </div>
         </form>
@@ -79,21 +79,62 @@
                 'key' : $('#key-statistic').val(),
                 'date' : $('#date-for-csv').val()
             },
+            beforeSend: function () {
+                $.LoadingOverlay("show");
+            },
             error: function () {
 
             },
             success: function (data) {
-                console.log(data);
-                let table = $("<table class='table-bordered table-striped'></table>")
-                table.append(<tr><td>Package}</td><td>amout</td><td>Money($)</td></tr>)
-                data.year.forEach(val => {
+                showData('#statistic-year', data.year)
+                showData('#statistic-month', data.month)
+                showData('#statistic-week', data.week)
+                showData('#statistic-day', data.day)
+            },
+            complete: function () {
+                $.LoadingOverlay("hide");
+            }
+        })
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+        showData = (el, data) => {
+            $(el).empty()
+            switch (el){
+                case '#statistic-year':
+                    h1 = 'Year'
+                    break
+                case '#statistic-month':
+                    h1 = 'Month'
+                    break
+                case '#statistic-week':
+                    h1= 'Week'
+                    break
+                default:
+                    h1= "Day"
+            }
+            $(el).append(`<h3 style="color: ${getRandomColor()}">${h1}</h3>`)
+
+            let table = $("<table class='table table-hover table-bordered table-striped'></table>")
+            table.append(`<tr><th>Package</th><th>amout</th><th>Money($)</th></tr>`)
+            table.append('<tbody>')
+            if(data.length > 0) {
+                data.forEach(val => {
                     let el = `<tr><td>${val.package}</td><td>${val.package}</td><td>${val.package}</td></tr>`
                     table.append(el)
                 })
-                $('#statistic-year').append(table)
-            },
+            } else {
+                let el = `<tr><td colspan="3">No data</td></tr>`
+                table.append(el)
+            }
 
-
-        })
+            table.append('</tbody>')
+            $(el).append(table)
+        }
     }
 </script>
