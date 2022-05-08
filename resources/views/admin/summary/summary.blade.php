@@ -9,6 +9,7 @@
             <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true">Money</a></li>
             <li class=""><a href="#tab_2" id="tab-2" data-toggle="tab" aria-expanded="false">Top Key</a></li>
             <li class="" id="tab-3"><a href="#tab_3" data-toggle="tab" aria-expanded="false">Key</a></li>
+            <li class="" id="tab-3"><a href="#tab_4" data-toggle="tab" aria-expanded="false">Summary</a></li>
 
         </ul>
         <div class="tab-content" style="display: flex">
@@ -159,6 +160,9 @@
                         </div>
 
                     </div>
+                </div>
+                <div class="tab-pane col-md-12" id="tab_4">
+                    @include('admin.summary.exportCSV')
                 </div>
             </div>
         </div>
