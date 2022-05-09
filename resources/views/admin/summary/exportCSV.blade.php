@@ -125,7 +125,7 @@
             table.append('<tbody>')
             if(data.length > 0) {
                 data.forEach(val => {
-                    let el = `<tr><td>${val.package}</td><td>${val.package}</td><td>${val.package}</td></tr>`
+                    let el = `<tr><td>${val.package}</td><td>${val.amount}</td><td>${val.money}</td></tr>`
                     table.append(el)
                 })
             } else {
