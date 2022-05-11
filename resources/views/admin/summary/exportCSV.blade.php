@@ -14,7 +14,7 @@
 
 <div class="box box-info">
     <div class="box-header with-border">
-        <h3 class="box-title">Chart</h3>
+        <h3 class="box-title">Summary</h3>
         <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
             </button>
@@ -22,42 +22,52 @@
     </div>
     <div class="box-body">
         <form action="">
-            <div class="col-md-3 col-xs-12">
-                <div class="form-group">
-                    <label for="">Key</label>
-                    @php
-                    $tools = \App\Tool::all(['id', 'name']);
-                    @endphp
-                    <select class="form-control" name="type" id="key-statistic">
-                        @foreach($tools as $tool)
-                            <option value="{{ $tool["id"] }}">{{$tool["name"]}}</option>
-                        @endforeach
-                    </select>
+            <div class="row form-group">
+                <div class="col-md-3 col-xs-12">
+                    <div class="">
+                        <label for="">Key</label>
+                        @php
+                            $tools = \App\Tool::all(['id', 'name']);
+                        @endphp
+                        <select class="form-control" name="type" id="key-statistic">
+                            @foreach($tools as $tool)
+                                <option value="{{ $tool["id"] }}">{{$tool["name"]}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 col-xs-12">
+                    <div class="">
+                        <label>Select date: </label>
+                        <input type="date" class="form-control" id="date-for-csv" value="{{ now()->format('Y-m-d') }}"  name="start">
+                    </div>
                 </div>
             </div>
-            <div class="col-md-3 col-xs-12">
-                <div class="form-group">
-                    <label>Select date: </label>
-                    <input type="date" class="form-control" id="date-for-csv" value="{{ now()->format('Y-m-d') }}"  name="start">
+            <div class="row">
+                <div class="col-md-3 col-xs-12">
+                    <button type="button" class="btn btn-default" onclick="statistic()" >
+                        Submit
+                    </button>
                 </div>
             </div>
 
-            <div class="col-md-2">
-                <button type="button" class="btn btn-default" onclick="statistic()"  style="margin-top: 23px" >
-                    Submit
-                </button>
-            </div>
-            <div class="col-xs-12" id="statistic-day">
 
+            <div class="row">
+                <div class="col-xs-12" id="statistic-day">
+                </div>
             </div>
-            <div class="col-xs-12" id="statistic-week">
-
+            <div class="row">
+                <div class="col-xs-12" id="statistic-week">
+                </div>
             </div>
-            <div class="col-xs-12" id="statistic-month">
-
+            <div class="row">
+                <div class="col-xs-12" id="statistic-month">
+                </div>
             </div>
-            <div class="col-xs-12" id="statistic-year">
 
+            <div class="row">
+                <div class="col-xs-12" id="statistic-year">
+                </div>
             </div>
         </form>
         <br>
@@ -121,13 +131,17 @@
             $(el).append(`<h3 style="color: ${getRandomColor()}">${h1}</h3>`)
 
             let table = $("<table class='table table-hover table-bordered table-striped'></table>")
-            table.append(`<tr><th>Package</th><th>amout</th><th>Money($)</th></tr>`)
+            table.append(`<tr><th>Package</th><th>Amount</th><th>Money($)</th></tr>`)
             table.append('<tbody>')
             if(data.length > 0) {
+                let sum = 0
                 data.forEach(val => {
                     let el = `<tr><td>${val.package}</td><td>${val.amount}</td><td>${val.money}</td></tr>`
                     table.append(el)
+                    sum += val.money
                 })
+                let el = `<tr><td colspan="2">Total</td><td>${sum}</td></tr>`
+                table.append(el)
             } else {
                 let el = `<tr><td colspan="3">No data</td></tr>`
                 table.append(el)
