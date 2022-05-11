@@ -57,9 +57,13 @@
                 <th>Gói</th>
                 <th>Key</th>
                 <th>ID User</th>
+                <th>Added date</th>
                 <th>Thao tác</th>
             </tr>
-            @foreach ($listKeys as $key)
+            @php
+            $sortedlist = $listKeys->sortByDesc('created_at');
+            @endphp
+            @foreach ($sortedlist as $key)
                 <tr>
                     <td>{{$loop->iteration}}</td>
                     <td>
@@ -74,6 +78,7 @@
                     <td>{{$key->package}}</td>
                     <td>{{$key->key}}</td>
                     <td>{{$key->user_id}}</td>
+                    <td>{{$key->created_at}}</td>
                     <td><a href="{{route('key.edit',$key->id)}}" class="btn btn-warning">Sửa</a>
                     <a href="{{route('key.delete',$key->id)}}" class="btn btn-danger" >Xóa</a>
                     </td>

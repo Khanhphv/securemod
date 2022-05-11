@@ -53,6 +53,22 @@
                 closeNav();
             }
         });
+
+        function smooth() {
+            if ($("#show").is(":visible")) {
+                $("#show").hide("1000");
+            } else {
+                $("#show").show("1000");
+            }
+            setTimeout(() => {
+                if ($("#show1").is(":visible")) {
+                    $("#show1").hide("1000");
+                } else {
+                    $("#show1").show("1000");
+                }
+            }, "150")
+            
+        }
         
     </script>
     <div class="toolbar sidebar" id="mySidebar">
@@ -231,8 +247,14 @@
 
             @endif
 
-            <div class="bubbles_container text-center py-4" onclick="location.href = 'https://t.me/zcheats_official'">
+            <div class="bubbles_container text-center py-4" onclick="smooth()">
                 <i class="bi bi-patch-question-fill h3 align-middle"></i>
+            </div>
+            <div class="bubbles_container bubbles_container-child text-center py-3 collapse" id="show" onclick="window.open('https://t.me/zcheats_official', '_blank');" style="bottom: 100px !important;">
+                <i class="bi bi-telegram h3 align-middle"></i>
+            </div>
+            <div class="bubbles_container bubbles_container-child text-center py-3 collapse" id="show1" onclick="window.open('https://discord.gg/3JKD2A8978', '_blank');" style="bottom: 170px !important;">
+                <i class="bi bi-discord h3 align-middle"></i>
             </div>
 
             <div class="card-container content">
