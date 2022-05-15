@@ -10,74 +10,57 @@
             white-space: pre-wrap;
             word-break: break-all;
         }
+        /* lg */
+        @media (min-width: 1200px) {
+            .img-fluid {
+                height:412px;
+                width:1270px;
+            }
+        }
     </style>
 </head>
 <body>
 @extends('new.master-layout')
 @section('content')
-    <div class="tab-content mobile" style="display: block">
-        <div class="row post-content">
-{{--            Post content--}}
-            <div class="post-title">
-{{--                Title--}}
-                <h1 class="mt-4" style="color: #0d4dff">{{ $post->title }}</h1>
-                <div class="content">
-                    @foreach ($post->tag as $singleTag)
-                        <span class="label-tag">{{ $singleTag->name }}</span>
-                    @endforeach
-                </div>
-                <div class="content">
-                    <label>
-                        <i style="font-size: inherit" class="material-icons dp48">access_time</i>
-                        {{ $post->created_at }}
-                    </label>
-                    <label style="float:right;  font-size: 16px">
-                        <i class="material-icons e417">remove_red_eye</i>
-                        {{ $post->view ?? '' }}
-                    </label>
-                    <div  class="like-icon" style="font-size: 16px; float:right; color: #9e9e9e">
-                        <label for="like-post" class="like-post" data-id="{{$post->id ?? ''}}">
-                            <i id="like-icon" class="material-icons e8dc">thumb_up</i>
-                            <span class="like-count">{{$post->like_post->like_count ?? 0}}</span>
-                        </label>
-                    </div>
-                </div>
-
-            </div>
-            <div class="col s12 m12">
-                <div class="post-image">
-                    {!! html_entity_decode(
-                        Html::image(
-                            $post->thumbnail,
-                            'Post Image',
-                            [
-                                'class' => 'responsive-img',
-                            ]
-                        )
-                    ) !!}
-                </div>
-                <br/>
-                <div id="detail-post">
-                    {!! $post->content !!}
-                </div>
-                <br/>
-                <hr/>
-                {!! html_entity_decode(
-                    Form::label(
-                        'author',
-                        'Post by: '.$author,
-                        [
-                            'class' => 'd-flex justify-content-end'
-                        ]
-                    )
-                ) !!}
-            </div>
-        </div>
+<main class="container">
+    <div class="text-center">
+        <img src="{{$post->thumbnail}}" class="img-fluid" alt="Responsive image" style="overflow: hidden;object-fit: cover;border-radius: 8px;">
     </div>
+    <div class="container py-4">
+        <div class="py-3">
+        @auth()
+        <label for="like-post" class="like-post btn btn-outline-light" data-id="{{$post->id ?? ''}}">
+            <i id="like-icon" class="bi bi-stars"></i>
+            <span class="like-count" id="like-text">Add to liked list</span>
+        </label>
+        @endauth
+        </div>
+        <h3>{{ $post->title }} <span class="lead text-muted">by <u>{{$author}}</u></span></h3>
+        <p class="lead text-muted">Published: {{ $post->created_at }}</p>
+        <div >
+            <i class="bi bi-eye-fill text-muted"></i>
+            <small class="text-muted">&nbsp; {{ $post->view }} &nbsp;</small>
+            <i class="bi bi-heart-fill text-muted"></i>
+            <small class="text-muted">&nbsp; {{ $post->like_post ? $post->like_post->like_count : 0 }}</small>
+        </div>
+        <div class="py-4">
+        @foreach ($post->tag as $singleTag)
+            <div class="badge bg-light text-dark p-2">{{ $singleTag->name }}</div>
+        @endforeach
+        </div>
+        <div id="detail-post">
+        {!! $post->content !!}
+    </div>
+    </div>
+
+    
+    
+  </main>
     <script>
         var class_name = 'liked-icon';
         if({{$is_like}}){
             document.getElementById("like-icon").classList.add(class_name);
+            document.getElementById("like-text").innerText = 'Remove from liked list'
         }
     </script>
     <script>
@@ -106,12 +89,12 @@
                             document.getElementById("like-icon").classList.add(class_name);
                             var _prevCount=$(".like-count").text();
                             _prevCount++;
-                            $(".like-count").text(_prevCount);
+                            $(".like-count").text('Liked');
                         } else {
                             document.getElementById("like-icon").classList.remove(class_name);
                             var _prevCount=$(".like-count").text();
                             _prevCount--;
-                            $(".like-count").text(_prevCount);
+                            $(".like-count").text('Unliked');
                         }
                     }
                 });
