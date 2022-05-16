@@ -27,6 +27,11 @@ return [
       "href" => "/recharge",
       "icon" => "bi bi-plus-circle",
     ],
+    [
+      "title" => "News",
+      "href" => "/post",
+      "icon" => "bi bi-newspaper",
+    ],
     
   ],
 ];
