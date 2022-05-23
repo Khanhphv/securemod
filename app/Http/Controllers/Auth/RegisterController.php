@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -127,11 +128,13 @@ class RegisterController extends Controller
                 }
             }
         }
+        $user->email_verified_at = NULL;
         $user->user_ref_count = 0;
         $user->user_debt = 0;
         $user->password = Hash::make($data['password']);
         $user->type = User::DEFAULT_TYPE;
         $user->save();
+        event(new Registered($user));
 
         return $user;
     }
