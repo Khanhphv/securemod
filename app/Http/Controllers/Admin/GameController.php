@@ -23,9 +23,13 @@ class GameController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $listGames = $this->gameService->getAllGames();
+        $listGames = $this->gameService->getAllGames($mode = null);
+        if($request->has('view_deleted'))
+        {
+            $listGames = $this->gameService->getAllGames($mode = 'sex');
+        }
         return view('admin.game.list', compact('listGames'));
     }
 
@@ -118,9 +122,26 @@ class GameController extends Controller
     public function destroy($id)
     {
         if ($this->gameService->deleteGame($id)) {
-            return redirect()->route('game.index')->with(['level' => 'success', 'message' => 'Xóa thành công!']);
+            return redirect()->route('game.index')->with(['level' => 'success', 'message' => 'Moved to trash bin']);
         }
         return redirect()->route('game.index')->with(['level' => 'danger', 'message' => 'Xóa thất bại!']);
 
+    }
+
+    public function forcedestroy($id)
+    {
+        if ($this->gameService->forceDeleteGame($id)) {
+            return redirect()->route('game.index')->with(['level' => 'success', 'message' => 'Deleted']);
+        }
+        return redirect()->route('game.index')->with(['level' => 'danger', 'message' => 'Xóa thất bại!']);
+
+    }
+
+    public function restore($id)
+    {
+        if ($this->gameService->restoreGame($id)) {
+            return redirect()->route('game.index')->with(['level' => 'success', 'message' => 'Restored successfully']);
+        }
+        return redirect()->route('game.index')->with(['level' => 'danger', 'message' => 'Failed to restore']);
     }
 }

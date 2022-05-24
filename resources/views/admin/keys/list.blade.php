@@ -5,6 +5,13 @@
 @section('content_header')
     <h1 style="float: left">List key</h1>
     <a href="{{route('key.create')}}" class="btn btn-block btn-success pull-right" style="max-width: 200px">Add new key</a><br/><br/>
+    @if(request()->has('view_deleted'))
+            <a href="{{route('key.index')}}" type="button" class="btn btn-block btn-warning pull-right"
+            style="max-width: 200px">Show available tools</a><br/><br/>
+        @else
+            <a href="{{route('key.index', ['view_deleted' => 'DeletedRecords'])}}" type="button" class="btn btn-block btn-warning pull-right"
+        style="max-width: 200px">Show trashed tools</a><br/><br/>
+        @endif
 @stop
 
 @section('content')
@@ -77,8 +84,15 @@
                         <td>{{$key->key}}</td>
                         <td>{{$key->user_id}}</td>
                         <td>{{$key->created_at}}</td>
-                        <td><a href="{{route('key.edit',$key->id)}}" class="btn btn-warning">Edit</a>
-                            {{--<a href="{{route('tool.ajax',$tool->id)}}" class="btn btn-danger" >Xóa</a>--}}
+                        <td>
+                            
+                            @if(request()->has('view_deleted'))
+                                    <a href="{{route('key.restore',$key->id)}}" class="btn btn-warning">Restore</a>
+                                    <a href="{{route('key.forcedelete',$key->id)}}" class="btn btn-danger delete">Force Delete</a>
+                                @else
+                                    <a href="{{route('key.edit',$key->id)}}" class="btn btn-warning">Edit</a>
+                                    <a href="{{route('key.delete',$key->id)}}" class="btn btn-danger">Move to trash</a>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
@@ -89,4 +103,17 @@
             {!!$listKeys->render()!!}
         </div>
     @endif
+@stop
+
+@section('js')
+    <script>
+        $(document).ready(function () {
+            $('.delete').on('click', function () {
+                let result = confirm("Do you want delete this key ?");
+                if (result === true) {
+                    $(this).closest('form').submit()
+                }
+            })
+        })
+    </script>
 @stop

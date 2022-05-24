@@ -28,6 +28,7 @@ class CreateKeysTable extends Migration
             $table->integer('hwid_count')->nullable();
             $table->integer('user_id')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

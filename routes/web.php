@@ -115,7 +115,12 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'is_a
     Route::get('/', 'AdminController@statics')->name('admin.index');
     Route::resource('tool', 'ToolController');
     Route::get('tool/delete/{id}', 'ToolController@destroy')->name('tool.delete');
+    Route::get('tool/forcedelete/{id}', 'ToolController@destroy')->name('tool.forcedelete');
+    Route::get('tool/restore/{id}', 'ToolController@restore')->name('tool.restore');
     Route::resource('key', 'KeyController');
+    Route::get('key/delete/{id}', 'KeyController@destroy')->name('key.delete');
+    Route::get('key/forcedelete/{id}', 'KeyController@destroy')->name('key.forcedelete');
+    Route::get('key/restore/{id}', 'KeyController@restore')->name('key.restore');
 //    Route::resource('blog', 'BlogController');
     Route::resource('post', 'PostController');
 //    Route::get('blog/delete/{id}', 'BlogController@destroy')->name('blog.delete');
@@ -127,6 +132,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'is_a
     Route::post('/setting/update', 'OptionController@update')->name('setting.update');
 
     Route::resource('game', 'GameController');
+    Route::get('game/restore/{id}', 'GameController@restore')->name('game.restore');
+    Route::get('game/delete/{id}', 'GameController@destroy')->name('game.delete');
+    Route::get('game/forcedelete/{id}', 'GameController@forcedestroy')->name('game.forcedelete');
 
     /**
      * API for summary admin

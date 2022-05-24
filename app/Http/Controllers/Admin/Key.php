@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\SoftDeletes; // add soft delete
 
 /**
  * @property string key
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\DB;
  */
 class Key extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'key', 'tool_id', 'package','user_id', 'history_id', 'created_at','updated_at'
     ];

@@ -6,6 +6,13 @@
     <h1 style="float: left">Tool list</h1>
     <a href="{{route('tool.create')}}" type="button" class="btn btn-block btn-success pull-right"
        style="max-width: 200px">Add tool</a><br/><br/>
+        @if(request()->has('view_deleted'))
+            <a href="{{route('tool.index')}}" type="button" class="btn btn-block btn-warning pull-right"
+            style="max-width: 200px">Show available tools</a><br/><br/>
+        @else
+            <a href="{{route('tool.index', ['view_deleted' => 'DeletedRecords'])}}" type="button" class="btn btn-block btn-warning pull-right"
+        style="max-width: 200px">Show trashed tools</a><br/><br/>
+        @endif
 @stop
 
 @section('content')
@@ -34,8 +41,15 @@
                     <td>@if ($tool->active === 1) <i class="fa fa-check-square"></i> Yes @else <i
                                 class="fa fa-close"></i> No @endif</td>
                     <td>{{$tool->order}}</td>
-                    <td><a href="{{route('tool.edit',$tool->id)}}" class="btn btn-warning">Edit</a>
-                        <a href="{{route('tool.delete',$tool->id)}}" onclick="return confirm('DELETE TOOL {{$tool->name}} MEANS DELETE ALL KEY. THIS ACTION IS EXTREMELY DANGEROUS! AFTER PRESSING OK WILL NOT BE RECOVERY ANY MORE ')" class="btn btn-danger" >Delete</a>
+                    <td>
+                        
+                        @if(request()->has('view_deleted'))
+                            <a href="{{route('tool.restore',$tool->id)}}" class="btn btn-warning">Restore</a>
+                            <a href="{{route('tool.delete',$tool->id)}}" onclick="return confirm('DELETE TOOL {{$tool->name}} MEANS DELETE ALL KEY. THIS ACTION IS EXTREMELY DANGEROUS! AFTER PRESSING OK WILL NOT BE RECOVERY ANY MORE ')" class="btn btn-danger" >Force Delete</a>
+                            @else
+                            <a href="{{route('tool.edit',$tool->id)}}" class="btn btn-warning">Edit</a>
+                            <a href="{{route('tool.delete',$tool->id)}}" class="btn btn-danger" >Move to trash</a>
+                        @endif
                     </td>
                 </tr>
             @endforeach

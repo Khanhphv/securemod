@@ -6,8 +6,27 @@ use App\Tool;
 
 class KeyService
 {
-    public function getAllKey() {
-        return Key::orderBy('updated_at', 'desc')->paginate(50);
+    public function getAllKey($mode = null) {
+        
+        if(!empty($mode))
+        {
+            return Key::orderBy('updated_at', 'desc')->whereNotNull('deleted_at')->paginate(50);
+        }else{
+            return Key::orderBy('updated_at', 'desc')->whereNull('deleted_at')->paginate(50);
+        }
+    }
+
+    public function deleteKey($id)
+    {
+        return Key::where('id', $id)->update(['deleted_at' => now()]);
+    }
+
+    public function forceDeleteKey($id) {
+        return Key::where('id', $id)->delete(); //original delete method, which delete forever lol
+    }
+
+    public function restoreKey($id) {
+        return Key::where('id', $id)->update(['deleted_at' => NULL]);
     }
 
     public function getTool() {

@@ -41,6 +41,7 @@ class CreateToolsTable extends Migration
             $table->text('api_get_key')->nullable();
             $table->integer('discount')->nullable(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

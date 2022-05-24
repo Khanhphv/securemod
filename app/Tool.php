@@ -5,9 +5,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Model\Game;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tool extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = [
         'name', 'order', 'logo', 'youtube', 'package', 'link', 'updated', 'active', 'updated_at', 'created_at', 'reseller', 'cost', 'link_backup', 'game_id','description_eng','content_eng'
     ];
@@ -21,6 +24,8 @@ class Tool extends Model
     {
         return $this->hasOne(Game::class, 'id', 'game_id');
     }
+
+    protected $dates = ['deleted_at'];
 
     public function getAllTool() {
         $selectData = [

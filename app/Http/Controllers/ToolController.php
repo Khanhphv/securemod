@@ -11,10 +11,11 @@ class ToolController extends Controller
     {
         if (Auth::user()) {
             $user = Auth::user();
-            $tools = Tool::with(['key' => function ($query) use ($user) {
+            $tools = Tool::all()->with(['key' => function ($query) use ($user) {
                 $query->where('user_id', $user->id)->orderBy('updated_at', 'desc');
             }, 'game'])->get();
             return view('new.tools', compact('tools'));
         }
     }
+
 }
