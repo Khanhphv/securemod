@@ -144,7 +144,8 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'is_a
         Route::get('/topkey','SummaryController@getKeySummary');
         Route::get('/summarykey', 'SummaryController@summaryWithEachKey');
         Route::get('/solvedKey', 'SummaryController@getSoldKey');
-
+//        Route::get('/summary/export-csv', 'SummaryController@exportCSV');
+        Route::get('/statistic/key', 'SummaryController@statisticPackageKeyByAll');
     });
 
     Route::get('add-blacklist', 'AdminController@addBlackList')->name('add-blacklist');

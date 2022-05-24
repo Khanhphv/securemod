@@ -80,7 +80,7 @@
                     <td>{{$key->user_id}}</td>
                     <td>{{$key->created_at}}</td>
                     <td><a href="{{route('key.edit',$key->id)}}" class="btn btn-warning">Sửa</a>
-                        {{--<a href="{{route('tool.ajax',$tool->id)}}" class="btn btn-danger" >Xóa</a>--}}
+                    <a href="{{route('key.delete',$key->id)}}" class="btn btn-danger" >Xóa</a>
                     </td>
                 </tr>
             @endforeach

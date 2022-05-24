@@ -6,13 +6,14 @@
 @section('content')
     <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-            <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true">Money</a></li>
+            <li class="active" id="tab-3"><a href="#tab_4" data-toggle="tab" aria-expanded="false">Summary</a></li>
+            <li class=""><a href="#tab_1" data-toggle="tab" aria-expanded="true">Money</a></li>
             <li class=""><a href="#tab_2" id="tab-2" data-toggle="tab" aria-expanded="false">Top Key</a></li>
             <li class="" id="tab-3"><a href="#tab_3" data-toggle="tab" aria-expanded="false">Key</a></li>
 
         </ul>
         <div class="tab-content" style="display: flex">
-                <div  class="tab-pane active" id="tab_1">
+                <div  class="tab-pane row col-md-12" id="tab_1">
                     <div id="tabs">
                         <ul>
                             <li><a href="?type=week">Week</a></li>
@@ -72,7 +73,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane col-md-12" id="tab_3">
+                <div class="tab-pane row col-md-12" id="tab_3">
                     <div id="tabs_3" class="row">
                         <div class="col-md-12">
                             <div class="box box-info">
@@ -159,6 +160,9 @@
                         </div>
 
                     </div>
+                </div>
+                <div class="tab-pane active row col-md-12" id="tab_4">
+                    @include('admin.summary.exportCSV')
                 </div>
             </div>
         </div>

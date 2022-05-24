@@ -9,6 +9,7 @@ use App\HwidLogs;
 use App\Service\KeyService;
 use App\Tool;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Auth;
 
@@ -125,6 +126,7 @@ class KeyController extends Controller
      */
     public function destroy($id)
     {
+
         if ($this->keyService->deleteKey($id)) {
             return back()->with(['level' => 'success', 'message' => 'Moved to trash bin']);
         }
