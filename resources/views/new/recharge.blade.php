@@ -32,7 +32,7 @@
                 <h2>Payment</h2>
                 <div class="col s12 m12">
                     <div>
-                    
+
                     @php
                         $paypal = \App\Option::where('option', 'paypal_payment')->get()->first();
                         $coin = \App\Option::where('option', 'coin_payment')->get()->first();
@@ -116,10 +116,14 @@
                             </a>
                         </div>
                         @endif
+
                     @endauth
-                    
+
 
                 </div>
+                    <div class="card-credit">
+                        @include('new.payment.extra-payment')
+                    </div>
                 </div>
             </div>
         </div>

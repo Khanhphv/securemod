@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Service\SummaryService;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Admin\Summary\SummaryExcelController;
 
 class SummaryController
 {
@@ -68,6 +70,28 @@ class SummaryController
         $type =  $request->get('type');
         $response = $summaryService->getSoldKey($type, $startDate, $endDate);
         return response()->json($response);
+    }
+
+//    public function exportCSV(Request $request)
+//    {
+//        $type = $request->get('type');
+//        $date = $request->get('date');
+//        $data = new SummaryExcelController($type, $date);
+//        $file_name = 'summary' . Carbon::now()->format('Ymd');
+//        $response = $data->getPathFile($file_name);
+//        if($response["status"]){
+//            return response()->download($response["filePath"]);
+//        } else {
+//            return "No data";
+//        }
+//    }
+
+    public function statisticPackageKeyByAll(Request $request) {
+        $key = $request->get('key');
+        $date = $request->get('date');
+        $summaryService = new SummaryService();
+        $data = $summaryService->statisticPackageKeyByAll($key, $date, '');
+        return response()->json($data);
     }
 
 }

@@ -7,6 +7,7 @@ use App\Model\History;
 use App\Tool;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Excel;
 
 class SummaryService
 {
@@ -149,7 +150,7 @@ class SummaryService
         ];
     }
 
-    public function getSoldKey(?string $type, ?string $startDate, ?string $endDate)
+    public function getSoldKey(?string $type, ?string $startDate, ?string $endDate = '')
     {
         if(!isset($type)) {
             $type = 'day';
@@ -173,10 +174,21 @@ class SummaryService
 
     }
 
+    public function statisticPackageKeyByAll(string $key, ? string $startDate, ? string $endDate){
+        $data = [];
+        $listType = ['day', 'week', "month", "year"];
+        foreach ($listType as $type) {
+            list($startDate, $endDate) = $this->getStartAndEndDateByConditon($type, $startDate, $endDate);
+            $tool = new Tool();
+            $data[$type] = $tool->getAmountKeyByPackage($startDate, $endDate, $key);
+        }
+        return $data;
+    }
+
     private function getStartAndEndDateByConditon(?string $type, ? string $startDate, ? string $endDate): array {
 
         $initStartDate = $startDate ? Carbon::parse($startDate) : now();
-        $initEndDate = $endDate ? Carbon::parse($endDate) : now();
+        $initEndDate = isset($endDate) ? Carbon::parse($endDate) : now();
         switch ($type) {
             case 'day':
                 $startDate = $initStartDate->startOfDay();
@@ -200,6 +212,7 @@ class SummaryService
 
         return array($startDate, $endDate);
     }
+
 
 
 }
