@@ -27,7 +27,6 @@ class CreateGamesTable extends Migration
             $table->integer('views')->nullable();
             $table->string('keyword', 255)->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
