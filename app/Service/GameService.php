@@ -9,8 +9,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class GameService
 {
-    public function getAllGames() {
-        return Game::orderBy('order')->get();
+    public function getAllGames($mode = null) {
+        if(!empty($mode))
+        {
+            return Game::orderBy('order')->whereNotNull('deleted_at')->get();
+        }else{
+            return Game::orderBy('order')->whereNull('deleted_at')->get();
+        }
+        
     }
 
     public function createGame($request) {
@@ -89,7 +95,18 @@ class GameService
 
     public function deleteGame($id) {
         $game = $this->getGameById($id);
+        return Game::where('id', $game['id'])->update(['deleted_at' => now()]);
+        // return $game->delete(); //original delete method, which delete forever lol
+    }
 
-        return $game->delete();
+    public function forceDeleteGame($id) {
+        $game = $this->getGameById($id);
+        //return Game::where('id', $game['id'])->update(['deleted_at' => now()]);
+        return $game->delete(); //original delete method, which delete forever lol
+    }
+
+    public function restoreGame($id) {
+        $game = $this->getGameById($id);
+        return Game::where('id', $game['id'])->update(['deleted_at' => NULL]);
     }
 }

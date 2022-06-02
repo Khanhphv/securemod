@@ -16,9 +16,13 @@ class ToolController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 		$listTool = Tool::join('games', 'games.id', '=', 'tools.game_id')->select('tools.*', 'games.name AS game_name')->orderBy('game_id', 'desc')->get();
+        if($request->has('view_deleted'))
+        {
+            $listTool = Tool::onlyTrashed()->join('games', 'games.id', '=', 'tools.game_id')->select('tools.*', 'games.name AS game_name')->orderBy('game_id', 'desc')->get();
+        }
         return view('admin.tools.list', compact('listTool'));
     }
 
@@ -31,6 +35,21 @@ class ToolController extends Controller
     {
         $games = Game::get();
         return view('admin.tools.add',compact('games'));
+    }
+
+    public function restore($id)
+    {
+        Tool::where('id', $id)->restore();
+        // add key restore in here too e.g: Key::where('tool_id', $id)->delete();
+        Key::where('id', $id)->update(['deleted_at' => NULL]);
+	    return back()->with(['level' => 'success', 'message' => 'Restored successfully']);
+    }
+
+    public function forcedelete($id)
+    {
+        Tool::where('id', $id)->forceDelete();
+        Key::where('id', $id)->delete();
+	    return back()->with(['level' => 'danger', 'message' => 'Deleted successfully']);
     }
 
     /**
@@ -189,7 +208,8 @@ class ToolController extends Controller
     public function destroy($id)
     {
        Tool::where('id', $id)->delete();
-	   Key::where('tool_id', $id)->delete();
-	   return back()->with(['level' => 'success', 'message' => 'Đã xóa!']);
+	   //Key::where('tool_id', $id)->delete();
+        Key::where('id', $id)->update(['deleted_at' => now()]);
+	   return back()->with(['level' => 'success', 'message' => 'Added to trash bin']);
     }
 }

@@ -29,9 +29,13 @@ class KeyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $listKeys = $this->keyService->getAllKey();
+        if($request->has('view_deleted'))
+        {
+            $listKeys = $this->keyService->getAllKey($mode = 'sex');
+        }
         return view('admin.keys.list', compact('listKeys'));
     }
 
@@ -122,12 +126,28 @@ class KeyController extends Controller
      */
     public function destroy($id)
     {
-        $res = DB::table('keys')->where('id',$id)->delete();
-        if ($res) {
-            return back()->with(['level' => 'danger', 'message' => 'Đã xoá key mang ID: '.$id]);
-        } else {
-            return back()->with(['level' => 'danger', 'message' => 'Đã có lỗi xảy ra: '.$res]);
+
+        if ($this->keyService->deleteKey($id)) {
+            return back()->with(['level' => 'success', 'message' => 'Moved to trash bin']);
         }
+        return back()->with(['level' => 'danger', 'message' => 'Xóa thất bại!']);
+    }
+
+    public function forcedestroy($id)
+    {
+        if ($this->keyService->forceDeleteKey($id)) {
+            return back()->with(['level' => 'success', 'message' => 'Deleted']);
+        }
+        return back()->with(['level' => 'danger', 'message' => 'Xóa thất bại!']);
+
+    }
+
+    public function restore($id)
+    {
+        if ($this->keyService->restoreKey($id)) {
+            return back()->with(['level' => 'success', 'message' => 'Restored successfully']);
+        }
+        return back()->with(['level' => 'danger', 'message' => 'Failed to restore']);
     }
 
     public function ajax(Request $request)

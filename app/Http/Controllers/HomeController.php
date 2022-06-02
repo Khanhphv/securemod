@@ -63,12 +63,14 @@ class HomeController extends Controller
                 'gm.views',
                 'gm.id as id',
                 'gm.slug',
-                'gm.created_at'
+                'gm.created_at',
+                'gm.deleted_at'
             ])
             ->leftJoin('tools as tl', 'tl.game_id','=', 'gm.id')
             ->leftJoin('keys as ke', 'ke.tool_id', '=', 'tl.id')
             ->groupBy('id')
             ->orderBy('gm.order', 'asc')
+            ->whereNull('gm.deleted_at')
             ->get();
         Session::remove('selectedGame');
         $listTools = Tool::where('active', true)->orderBy('order')->get();

@@ -13,10 +13,27 @@
 
 //---------------------CLIENT-----------------------
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 // Guest router
 Route::group(['middleware' => ['locale', 'web']], function () {
     Auth::routes();
+    Route::get('/email/verification-notification', function (Request $request) {
+        $request->user()->sendEmailVerificationNotification();
+     
+        return back()->with('message', 'Verification link sent!');
+    })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+    
+    Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+        $request->fulfill();
+     
+        return redirect('/home');
+    })->middleware(['auth'])->name('verification.verify');
+    
+    Route::get('/email/verify', function () {
+        return view('new.email');
+    })->middleware('auth')->name('verification.notice');
     Route::get('/', 'HomeController@landing');
     Route::get('/blog', 'BlogController@index');
     Route::get('/post', 'PostController@index')->name('post');
@@ -62,7 +79,7 @@ Route::group(['middleware' => ['locale', 'web']], function () {
 });
 
 // Auth router
-Route::group(['middleware' => ['locale', 'auth']], function () {
+Route::group(['middleware' => ['locale', 'auth', 'verified']], function () {
     Route::get('balance', 'HomeController@getBalance')->name('balance');
     Route::get('keys', 'HomeController@getKeys')->name('keys');
     Route::get('tools', 'ToolController@index')->name('tools');
@@ -98,8 +115,12 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'is_a
     Route::get('/', 'AdminController@statics')->name('admin.index');
     Route::resource('tool', 'ToolController');
     Route::get('tool/delete/{id}', 'ToolController@destroy')->name('tool.delete');
-    Route::get('key/delete/{id}', 'KeyController@destroy')->name('key.delete');
+    Route::get('tool/forcedelete/{id}', 'ToolController@destroy')->name('tool.forcedelete');
+    Route::get('tool/restore/{id}', 'ToolController@restore')->name('tool.restore');
     Route::resource('key', 'KeyController');
+    Route::get('key/delete/{id}', 'KeyController@destroy')->name('key.delete');
+    Route::get('key/forcedelete/{id}', 'KeyController@destroy')->name('key.forcedelete');
+    Route::get('key/restore/{id}', 'KeyController@restore')->name('key.restore');
 //    Route::resource('blog', 'BlogController');
     Route::resource('post', 'PostController');
 //    Route::get('blog/delete/{id}', 'BlogController@destroy')->name('blog.delete');
@@ -111,6 +132,9 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin', 'middleware' => 'is_a
     Route::post('/setting/update', 'OptionController@update')->name('setting.update');
 
     Route::resource('game', 'GameController');
+    Route::get('game/restore/{id}', 'GameController@restore')->name('game.restore');
+    Route::get('game/delete/{id}', 'GameController@destroy')->name('game.delete');
+    Route::get('game/forcedelete/{id}', 'GameController@forcedestroy')->name('game.forcedelete');
 
     /**
      * API for summary admin
